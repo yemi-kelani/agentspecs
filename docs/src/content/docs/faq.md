@@ -49,7 +49,7 @@ Not fully. [Evidence] Instructions planted in content an agent later reads can s
 
 ## Is there a validator?
 
-Not yet. [Proposal] A validator CLI and a GitHub Action are on the roadmap. Until then, use the [checklist](/reference/checklist/) and the verify commands in each phase file.
+A reference one. [Proposal] [specs-ref](https://github.com/yemi-kelani/agentspecs/tree/main/specs-ref), in the Agent Specs repository, checks a spec set, or a repository's AGENTS.md and every spec set under `work/`, against the Specification's structural rules. It is a demonstration rather than a production tool, and it does not run verify commands; use the [checklist](/reference/checklist/) and each phase's Verify for the rest. A GitHub Action is on the roadmap.
 
 ## How do I propose a change?
 

@@ -4,8 +4,8 @@ Agent Specs is at v0.1 (draft). This file lists what v0.1 leaves out on purpose 
 
 ## Out of scope for v0.1
 
-- **Validator CLI.** A command that checks a spec set against the Specification: required sections in plan.md and phase files, the state.json shape, phase table rows that match files on disk, and a valid HANDOFF.md for every phase marked done. Today the checks are manual (Reference > Checklist).
-- **GitHub Action.** Runs the validator on pull requests that touch `work/`, so a broken spec set fails review instead of a later phase.
+- **Published validator.** `specs-ref/` is a reference validator for the structural rules, run from a clone. A published package, and checks that run verify commands or compare source hashes, are not in v0.1; those checks stay manual (Reference > Checklist).
+- **GitHub Action.** Runs `specs-ref` on pull requests that touch `work/`, so a broken spec set fails review instead of a later phase.
 - **Registry.** A shared index of reusable phase files, skills and example spec sets, with versions. Needs the validator first.
 - **Translations.** The site is English only. Starlight supports localized pages; translation waits until the format stops changing.
 

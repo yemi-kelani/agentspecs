@@ -47,6 +47,7 @@ Repository-wide rules are in [../AGENTS.md](../AGENTS.md); this file adds what o
 | Picture, geometry and theme-menu tests | `tests/visual/`, `playwright.config.mjs`; reviewed pictures in `tests/visual/screens/` |
 | Favicon and social image (generated) | `scripts/gen-brand.mjs` → `public/favicon.svg`, `public/og.png` |
 | Site constants (GitHub URL) | `src/consts.mjs` |
+| Spec-set validator used by the `specsets` check and the Quickstart runner | `../specs-ref/src/conformance.mjs` (its tests live in `../specs-ref/tests/`) |
 | Templates (change only with a format change) | `public/templates/` |
 
 ## Boundaries

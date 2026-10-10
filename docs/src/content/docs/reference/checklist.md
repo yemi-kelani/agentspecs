@@ -3,7 +3,7 @@ title: Checklist
 description: Checkable lists for dispatching a phase, accepting it, closing a task and checking conformance.
 ---
 
-[Proposal] Each item restates a rule from the [Specification](/specification/) as something you can confirm by opening a file or running a command. Paths are relative to `work/<task-id>/`. Copy a list into progress.md or a review comment and tick it off.
+[Proposal] Each item restates a rule from the [Specification](/specification/) as something you can confirm by opening a file or running a command. Paths are relative to `work/<task-id>/`. Copy a list into progress.md or a review comment and tick it off. [Proposal] For the structural items, `specs-ref validate work/<task-id>` from the reference validator [specs-ref](https://github.com/yemi-kelani/agentspecs/tree/main/specs-ref) checks them for you.
 
 ## Before dispatching a phase
 

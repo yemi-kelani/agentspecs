@@ -1,12 +1,12 @@
 // specsets: every work/<task-id>/ spec set conforms to the Specification (structure only; verify
-// commands are not run here — see scripts/lib/conformance.mjs). Looks in work/ under the site root and
+// commands are not run here — see specs-ref/, the reference validator). Looks in work/ under the site root and
 // under the repository root (the git top level, else the folder above the site), and checks the
 // repository root AGENTS.md, when there is one, against the Specification's AGENTS.md rules.
 import { spawnSync } from 'node:child_process';
 import { existsSync, readFileSync } from 'node:fs';
 import { dirname, join, relative, resolve } from 'node:path';
 import { result, toPosix } from './lib.mjs';
-import { findSpecSets, validateAgentsMd, validateSpecSet } from '../lib/conformance.mjs';
+import { findSpecSets, validateAgentsMd, validateSpecSet } from '../../../specs-ref/src/index.mjs';
 
 function repoRoot(siteRoot) {
   const top = spawnSync('git', ['rev-parse', '--show-toplevel'], { cwd: siteRoot, encoding: 'utf8' });

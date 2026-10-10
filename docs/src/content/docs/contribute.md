@@ -19,7 +19,8 @@ A spec change moves through three steps, so the reasoning is on record before an
 3. **Pull request.** One pull request updates, together:
    - the [Specification](/specification/) text;
    - every affected template in `docs/public/templates/`, plus [Templates](/reference/templates/) and the [Quickstart](/quickstart/), which must embed (Templates) or fetch unchanged (Quickstart) every template;
-   - the changelog section, [Changes in this version](/specification/#changes-in-this-version).
+   - the changelog section, [Changes in this version](/specification/#changes-in-this-version);
+   - the reference validator, [specs-ref](https://github.com/yemi-kelani/agentspecs/tree/main/specs-ref), when a script can check the rule.
 
 Fixes that do not change the format, such as typos, broken links or clearer wording, can go straight to a pull request.
 

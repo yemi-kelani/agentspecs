@@ -1,0 +1,13 @@
+{
+  "name": "specs-ref",
+  "version": "0.1.0",
+  "description": "Reference validator for Agent Specs",
+  "license": "Apache-2.0",
+  "private": true,
+  "type": "module",
+  "bin": { "specs-ref": "src/cli.mjs" },
+  "exports": { ".": "./src/index.mjs" },
+  "files": ["src"],
+  "engines": { "node": ">=22.18.0" },
+  "scripts": { "test": "node --test \"tests/**/*.test.mjs\"" }
+}

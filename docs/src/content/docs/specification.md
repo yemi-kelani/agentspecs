@@ -282,7 +282,7 @@ Choosing a size: [Sizing: when to use what](/concepts/sizing/).
 
 [Proposal] A repository conforms when its AGENTS.md meets the [AGENTS.md](#agentsmd) rules and each skill meets the [SKILL.md](#skillmd) rules.
 
-[Proposal] Version 0.1 ships no validator. Check conformance by hand with the [Checklist](/reference/checklist/#conformance).
+[Proposal] The Agent Specs repository includes [specs-ref](https://github.com/yemi-kelani/agentspecs/tree/main/specs-ref), a reference validator for the structural rules on this page. It does not run verify commands or compare source hashes, so use the [Checklist](/reference/checklist/#conformance) as well. Where specs-ref and this page disagree, this page wins.
 
 ## Changes in this version
 

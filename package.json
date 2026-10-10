@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "cd docs && npm run dev",
     "build": "cd docs && npm run build",
-    "test": "cd docs && npm test",
-    "check": "cd docs && npm run check"
+    "test": "cd specs-ref && npm test && cd ../docs && npm test",
+    "check": "cd docs && npm run check",
+    "validate": "node specs-ref/src/cli.mjs validate ."
   }
 }

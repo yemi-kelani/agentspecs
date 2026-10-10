@@ -11,7 +11,7 @@
 // Assertions: every file in public/templates/ is fetched by a `curl … "$AGENTSPECS/templates/<file>"
 // -o <path>` command and arrives unchanged; exactly one agent step; each fetched file, after the page
 // fills it in, still has its template's `##` sections in order; AGENTS.md conforms to the
-// Specification; each work/<task-id>/ spec set conforms (scripts/lib/conformance.mjs: sections, state
+// Specification; each work/<task-id>/ spec set conforms (specs-ref, the reference validator: sections, state
 // schema, plan/state/phases agreement, valid DONE handoffs with Verify lines, timestamped progress),
 // plan.md is ≤80 lines, every phase ends "done", and every Global acceptance and Verify command exits 0.
 // Trust: page commands run like test code (full env) inside a temp copy of the example.
@@ -23,7 +23,7 @@ import { tmpdir } from 'node:os';
 import { dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { fencedBlocks, splitFrontmatter } from '../../src/lib/md-utils.mjs';
-import { validateAgentsMd, validateSpecSet } from '../lib/conformance.mjs';
+import { validateAgentsMd, validateSpecSet } from '../../../specs-ref/src/index.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 const PLAN_MAX_LINES = 80;

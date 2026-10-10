@@ -21,6 +21,7 @@ Read the Specification, guides and templates at [agentspecs.io](https://agentspe
 | Path | What it holds |
 |------|---------------|
 | [`docs/`](docs/) | The agentspecs.io site: the Specification, guides, templates (`docs/public/templates/`), evidence data, content checks and the Quickstart example. See [docs/README.md](docs/README.md). |
+| [`specs-ref/`](specs-ref/) | Reference validator: checks spec sets and AGENTS.md against the Specification's structural rules. See [specs-ref/README.md](specs-ref/README.md). |
 | [`AGENTS.md`](AGENTS.md) | Instructions for coding agents working in this repository. |
 | [`CONTRIBUTING.md`](CONTRIBUTING.md) | How to give feedback and propose changes. |
 | [`ROADMAP.md`](ROADMAP.md) | What v0.1 leaves out, and the questions no source has tested yet. |
@@ -33,6 +34,7 @@ Node 22.18 or later.
 cd docs && npm install && cd ..   # once
 npm run dev                       # dev server at http://localhost:4321
 npm test && npm run check         # tests and content checks
+npm run validate                  # specs-ref on this repository
 ```
 
 ## Status

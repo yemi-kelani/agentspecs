@@ -1,7 +1,7 @@
 // Structural conformance to Agent Specs v0.1 (Specification: File requirements, Ownership and write
 // rules, Phase lifecycle, Conformance), including the review phase, disjoint Writes and env values for
 // phases that can run at the same time, and the leak-check item for confidential sources.
-// Shared by the Quickstart runner and the `specsets` check. Reads files only; it never
+// Used by the specs-ref CLI and by the site's Quickstart runner and `specsets` check. Reads files only; it never
 // runs commands. validateSpecSet returns { errors, verify } where verify lists the commands that
 // plan.md Global acceptance and each phase's Verify name, for a caller that wants to run them.
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';

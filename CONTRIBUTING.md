@@ -18,6 +18,7 @@ A change to a MUST, SHOULD or MAY rule, or to a file format, goes through three 
    - every affected template in `docs/public/templates/`
    - the Templates page and the Quickstart
    - the changelog under Changes in this version
+   - `specs-ref/`, when a script can check the rule
 
 Fixes that leave the format alone can go straight to a pull request. Typos, broken links and clearer wording are examples.
 
@@ -27,10 +28,12 @@ Run these from `docs/` before you open a pull request:
 
 ```bash
 npm install                 # once
-npm test                    # tests for checks, plugins and the validator
+npm test                    # tests for checks and plugins
 npm run check               # content checks
 npm run check:quickstart    # runs the Quickstart end to end
 ```
+
+For the validator, run `npm test` in `specs-ref/`. From the repository root, `npm test` runs both test suites.
 
 The banned-term check reads a list that only maintainers hold. If you don't have the list, run `AGENTSPECS_BANNED_TERMS=off npm run check`; a maintainer runs the full check before merging.
 

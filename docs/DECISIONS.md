@@ -74,3 +74,7 @@
 ## 2026-10-10 — License: Apache 2.0
 - Choice: the specification, templates and site are under the Apache License 2.0, in `LICENSE` at the repository root (the unmodified text from apache.org). The README, CONTRIBUTING.md, docs/README.md and the Contribute page say so, and the root package.json declares `Apache-2.0`.
 - Why: owner decision. It matches the Agent Skills repository's license.
+
+## 2026-10-10 — specs-ref: reference validator at the repository root
+- Choice: the spec-set validator moved from `docs/scripts/lib/conformance.mjs` to `specs-ref/src/conformance.mjs`, with a CLI (`specs-ref validate <path>`, `specs-ref commands <spec-set>`), its own package.json, README, LICENSE and tests. It has no dependencies. The site's `specsets` check and Quickstart runner import it by relative path, so there is one copy.
+- Why: owner request, mirroring the Agent Skills repository's `skills-ref/`. Like that package, it is a demonstration that adds no rules of its own; the Specification page stays the authority.
