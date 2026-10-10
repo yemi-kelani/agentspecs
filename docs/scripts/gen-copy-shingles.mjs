@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Write src/data/copy-shingles.json: truncated SHA-256 hashes of every 10-word shingle in the
 // agentskills.io docs (../research/agentskills/docs, git-ignored). The file holds no source text,
-// so the copy check runs on fresh clones and in CI. Run from docs-site/ when the corpus changes.
+// so the copy check runs on fresh clones and in CI. Run from docs/ when the corpus changes.
 import { writeFileSync } from 'node:fs';
 import { existsSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';

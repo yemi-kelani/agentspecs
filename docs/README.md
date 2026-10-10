@@ -1,4 +1,4 @@
-# docs-site
+# Agent Specs site
 
 Source for [agentspecs.io](https://agentspecs.io), the documentation site for Agent Specs v0.1 (draft): a convention for writing task specs that coding agents can follow phase by phase. It is a static site built with Astro and Starlight.
 
@@ -6,7 +6,7 @@ Working on this folder? Read [AGENTS.md](AGENTS.md) first. It lists the rules th
 
 ## Commands
 
-Run from `docs-site/` (Node 22.18 or later).
+Run from `docs/` (Node 22.18 or later). From the repository root, `npm run dev`, `npm run build`, `npm test` and `npm run check` forward here.
 
 | Command | What it does |
 |---------|--------------|
@@ -36,6 +36,6 @@ Every page is also served as Markdown at `/<slug>.md` (the home page at `/index.
 
 ## More
 
-- [ROADMAP.md](ROADMAP.md): what v0.1 leaves out and the open questions.
+- [ROADMAP.md](../ROADMAP.md): what v0.1 leaves out and the open questions.
 - [Contribute](https://agentspecs.io/contribute/): feedback, spec changes and the writing rules.
 - License: being finalized.

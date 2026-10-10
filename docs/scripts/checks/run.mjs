@@ -3,7 +3,7 @@
 //   npm run check                       all checks, all content
 //   npm run check -- <path...>          limit content checks to these files/dirs
 //   npm run check -- --allow-stubs      skip the stubs check
-//   --root <dir>                        site root (default: docs-site/)
+//   --root <dir>                        site root (default: docs/)
 //   --only <name,name>                  run a subset of checks
 // The banned check reads its term list from outside the repository (see banned.mjs).
 import { fileURLToPath } from 'node:url';

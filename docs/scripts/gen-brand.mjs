@@ -1,5 +1,5 @@
-// Brand generator for agentspecs.io (phase 7). Run from docs-site/:
-//   node scripts/gen-brand.mjs   (run from docs-site/)
+// Brand generator for agentspecs.io (phase 7). Run from docs/:
+//   node scripts/gen-brand.mjs   (run from docs/)
 // Writes public/favicon.svg, public/og.png and
 // a 16 px preview PNG in the OS temp folder (path printed). Uses only installed packages: sharp (rasterizing)
 // and fontkitten (Astro's font parser) to turn Inter Variable glyphs into SVG paths, so the
@@ -11,7 +11,7 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
-const ROOT = resolve(HERE, '..'); // docs-site/
+const ROOT = resolve(HERE, '..'); // docs/
 const PREVIEW = join(tmpdir(), 'agentspecs-favicon-16.png'); // visual check only; not committed
 const req = createRequire(join(ROOT, 'package.json'));
 const sharp = req('sharp');

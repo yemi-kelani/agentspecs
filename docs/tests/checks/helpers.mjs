@@ -19,13 +19,13 @@ export function termsFile(text) {
 process.env.AGENTSPECS_BANNED_TERMS = termsFile('');
 
 /**
- * Create `<tmp>/docs-site/` with the given files (paths relative to docs-site/).
- * Paths starting with "../" land beside docs-site (e.g. "../research/...").
- * Returns the docs-site root.
+ * Create `<tmp>/docs/` with the given files (paths relative to docs/).
+ * Paths starting with "../" land beside docs (e.g. "../research/...").
+ * Returns the docs root.
  */
 export function makeSite(files = {}) {
   const base = mkdtempSync(join(tmpdir(), 'agentspecs-check-'));
-  const root = join(base, 'docs-site');
+  const root = join(base, 'docs');
   const all = {
     'src/data/evidence.json': EMPTY_EVIDENCE,
     'src/data/links-allowlist.json': EMPTY_ALLOWLIST,

@@ -9,7 +9,7 @@ You will add a `maxLength` option to a tiny `slugify` library: write a spec set,
 ## Get the example and the templates
 
 ```bash manual
-git clone --depth 1 https://github.com/yemi-kelani/agentspecs.git && cp -R agentspecs/docs-site/examples/quickstart slugify-demo && cd slugify-demo
+git clone --depth 1 https://github.com/yemi-kelani/agentspecs.git && cp -R agentspecs/docs/examples/quickstart slugify-demo && cd slugify-demo
 ```
 
 The example has passing tests and no spec files. [Proposal] Each task gets its own folder, `work/<task-id>/`. Check the tests, then fetch every template unchanged. To use a mirror or a local build of this site, set `AGENTSPECS` first.

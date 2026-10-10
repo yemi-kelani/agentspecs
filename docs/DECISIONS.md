@@ -40,7 +40,7 @@
 
 ## 2026-10-09 — GitHub URL set by owner
 - Choice: `GITHUB_URL = https://github.com/yemi-kelani/agentspecs` (supersedes the pending placeholder above). Allowlist and the Quickstart clone command updated to match.
-- Why: owner supplied the repository. The Quickstart assumes this folder (with `docs-site/`) is the repository root.
+- Why: owner supplied the repository. The Quickstart assumes this folder (with `docs/`) is the repository root.
 
 ## 2026-10-10 — Banned terms: list kept outside the repository, repository-wide scan
 - Choice: `scripts/checks/banned.mjs` reads a plain term list from outside the repository (`AGENTSPECS_BANNED_TERMS`, default `~/.config/agentspecs/banned-terms.txt`; whole words, case-sensitive) and scans every file `git ls-files -co --exclude-standard` returns for the whole repository; messages print only the term's line in the list. It fails when the list is missing; `AGENTSPECS_BANNED_TERMS=off` skips it with a warning. An earlier version kept unkeyed SHA-256 hashes in the repository; they were removed because hashes of short names can be reversed by guessing.
@@ -66,3 +66,7 @@
 ## 2026-10-10 — Picture tests with Playwright
 - Choice: `@playwright/test` (dev dependency) with `tests/visual/`: pictures of 4 pages x 4 widths x 2 themes plus components and open states, a geometry spec of the measured numbers, and theme-menu behaviour. `threshold: 0.02`, `maxDiffPixels: 20`.
 - Why: a restyle has to be checked by looking; the red-proof deleted the header's 1px hairline and 40 pictures went red. Pictures are rendered on macOS; re-cut on another OS before comparing there.
+
+## 2026-10-10 — Repository layout mirrors the Agent Skills repository
+- Choice: the site moved from `docs-site/` to `docs/`. The repository root holds README.md, AGENTS.md (with a CLAUDE.md symlink), CONTRIBUTING.md, ROADMAP.md and a package.json whose scripts forward to `docs/`. Reviewed screenshots moved from `docs/screens/` to `tests/visual/screens/`, so the site folder holds no second `docs/`. The `specsets` check also covers `work/` at the repository root and checks the root AGENTS.md against the Specification.
+- Why: owner request, to match the layout of the Agent Skills repository (project files at the root, the site in `docs/`). The copy check's `../research/` path keeps working because the site stays one level down.

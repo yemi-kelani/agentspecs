@@ -1,0 +1,10 @@
+{
+  "name": "agentspecs",
+  "private": true,
+  "scripts": {
+    "dev": "cd docs && npm run dev",
+    "build": "cd docs && npm run build",
+    "test": "cd docs && npm test",
+    "check": "cd docs && npm run check"
+  }
+}

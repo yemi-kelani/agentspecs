@@ -1,6 +1,8 @@
-# AGENTS.md — docs-site
+# AGENTS.md — docs (the agentspecs.io site)
 
-## Commands (run from docs-site/)
+Repository-wide rules are in [../AGENTS.md](../AGENTS.md); this file adds what only the site needs.
+
+## Commands (run from docs/)
 - `npm install` — once.
 - `npm run dev` — local dev server (http://localhost:4321).
 - `npm run build` — static build to `dist/` (also builds the Pagefind index).
@@ -25,7 +27,7 @@
 - Internal links: absolute paths with trailing slash, e.g. `/concepts/sizing/`.
 - Prefer `.md`. Use `.mdx` only for components (Card, CardGrid, LinkCard, Tabs, Steps, FileTree). Callouts: `:::note`, `:::tip`, `:::caution`, `:::danger`.
 - Do not edit `astro.config.mjs` to add pages: every route already exists in the sidebar.
-- The look follows the agentskills.io docs (measured values in `src/styles/theme.css`, geometry in `tests/visual/geometry.spec.mjs`). A change to the chrome or content styles must turn a picture in `tests/visual/__screenshots__/` red; re-cut with `npx playwright test tests/visual/site.spec.mjs --update-snapshots` only after looking at the new images, and copy them to `docs/screens/<pass>/` (pre-change images in `docs/screens/<pass>/before/`, names `<subject>[_<state>]_<width>_<theme>.png`).
+- The look follows the agentskills.io docs (measured values in `src/styles/theme.css`, geometry in `tests/visual/geometry.spec.mjs`). A change to the chrome or content styles must turn a picture in `tests/visual/__screenshots__/` red; re-cut with `npx playwright test tests/visual/site.spec.mjs --update-snapshots` only after looking at the new images, and copy them to `tests/visual/screens/<pass>/` (pre-change images in `tests/visual/screens/<pass>/before/`, names `<subject>[_<state>]_<width>_<theme>.png`).
 
 ## Where things live
 | Need | Path |
@@ -42,7 +44,7 @@
 | Task-list checkbox labels (a11y) | `src/plugins/rehype-task-list-labels.mjs` |
 | Theme, label colours | `src/styles/theme.css`, `src/styles/labels.css` |
 | Layout overrides (frame, header, sidebar, TOC, theme menu, pagination) | `src/components/PageFrame.astro`, `TwoColumnContent.astro`, `Header.astro`, `Sidebar.astro`, `PageSidebar.astro`, `ThemeSelect.astro`, `Pagination.astro`, `MobileMenuToggle.astro` |
-| Picture, geometry and theme-menu tests | `tests/visual/`, `playwright.config.mjs`; reviewed pictures in `docs/screens/` |
+| Picture, geometry and theme-menu tests | `tests/visual/`, `playwright.config.mjs`; reviewed pictures in `tests/visual/screens/` |
 | Favicon and social image (generated) | `scripts/gen-brand.mjs` → `public/favicon.svg`, `public/og.png` |
 | Site constants (GitHub URL) | `src/consts.mjs` |
 | Templates (change only with a format change) | `public/templates/` |

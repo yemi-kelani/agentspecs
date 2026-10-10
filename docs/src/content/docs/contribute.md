@@ -18,14 +18,14 @@ A spec change moves through three steps, so the reasoning is on record before an
 2. **Discussion.** If the fix changes a MUST, SHOULD or MAY rule or a file format, take it to a discussion. Compare the options there and link any evidence. The change is ready when the discussion settles on one option.
 3. **Pull request.** One pull request updates, together:
    - the [Specification](/specification/) text;
-   - every affected template in `docs-site/public/templates/`, plus [Templates](/reference/templates/) and the [Quickstart](/quickstart/), which must embed (Templates) or fetch unchanged (Quickstart) every template;
+   - every affected template in `docs/public/templates/`, plus [Templates](/reference/templates/) and the [Quickstart](/quickstart/), which must embed (Templates) or fetch unchanged (Quickstart) every template;
    - the changelog section, [Changes in this version](/specification/#changes-in-this-version).
 
 Fixes that do not change the format, such as typos, broken links or clearer wording, can go straight to a pull request.
 
 ## Write for this site
 
-From `docs-site/`, `npm run dev` previews the site, `npm run check` runs the content checks and `npm run check:quickstart` runs the Quickstart end to end. Run all three before you open a pull request. The banned-term check reads a list that only maintainers hold; without it, run `AGENTSPECS_BANNED_TERMS=off npm run check` and a maintainer runs the full check before merging.
+From `docs/`, `npm run dev` previews the site, `npm run check` runs the content checks and `npm run check:quickstart` runs the Quickstart end to end. Run all three before you open a pull request. The banned-term check reads a list that only maintainers hold; without it, run `AGENTSPECS_BANNED_TERMS=off npm run check` and a maintainer runs the full check before merging.
 
 - **Label claims.** Start every non-trivial claim with exactly one of `[Established]`, `[Evidence]`, `[Heuristic]` or `[Proposal]`. The [Evidence page](/evidence/#labels) defines them. A heuristic is never a finding, and every `[Evidence]` claim carries its caveat.
 - **Cite verified sources only.** A citation is a link whose URL matches a source marked `verified` in `src/data/evidence.json`. Add a new source there first, with the claim it supports, its label and caveat, and the date you checked it. Other outside links belong in `src/data/links-allowlist.json`.

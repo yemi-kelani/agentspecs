@@ -2,7 +2,7 @@
 // Evidence page generator.
 //   node scripts/gen-evidence.mjs            rewrite the generated region of evidence.md
 //   node scripts/gen-evidence.mjs --check    exit 1 if that region is stale (file untouched)
-//   --root <dir>                             site root (default: docs-site/)
+//   --root <dir>                             site root (default: docs/)
 //
 // Only the text between the two markers below is rewritten; everything else on the page is
 // hand-written. The region is rendered from src/data/evidence.json:
