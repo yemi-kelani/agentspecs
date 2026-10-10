@@ -43,4 +43,4 @@ A library does not hand you every book when you bring it a question. You look in
 
 [Proposal] The payoff claimed here is token economy and focus, not higher compliance; [Why specs need structure](/concepts/why-structure/) covers the null results on splitting files.
 
-**In the spec:** [Specification](/reference/specification/) — plan.md, phase files and AGENTS.md routing. For the router itself, see the [AGENTS.md router guide](/guides/agents-md-router/).
+**In the spec:** [Specification](/reference/specification/) — plan.md, phase files and AGENTS.md routing. For the router itself, see [AGENTS.md](/works-with/agents-md/).

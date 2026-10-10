@@ -20,11 +20,13 @@ export const SIDEBAR = [
 		items: [
 			'guides/write-plan',
 			'guides/write-phase-file',
-			'guides/agents-md-router',
-			'guides/skill-md-triggers',
 			'guides/verify-and-accept',
 			'guides/run-phases-with-subagents',
 		],
+	},
+	{
+		label: 'Works with',
+		items: ['works-with/agents-md', 'works-with/agent-skills'],
 	},
 	{
 		label: 'Reference',

@@ -69,7 +69,7 @@ Why: [Index and leaves](/concepts/index-and-leaves/), [Living state](/concepts/l
 
 ### AGENTS.md
 
-Path: repository root. Template: [AGENTS.md](/reference/templates/#agentsmd). Guide: [Write AGENTS.md as a router](/guides/agents-md-router/).
+Path: repository root. Template: [AGENTS.md](/reference/templates/#agentsmd). Works with: [AGENTS.md](/works-with/agents-md/).
 
 - [Proposal] It MUST contain these sections: Commands, Rules the code does not show, Routing, Boundaries.
 - [Proposal] Commands MUST be exact and runnable as written.
@@ -82,7 +82,7 @@ Path: repository root. Template: [AGENTS.md](/reference/templates/#agentsmd). Gu
 
 ### SKILL.md
 
-Path: `.agents/skills/<name>/SKILL.md`, with optional `references/`, `scripts/` and `evals/`. Template: [SKILL.md](/reference/templates/#skillmd). Guide: [Write SKILL.md that triggers reliably](/guides/skill-md-triggers/).
+Path: `.agents/skills/<name>/SKILL.md`, with optional `references/`, `scripts/` and `evals/`. Template: [SKILL.md](/reference/templates/#skillmd). Works with: [Agent Skills](/works-with/agent-skills/).
 
 - [Established] Agent Skills requires YAML frontmatter with `name` and `description`, requires `name` to match the skill's folder, and sets its own limits on both fields ([Agent Skills specification](https://agentskills.io/specification)).
 - [Proposal] A SKILL.md MUST conform to the Agent Skills specification. Where this page and that specification differ, that specification wins.

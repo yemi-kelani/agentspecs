@@ -21,6 +21,8 @@ export default defineConfig({
 	redirects: {
 		'/specification': '/reference/specification/',
 		'/reference/size-budgets': '/reference/templates/#budgets',
+		'/guides/agents-md-router': '/works-with/agents-md/',
+		'/guides/skill-md-triggers': '/works-with/agent-skills/',
 	},
 	markdown: {
 		processor: unified({ remarkPlugins: [remarkLabels], rehypePlugins: [rehypeTaskListLabels] }),
