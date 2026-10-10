@@ -11,6 +11,7 @@ export const SIDEBAR = [
 			'concepts/index-and-leaves',
 			'concepts/handoff-contracts',
 			'concepts/living-state',
+			'concepts/verification-and-review',
 			'concepts/sizing',
 			'concepts/untrusted-sources',
 		],
