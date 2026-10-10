@@ -39,7 +39,7 @@ The research above is real but narrow. Read the rest of the site with these limi
 
 No external source supports these parts of the design. Treat them as choices to test on your own work.
 
-- [Heuristic] The plan.md budget of about 60–80 lines keeps the index cheap to load in every phase; no study measured it. See [Size budgets](/reference/size-budgets/).
+- [Heuristic] The plan.md budget of about 60–80 lines keeps the index cheap to load in every phase; no study measured it. See [Budgets](/reference/templates/#budgets).
 - [Heuristic] The escalation triggers. About 150 plan.md lines has no source at all. About 40% of the context window comes from one team, which has since switched to a fixed 100k tokens ([HumanLayer, 2026](https://www.humanlayer.dev/blog/long-context-isnt-the-answer)). See [Sizing](/concepts/sizing/).
 - [Proposal] The HANDOFF.md template. No study tests whether a fixed report helps the next phase; its fields follow Anthropic's qualitative advice on briefing subagents ([Anthropic, 2025](https://www.anthropic.com/engineering/multi-agent-research-system)), not a measurement.
 - [Proposal] Output scanning and hashed source manifests as defences. No source supports either.

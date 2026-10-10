@@ -20,6 +20,7 @@ export default defineConfig({
 	// Old page URLs from before the 2026-10-10 navigation restructure (see DECISIONS.md).
 	redirects: {
 		'/specification': '/reference/specification/',
+		'/reference/size-budgets': '/reference/templates/#budgets',
 	},
 	markdown: {
 		processor: unified({ remarkPlugins: [remarkLabels], rehypePlugins: [rehypeTaskListLabels] }),

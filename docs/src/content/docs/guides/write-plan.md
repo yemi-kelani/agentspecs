@@ -20,7 +20,7 @@ plan.md says what done looks like, which rules hold in every phase and which pha
    - **Last row:** [Proposal] with more than one phase, the last is a review phase that depends on every other phase and writes only `out/phase-<N>/`. See [The review phase](/guides/verify-and-accept/#the-review-phase).
 6. **Define shared terms once.** If two phases must mean the same thing by "row" or "release", define it here in one line instead of in each phase file.
 7. **Keep it stable.** [Proposal] Change plan.md only when the plan itself changes. Progress lines, surprises and decisions go to progress.md, and phase status goes to state.json. [Established] OpenAI's ExecPlans keep Progress, Surprises and Discoveries, a Decision Log and a Retrospective inside the plan as living sections ([ExecPlans](https://developers.openai.com/cookbook/articles/codex_exec_plans)); Agent Specs moves them out so the file every phase reads does not change under it.
-8. **Hold the budget.** [Heuristic] Aim for about 60 to 80 lines. The reason is fan-out: every phase loads the whole of plan.md, so each line is paid once per phase, while a line in a phase file is paid once. A six-phase task with a 150-line plan spends 900 lines of context on the index alone. See [Size budgets](/reference/size-budgets/).
+8. **Hold the budget.** [Heuristic] Aim for about 60 to 80 lines. The reason is fan-out: every phase loads the whole of plan.md, so each line is paid once per phase, while a line in a phase file is paid once. A six-phase task with a 150-line plan spends 900 lines of context on the index alone. See [Budgets](/reference/templates/#budgets).
 
 ## Failure mode: the index grows into the pile it replaced
 

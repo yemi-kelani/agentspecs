@@ -17,7 +17,7 @@ Nobody knows yet. [Proposal] No study has tested Agent Specs, or any index-and-l
 
 ## Does file length matter?
 
-[Evidence] One study found no detectable effect of CLAUDE.md files of 25 to 500 lines on whether an agent followed a rule, though the rule was trivial and longer files were not tested ([McMillan, 2026](https://arxiv.org/abs/2605.10039)). [Evidence] Other studies saw accuracy fall as inputs or the number of instructions grew, on synthetic tasks rather than coding agents ([Chroma, 2025](https://www.trychroma.com/research/context-rot); [Jaroslawicz et al., 2025](https://arxiv.org/abs/2507.11538)). [Proposal] So the [size budgets](/reference/size-budgets/) rest on token cost and focus, not on a proven threshold.
+[Evidence] One study found no detectable effect of CLAUDE.md files of 25 to 500 lines on whether an agent followed a rule, though the rule was trivial and longer files were not tested ([McMillan, 2026](https://arxiv.org/abs/2605.10039)). [Evidence] Other studies saw accuracy fall as inputs or the number of instructions grew, on synthetic tasks rather than coding agents ([Chroma, 2025](https://www.trychroma.com/research/context-rot); [Jaroslawicz et al., 2025](https://arxiv.org/abs/2507.11538)). [Proposal] So the [size budgets](/reference/templates/#budgets) rest on token cost and focus, not on a proven threshold.
 
 ## Do I need subagents?
 

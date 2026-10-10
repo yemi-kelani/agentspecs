@@ -35,4 +35,4 @@ description: How to match the weight of a spec set to the size of the task, when
 
 **Heavy workflows on small tasks.** [Evidence] In one hands-on review, Kiro turned a small bug into 4 user stories with 16 acceptance criteria, and spec-kit produced repetitive files that were tedious to review for a mid-sized feature ([Böckeler, 2025](https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html)). Caveat: one practitioner on October 2025 versions; Kiro has since added bugfix specs and Quick Spec.
 
-**In the spec:** [Specification](/reference/specification/) defines the files of a full spec set; [Reference: Size budgets](/reference/size-budgets/) collects the line budgets.
+**In the spec:** [Specification](/reference/specification/) defines the files of a full spec set; [Templates: Budgets](/reference/templates/#budgets) collects the line budgets.

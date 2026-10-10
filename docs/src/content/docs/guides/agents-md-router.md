@@ -13,7 +13,7 @@ description: Write an AGENTS.md that gives agents the commands and rules they ne
 4. **Boundaries.** Say what is untrusted data (`work/*/sources/`, fetched pages) and which actions need a human's approval.
 5. **Leave out overviews.** [Evidence] In a study of four coding-agent setups, repository overviews in context files did not help agents reach the files they needed to change any sooner, and the files overall did not significantly change task success while raising cost by about a fifth ([Gloaguen et al.](https://arxiv.org/abs/2602.11988)). The study used Python repositories only, and generated files did help slightly where no other documentation existed.
 6. **Test every line.** [Established] Claude Code's docs warn that an over-long instruction file makes the agent ignore rules, and suggest asking of each line whether removing it would cause a mistake ([best practices](https://code.claude.com/docs/en/best-practices)). Delete the lines that fail.
-7. **Keep it short.** [Established] OpenAI's Codex team replaced one large AGENTS.md with a file of about 100 lines that works as a map into a structured docs folder ([Harness engineering](https://openai.com/index/harness-engineering/)); that is one team's practice, not a tested limit. See [Size budgets](/reference/size-budgets/).
+7. **Keep it short.** [Established] OpenAI's Codex team replaced one large AGENTS.md with a file of about 100 lines that works as a map into a structured docs folder ([Harness engineering](https://openai.com/index/harness-engineering/)); that is one team's practice, not a tested limit. See [Budgets](/reference/templates/#budgets).
 
 ## Nested AGENTS.md files
 

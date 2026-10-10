@@ -28,7 +28,7 @@ export const SIDEBAR = [
 	},
 	{
 		label: 'Reference',
-		items: ['reference/templates', 'reference/size-budgets', 'reference/checklist'],
+		items: ['reference/templates', 'reference/checklist'],
 	},
 	'comparison',
 	'evidence',

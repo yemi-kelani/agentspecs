@@ -52,7 +52,7 @@ repo/
     └── sources/MANIFEST.md   pinned, hashed, read-only, untrusted
 ```
 
-Every file has a template on [Templates](/reference/templates/) and a budget on [Size budgets](/reference/size-budgets/).
+Every file has a template on [Templates](/reference/templates/) and a budget under [Budgets](/reference/templates/#budgets).
 
 ## Loading rules
 

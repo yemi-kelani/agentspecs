@@ -17,7 +17,7 @@ description: Checkable lists for dispatching a phase, accepting it, closing a ta
 - [ ] No phase that is `in_progress` has a Writes path that overlaps this phase's Writes path.
 - [ ] If another phase is `in_progress`, this phase gets its own working copy (`git worktree list` shows it), and its `env` values in `state.json` differ from that phase's.
 - [ ] Each file under `sources/` that the phase reads has a row in `sources/MANIFEST.md` that lists this phase number.
-- [ ] `wc -l plan.md` reports about 80 lines or fewer, or the overrun is logged in the progress.md decision log ([budgets](/reference/size-budgets/)).
+- [ ] `wc -l plan.md` reports about 80 lines or fewer, or the overrun is logged in the progress.md decision log ([budgets](/reference/templates/#budgets)).
 - [ ] The dispatch message gives the exact paths of `plan.md`, the phase file and its inputs.
 - [ ] `state.json` shows this phase as `"in_progress"` with a new `updated` time.
 
