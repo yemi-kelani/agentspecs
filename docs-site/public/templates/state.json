@@ -4,6 +4,7 @@
   "updated": "<YYYY-MM-DDTHH:MMZ>",
   "phases": [
     { "id": 1, "file": "phases/phase-1-<slug>.md", "status": "pending", "verified": false, "handoff": null },
-    { "id": 2, "file": "phases/phase-2-<slug>.md", "status": "pending", "verified": false, "handoff": null }
+    { "id": 2, "file": "phases/phase-2-<slug>.md", "status": "pending", "verified": false, "handoff": null },
+    { "id": 3, "file": "phases/phase-3-review.md", "status": "pending", "verified": false, "handoff": null }
   ]
 }

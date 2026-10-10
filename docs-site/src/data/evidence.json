@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-09",
+  "generated": "2026-10-10",
   "labels": {
     "Established": "Vendor documentation or multiple independent sources agree.",
     "Evidence": "A specific cited study; always read with its caveat.",
@@ -702,6 +702,258 @@
       "verified": "2026-10-09",
       "status": "unreachable",
       "notes": "Two searches found no primary recording, transcript or slides; only secondary write-ups (e.g. a pi-context-zone README) attribute the 'dumb zone' coinage and a '100,000+ sessions' analysis to it. Date and venue unverified. URL is HumanLayer's blog index, where no such post is listed. Claims relying on it are dropped."
+    },
+    {
+      "id": "b-huang-self-correct",
+      "title": "Large Language Models Cannot Self-Correct Reasoning Yet",
+      "authors": "Jie Huang, Xinyun Chen, Swaroop Mishra, Huaixiu Steven Zheng, Adams Wei Yu, Xinying Song, Denny Zhou",
+      "publisher": "ICLR 2024",
+      "date": "2023-10-03",
+      "url": "https://arxiv.org/abs/2310.01798",
+      "type": "paper",
+      "verified": "2026-10-10",
+      "status": "verified",
+      "notes": "arXiv:2310.01798; v2 (2024-03-14) is the ICLR 2024 version. Abstract and PDF checked."
+    },
+    {
+      "id": "b-stechly-self-verify",
+      "title": "On the Self-Verification Limitations of Large Language Models on Reasoning and Planning Tasks",
+      "authors": "Kaya Stechly, Karthik Valmeekam, Subbarao Kambhampati",
+      "publisher": "ICLR 2025",
+      "date": "2024-02-12",
+      "url": "https://arxiv.org/abs/2402.08115",
+      "type": "paper",
+      "verified": "2026-10-10",
+      "status": "verified",
+      "notes": "arXiv:2402.08115 v2; ICLR 2025 poster. The sound verifiers are formal checkers (SymPy, an edge check, the VAL plan validator), not LLMs. Abstract, PDF and ICLR page checked."
+    },
+    {
+      "id": "b-kamoi-self-correction-survey",
+      "title": "When Can LLMs Actually Correct Their Own Mistakes? A Critical Survey of Self-Correction of LLMs",
+      "authors": "Ryo Kamoi, Yusen Zhang, Nan Zhang, Jiawei Han, Rui Zhang",
+      "publisher": "Transactions of the Association for Computational Linguistics, vol. 12",
+      "date": "2024-11-04",
+      "url": "https://arxiv.org/abs/2406.01297",
+      "type": "paper",
+      "verified": "2026-10-10",
+      "status": "verified",
+      "notes": "TACL 12:1417–1440, DOI 10.1162/tacl_a_00713; arXiv v3. Covers work up to May 2024. Abstract, PDF and Crossref checked."
+    },
+    {
+      "id": "b-panickssery-self-preference",
+      "title": "LLM Evaluators Recognize and Favor Their Own Generations",
+      "authors": "Arjun Panickssery, Samuel R. Bowman, Shi Feng",
+      "publisher": "NeurIPS 2024",
+      "date": "2024-04-15",
+      "url": "https://arxiv.org/abs/2404.13076",
+      "type": "paper",
+      "verified": "2026-10-10",
+      "status": "verified",
+      "notes": "arXiv:2404.13076; NeurIPS 2024 proceedings. Summarization only (XSUM, CNN/DailyMail); no human quality judgments were collected. Abstract, PDF and proceedings page checked."
+    },
+    {
+      "id": "b-chen-self-preference-reason",
+      "title": "Do LLM Evaluators Prefer Themselves for a Reason?",
+      "authors": "Wei-Lin Chen, Zhepei Wei, Xinyu Zhu, Shi Feng, Yu Meng",
+      "publisher": "arXiv",
+      "date": "2025-04-04",
+      "url": "https://arxiv.org/abs/2504.03846",
+      "type": "paper",
+      "verified": "2026-10-10",
+      "status": "verified",
+      "notes": "arXiv:2504.03846 v3 (2025-12-12), a preprint with no venue. Abstract and v3 PDF checked."
+    },
+    {
+      "id": "b-mcaleese-critics",
+      "title": "LLM Critics Help Catch LLM Bugs",
+      "authors": "Nat McAleese, Rai (Michael Pokorny), Juan Felipe Cerón Uribe, Evgenia Nitishinskaya, Maja Trębacz, Jan Leike",
+      "publisher": "arXiv (OpenAI)",
+      "date": "2024-06-28",
+      "url": "https://arxiv.org/abs/2407.00215",
+      "type": "paper",
+      "verified": "2026-10-10",
+      "status": "verified",
+      "notes": "arXiv:2407.00215; no venue. Abstract and PDF checked; the 63% figure appears in the abstract."
+    },
+    {
+      "id": "a-anthropic-building-agents",
+      "title": "Building effective agents",
+      "authors": "Erik Schluntz, Barry Zhang",
+      "publisher": "Anthropic",
+      "date": "2024-12-19",
+      "url": "https://www.anthropic.com/engineering/building-effective-agents",
+      "type": "blog",
+      "verified": "2026-10-10",
+      "status": "verified",
+      "notes": "Page byline reads Erik S. and Barry Zhang. The page now notes that much of the tooling it describes has changed since December 2024."
+    },
+    {
+      "id": "c-gitleaks",
+      "title": "Gitleaks",
+      "authors": "Gitleaks project",
+      "publisher": "GitHub",
+      "date": "2026-05",
+      "url": "https://github.com/gitleaks/gitleaks",
+      "type": "repo",
+      "verified": "2026-10-10",
+      "status": "verified",
+      "notes": "README on the default branch, last changed 2026-05-21; latest release v8.30.1. Sections Load Configuration and Commands > Git checked. In-repo .gitleaksignore files and gitleaks:allow comments can still suppress findings."
+    },
+    {
+      "id": "c-git-secrets",
+      "title": "git-secrets",
+      "authors": "AWS Labs",
+      "publisher": "GitHub",
+      "date": "2025-08",
+      "url": "https://github.com/awslabs/git-secrets",
+      "type": "repo",
+      "verified": "2026-10-10",
+      "status": "verified",
+      "notes": "README.rst on the default branch, last changed 2025-08-15; low activity. Sections Secret providers and --add-provider checked. An in-repo .gitallowed file can cancel matches."
+    },
+    {
+      "id": "a-gh-custom-patterns",
+      "title": "Defining custom patterns for secret scanning",
+      "authors": "GitHub",
+      "publisher": "GitHub Docs",
+      "date": "2026-10",
+      "url": "https://docs.github.com/en/code-security/how-tos/secure-your-secrets/customize-leak-detection/define-custom-patterns",
+      "type": "vendor-doc",
+      "verified": "2026-10-10",
+      "status": "verified",
+      "notes": "Living page; the older secret-scanning paths redirect here. Retrieval month used as date. The related concept page says patterns can be created at the enterprise, organization or repository level."
+    },
+    {
+      "id": "a-gh-remove-sensitive",
+      "title": "Removing sensitive data from a repository",
+      "authors": "GitHub",
+      "publisher": "GitHub Docs",
+      "date": "2026-10",
+      "url": "https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository",
+      "type": "vendor-doc",
+      "verified": "2026-10-10",
+      "status": "verified",
+      "notes": "Living page; retrieval month used as date. Its procedure uses git-filter-repo 2.47 or later with --sensitive-data-removal."
+    },
+    {
+      "id": "a-gh-forks",
+      "title": "Forks",
+      "authors": "GitHub",
+      "publisher": "GitHub Docs",
+      "date": "2026-10",
+      "url": "https://docs.github.com/en/pull-requests/reference/forks",
+      "type": "vendor-doc",
+      "verified": "2026-10-10",
+      "status": "verified",
+      "notes": "Living page that consolidates the older fork pages, which redirect here. Retrieval month used as date."
+    },
+    {
+      "id": "c-truffle-cfor",
+      "title": "Anyone can Access Deleted and Private Repository Data on GitHub",
+      "authors": "Joe Leon",
+      "publisher": "Truffle Security",
+      "date": "2024-07-24",
+      "url": "https://trufflesecurity.com/blog/anyone-can-access-deleted-and-private-repo-data-github",
+      "type": "blog",
+      "verified": "2026-10-10",
+      "status": "verified",
+      "notes": "Describes GitHub behaviour as of July 2024. The post's statement that a full SHA-1 has 32 characters is wrong (it has 40)."
+    },
+    {
+      "id": "a-git-worktree",
+      "title": "git-worktree Documentation",
+      "authors": "Git project",
+      "publisher": "git-scm.com",
+      "date": "2026-09",
+      "url": "https://git-scm.com/docs/git-worktree",
+      "type": "vendor-doc",
+      "verified": "2026-10-10",
+      "status": "verified",
+      "notes": "Reference page for Git 2.56.0. DESCRIPTION and COMMANDS (add) sections checked."
+    },
+    {
+      "id": "a-cc-worktrees",
+      "title": "Run parallel sessions with worktrees",
+      "authors": "Anthropic",
+      "publisher": "Claude Code Docs",
+      "date": "2026-10",
+      "url": "https://code.claude.com/docs/en/worktrees",
+      "type": "vendor-doc",
+      "verified": "2026-10-10",
+      "status": "verified",
+      "notes": "Living page with many version notes (v2.1.198 to v2.1.281); retrieval month used as date. Sections Start Claude in a worktree, Copy gitignored files into worktrees and How Claude Code enforces isolation checked."
+    },
+    {
+      "id": "a-cc-commands",
+      "title": "Commands",
+      "authors": "Anthropic",
+      "publisher": "Claude Code Docs",
+      "date": "2026-10",
+      "url": "https://code.claude.com/docs/en/commands",
+      "type": "vendor-doc",
+      "verified": "2026-10-10",
+      "status": "verified",
+      "notes": "Living page; retrieval month used as date. The /batch row of the All commands table checked."
+    },
+    {
+      "id": "a-codex-worktrees",
+      "title": "Worktrees",
+      "authors": "OpenAI",
+      "publisher": "ChatGPT Learn",
+      "date": "2026-10",
+      "url": "https://learn.chatgpt.com/docs/environments/git-worktrees",
+      "type": "vendor-doc",
+      "verified": "2026-10-10",
+      "status": "verified",
+      "notes": "The old developers.openai.com/codex/app/worktrees URL redirects here. Terminology has moved from threads to tasks to chats. Retrieval month used as date."
+    },
+    {
+      "id": "a-cursor-worktrees",
+      "title": "Worktrees",
+      "authors": "Anysphere",
+      "publisher": "Cursor Docs",
+      "date": "2026-10",
+      "url": "https://cursor.com/docs/configuration/worktrees",
+      "type": "vendor-doc",
+      "verified": "2026-10-10",
+      "status": "verified",
+      "notes": "Describes Cursor 3.5 behaviour; the native feature is in the Agents Window. Retrieval month used as date."
+    },
+    {
+      "id": "a-container-use",
+      "title": "Introduction - Container Use",
+      "authors": "Dagger",
+      "publisher": "container-use.com",
+      "date": "2026-01-07",
+      "url": "https://container-use.com/introduction",
+      "type": "vendor-doc",
+      "verified": "2026-10-10",
+      "status": "verified",
+      "notes": "An experimental open-source MCP server in early development. The GitHub README says the same."
+    },
+    {
+      "id": "a-conductor-env",
+      "title": "Conductor environment variables",
+      "authors": "Melty Labs",
+      "publisher": "Conductor Docs",
+      "date": "2026-10",
+      "url": "https://www.conductor.build/docs/reference/environment-variables",
+      "type": "vendor-doc",
+      "verified": "2026-10-10",
+      "status": "verified",
+      "notes": "Third-party tool; CONDUCTOR_PORT applies to local workspaces only. Retrieval month used as date."
+    },
+    {
+      "id": "a-vscode-agent-harnesses",
+      "title": "Choose and use an agent harness",
+      "authors": "Microsoft",
+      "publisher": "Visual Studio Code Docs",
+      "date": "2026-10-07",
+      "url": "https://code.visualstudio.com/docs/agents/run/agent-harnesses",
+      "type": "vendor-doc",
+      "verified": "2026-10-10",
+      "status": "verified",
+      "notes": "The older background-agents URL redirects here."
     }
   ],
   "claims": [
@@ -3647,6 +3899,434 @@
       "drop_reason": "Mismatch: Böckeler's article does not mention Beck; his critique is in Fowler's 'Fragments: January 8', which is cited instead.",
       "topics": [
         "plans"
+      ]
+    },
+    {
+      "id": "a-cc-reviewer-overreports",
+      "claim": "The Claude Code docs advise having a subagent review the diff in a fresh context before treating a task as done, warn that a reviewer prompted to find gaps will usually report some even when the work is sound and that chasing every finding leads to over-engineering, and advise telling the reviewer to flag only gaps that affect correctness or the stated requirements.",
+      "label": "Established",
+      "sources": [
+        "a-cc-best-practices"
+      ],
+      "url": "https://code.claude.com/docs/en/best-practices",
+      "quote": "",
+      "caveat": "Vendor guidance from a page that changes over time, not a measured result.",
+      "verified": "2026-10-10",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "verification"
+      ]
+    },
+    {
+      "id": "a-cc-writer-reviewer",
+      "claim": "The Claude Code docs describe a Writer/Reviewer pattern across two sessions, saying a fresh context improves code review because Claude won't be biased toward code it just wrote, and ship a /code-review skill that reviews the current diff in a fresh subagent.",
+      "label": "Established",
+      "sources": [
+        "a-cc-best-practices"
+      ],
+      "url": "https://code.claude.com/docs/en/best-practices",
+      "quote": "",
+      "caveat": "The claim that a fresh context removes bias is the vendor's; it publishes no data for it.",
+      "verified": "2026-10-10",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "verification",
+        "subagents"
+      ]
+    },
+    {
+      "id": "b-self-correct-no-feedback",
+      "claim": "Without external feedback, LLMs struggled to correct their own reasoning, and their performance sometimes got worse after self-correction.",
+      "label": "Evidence",
+      "sources": [
+        "b-huang-self-correct"
+      ],
+      "url": "https://arxiv.org/abs/2310.01798",
+      "quote": "LLMs struggle to self-correct their responses without external feedback",
+      "caveat": "Prompt-only self-correction on GSM8K, CommonSenseQA and HotpotQA with GPT-3.5, GPT-4 and Llama 2; reasoning benchmarks, not coding agents, and not a separate reviewer.",
+      "verified": "2026-10-10",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "verification"
+      ]
+    },
+    {
+      "id": "b-self-critique-vs-verifier",
+      "claim": "When GPT-4 critiqued its own answers on Game of 24, graph colouring and STRIPS planning, performance fell in most domains, while a sound external verifier gave substantial gains.",
+      "label": "Evidence",
+      "sources": [
+        "b-stechly-self-verify"
+      ],
+      "url": "https://arxiv.org/abs/2402.08115",
+      "quote": "significant performance collapse with self-critique and significant performance gains with sound external verification",
+      "caveat": "One model on puzzle and planning domains; the verifiers were formal checkers, not other LLMs; Blocksworld improved with self-critique.",
+      "verified": "2026-10-10",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "verification"
+      ]
+    },
+    {
+      "id": "b-self-correction-needs-feedback",
+      "claim": "A survey of self-correction research found that it works well in tasks with reliable external feedback, and that no prior work showed successful self-correction from prompted-LLM feedback alone, except in tasks exceptionally suited to it.",
+      "label": "Evidence",
+      "sources": [
+        "b-kamoi-self-correction-survey"
+      ],
+      "url": "https://arxiv.org/abs/2406.01297",
+      "quote": "self-correction works well in tasks that can use reliable external feedback",
+      "caveat": "A literature survey of work up to May 2024; it names code generation with test execution as a task where reliable feedback exists.",
+      "verified": "2026-10-10",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "verification"
+      ]
+    },
+    {
+      "id": "b-self-preference",
+      "claim": "On two news-summarization datasets, GPT-4, GPT-3.5 Turbo and Llama 2 favoured their own summaries over those from other models and humans, and the better a model recognized its own output, the stronger its self-preference.",
+      "label": "Evidence",
+      "sources": [
+        "b-panickssery-self-preference"
+      ],
+      "url": "https://arxiv.org/abs/2404.13076",
+      "quote": "we discover a linear correlation between self-recognition capability and the strength of self-preference bias",
+      "caveat": "Summarization only, and quality was not controlled with human judgments, so some of the preference may be deserved.",
+      "verified": "2026-10-10",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "verification"
+      ]
+    },
+    {
+      "id": "b-self-preference-legit",
+      "claim": "On verifiable tasks including math and code generation, much of strong models' preference for their own answers matched genuinely better answers, but harmful self-preference persisted when the evaluator had answered wrongly as a generator.",
+      "label": "Evidence",
+      "sources": [
+        "b-chen-self-preference-reason"
+      ],
+      "url": "https://arxiv.org/abs/2504.03846",
+      "quote": "much of this preference aligns with objectively superior performance",
+      "caveat": "A preprint judging single answers across seven model families, not agentic code review.",
+      "verified": "2026-10-10",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "verification"
+      ]
+    },
+    {
+      "id": "b-critics-catch-bugs",
+      "claim": "Trained LLM critics caught more bugs inserted into code than paid human contractors, and on naturally occurring LLM errors model-written critiques were preferred over human ones in 63% of cases; critics also hallucinated bugs, which human-plus-critic teams did less.",
+      "label": "Evidence",
+      "sources": [
+        "b-mcaleese-critics"
+      ],
+      "url": "https://arxiv.org/abs/2407.00215",
+      "quote": "models catch more bugs than human contractors paid for code review",
+      "caveat": "A GPT-4-based critic trained with RLHF on purpose-built data, not a prompted reviewer; headline results use deliberately inserted bugs.",
+      "verified": "2026-10-10",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "verification"
+      ]
+    },
+    {
+      "id": "a-evaluator-optimizer",
+      "claim": "Anthropic describes an evaluator-optimizer workflow, in which one LLM call generates and another evaluates and gives feedback in a loop, as particularly effective when there are clear evaluation criteria and iterative refinement adds measurable value.",
+      "label": "Established",
+      "sources": [
+        "a-anthropic-building-agents"
+      ],
+      "url": "https://www.anthropic.com/engineering/building-effective-agents",
+      "quote": "This workflow is particularly effective when we have clear evaluation criteria",
+      "caveat": "Practitioner guidance from December 2024 with translation and search as examples, not code review.",
+      "verified": "2026-10-10",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "verification"
+      ]
+    },
+    {
+      "id": "c-gitleaks-external-config",
+      "claim": "Gitleaks resolves its configuration in a fixed order: the --config flag, then a GITLEAKS_CONFIG environment variable holding a file path, then a GITLEAKS_CONFIG_TOML variable holding the file content, then a .gitleaks.toml file in the target path; it scans git history through git log -p.",
+      "label": "Established",
+      "sources": [
+        "c-gitleaks"
+      ],
+      "url": "https://github.com/gitleaks/gitleaks",
+      "quote": "Environment variable `GITLEAKS_CONFIG_TOML` with the file content",
+      "caveat": "The README changes between releases, and files inside the repository can still suppress findings.",
+      "verified": "2026-10-10",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "security"
+      ]
+    },
+    {
+      "id": "c-git-secrets-providers",
+      "claim": "git-secrets can register secret providers, executables whose output is the list of prohibited patterns, so the patterns can live in one place outside any repository; it can also scan all revisions and install a pre-commit hook.",
+      "label": "Established",
+      "sources": [
+        "c-git-secrets"
+      ],
+      "url": "https://github.com/awslabs/git-secrets",
+      "quote": "A secret provider is an executable that when invoked outputs prohibited patterns",
+      "caveat": "A low-activity project; an in-repository .gitallowed file can cancel matches.",
+      "verified": "2026-10-10",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "security"
+      ]
+    },
+    {
+      "id": "a-gh-custom-patterns",
+      "claim": "GitHub secret scanning accepts custom patterns, regular expressions defined in repository, organization or enterprise settings, and push protection can be enabled for each one; on organization repositories this needs GitHub Secret Protection on GitHub Team or Enterprise.",
+      "label": "Established",
+      "sources": [
+        "a-gh-custom-patterns"
+      ],
+      "url": "https://docs.github.com/en/code-security/how-tos/secure-your-secrets/customize-leak-detection/define-custom-patterns",
+      "quote": "Optionally, to enable push protection for your custom pattern, click Enable.",
+      "caveat": "Product names, plans and limits change, and patterns use a regex subset rather than full PCRE.",
+      "verified": "2026-10-10",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "security"
+      ]
+    },
+    {
+      "id": "a-gh-rewrite-incomplete",
+      "claim": "GitHub says that after you rewrite history and force-push, removed commits may still be accessible in clones or forks, by SHA-1 in cached views on GitHub and through pull requests that reference them, and that its Support team removes only sensitive data whose risk can't be mitigated by rotating credentials.",
+      "label": "Established",
+      "sources": [
+        "a-gh-remove-sensitive"
+      ],
+      "url": "https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository",
+      "quote": "the commits with sensitive data may still be accessible elsewhere",
+      "caveat": "Living documentation whose procedure and Support policy GitHub revises.",
+      "verified": "2026-10-10",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "security"
+      ]
+    },
+    {
+      "id": "a-gh-fork-network",
+      "claim": "GitHub's documentation says Git data from any repository in a fork network may be accessed from any other repository in that network, including the upstream, even after a fork is deleted.",
+      "label": "Established",
+      "sources": [
+        "a-gh-forks"
+      ],
+      "url": "https://docs.github.com/en/pull-requests/reference/forks",
+      "quote": "code contributions from that fork can remain accessible to the repository network",
+      "caveat": "Living documentation; the wording is hedged (may be accessed).",
+      "verified": "2026-10-10",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "security"
+      ]
+    },
+    {
+      "id": "c-truffle-cfor",
+      "claim": "Truffle Security reported that one fork can reach data from other forks in its network, including deleted and private ones, which it named Cross Fork Object Reference, and that code committed to a public repository may stay accessible as long as at least one fork exists.",
+      "label": "Evidence",
+      "sources": [
+        "c-truffle-cfor"
+      ],
+      "url": "https://trufflesecurity.com/blog/anyone-can-access-deleted-and-private-repo-data-github",
+      "quote": "any code committed to a public repository may be accessible forever",
+      "caveat": "A security vendor's 2024 report of GitHub behaviour at that time; GitHub may have changed short-SHA lookups or rate limits since.",
+      "verified": "2026-10-10",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "security"
+      ]
+    },
+    {
+      "id": "a-git-worktrees",
+      "claim": "A Git repository can have several linked working trees, each with its own checked-out branch, sharing everything in the repository except per-worktree files such as HEAD and the index.",
+      "label": "Established",
+      "sources": [
+        "a-git-worktree"
+      ],
+      "url": "https://git-scm.com/docs/git-worktree",
+      "quote": "Manage multiple working trees attached to the same repository.",
+      "caveat": "Reference text that tracks the Git release.",
+      "verified": "2026-10-10",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "subagents"
+      ]
+    },
+    {
+      "id": "a-cc-worktree-sessions",
+      "claim": "Claude Code can start a session in its own git worktree with --worktree or -w, giving each parallel session a separate copy of the files, and a .worktreeinclude file copies chosen gitignored files such as .env into new worktrees.",
+      "label": "Established",
+      "sources": [
+        "a-cc-worktrees"
+      ],
+      "url": "https://code.claude.com/docs/en/worktrees",
+      "quote": "",
+      "caveat": "A fast-moving, version-specific feature.",
+      "verified": "2026-10-10",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "subagents"
+      ]
+    },
+    {
+      "id": "a-cc-worktree-files-only",
+      "claim": "Claude Code's docs say worktrees isolate file edits, and that its isolation checks do not track which files a shell command writes, so a cp or a shell redirect can still write into the main checkout.",
+      "label": "Established",
+      "sources": [
+        "a-cc-worktrees"
+      ],
+      "url": "https://code.claude.com/docs/en/worktrees",
+      "quote": "None of them tracks which files a shell command writes",
+      "caveat": "The page does not mention ports, processes or databases either way.",
+      "verified": "2026-10-10",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "subagents",
+        "security"
+      ]
+    },
+    {
+      "id": "a-cc-subagent-worktree",
+      "claim": "A Claude Code subagent with isolation: worktree in its frontmatter runs in a temporary git worktree, branched by default from the default branch, which is removed automatically if the subagent makes no changes.",
+      "label": "Established",
+      "sources": [
+        "a-cc-subagents"
+      ],
+      "url": "https://code.claude.com/docs/en/sub-agents",
+      "quote": "",
+      "caveat": "Version-specific; with agent teams enabled, a named subagent can run as a teammate in the main working directory despite this setting.",
+      "verified": "2026-10-10",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "subagents"
+      ]
+    },
+    {
+      "id": "a-cc-batch",
+      "claim": "Claude Code's bundled /batch skill splits a large change into 5 to 30 independent units and runs one background subagent per unit, each in an isolated worktree.",
+      "label": "Established",
+      "sources": [
+        "a-cc-commands"
+      ],
+      "url": "https://code.claude.com/docs/en/commands",
+      "quote": "decomposes the work into 5 to 30 independent units",
+      "caveat": "The numbers and requirements may change between releases.",
+      "verified": "2026-10-10",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "subagents"
+      ]
+    },
+    {
+      "id": "a-codex-worktrees",
+      "claim": "In the ChatGPT desktop app, Codex uses Git worktrees so that several chats can work in the same project without interfering with each other.",
+      "label": "Established",
+      "sources": [
+        "a-codex-worktrees"
+      ],
+      "url": "https://learn.chatgpt.com/docs/environments/git-worktrees",
+      "quote": "run multiple independent chats in the same project without interfering with each other",
+      "caveat": "The page has moved domains and renamed its unit of work several times.",
+      "verified": "2026-10-10",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "subagents"
+      ]
+    },
+    {
+      "id": "a-cursor-worktrees",
+      "claim": "Cursor's docs recommend worktrees for starting several agents on the same repository without conflicts, with per-worktree setup commands in .cursor/worktrees.json.",
+      "label": "Established",
+      "sources": [
+        "a-cursor-worktrees"
+      ],
+      "url": "https://cursor.com/docs/configuration/worktrees",
+      "quote": "start several agents on the same repo without conflicts",
+      "caveat": "Fast-moving and version-specific; the native feature lives in the Agents Window.",
+      "verified": "2026-10-10",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "subagents"
+      ]
+    },
+    {
+      "id": "a-container-use-agents",
+      "claim": "Container Use gives each coding agent a fresh container in its own git branch, using Git worktrees for branching, so several agents can run without conflicts.",
+      "label": "Established",
+      "sources": [
+        "a-container-use"
+      ],
+      "url": "https://container-use.com/introduction",
+      "quote": "Each agent gets a fresh container in its own git branch",
+      "caveat": "An experimental open-source tool in early development.",
+      "verified": "2026-10-10",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "subagents"
+      ]
+    },
+    {
+      "id": "a-conductor-ports",
+      "claim": "Conductor gives each local workspace its own range of 10 ports, in CONDUCTOR_PORT, so that several workspaces can run the same app without port conflicts.",
+      "label": "Established",
+      "sources": [
+        "a-conductor-env"
+      ],
+      "url": "https://www.conductor.build/docs/reference/environment-variables",
+      "quote": "Use CONDUCTOR_PORT when multiple workspaces need to run the same app without port conflicts",
+      "caveat": "One third-party tool's documentation; local workspaces only.",
+      "verified": "2026-10-10",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "subagents"
+      ]
+    },
+    {
+      "id": "a-vscode-worktree-limits",
+      "claim": "VS Code's docs say worktree isolation keeps an agent's changes out of the active workspace but does not restrict the commands or network access available to the agent.",
+      "label": "Established",
+      "sources": [
+        "a-vscode-agent-harnesses"
+      ],
+      "url": "https://code.visualstudio.com/docs/agents/run/agent-harnesses",
+      "quote": "A worktree isolates code changes but isn't a security boundary.",
+      "caveat": "Fast-moving documentation whose URLs changed recently.",
+      "verified": "2026-10-10",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "subagents",
+        "security"
       ]
     }
   ]

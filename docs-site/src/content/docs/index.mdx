@@ -47,6 +47,8 @@ work/<task-id>/
 
 3. **Handoff.** [Proposal] The agent ends by writing `out/phase-N/HANDOFF.md`: verify results, key facts, decisions and open issues. The orchestrator re-runs the checks and updates `state.json`, and later phases read the handoff, not the earlier session.
 
+4. **Review.** [Proposal] A plan with more than one phase ends with a review phase: an agent that did none of the work re-runs the acceptance checks, reads the diff against the plan and reports gaps for the orchestrator to settle.
+
 </Steps>
 
 [Proposal] Plans pass exact file paths rather than leaving an agent to discover what to load. [Index and leaves](/concepts/index-and-leaves/) explains why.

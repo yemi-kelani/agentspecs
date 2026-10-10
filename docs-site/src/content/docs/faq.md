@@ -23,6 +23,10 @@ Nobody knows yet. [Proposal] No study has tested Agent Specs, or any index-and-l
 
 No. [Proposal] Phases can run one after another in fresh sessions of a single agent; subagents only make the isolation automatic. [Established] Anthropic itself says multi-agent setups fit poorly where agents must share context or depend on each other, and that most coding is less parallel than research ([Anthropic, 2025](https://www.anthropic.com/engineering/multi-agent-research-system)). See [Run phases with subagents](/guides/run-phases-with-subagents/).
 
+## Does every task need a review phase?
+
+Only tasks whose plan has more than one phase. [Proposal] There, the last phase is a review by an agent that did none of the work; see [Verify and accept](/guides/verify-and-accept/#the-review-phase). [Evidence] Studies of reasoning tasks found that models correct themselves poorly without outside feedback ([Huang et al., 2023](https://arxiv.org/abs/2310.01798)), but we found no study that tests whether a fresh-context reviewer catches more than self-review on coding work. The review costs one more agent run.
+
 ## Which agents support it?
 
 [Proposal] Any agent that can read and write files in your repository; nothing needs special support, and a person can act as the orchestrator. [Established] Loading still differs by tool: Claude Code, for example, reads AGENTS.md by default only when no CLAUDE.md exists ([Claude Code docs](https://code.claude.com/docs/en/memory)).

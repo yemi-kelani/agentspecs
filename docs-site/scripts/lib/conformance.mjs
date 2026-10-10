@@ -1,5 +1,7 @@
-// Structural conformance to Agent Specs v0.1 (Specification: File requirements, Phase lifecycle,
-// Conformance). Shared by the Quickstart runner and the `specsets` check. Reads files only; it never
+// Structural conformance to Agent Specs v0.1 (Specification: File requirements, Ownership and write
+// rules, Phase lifecycle, Conformance), including the review phase, disjoint Writes and env values for
+// phases that can run at the same time, and the leak-check item for confidential sources.
+// Shared by the Quickstart runner and the `specsets` check. Reads files only; it never
 // runs commands. validateSpecSet returns { errors, verify } where verify lists the commands that
 // plan.md Global acceptance and each phase's Verify name, for a caller that wants to run them.
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
@@ -15,7 +17,7 @@ export const REQUIRED = {
   progress: ['Progress', 'Surprises and discoveries', 'Decision log', 'Outcomes and retrospective'],
 };
 const PLAN_COLUMNS = ['#', 'Phase file', 'Reads', 'Writes', 'Depends on', 'Skills'];
-const MANIFEST_COLUMNS = ['Source', 'Origin', 'Version or hash', 'Readable by phases'];
+const MANIFEST_COLUMNS = ['Source', 'Origin', 'Version or hash', 'Readable by phases', 'Confidential'];
 const UPDATED = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}Z$/;
 const ENTRY_TIME = /\(\d{4}-\d{2}-\d{2} \d{2}:\d{2}Z\)/;
 
@@ -76,6 +78,40 @@ function insideDir(dir, rel) {
 
 const read = (p) => (existsSync(p) && statSync(p).isFile() ? readFileSync(p, 'utf8') : null);
 
+/** Paths in a Writes cell ("out/phase-1/, `src/a.js`"); a dash means none. */
+const pathsIn = (cell = '') =>
+  cell
+    .split(',')
+    .map((x) => x.trim().replace(/^`|`$/g, '').replace(/^\.\//, ''))
+    .filter((x) => x && !/^[—–-]$/.test(x));
+const idsIn = (cell = '') => [...cell.matchAll(/\d+/g)].map((m) => Number(m[0]));
+const bare = (p) => p.replace(/\/+$/, '');
+/** The more specific of two paths when one contains the other (or they are equal), else null. */
+function overlap(a, b) {
+  const [x, y] = [bare(a), bare(b)];
+  if (x === y || y.startsWith(`${x}/`)) return b;
+  if (x.startsWith(`${y}/`)) return a;
+  return null;
+}
+
+/** For each phase id, the set of phases it depends on, directly or through other phases.
+ *  A phase in a dependency cycle appears in its own set. */
+function upstream(rows) {
+  const up = new Map();
+  for (const id of rows.keys()) {
+    const seen = new Set();
+    const queue = [...(rows.get(id).deps ?? [])];
+    while (queue.length) {
+      const d = queue.shift();
+      if (seen.has(d)) continue;
+      seen.add(d);
+      queue.push(...(rows.get(d)?.deps ?? []));
+    }
+    up.set(id, seen);
+  }
+  return up;
+}
+
 /** Validate one work/<task-id>/ spec set. */
 export function validateSpecSet(dir) {
   const name = basename(dir);
@@ -92,11 +128,62 @@ export function validateSpecSet(dir) {
   verify.push(...commandsUnder(plan, 'Global acceptance').map((cmd) => ({ cmd, from: `${name}/plan.md` })));
   const table = firstTable(section(plan, 'Phases') ?? '');
   const planPhases = new Map(); // id -> file
+  const rows = new Map(); // id -> { file, writes, deps }, in table order
   if (!table) err('plan.md: Phases has no table');
   else {
     for (const c of PLAN_COLUMNS) if (!table.header.includes(c)) err(`plan.md: Phases table lacks column "${c}"`);
-    const fileCol = table.header.indexOf('Phase file');
-    for (const row of table.rows) if (/^\d+$/.test(row[0]) && fileCol >= 0) planPhases.set(Number(row[0]), row[fileCol]);
+    const col = (row, name) => row[table.header.indexOf(name)] ?? '';
+    for (const row of table.rows) {
+      if (!/^\d+$/.test(row[0]) || !table.header.includes('Phase file')) continue;
+      const id = Number(row[0]);
+      planPhases.set(id, col(row, 'Phase file'));
+      if (!new RegExp(`^phases/phase-${id}-[^/]+\\.md$`).test(col(row, 'Phase file'))) {
+        err(`plan.md: phase ${id}: file ${col(row, 'Phase file')} must be named phases/phase-${id}-<slug>.md`);
+      }
+      rows.set(id, { file: col(row, 'Phase file'), writes: pathsIn(col(row, 'Writes')), deps: idsIn(col(row, 'Depends on')) });
+    }
+  }
+
+  // Phases that can run at the same time (neither upstream of the other) must not write the same paths.
+  // Phases in a cycle can never be ordered, so they count as concurrent too.
+  const up = upstream(rows);
+  const concurrent = (a, b) => a !== b && Boolean(up.get(a)?.has(b)) === Boolean(up.get(b)?.has(a));
+  const ids = [...rows.keys()].sort((a, b) => a - b);
+  for (const id of ids) {
+    for (const d of rows.get(id).deps) if (!rows.has(d)) err(`plan.md: phase ${id} depends on phase ${d}, which is not in the table`);
+  }
+  const cyclic = ids.filter((id) => up.get(id).has(id));
+  if (cyclic.length) err(`plan.md: Depends on has a cycle through phase${cyclic.length > 1 ? 's' : ''} ${cyclic.join(', ')}`);
+  for (const [i, a] of ids.entries()) {
+    for (const b of ids.slice(i + 1)) {
+      if (!concurrent(a, b)) continue;
+      for (const pa of rows.get(a).writes) {
+        for (const pb of rows.get(b).writes) {
+          const shared = overlap(pa, pb);
+          if (shared) err(`plan.md: phases ${a} and ${b} can run at the same time but both write ${shared}`);
+        }
+      }
+    }
+  }
+
+  // More than one phase: the last is a review phase that depends on all others and re-runs acceptance.
+  if (rows.size > 1) {
+    const last = [...rows.keys()].at(-1);
+    const { file, writes, deps } = rows.get(last);
+    if (!/(^|\/)phase-\d+-review\.md$/.test(file)) {
+      err(`plan.md: with more than one phase, the last phase must be a review phase (phases/phase-${last}-review.md)`);
+    } else {
+      const missing = ids.filter((id) => id !== last && !deps.includes(id));
+      if (missing.length) err(`plan.md: review phase ${last} must depend on every other phase (missing ${missing.join(', ')})`);
+      if (writes.length !== 1 || bare(writes[0]) !== `out/phase-${last}`) err(`plan.md: review phase ${last} must write only out/phase-${last}/`);
+      const text = read(insideDir(dir, file) ?? '');
+      if (text) {
+        const own = commandsUnder(text, 'Verify');
+        for (const cmd of commandsUnder(plan, 'Global acceptance')) {
+          if (!own.includes(cmd)) err(`${file}: review phase ${last}: Verify lacks Global acceptance command \`${cmd}\``);
+        }
+      }
+    }
   }
 
   // state.json
@@ -131,6 +218,9 @@ export function validateSpecSet(dir) {
     if (typeof p.verified !== 'boolean') err(`${where}: "verified" must be true or false`);
     if (p.verified === true && p.status !== 'done') err(`${where}: verified is true but status is "${p.status}"`);
     if (!(p.handoff === null || typeof p.handoff === 'string')) err(`${where}: "handoff" must be a path or null`);
+    if ('env' in p && (typeof p.env !== 'object' || p.env === null || Array.isArray(p.env) || Object.values(p.env).some((v) => typeof v !== 'string'))) {
+      err(`${where}: "env" must map names to strings`);
+    }
     if (!planPhases.has(p.id)) err(`state.json: phase ${p.id} (${p.file}) is not in the plan.md Phases table`);
     else if (planPhases.get(p.id) !== p.file) err(`${where}: file ${p.file} differs from plan.md (${planPhases.get(p.id)})`);
 
@@ -163,6 +253,17 @@ export function validateSpecSet(dir) {
     errors.push(...requireSections(h, REQUIRED.handoff, `${name}/${hw}`, { ordered: false }));
   }
 
+  // Phases that can run at the same time must not share a runtime value (port, temp folder, database).
+  const envs = phases.filter((p) => p.env && typeof p.env === 'object' && !Array.isArray(p.env));
+  for (const [i, a] of envs.entries()) {
+    for (const b of envs.slice(i + 1)) {
+      if (!concurrent(a.id, b.id)) continue;
+      for (const [k, v] of Object.entries(a.env)) {
+        if (b.env[k] === v) err(`state.json: phases ${a.id} and ${b.id} can run at the same time but share env ${k}=${v}`);
+      }
+    }
+  }
+
   // progress.md
   const progress = read(join(dir, 'progress.md'));
   if (progress === null) err('progress.md is missing');
@@ -183,7 +284,21 @@ export function validateSpecSet(dir) {
   if (manifest !== null) {
     const t = firstTable(manifest);
     if (!t) err('sources/MANIFEST.md: no table');
-    else for (const c of MANIFEST_COLUMNS) if (!t.header.includes(c)) err(`sources/MANIFEST.md: table lacks column "${c}"`);
+    else {
+      for (const c of MANIFEST_COLUMNS) if (!t.header.includes(c)) err(`sources/MANIFEST.md: table lacks column "${c}"`);
+      const k = t.header.indexOf('Confidential');
+      const marks = k < 0 ? [] : t.rows.map((r) => ({ source: r[0], value: (r[k] ?? '').toLowerCase() }));
+      for (const m of marks) if (!['yes', 'no'].includes(m.value)) err(`sources/MANIFEST.md: row "${m.source}": Confidential must be yes or no`);
+      const leakCheck = acceptance
+        .split('\n')
+        .some((l) => /^\s*-\s+\[[ xX]\]/.test(l) && /`[^`]+`/.test(l) && /\bleak check\b/i.test(l));
+      if (marks.some((m) => m.value === 'yes')) {
+        if (!leakCheck) err('plan.md: sources/MANIFEST.md marks a source confidential, so Global acceptance needs a leak check item with its command');
+        if (!/\bterm list\b/i.test(section(plan, 'Constraints and invariants') ?? '')) {
+          err('plan.md: sources/MANIFEST.md marks a source confidential, so Constraints and invariants must say where the term list lives');
+        }
+      }
+    }
   }
 
   return { errors, verify };

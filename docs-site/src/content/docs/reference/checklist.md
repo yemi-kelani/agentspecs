@@ -15,6 +15,7 @@ description: Checkable lists for dispatching a phase, accepting it, closing a ta
 - [ ] The phase file's Output contract lists `out/phase-<N>/HANDOFF.md`.
 - [ ] Every phase in this phase's Depends on column has `"status": "done"` in `state.json`.
 - [ ] No phase that is `in_progress` has a Writes path that overlaps this phase's Writes path.
+- [ ] If another phase is `in_progress`, this phase gets its own working copy (`git worktree list` shows it), and its `env` values in `state.json` differ from that phase's.
 - [ ] Each file under `sources/` that the phase reads has a row in `sources/MANIFEST.md` that lists this phase number.
 - [ ] `wc -l plan.md` reports about 80 lines or fewer, or the overrun is logged in the progress.md decision log ([budgets](/reference/size-budgets/)).
 - [ ] The dispatch message gives the exact paths of `plan.md`, the phase file and its inputs.
@@ -32,6 +33,7 @@ description: Checkable lists for dispatching a phase, accepting it, closing a ta
 - [ ] `git status --porcelain` shows no changed file outside the phase's Writes paths.
 - [ ] `state.json` shows `"status": "done"`, `"verified": true` and the handoff's path in `handoff`, with a new `updated` time.
 - [ ] `progress.md` has a timestamped Progress entry for this phase.
+- [ ] If `sources/MANIFEST.md` marks a source confidential, the leak check passes before you commit or push this phase's outputs.
 
 ## Before closing the task
 
@@ -39,6 +41,8 @@ description: Checkable lists for dispatching a phase, accepting it, closing a ta
 - [ ] No handoff in `out/` has a Status of `PARTIAL` or `BLOCKED`.
 - [ ] Every command under Global acceptance in `plan.md` exits 0 when you run it now.
 - [ ] Every observable check under Global acceptance is ticked, with a link to its evidence.
+- [ ] If `plan.md` lists more than one phase, the review phase is `done`: its agent ran none of the other phases, re-ran Global acceptance and listed no open gap.
+- [ ] If `sources/MANIFEST.md` marks a source confidential, the leak check passes now, and no file in the repository holds the term list or hashes of its terms.
 - [ ] Every item under Open issues in every handoff is either fixed or recorded in the progress.md decision log.
 - [ ] `shasum -a 256` on each file in `sources/` matches the hash in `sources/MANIFEST.md`.
 - [ ] The Outcomes and retrospective section of `progress.md` is filled in.
@@ -54,6 +58,8 @@ description: Checkable lists for dispatching a phase, accepting it, closing a ta
 - [ ] No entry has `"verified": true` with a status other than `done`.
 - [ ] Every `done` phase has a handoff that passes the "Before marking a phase done" list.
 - [ ] If `sources/` holds any file, `sources/MANIFEST.md` exists and has one row per file, each with a version or `sha256:` hash.
-- [ ] No two phases without a dependency path between them share any Writes path.
+- [ ] No two phases without a dependency path between them share any Writes path or any `env` value for the same name.
+- [ ] If `plan.md` lists more than one phase, the last row is `phases/phase-<N>-review.md`: it depends on every other phase, writes only `out/phase-<N>/`, and its Verify includes every Global acceptance command.
+- [ ] `sources/MANIFEST.md`, if present, has a Confidential column with `yes` or `no` in every row, and if any row says `yes`, Constraints and invariants in `plan.md` say where the term list lives and Global acceptance has a leak check item with its command.
 - [ ] The repository's `AGENTS.md` has the sections Commands, Rules the code does not show, Routing and Boundaries, and a Routing row that points multi-step tasks to `work/<task-id>/`.
 - [ ] Each skill folder name under `.agents/skills/` equals the `name` field of its `SKILL.md`.

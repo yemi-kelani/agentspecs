@@ -11,7 +11,7 @@ A phase file is the whole brief for one agent run. Write it for an agent that ha
 
 1. **Objective.** One paragraph: what the phase produces and why the goal in plan.md needs it. Name the output, not the activity.
 2. **Inputs.** Exact paths: `plan.md`, the handoffs of the phases it depends on, and the source files it needs. They must match the Reads column in plan.md. [Proposal] If the agent finds it needs something that is not listed, the brief has a gap: it stops and says so in HANDOFF.md instead of searching the repo.
-3. **Boundaries.** What is in scope, what is out of scope (and which phase owns it), and the only paths the phase may write: `out/phase-<N>/` plus its landing spot from plan.md.
+3. **Boundaries.** What is in scope, what is out of scope (and which phase owns it), and the only paths the phase may write: `out/phase-<N>/` plus its landing spot from plan.md. If another phase can run at the same time, add the runtime line: the worktree, port, temp folder or database the phase uses, and that it stops only processes it started.
 4. **Tools and permissions.** List the commands it may run and what it may not do, such as network access, pushes or writes elsewhere. [Established] Some tools can enforce this: a Claude Code subagent definition can allowlist or denylist tools ([subagents](https://code.claude.com/docs/en/sub-agents)). Where your tool can enforce the list, do that as well as writing it down.
 5. **Steps.** Short and numbered, in the order that matters. Put "write a failing test first" here when the phase changes code.
 6. **Output contract.** Every file the phase writes, with its format and any size limit, plus `out/phase-<N>/HANDOFF.md` following the [HANDOFF template](/templates/HANDOFF.md).
@@ -45,6 +45,7 @@ Add a pure `toCsv(rows, columns)` function so phase 3 can wire a `--format csv` 
 - In scope: `toCsv` and its tests.
 - Out of scope: the CLI flag and docs (phase 3), fixtures (phase 2).
 - Write only to out/phase-1/, src/export/csv.js and test/csv.test.js.
+- Runtime: phase 2 runs at the same time, so use only your own worktree and the TMPDIR you were given; stop only processes you started.
 
 ## Tools and permissions
 - Allowed: read the inputs; run `npm test`.

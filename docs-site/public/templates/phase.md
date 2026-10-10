@@ -11,6 +11,7 @@
 - In scope: <…>
 - Out of scope: <… (owned by phase M)>
 - Write only to out/phase-<N>/ and <declared paths>.
+- Runtime: work only in your own working copy, with the port, temp folder and database the orchestrator assigned (<env>); stop only processes you started. (Keep only if another phase can run at the same time.)
 
 ## Tools and permissions
 - Allowed: <reads, commands>
