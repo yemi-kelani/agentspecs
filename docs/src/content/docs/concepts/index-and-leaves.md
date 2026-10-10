@@ -3,7 +3,7 @@ title: Index and leaves
 description: How a short index routes an agent to the one leaf file it needs, and why plans pass exact paths instead of waiting for the model to find files.
 ---
 
-[Established] Every file an agent reads spends part of a finite context budget, and recall falls as that budget fills ([Anthropic, context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)). [Proposal] Agent Specs puts a short index in front of focused leaf files, so a session opens the leaf its job needs and leaves the rest on disk.
+[Established] Every file an agent reads spends part of a finite context budget, and recall falls as that budget fills ([Anthropic, context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents)). [Proposal] Agent Specs puts a short index in front of focused leaf files, so a session opens the leaf its job needs and leaves the rest on disk: progressive disclosure, as in Agent Skills ([Anthropic, Agent Skills](https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills)), applied to task plans.
 
 ## Build the catalog, not the pile
 

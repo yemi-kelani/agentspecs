@@ -1,6 +1,6 @@
-# Safety net: research inputs, including internal talk slides, live outside this repository. Never commit them.
+# Local research inputs and scratch plans; never commit.
 research/
-# The owner's original build brief (names internal material); kept local.
+# Original build brief; kept local.
 agentspecs-site-plan.md
 node_modules/
 dist/

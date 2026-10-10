@@ -3,7 +3,7 @@ title: Why specs need structure
 description: What goes wrong in long agent runs, what the evidence does and does not support, and why Agent Specs relies on small files and short sessions.
 ---
 
-[Established] Agent work gets less reliable as the context window fills, and the Claude Code docs call context the most important resource to manage ([Claude Code best practices](https://code.claude.com/docs/en/best-practices)). [Proposal] Agent Specs responds with small files loaded on purpose and short sessions that start fresh, and this page keeps what the evidence supports apart from what it does not.
+[Established] Agent work gets less reliable as the context window fills, and the Claude Code docs call context the most important resource to manage ([Claude Code best practices](https://code.claude.com/docs/en/best-practices)). [Proposal] Agent Specs arranges established practice from Anthropic and Claude Code, small files loaded on purpose and short sessions that start fresh ([Anthropic, context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents), [Claude Code subagents](https://code.claude.com/docs/en/sub-agents)), into one workflow; this page keeps what the evidence supports apart from what it does not.
 
 ## Four ways long contexts fail
 

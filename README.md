@@ -2,7 +2,7 @@
 
 A convention for writing task specs that coding agents can follow phase by phase. This is draft v0.1.
 
-Agent Specs splits a long agent task into plain files under `work/<task-id>/`: a short plan that stays put, one brief per phase, and a handoff that each phase writes when it stops. A fresh agent runs each phase from its brief alone, proves it with commands, and passes on only what the next phase needs. A person can review every step in the same files.
+Agent Specs splits a long agent task into plain files under `work/<task-id>/`: a short plan that stays put, one brief per phase, and a handoff that each phase writes when it stops. A fresh agent runs each phase from its brief alone, proves it with commands, and passes on only what the next phase needs. A person can review every step in the same files. Each part is established practice (progressive disclosure as in Agent Skills and AGENTS.md routers, OpenAI's ExecPlans, Anthropic's guidance on subagents), arranged into one workflow; the site cites every source and lists what no source has tested.
 
 ```
 work/<task-id>/

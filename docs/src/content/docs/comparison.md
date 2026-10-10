@@ -36,7 +36,7 @@ Agent Specs is one of several ways to give a coding agent a written plan. Each s
 - [Established] Version 4 shards the PRD and architecture into folders of smaller files, keeps stories in docs/stories, and has the dev agent always load a few architecture shards ([BMAD v4 config](https://github.com/bmad-code-org/BMAD-METHOD/blob/v4.44.3/bmad-core/core-config.yaml)).
 - [Established] In the v4 cycle a product-owner agent shards the documents, a scrum-master agent drafts the next story and a dev agent builds it, with optional QA ([BMAD v4 guide](https://github.com/bmad-code-org/BMAD-METHOD/blob/v4.44.3/docs/user-guide.md)). Each story section has an owning role ([v4 story template](https://github.com/bmad-code-org/BMAD-METHOD/blob/v4.44.3/bmad-core/templates/story-tmpl.yaml)).
 - [Established] The 2026 method no longer documents sharding. It sizes planning in four paths, from trivial to project-sized ([BMad docs](https://docs.bmad-method.org/plan/choose-a-planning-path/)), and tracks stories in tickets.toml files ([BMad docs](https://docs.bmad-method.org/plan/break-work-into-stories-and-track-it/)).
-- [Proposal] The two converge with Agent Specs: v4 sharding and role-owned sections resemble index-and-leaf files and landing spots, and the planning paths resemble our sizing gate. BMAD is the better choice when you want role-based agents across a whole product lifecycle.
+- [Proposal] The ideas overlap: Agent Specs' index-and-leaf files and landing spots resemble v4 sharding and role-owned sections, and its sizing gate resembles the planning paths. BMAD is the better choice when you want role-based agents across a whole product lifecycle.
 
 ## Cline Memory Bank
 

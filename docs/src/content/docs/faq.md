@@ -9,7 +9,7 @@ No. [Proposal] Agent Specs v0.1 (draft) is a proposal, published in [the Agent S
 
 ## How does it relate to Agent Skills and AGENTS.md?
 
-[Proposal] It builds on both and redefines neither. AGENTS.md stays the router that most tools load at the start of a session (tools differ; see [the Evidence page](/evidence/)), and skills follow the [Agent Skills specification](https://agentskills.io/specification). Agent Specs adds the task layer: a plan.md index, phase files and handoffs in `work/<task-id>/`. See the Works with pages for [AGENTS.md](/works-with/agents-md/) and [Agent Skills](/works-with/agent-skills/).
+[Proposal] It builds on both and redefines neither. AGENTS.md stays the router that most tools load at the start of a session (tools differ; see [the Evidence page](/evidence/)), and skills follow the [Agent Skills specification](https://agentskills.io/specification). Agent Specs covers the task itself: a plan.md index, phase files and handoffs in `work/<task-id>/`, arranged from established practice that the [Comparison](/comparison/) page and the [Evidence page](/evidence/) cite. See the Works with pages for [AGENTS.md](/works-with/agents-md/) and [Agent Skills](/works-with/agent-skills/).
 
 ## Does it make agents more successful?
 

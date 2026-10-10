@@ -35,10 +35,6 @@ From `docs/`, `npm run dev` previews the site, `npm run check` runs the content 
 - **Keep pages small.** One idea per page and at most 120 lines of Markdown. Use neutral, made-up examples, never names from a real company or internal project.
 - **Follow the page format.** Each page has a `title` of 60 characters or fewer and a `description` of exactly one sentence. Internal links are absolute with a trailing slash, such as `/concepts/sizing/`.
 
-## Origins
-
-Agent Specs began as an internal engineering talk, *Less is More: Leveraging Progressive Disclosure in Agentic Development*. This site turns the talk's central idea, progressive disclosure for coding agents, into a written convention with templates, checks and cited evidence.
-
 ## License
 
 The specification, templates and this site are licensed under the [Apache License 2.0](https://github.com/yemi-kelani/agentspecs/blob/main/LICENSE). Contributions are accepted under the same license.

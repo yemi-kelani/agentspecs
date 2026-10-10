@@ -37,6 +37,8 @@ work/<task-id>/
 - **Explicit handoffs.** [Established] Anthropic found that a subagent brief needs an objective, an output format, guidance on tools and sources, and clear boundaries; that came from a research system, not a coding one ([multi-agent research system](https://www.anthropic.com/engineering/multi-agent-research-system)). [Proposal] A phase file has a section for each, and a short HANDOFF.md carries the result forward instead of a transcript.
 - **Verifiable phases.** [Established] The Claude Code docs advise giving an agent a check it can run, such as tests or a build, so it keeps going until the check passes ([best practices](https://code.claude.com/docs/en/best-practices)). [Proposal] Every phase ends with verify commands, and the orchestrator marks it done only after they pass.
 
+[Proposal] None of these ideas starts here: each is established practice from the sources cited, and Agent Specs arranges them into one workflow for task plans. The [Evidence page](/evidence/#untested-parts-of-agent-specs) lists the parts of that arrangement no source has tested.
+
 ## How they load
 
 <Steps>
