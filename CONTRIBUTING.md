@@ -43,4 +43,4 @@ The page rules follow. The Contribute page and [docs/AGENTS.md](docs/AGENTS.md) 
 
 ## License
 
-The license for the specification, templates and site is being finalized.
+The specification, templates and site are licensed under the [Apache License 2.0](LICENSE). By contributing, you agree that your contributions are licensed under the same terms.

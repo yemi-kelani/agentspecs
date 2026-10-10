@@ -38,4 +38,4 @@ Every page is also served as Markdown at `/<slug>.md` (the home page at `/index.
 
 - [ROADMAP.md](../ROADMAP.md): what v0.1 leaves out and the open questions.
 - [Contribute](https://agentspecs.io/contribute/): feedback, spec changes and the writing rules.
-- License: being finalized.
+- License: [Apache License 2.0](../LICENSE).

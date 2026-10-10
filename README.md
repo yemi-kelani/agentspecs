@@ -37,4 +37,8 @@ npm test && npm run check         # tests and content checks
 
 ## Status
 
-Agent Specs is a draft and may change in incompatible ways before v1.0. It is an independent project, not affiliated with the AGENTS.md or Agent Skills projects or any agent vendor. The license is being finalized.
+Agent Specs is a draft and may change in incompatible ways before v1.0. It is an independent project, not affiliated with the AGENTS.md or Agent Skills projects or any agent vendor.
+
+## License
+
+The specification, templates and site are licensed under the [Apache License 2.0](LICENSE).

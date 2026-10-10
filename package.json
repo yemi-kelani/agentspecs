@@ -1,6 +1,7 @@
 {
   "name": "agentspecs",
   "private": true,
+  "license": "Apache-2.0",
   "scripts": {
     "dev": "cd docs && npm run dev",
     "build": "cd docs && npm run build",

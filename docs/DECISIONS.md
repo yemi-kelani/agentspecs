@@ -70,3 +70,7 @@
 ## 2026-10-10 — Repository layout mirrors the Agent Skills repository
 - Choice: the site moved from `docs-site/` to `docs/`. The repository root holds README.md, AGENTS.md (with a CLAUDE.md symlink), CONTRIBUTING.md, ROADMAP.md and a package.json whose scripts forward to `docs/`. Reviewed screenshots moved from `docs/screens/` to `tests/visual/screens/`, so the site folder holds no second `docs/`. The `specsets` check also covers `work/` at the repository root and checks the root AGENTS.md against the Specification.
 - Why: owner request, to match the layout of the Agent Skills repository (project files at the root, the site in `docs/`). The copy check's `../research/` path keeps working because the site stays one level down.
+
+## 2026-10-10 — License: Apache 2.0
+- Choice: the specification, templates and site are under the Apache License 2.0, in `LICENSE` at the repository root (the unmodified text from apache.org). The README, CONTRIBUTING.md, docs/README.md and the Contribute page say so, and the root package.json declares `Apache-2.0`.
+- Why: owner decision. It matches the Agent Skills repository's license.

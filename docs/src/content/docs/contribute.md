@@ -40,4 +40,4 @@ Agent Specs began as an internal engineering talk, *Less is More: Leveraging Pro
 
 ## License
 
-The license for the specification, templates and site is being finalized.
+The specification, templates and this site are licensed under the [Apache License 2.0](https://github.com/yemi-kelani/agentspecs/blob/main/LICENSE). Contributions are accepted under the same license.
