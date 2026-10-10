@@ -53,4 +53,4 @@ description: What goes wrong in long agent runs, what the evidence does and does
 
 For the full source list and caveats, see [the evidence page](/evidence/).
 
-**In the spec:** [Specification](/specification/) — the spec-set layout and what each phase reads.
+**In the spec:** [Specification](/reference/specification/) — the spec-set layout and what each phase reads.

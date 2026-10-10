@@ -2,7 +2,7 @@
 // llms-full.txt routes (page order). Every docs page is listed here exactly once.
 export const SIDEBAR = [
 	{ slug: 'index', label: 'Overview' },
-	'specification',
+	'reference/specification',
 	'quickstart',
 	{
 		label: 'Concepts',

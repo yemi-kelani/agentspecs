@@ -137,7 +137,7 @@ test.describe('1500 px', () => {
 });
 
 test('1500 px, scrolled: header, sidebar and TOC stay in place', async ({ page }) => {
-	await openPage(page, '/specification/', { width: 1500, theme: 'dark' });
+	await openPage(page, '/reference/specification/', { width: 1500, theme: 'dark' });
 	await page.evaluate(() => window.scrollTo(0, 3000));
 	await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(2000);
 	near((await box(page.locator('header.header'))).y, 0, 'header y');

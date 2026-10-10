@@ -13,10 +13,10 @@ description: Line and token budgets for each file in a spec set.
 | SKILL.md body | Under 500 lines, about 5k tokens | [Established] | Loads whole when the skill activates | [Agent Skills](https://agentskills.io/specification), [Anthropic](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices) |
 | Skill reference file | One level deep; contents list past 100 lines | [Established] | Long files may be read only in part | [Anthropic](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices) |
 | `plan.md` | About 60–80 lines, 1.2k tokens | [Heuristic] | Fan-out: every phase reads it | [Sizing](/concepts/sizing/) |
-| `plan.md`, medium tier | About 150 lines | [Heuristic] | Past this, use the full tree | [Sizing gate](/specification/#sizing-gate) |
+| `plan.md`, medium tier | About 150 lines | [Heuristic] | Past this, use the full tree | [Sizing gate](/reference/specification/#sizing-gate) |
 | Phase file | About 100 lines | [Proposal] | Leaves the agent's context for the work | [Phase file](/guides/write-phase-file/) |
 | `HANDOFF.md` | 10 key facts, about 60 lines | [Proposal] | The orchestrator reads only handoffs | [Handoffs](/concepts/handoff-contracts/) |
-| `state.json` | One object per phase, no prose | [Proposal] | Rewritten at every status change | [Spec](/specification/#statejson) |
+| `state.json` | One object per phase, no prose | [Proposal] | Rewritten at every status change | [Spec](/reference/specification/#statejson) |
 | `progress.md` | No fixed cap | [Proposal] | No phase loads it | [Living state](/concepts/living-state/) |
 | `MANIFEST.md` | One row per source | [Proposal] | Phases open only their listed sources | [Sources](/concepts/untrusted-sources/) |
 | Session context | Escalate near 40% of the window | [Heuristic] | Leaves room for the work | [HumanLayer](https://www.humanlayer.dev/blog/long-context-isnt-the-answer) |

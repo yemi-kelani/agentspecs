@@ -5,7 +5,7 @@ import { makeSite, page, check, messages } from './helpers.mjs';
 const site = (body) =>
   makeSite({
     'src/content/docs/index.mdx': page('Home.'),
-    'src/content/docs/specification.md': page('Spec.'),
+    'src/content/docs/reference/specification.md': page('Spec.'),
     'src/content/docs/concepts/sizing.md': page(body),
     'src/content/docs/concepts/why-structure.md': page('Why.'),
     'public/templates/plan.md': '# plan\n',
@@ -15,10 +15,10 @@ const site = (body) =>
 test('resolves absolute, relative, .md export, public files, home and anchors', async () => {
   const root = site(
     [
-      '[a](/specification/) [b](/specification) [c](/concepts/why-structure/#why)',
-      '[d](../why-structure/) [e](/specification.md) [f](/index.md) [g](/)',
+      '[a](/reference/specification/) [b](/reference/specification) [c](/concepts/why-structure/#why)',
+      '[d](../why-structure/) [e](/reference/specification.md) [f](/index.md) [g](/)',
       '[h](/templates/plan.md) [i](/favicon.svg) [j](#local) [k](mailto:x@example.com)',
-      '<LinkCard href="/specification/" />',
+      '<LinkCard href="/reference/specification/" />',
       '```md\n[skip](/not-a-page/)\n```',
     ].join('\n\n'),
   );

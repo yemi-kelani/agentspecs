@@ -97,7 +97,7 @@ for (const phase of state.phases.filter((p) => p.status === 'done')) {
 process.exit(failures ? 1 : 0);
 ```
 
-The Agent Specs [Quickstart](/quickstart/) is checked the same way, and more strictly: a script runs every step of the page, then fails if a phase is not done, a done phase's handoff lacks `Status: DONE` or a Verify line per command, or any file breaks a section the [Specification](/specification/) requires.
+The Agent Specs [Quickstart](/quickstart/) is checked the same way, and more strictly: a script runs every step of the page, then fails if a phase is not done, a done phase's handoff lacks `Status: DONE` or a Verify line per command, or any file breaks a section the [Specification](/reference/specification/) requires.
 
 ## Check
 

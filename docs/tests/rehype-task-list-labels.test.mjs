@@ -37,8 +37,8 @@ test('labels the checkbox inside a paragraph of a loose list', async () => {
 });
 
 test('keeps label badges and links inside the label', async () => {
-  const html = await md('- [ ] [Proposal] See [the spec](/specification/).');
-  assert.match(html, /<label><input type="checkbox" disabled> <a class="label-link"[^>]*><span class="label label--proposal">Proposal<\/span><\/a> See <a href="\/specification\/">the spec<\/a>\.<\/label>/);
+  const html = await md('- [ ] [Proposal] See [the spec](/reference/specification/).');
+  assert.match(html, /<label><input type="checkbox" disabled> <a class="label-link"[^>]*><span class="label label--proposal">Proposal<\/span><\/a> See <a href="\/reference\/specification\/">the spec<\/a>\.<\/label>/);
 });
 
 test('leaves ordinary lists untouched', async () => {

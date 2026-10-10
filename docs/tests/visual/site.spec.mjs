@@ -15,7 +15,7 @@ import { openPage, THEMES, WIDTHS } from './helpers.mjs';
 
 const PAGES = [
 	{ name: 'overview', path: '/', h1: 'Agent Specs overview' },
-	{ name: 'specification', path: '/specification/', h1: 'Specification' },
+	{ name: 'specification', path: '/reference/specification/', h1: 'Specification' },
 	{ name: 'sizing', path: '/concepts/sizing/', h1: 'Sizing: when to use what' },
 	{ name: 'not-found', path: '/404.html', h1: 'Page not found' },
 ];

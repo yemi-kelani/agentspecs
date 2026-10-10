@@ -45,4 +45,4 @@ Every phase reads plan.md, so it should not shift under them, yet a long task ca
 
 [Established] OpenAI's Codex team checks execution plans, with their progress and decision logs, into the repository next to the code ([OpenAI, harness engineering](https://openai.com/index/harness-engineering/)).
 
-**In the spec:** [Specification](/specification/) — state.json, progress.md and who may write them.
+**In the spec:** [Specification](/reference/specification/) — state.json, progress.md and who may write them.

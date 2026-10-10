@@ -47,4 +47,4 @@ The rest lists what was produced, at most ten distilled key facts, decisions, op
 
 [Established] The Claude Code docs make the same point from the agent's side: give it a check it can run, so it keeps iterating until the check passes instead of stopping when the work only looks done ([Claude Code best practices](https://code.claude.com/docs/en/best-practices)).
 
-**In the spec:** [Specification](/specification/) — phase files, output contracts and HANDOFF.md. The templates are in [Reference: Templates](/reference/templates/).
+**In the spec:** [Specification](/reference/specification/) — phase files, output contracts and HANDOFF.md. The templates are in [Reference: Templates](/reference/templates/).

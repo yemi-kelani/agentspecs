@@ -17,6 +17,10 @@ const OG_IMAGE = new URL('/og.png', SITE_URL).href;
 export default defineConfig({
 	site: SITE_URL,
 	trailingSlash: 'ignore',
+	// Old page URLs from before the 2026-10-10 navigation restructure (see DECISIONS.md).
+	redirects: {
+		'/specification': '/reference/specification/',
+	},
 	markdown: {
 		processor: unified({ remarkPlugins: [remarkLabels], rehypePlugins: [rehypeTaskListLabels] }),
 	},

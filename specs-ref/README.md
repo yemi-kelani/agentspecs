@@ -3,7 +3,7 @@
 Reference validator for [Agent Specs](https://agentspecs.io).
 
 > [!IMPORTANT]
-> This package demonstrates the Specification's structural rules. It is not a production tool, and it adds no requirements of its own: where it and the [Specification](https://agentspecs.io/specification/) disagree, the Specification wins.
+> This package demonstrates the Specification's structural rules. It is not a production tool, and it adds no requirements of its own: where it and the [Specification](https://agentspecs.io/reference/specification/) disagree, the Specification wins.
 
 ## What it checks
 

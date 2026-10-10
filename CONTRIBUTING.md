@@ -14,7 +14,7 @@ A change to a MUST, SHOULD or MAY rule, or to a file format, goes through three 
 1. An issue that describes one problem.
 2. A discussion that compares the options and links the evidence.
 3. One pull request that updates all of these together:
-   - the Specification (`docs/src/content/docs/specification.md`)
+   - the Specification (`docs/src/content/docs/reference/specification.md`)
    - every affected template in `docs/public/templates/`
    - the Templates page and the Quickstart
    - the changelog under Changes in this version
