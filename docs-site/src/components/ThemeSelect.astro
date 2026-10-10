@@ -1,0 +1,256 @@
+---
+// Override of Starlight's ThemeSelect: an icon button that opens a System / Light / Dark menu, as on
+// agentskills.io (menu button pattern, like CopyPageMenu). It stores the same values under the same
+// key as Starlight ('starlight-theme': '' | 'light' | 'dark'), so ThemeProvider's first-paint script
+// still applies the theme before the page renders.
+const OPTIONS = [
+	{ value: 'auto', label: 'System' },
+	{ value: 'light', label: 'Light' },
+	{ value: 'dark', label: 'Dark' },
+] as const;
+
+// 18-unit stroke icons in the style of agentskills.io's theme menu.
+const ICON_PATHS = {
+	auto: '<rect x="1.75" y="2.75" width="14.5" height="9" rx="2"/><path d="M9 11.75v2.75M5 15.25h8"/>',
+	light:
+		'<circle cx="9" cy="9" r="3.25"/><path d="M9 1.75v1.5M9 14.75v1.5M3.87 3.87l1.06 1.06M13.07 13.07l1.06 1.06M1.75 9h1.5M14.75 9h1.5M3.87 14.13l1.06-1.06M13.07 4.93l1.06-1.06"/>',
+	dark: '<path d="M15.25 10.5A6.5 6.5 0 0 1 7.5 2.75a6.5 6.5 0 1 0 7.75 7.75Z"/>',
+};
+const icon = (name: keyof typeof ICON_PATHS) =>
+	`<svg aria-hidden="true" viewBox="0 0 18 18" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${ICON_PATHS[name]}</svg>`;
+---
+
+<as-theme-menu class="theme-menu" data-pref="auto">
+	<button type="button" class="theme-menu__toggle" aria-haspopup="menu" aria-expanded="false" aria-label="Theme">
+		<span class="theme-menu__icon" data-for="auto"><Fragment set:html={icon('auto')} /></span>
+		<span class="theme-menu__icon" data-for="light"><Fragment set:html={icon('light')} /></span>
+		<span class="theme-menu__icon" data-for="dark"><Fragment set:html={icon('dark')} /></span>
+	</button>
+	<div class="theme-menu__menu" role="menu" aria-label="Theme" hidden>
+		{
+			OPTIONS.map(({ value, label }) => (
+				<button type="button" role="menuitemradio" aria-checked="false" tabindex="-1" data-value={value}>
+					<Fragment set:html={icon(value)} />
+					<span>{label}</span>
+					<svg class="theme-menu__check" aria-hidden="true" viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7" /></svg>
+				</button>
+			))
+		}
+	</div>
+</as-theme-menu>
+{/* Show the stored preference's icon before first paint. */}
+<script is:inline>
+	(() => {
+		try {
+			const t = localStorage.getItem('starlight-theme');
+			document.currentScript.previousElementSibling.dataset.pref = t === 'light' || t === 'dark' ? t : 'auto';
+		} catch {}
+	})();
+</script>
+
+<script>
+	type Theme = 'auto' | 'dark' | 'light';
+	const STORAGE_KEY = 'starlight-theme';
+	const lightQuery = matchMedia('(prefers-color-scheme: light)');
+
+	const parseTheme = (value: unknown): Theme => (value === 'light' || value === 'dark' ? value : 'auto');
+
+	function loadTheme(): Theme {
+		try {
+			return parseTheme(localStorage.getItem(STORAGE_KEY));
+		} catch {
+			return 'auto';
+		}
+	}
+
+	function storeTheme(theme: Theme) {
+		try {
+			localStorage.setItem(STORAGE_KEY, theme === 'auto' ? '' : theme);
+		} catch {}
+	}
+
+	function applyTheme(theme: Theme) {
+		document.documentElement.dataset.theme = theme === 'auto' ? (lightQuery.matches ? 'light' : 'dark') : theme;
+		for (const menu of document.querySelectorAll<ThemeMenu>('as-theme-menu')) menu.sync(theme);
+	}
+
+	lightQuery.addEventListener('change', () => {
+		if (loadTheme() === 'auto') applyTheme('auto');
+	});
+
+	class ThemeMenu extends HTMLElement {
+		#toggle!: HTMLButtonElement;
+		#menu!: HTMLElement;
+		#items: HTMLButtonElement[] = [];
+
+		connectedCallback() {
+			this.#toggle = this.querySelector('.theme-menu__toggle')!;
+			this.#menu = this.querySelector('[role="menu"]')!;
+			this.#items = [...this.#menu.querySelectorAll<HTMLButtonElement>('[role="menuitemradio"]')];
+
+			this.#toggle.addEventListener('click', () => (this.#isOpen() ? this.#close(true) : this.#open(this.#checkedIndex())));
+			this.#toggle.addEventListener('keydown', (e) => {
+				if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+					e.preventDefault();
+					this.#open(e.key === 'ArrowDown' ? 0 : this.#items.length - 1);
+				}
+			});
+			this.#menu.addEventListener('keydown', (e) => this.#onMenuKey(e));
+			this.#menu.addEventListener('focusout', (e) => {
+				if (this.#isOpen() && !this.contains(e.relatedTarget as Node | null)) this.#close(false);
+			});
+			for (const item of this.#items) {
+				item.addEventListener('click', () => {
+					const theme = parseTheme(item.dataset.value);
+					storeTheme(theme);
+					applyTheme(theme);
+					this.#close(true);
+				});
+			}
+			document.addEventListener('pointerdown', (e) => {
+				if (this.#isOpen() && !this.contains(e.target as Node)) this.#close(false);
+			});
+			this.sync(loadTheme());
+		}
+
+		sync(theme: Theme) {
+			this.dataset.pref = theme;
+			for (const item of this.#items) item.setAttribute('aria-checked', String(item.dataset.value === theme));
+		}
+
+		#isOpen() {
+			return !this.#menu.hidden;
+		}
+
+		#checkedIndex() {
+			return Math.max(0, this.#items.findIndex((item) => item.getAttribute('aria-checked') === 'true'));
+		}
+
+		#open(index: number) {
+			this.#menu.hidden = false;
+			this.#toggle.setAttribute('aria-expanded', 'true');
+			this.#focusItem(index);
+		}
+
+		#close(returnFocus: boolean) {
+			this.#menu.hidden = true;
+			this.#toggle.setAttribute('aria-expanded', 'false');
+			if (returnFocus) this.#toggle.focus();
+		}
+
+		#focusItem(index: number) {
+			const n = this.#items.length;
+			this.#items[((index % n) + n) % n].focus();
+		}
+
+		#onMenuKey(e: KeyboardEvent) {
+			const current = this.#items.indexOf(document.activeElement as HTMLButtonElement);
+			switch (e.key) {
+				case 'ArrowDown':
+					e.preventDefault();
+					this.#focusItem(current + 1);
+					break;
+				case 'ArrowUp':
+					e.preventDefault();
+					this.#focusItem(current - 1);
+					break;
+				case 'Home':
+					e.preventDefault();
+					this.#focusItem(0);
+					break;
+				case 'End':
+					e.preventDefault();
+					this.#focusItem(this.#items.length - 1);
+					break;
+				case 'Escape':
+					e.preventDefault();
+					this.#close(true);
+					break;
+				case 'Tab':
+					this.#close(false);
+					break;
+			}
+		}
+	}
+	customElements.define('as-theme-menu', ThemeMenu);
+</script>
+
+<style>
+	.theme-menu {
+		position: relative;
+		display: block;
+	}
+	/* Zero-specificity reset so the rules below win. */
+	:where(.theme-menu button) {
+		all: unset;
+		box-sizing: border-box;
+		cursor: pointer;
+	}
+	.theme-menu__toggle {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 2rem;
+		height: 2rem;
+		border-radius: 0.5rem;
+		color: var(--as-icon-button);
+	}
+	.theme-menu__toggle:hover,
+	.theme-menu__toggle[aria-expanded='true'] {
+		color: var(--sl-color-white);
+	}
+	.theme-menu__icon {
+		display: none;
+	}
+	.theme-menu[data-pref='auto'] [data-for='auto'],
+	.theme-menu[data-pref='light'] [data-for='light'],
+	.theme-menu[data-pref='dark'] [data-for='dark'] {
+		display: flex;
+	}
+	.theme-menu__menu {
+		position: absolute;
+		z-index: var(--sl-z-index-menu);
+		inset-inline-end: 0;
+		top: calc(100% + 0.5rem);
+		min-width: 8rem;
+		padding: 0.25rem;
+		border: 1px solid var(--as-border-subtle);
+		border-radius: 1rem;
+		background: var(--as-menu-bg);
+		box-shadow: var(--as-menu-shadow);
+	}
+	.theme-menu__menu[hidden] {
+		display: none;
+	}
+	.theme-menu__menu [role='menuitemradio'] {
+		display: flex;
+		align-items: center;
+		gap: 0.625rem;
+		width: 100%;
+		height: 2.25rem;
+		padding-inline: 0.625rem;
+		border-radius: 0.75rem;
+		font-size: var(--sl-text-sm);
+		color: var(--as-menu-text);
+	}
+	.theme-menu__menu [role='menuitemradio'] > :global(svg:first-child) {
+		color: var(--as-icon-button);
+	}
+	.theme-menu__menu [role='menuitemradio']:hover,
+	.theme-menu__menu [role='menuitemradio']:focus-visible {
+		background: var(--as-hover-bg);
+		color: var(--sl-color-white);
+	}
+	.theme-menu__check {
+		margin-inline-start: auto;
+		visibility: hidden;
+	}
+	[aria-checked='true'] > .theme-menu__check {
+		visibility: visible;
+	}
+	.theme-menu__toggle:focus-visible,
+	.theme-menu__menu [role='menuitemradio']:focus-visible {
+		outline: 2px solid var(--sl-color-text-accent);
+		outline-offset: -2px;
+	}
+</style>

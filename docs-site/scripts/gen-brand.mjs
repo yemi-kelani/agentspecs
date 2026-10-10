@@ -17,7 +17,7 @@ const req = createRequire(join(ROOT, 'package.json'));
 const sharp = req('sharp');
 const { create } = await import(req.resolve('fontkitten'));
 
-const INK = { light: '#1a1a1a', dark: '#f1f1f1' };
+const OG_INK = '#f1f1f1'; // mark and wordmark on the dark social image
 const PAGE = { light: '#ffffff', dark: '#0d0d0f' };
 
 // ---------- type: Inter Variable glyph outlines at a chosen weight ----------
@@ -66,38 +66,32 @@ function textPath(str, { wght = 400, size, x = 0, y, tracking = 0 }) {
   return { d: round(d), width: pen - x };
 }
 
-// ---------- mark: an index card with a tab, and a branch with two leaves cut out of it ----------
-// 32-unit grid. Even coordinates land on whole pixels at 16 px, so the favicon stays crisp.
+// ---------- mark: a solid pentagon, point up (agentskills.io's mark is a solid hexagon) ----------
+// 32-unit grid. A regular pentagon centred in the box; a round-joined stroke in the fill colour
+// softens the corners.
 
-const CARD = 'M20 2H28A2 2 0 0 1 30 4V26A4 4 0 0 1 26 30H6A4 4 0 0 1 2 26V12A4 4 0 0 1 6 8H18V4A2 2 0 0 1 20 2Z';
-const leaf = (x, y, L, h) =>
-  `M${x} ${y}C${x + L * 0.3} ${y - h * 1.35} ${x + L * 0.75} ${y - h * 1.2} ${x + L} ${y}` +
-  `C${x + L * 0.75} ${y + h * 1.2} ${x + L * 0.3} ${y + h * 1.35} ${x} ${y}Z`;
-const CUTS = [
-  '<path d="M6 11h4v16H6z"/>', // stem: the index
-  '<path d="M6 13h6v4H6z"/>', // upper branch
-  '<path d="M6 23h6v4H6z"/>', // lower branch
-  `<path transform="rotate(-12 10 15)" d="${round(leaf(10, 15, 16, 2.7))}"/>`,
-  `<path transform="rotate(-12 10 25)" d="${round(leaf(10, 25, 16, 2.7))}"/>`,
-].join('');
+const R = 15.2; // circumradius
+const CY = 16 + (R - R * Math.cos(Math.PI / 5)) / 2; // centres the height (R + R·cos 36°) in the box
+const PENTAGON =
+  'M' +
+  [0, 1, 2, 3, 4]
+    .map((k) => {
+      const a = -Math.PI / 2 + (k * 2 * Math.PI) / 5;
+      return `${(16 + R * Math.cos(a)).toFixed(2)} ${(CY + R * Math.sin(a)).toFixed(2)}`;
+    })
+    .join('L') +
+  'Z';
 
-/** <mask> that keeps the card and cuts out the branch and leaves (they show the background). */
-const markMask = (id) =>
-  `<mask id="${id}" maskUnits="userSpaceOnUse" x="0" y="0" width="32" height="32">` +
-  `<path d="${CARD}" fill="#fff"/><g fill="#000">${CUTS}</g></mask>`;
+/** The mark in one colour. */
+const markPath = (color) =>
+  `<path fill="${color}" stroke="${color}" stroke-width="2" stroke-linejoin="round" d="${PENTAGON}"/>`;
 
-/** The masked card. `paint` is an attribute string such as fill="#000" or class="ink". */
-const markPath = (id, paint) => `<path ${paint} mask="url(#${id})" d="${CARD}"/>`;
+// ---------- favicon: mark only, black in both colour schemes (as agentskills.io's) ----------
 
-// ---------- favicon: mark only, follows the OS colour scheme ----------
-
+const FAVICON_INK = '#000000';
 const FAVICON =
   `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">` +
-  `<style>.ink{fill:${INK.light}}@media (prefers-color-scheme:dark){.ink{fill:${INK.dark}}}</style>` +
-  `<defs>${markMask('m')}</defs>${markPath('m', 'class="ink"')}</svg>\n`;
-
-const faviconFor = (theme) =>
-  FAVICON.replace(/<style>.*<\/style>/, '').replace('class="ink"', `fill="${INK[theme]}"`);
+  `${markPath(FAVICON_INK)}</svg>\n`;
 
 // ---------- social image: 1200x630 ----------
 
@@ -105,7 +99,7 @@ function og() {
   const W = 1200;
   const H = 630;
   const bg = PAGE.dark;
-  const ink = INK.dark;
+  const ink = OG_INK;
   const left = 96;
   const markSize = 104;
   const markTop = 112;
@@ -118,9 +112,8 @@ function og() {
   const statusX = W - left - status.width;
   return (
     `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">` +
-    `<defs>${markMask('og-mark')}</defs>` +
     `<rect width="${W}" height="${H}" fill="${bg}"/>` +
-    `<g transform="translate(${left} ${markTop}) scale(${markSize / 32})">${markPath('og-mark', `fill="${ink}"`)}</g>` +
+    `<g transform="translate(${left} ${markTop}) scale(${markSize / 32})">${markPath(ink)}</g>` +
     `<path fill="${ink}" d="${word.d}"/>` +
     `<path fill="#e2e2e2" d="${pitch1.d}${pitch2.d}"/>` +
     `<rect x="${left}" y="490" width="${W - 2 * left}" height="2" fill="#2e2e30"/>` +
@@ -133,15 +126,15 @@ function og() {
 // ---------- preview: favicon at 16 px (and 32 px) on light and dark, plus 8x enlargements ----------
 
 async function preview() {
-  const tile = async (theme, px) =>
-    sharp(Buffer.from(faviconFor(theme).replace('width="32" height="32"', `width="${px}" height="${px}"`))).png().toBuffer();
+  const tile = async (px) =>
+    sharp(Buffer.from(FAVICON.replace('width="32" height="32"', `width="${px}" height="${px}"`))).png().toBuffer();
   const comps = [];
   for (const [i, theme] of ['light', 'dark'].entries()) {
     const x0 = i * 330;
     comps.push({ input: { create: { width: 320, height: 200, channels: 4, background: PAGE[theme] } }, left: x0, top: 0 });
-    const p16 = await tile(theme, 16);
+    const p16 = await tile(16);
     comps.push({ input: p16, left: x0 + 16, top: 24 });
-    comps.push({ input: await tile(theme, 32), left: x0 + 16, top: 56 });
+    comps.push({ input: await tile(32), left: x0 + 16, top: 56 });
     comps.push({ input: await sharp(p16).resize(128, 128, { kernel: 'nearest' }).png().toBuffer(), left: x0 + 72, top: 24 });
     const tab = { light: '#dee1e6', dark: '#35363a' }[theme]; // browser tab strip
     comps.push({ input: { create: { width: 100, height: 28, channels: 4, background: tab } }, left: x0 + 210, top: 24 });

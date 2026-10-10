@@ -11,7 +11,8 @@
     "astro": "astro",
     "check": "node scripts/checks/run.mjs",
     "check:quickstart": "node scripts/quickstart/run.mjs",
-    "test": "node --test \"tests/**/*.test.mjs\" \"scripts/**/*.test.mjs\""
+    "test": "node --test \"tests/**/*.test.mjs\" \"scripts/**/*.test.mjs\"",
+    "test:visual": "playwright test"
   },
   "dependencies": {
     "@astrojs/markdown-remark": "^7.3.2",

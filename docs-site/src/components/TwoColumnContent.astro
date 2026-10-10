@@ -1,0 +1,56 @@
+---
+// Override of Starlight's TwoColumnContent: from 80rem the TOC is a 19rem column after the content
+// (agentskills.io's breakpoint and offsets). The aside stays first in the DOM, as in Starlight, so
+// the mobile "On this page" menu comes before the content in focus order.
+---
+
+<div class="two-col">
+	{
+		Astro.locals.starlightRoute.toc && (
+			<aside class="right-sidebar-container print:hidden">
+				<div class="right-sidebar">
+					<slot name="right-sidebar" />
+				</div>
+			</aside>
+		)
+	}
+	<div class="main-pane"><slot /></div>
+</div>
+
+<style>
+	.main-pane {
+		isolation: isolate;
+		min-width: 0;
+	}
+	@media (min-width: 50rem) {
+		.main-pane {
+			padding-inline: 2.7rem 0.25rem;
+		}
+		/* No sidebar (404): line the content up with the site title. */
+		:global(:root:not([data-has-sidebar])) .main-pane {
+			padding-inline: 1rem;
+		}
+	}
+	@media (min-width: 80rem) {
+		.two-col {
+			display: flex;
+		}
+		.main-pane {
+			flex: 1;
+		}
+		.right-sidebar-container {
+			order: 2;
+			flex: none;
+			width: 19rem;
+			margin-inline-start: 3rem;
+		}
+		.right-sidebar {
+			position: sticky;
+			top: var(--sl-nav-height);
+			max-height: calc(100vh - var(--sl-nav-height));
+			overflow-y: auto;
+			scrollbar-width: none;
+			padding: 3rem 0 1rem 2.5rem;
+		}
+	}
+</style>

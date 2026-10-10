@@ -1,0 +1,64 @@
+---
+// Override of Starlight's Pagination: plain "‹ Previous page" and "Next page ›" text links at the
+// foot of the page, as on agentskills.io, instead of bordered cards.
+const { dir, pagination } = Astro.locals.starlightRoute;
+const { prev, next } = pagination;
+const chevron = (d: string) =>
+	`<svg aria-hidden="true" viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="${d}"/></svg>`;
+const left = chevron('m10 3.5-4.5 4.5 4.5 4.5');
+const right = chevron('m6 3.5 4.5 4.5-4.5 4.5');
+const isRtl = dir === 'rtl';
+---
+
+{
+	(prev || next) && (
+		<nav class="pagination print:hidden" dir={dir} aria-label="Pages">
+			{prev && (
+				<a href={prev.href} rel="prev">
+					<Fragment set:html={isRtl ? right : left} />
+					<span class="sr-only">{Astro.locals.t('page.previousLink')}: </span>
+					<span>{prev.label}</span>
+				</a>
+			)}
+			{next && (
+				<a href={next.href} rel="next">
+					<span class="sr-only">{Astro.locals.t('page.nextLink')}: </span>
+					<span>{next.label}</span>
+					<Fragment set:html={isRtl ? left : right} />
+				</a>
+			)}
+		</nav>
+	)
+}
+
+<style>
+	.pagination {
+		display: flex;
+		align-items: center;
+		gap: 1.5rem;
+		padding-inline: 0.125rem;
+		font-size: var(--sl-text-sm);
+		font-weight: 600;
+		line-height: 1.25rem;
+	}
+	a {
+		display: flex;
+		align-items: center;
+		gap: 0.75rem;
+		min-width: 0;
+		border-radius: 0.125rem;
+		color: var(--as-pagination);
+		text-decoration: none;
+	}
+	a:hover {
+		color: var(--sl-color-white);
+	}
+	a :global(svg) {
+		flex: none;
+		color: var(--as-icon-button);
+	}
+	[rel='next'] {
+		margin-inline-start: auto;
+		text-align: end;
+	}
+</style>

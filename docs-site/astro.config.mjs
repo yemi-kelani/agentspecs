@@ -44,9 +44,36 @@ export default defineConfig({
 				'./src/styles/theme.css',
 				'./src/styles/labels.css',
 			],
+			// The frame, header, sidebar, TOC, theme menu and pagination follow the agentskills.io docs
+			// layout (a centred 92rem frame); see DECISIONS.md and tests/visual/.
 			components: {
 				Head: './src/components/Head.astro',
+				Header: './src/components/Header.astro',
+				MobileMenuToggle: './src/components/MobileMenuToggle.astro',
+				PageFrame: './src/components/PageFrame.astro',
+				PageSidebar: './src/components/PageSidebar.astro',
 				PageTitle: './src/components/PageTitle.astro',
+				Pagination: './src/components/Pagination.astro',
+				Sidebar: './src/components/Sidebar.astro',
+				ThemeSelect: './src/components/ThemeSelect.astro',
+				TwoColumnContent: './src/components/TwoColumnContent.astro',
+			},
+			// Same Shiki themes as agentskills.io; frame colours and sizes are set in theme.css.
+			// frame: 'code' keeps shell blocks free of terminal chrome, as there.
+			expressiveCode: {
+				themes: ['dark-plus', 'github-light-default'],
+				useStarlightUiThemeColors: false,
+				defaultProps: { frame: 'code' },
+				styleOverrides: {
+					// Expressive Code adds the border width to this, giving a 16px outer corner.
+					borderRadius: '0.9375rem',
+					borderWidth: '1px',
+					codeFontSize: '0.875rem',
+					codeLineHeight: '1.5rem',
+					codePaddingBlock: '0.875rem',
+					codePaddingInline: '1rem',
+					frames: { frameBoxShadowCssValue: 'none' },
+				},
 			},
 			tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 3 },
 			sidebar: SIDEBAR,

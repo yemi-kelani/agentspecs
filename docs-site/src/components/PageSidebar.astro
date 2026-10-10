@@ -1,0 +1,35 @@
+---
+// Override of Starlight's PageSidebar: the "On this page" column shows from 80rem and the mobile
+// dropdown below 50rem; in between there is no TOC, as on agentskills.io. TOC styles: theme.css.
+import MobileTableOfContents from 'virtual:starlight/components/MobileTableOfContents';
+import TableOfContents from 'virtual:starlight/components/TableOfContents';
+---
+
+{
+	Astro.locals.starlightRoute.toc && (
+		<>
+			<div class="mobile-toc">
+				<MobileTableOfContents />
+			</div>
+			<div class="right-sidebar-panel">
+				<TableOfContents />
+			</div>
+		</>
+	)
+}
+
+<style>
+	.right-sidebar-panel {
+		display: none;
+	}
+	@media (min-width: 50rem) {
+		.mobile-toc {
+			display: none;
+		}
+	}
+	@media (min-width: 80rem) {
+		.right-sidebar-panel {
+			display: block;
+		}
+	}
+</style>

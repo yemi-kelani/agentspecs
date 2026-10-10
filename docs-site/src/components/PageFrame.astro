@@ -1,0 +1,116 @@
+---
+// Override of Starlight's PageFrame: the header row, sidebar and content share one centred frame
+// (max 92rem), as on agentskills.io, instead of a sidebar fixed to the viewport edge. The sidebar is
+// sticky from 50rem; below that it is Starlight's popover menu. Geometry: tests/visual/geometry.spec.mjs.
+import MobileMenuToggle from 'virtual:starlight/components/MobileMenuToggle';
+
+const { hasSidebar } = Astro.locals.starlightRoute;
+---
+
+<div class="page">
+	<header class="header"><slot name="header" /></header>
+	<div class="frame">
+		{
+			hasSidebar && (
+				<nav class="sidebar print:hidden" aria-label={Astro.locals.t('sidebarNav.accessibleLabel')}>
+					<MobileMenuToggle />
+					<sl-sidebar-pane popover="" id="starlight__sidebar" class="sidebar-pane">
+						<div class="sidebar-content">
+							<slot name="sidebar" />
+						</div>
+					</sl-sidebar-pane>
+				</nav>
+			)
+		}
+		<div class="main-frame"><slot /></div>
+	</div>
+</div>
+
+<script>
+	// Same as Starlight's PageFrame: the popover attribute is only needed for the mobile menu, and
+	// focus stays in the header and menu while the menu is open.
+	class StarlightSidebarPane extends HTMLElement {
+		constructor() {
+			super();
+			const desktop = matchMedia('(min-width: 50em)');
+			const resetPopoverAttribute = () => {
+				this.popover = desktop.matches ? null : 'auto';
+			};
+			resetPopoverAttribute();
+			desktop.addEventListener('change', resetPopoverAttribute);
+			this.addEventListener('toggle', ({ newState }) => this.trapFocus(newState === 'open'));
+		}
+
+		trapFocus(shouldTrap: boolean) {
+			document.querySelectorAll<HTMLElement>('.main-frame, .sl-skip-link').forEach((el) => {
+				el.toggleAttribute('inert', shouldTrap);
+			});
+		}
+	}
+	customElements.define('sl-sidebar-pane', StarlightSidebarPane);
+</script>
+
+<style>
+	.page {
+		min-height: 100vh;
+	}
+	.header {
+		position: fixed;
+		inset-block-start: 0;
+		inset-inline: 0;
+		z-index: var(--sl-z-index-navbar);
+		height: var(--sl-nav-height);
+		border-bottom: 1px solid var(--sl-color-hairline-shade);
+		background-color: var(--sl-color-bg-nav);
+	}
+	.frame {
+		max-width: var(--as-frame-max);
+		margin-inline: auto;
+		padding-inline: var(--as-frame-pad);
+		padding-top: calc(var(--sl-nav-height) + var(--sl-mobile-toc-height));
+	}
+	/* Mobile menu: a popover below the header. Unset the user-agent popover styles. */
+	.sidebar-pane {
+		position: fixed;
+		z-index: var(--sl-z-index-menu);
+		inset-block: var(--sl-nav-height) 0;
+		inset-inline: 0;
+		width: 100%;
+		height: unset;
+		margin: 0;
+		border: 0;
+		padding: 0;
+		color: unset;
+		background-color: var(--sl-color-bg);
+		overflow-y: auto;
+	}
+	.sidebar-content {
+		padding: 1.5rem 1rem 1rem;
+	}
+	@media (min-width: 50rem) {
+		.frame {
+			display: flex;
+			padding-top: var(--sl-nav-height);
+		}
+		.sidebar {
+			flex: none;
+			width: var(--sl-sidebar-width);
+		}
+		.sidebar-pane {
+			display: block;
+			position: sticky;
+			inset: auto;
+			top: var(--sl-nav-height);
+			height: calc(100vh - var(--sl-nav-height));
+			background-color: transparent;
+			scrollbar-width: none;
+		}
+		.sidebar-content {
+			padding: 2rem 2rem 3rem 0;
+		}
+		.main-frame {
+			flex: 1;
+			min-width: 0;
+		}
+	}
+</style>
