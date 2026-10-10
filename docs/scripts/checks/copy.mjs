@@ -1,7 +1,8 @@
 // copy: no 10-word shingle (lowercased, punctuation stripped) shared between site content
-// and the agentskills.io docs. Uses ../research/agentskills/docs/**/*.mdx when present; otherwise
-// the committed hashes in src/data/copy-shingles.json (no source text; regenerate with
-// `node scripts/gen-copy-shingles.mjs`). Fails if neither exists.
+// and the agentskills.io docs. Uses the .mdx files under AGENTSPECS_COPY_CORPUS (a local copy of
+// those docs, kept outside this repository) when that is set; otherwise the committed hashes in
+// src/data/copy-shingles.json (no source text; regenerate with `node scripts/gen-copy-shingles.mjs
+// <corpus>`). Fails if the setting points nowhere, or if neither exists.
 // Consecutive matching shingles are reported once, as a single run.
 import { createHash } from 'node:crypto';
 import { existsSync, readFileSync } from 'node:fs';
@@ -10,12 +11,12 @@ import { result, toPosix, walkFiles } from './lib.mjs';
 import { lineOf } from '../../src/lib/md-utils.mjs';
 
 export const SHINGLE = 10;
-export const RESEARCH_DIR = '../research/agentskills/docs';
+export const CORPUS_ENV = 'AGENTSPECS_COPY_CORPUS';
 export const SHINGLES_FILE = 'src/data/copy-shingles.json';
 export const HASH_HEX = 12;
 export const shingleHash = (s, hex = HASH_HEX) => createHash('sha256').update(s).digest('hex').slice(0, hex);
 
-/** Corpus shingles: Map shingle -> source file name, read from the research directory. */
+/** Corpus shingles: Map shingle -> source file name, read from a folder of .mdx files. */
 export function corpusShingles(dir) {
   const seen = new Map();
   for (const abs of walkFiles(dir, (f) => f.endsWith('.mdx'))) {
@@ -43,18 +44,22 @@ export default {
   name: 'copy',
   run(ctx) {
     const r = result();
-    const dir = resolve(ctx.root, RESEARCH_DIR);
+    const corpus = (ctx.env ?? process.env)[CORPUS_ENV];
     const hashFile = resolve(ctx.root, SHINGLES_FILE);
     let seen; // { has(shingle), get(shingle) -> source name }
-    if (existsSync(dir)) {
-      seen = corpusShingles(dir);
+    if (corpus) {
+      if (!existsSync(corpus)) {
+        r.errors.push({ file: corpus, message: `${CORPUS_ENV} points to a folder that does not exist` });
+        return r;
+      }
+      seen = corpusShingles(resolve(corpus));
     } else if (existsSync(hashFile)) {
       const data = JSON.parse(readFileSync(hashFile, 'utf8'));
       const hashes = new Set(data.hashes ?? []);
       const hex = data.hex ?? HASH_HEX;
       seen = { has: (s) => hashes.has(shingleHash(s, hex)), get: () => 'agentskills.io docs (hashed)' };
     } else {
-      r.errors.push({ file: SHINGLES_FILE, message: `${SHINGLES_FILE} is missing and ${RESEARCH_DIR} is absent; the copy check cannot run` });
+      r.errors.push({ file: SHINGLES_FILE, message: `${SHINGLES_FILE} is missing and ${CORPUS_ENV} is not set; the copy check cannot run` });
       return r;
     }
     for (const p of ctx.pages) {

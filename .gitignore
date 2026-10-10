@@ -1,4 +1,4 @@
-# Inputs: untrusted research material and internal talk slides. Never commit or publish.
+# Safety net: research inputs, including internal talk slides, live outside this repository. Never commit them.
 research/
 # The owner's original build brief (names internal material); kept local.
 agentspecs-site-plan.md

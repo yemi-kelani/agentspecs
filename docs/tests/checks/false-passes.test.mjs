@@ -62,7 +62,7 @@ test('5d: short blockquotes pass', async () => {
   assert.deepEqual(r.errors, [], messages(r));
 });
 
-test('5e: the copy check works from committed shingle hashes when the research corpus is absent', async () => {
+test('5e: the copy check works from committed shingle hashes when no corpus is set', async () => {
   const words = 'alpha beta gamma delta epsilon zeta eta theta iota kappa';
   const h = createHash('sha256').update(words).digest('hex').slice(0, 12);
   const root = makeSite({
@@ -73,7 +73,7 @@ test('5e: the copy check works from committed shingle hashes when the research c
   assert.equal(r.errors.length, 1, messages(r));
 });
 
-test('5e: the copy check fails when neither the corpus nor the shingle hashes exist', async () => {
+test('5e: the copy check fails when there is no corpus setting and no shingle hashes', async () => {
   const r = await check('copy', makeSite({ 'src/data/copy-shingles.json': null, 'src/content/docs/a.md': page('[Proposal] Fine.') }));
   assert.equal(r.errors.length, 1, messages(r));
   assert.match(messages(r), /copy-shingles\.json/);

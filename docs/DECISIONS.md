@@ -69,7 +69,7 @@
 
 ## 2026-10-10 — Repository layout mirrors the Agent Skills repository
 - Choice: the site moved from `docs-site/` to `docs/`. The repository root holds README.md, AGENTS.md (with a CLAUDE.md symlink), CONTRIBUTING.md, ROADMAP.md and a package.json whose scripts forward to `docs/`. Reviewed screenshots moved from `docs/screens/` to `tests/visual/screens/`, so the site folder holds no second `docs/`. The `specsets` check also covers `work/` at the repository root and checks the root AGENTS.md against the Specification.
-- Why: owner request, to match the layout of the Agent Skills repository (project files at the root, the site in `docs/`). The copy check's `../research/` path keeps working because the site stays one level down.
+- Why: owner request, to match the layout of the Agent Skills repository (project files at the root, the site in `docs/`). Research inputs later moved out of the repository (see below).
 
 ## 2026-10-10 — License: Apache 2.0
 - Choice: the specification, templates and site are under the Apache License 2.0, in `LICENSE` at the repository root (the unmodified text from apache.org). The README, CONTRIBUTING.md, docs/README.md and the Contribute page say so, and the root package.json declares `Apache-2.0`.
@@ -78,3 +78,7 @@
 ## 2026-10-10 — specs-ref: reference validator at the repository root
 - Choice: the spec-set validator moved from `docs/scripts/lib/conformance.mjs` to `specs-ref/src/conformance.mjs`, with a CLI (`specs-ref validate <path>`, `specs-ref commands <spec-set>`), its own package.json, README, LICENSE and tests. It has no dependencies. The site's `specsets` check and Quickstart runner import it by relative path, so there is one copy.
 - Why: owner request, mirroring the Agent Skills repository's `skills-ref/`. Like that package, it is a demonstration that adds no rules of its own; the Specification page stays the authority.
+
+## 2026-10-10 — Research inputs live outside the repository
+- Choice: the git-ignored `research/` folder moved out of the repository, to a sibling folder on the owner's machine. The copy check no longer looks for `../research/agentskills/docs`. It reads an optional local copy of the Agent Skills docs named by `AGENTSPECS_COPY_CORPUS`, and otherwise uses the committed hashes in `src/data/copy-shingles.json`. `scripts/gen-copy-shingles.mjs` takes that folder as an argument; regenerating from the moved copy gave the same 12,065 hashes. `.gitignore` keeps `research/` as a safety net.
+- Why: owner request, so the repository root matches the Agent Skills layout and holds no research material.

@@ -17,10 +17,12 @@ export function termsFile(text) {
 
 // Hermetic default for every check run in tests, including spawned CLIs: an empty term list.
 process.env.AGENTSPECS_BANNED_TERMS = termsFile('');
+// Copy-check tests that want a corpus pass AGENTSPECS_COPY_CORPUS themselves.
+delete process.env.AGENTSPECS_COPY_CORPUS;
 
 /**
  * Create `<tmp>/docs/` with the given files (paths relative to docs/).
- * Paths starting with "../" land beside docs (e.g. "../research/...").
+ * Paths starting with "../" land beside docs (e.g. "../corpus/...").
  * Returns the docs root.
  */
 export function makeSite(files = {}) {
