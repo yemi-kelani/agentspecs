@@ -3,14 +3,14 @@
 Medium task: one session, one living plan (Specification, Sizing gate). Commands run from `docs/` unless they start with `cd`.
 
 ## Goal
-The sidebar reads as a flow: Start, Concepts, Guides, Works with, Reference, Background. Every page sits in it exactly once, every old URL redirects, and no rule in the Specification changes.
+The sidebar reads as a flow: Start, Concepts, Guides, Works with, Reference, Background. Every page sits in it exactly once, every old page URL redirects, and no rule in the Specification changes.
 
 ## Non-goals
 - No change to a MUST, SHOULD or MAY rule, a field name, a section name or the file tree in the Specification. Only links and rationale move.
 - No rewrite or split of the Evidence page; link fixes only.
 - No change to `public/templates/` or to the SKILL.md rules in the Specification.
 - No new claim without a verified source in `src/data/evidence.json`. Moved claims keep their labels and citations.
-- No change to `specs-ref/` (the task does not cover a rule it checks).
+- No change to `specs-ref/` code or rules (the task does not cover a rule it checks). Only its README link follows the Specification's move, as the brief's link-fix item asks.
 
 ## Constraints and invariants
 - Follow `docs/AGENTS.md`: label tokens, verified citations only, internal links absolute with a trailing slash, 120-line page budget, no 15-word quotes, no text copied from agentskills.io.
@@ -54,5 +54,10 @@ The sidebar reads as a flow: Start, Concepts, Guides, Works with, Reference, Bac
 - 2026-10-10: Dropped from the merged guides, not moved: tool-instruction counts, "keep what the agent cannot infer", "test every line", description wording, third person, no-skill baseline evals and wording fragility. Why: general AGENTS.md or SKILL.md authoring advice owned by those standards. The claims stay in evidence.json and on the Evidence page.
 - 2026-10-10: Page count. On main the docs collection holds 22 pages; now 22 (−1 size-budgets, −2 guides, +2 works-with, +1 concept). The brief's "minus 1" for the two guides is net 0, so its formula reads 22 − 1 + 0 + 1 = 22. Astro reports 23 built pages before and after (the 404 included); the four redirects add HTML files it does not count.
 - 2026-10-10: Re-cut pictures (navigation only): overview, specification and sizing at 1100 and 1500 px, menu-open 375, copy-menu-open 1500 and search-open 1500, dark and light (18). The same pages at 375 and 700 px did not change.
+- 2026-10-10 (review): Fixed works-with/agent-skills. It said Agent Specs adds no rules to SKILL.md (carried over from the removed guide) and that description and body belong to Agent Skills, but the Specification's SKILL.md section has SHOULDs for both. The page now points to those rules. The reason for dropping the description-wording and third-person steps is that the Specification's SKILL.md rules and the Agent Skills specification cover them, and the page links to both.
+- 2026-10-10 (review): The old `/<slug>.md` exports (/specification.md, /reference/size-budgets.md, /guides/agents-md-router.md, /guides/skill-md-triggers.md) are gone and not redirected; nor do fragments (/specification/#sizing-gate) survive the meta-refresh redirects. Astro's static redirects emit HTML, which a Markdown-fetching agent would not follow. Left for the owner: host-level 301s (where the host is not yet committed) or alias exports would fix both; neither is in this brief.
 
 ## Outcomes and retrospective
+- Shipped: the six-group sidebar, the Specification under Reference, two Works with pages, Budgets in Templates, the Verification and review concept, Next lines, four redirects, 18 re-cut pictures and the DECISIONS.md entry. Every Global acceptance item passes except `specsets` on this folder, the known specs-ref conflict.
+- Review (fresh agent, plan + diff + commands): it re-ran all acceptance items with the same results and found 3 gaps. It found one real error (the Agent Skills page contradicted the Specification), now fixed. The other two were wording in this plan (the specs-ref README exception, the unredirected `.md` exports), now logged.
+- Next time: check a carried-over sentence against the Specification before moving it; the contradiction came from the old guide, not from new text.

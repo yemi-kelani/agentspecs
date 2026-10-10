@@ -3,7 +3,7 @@ title: Agent Skills
 description: How a spec set names the skills each phase needs, and when a skill also needs a routing line in AGENTS.md.
 ---
 
-[Proposal] A skill packages a procedure that many tasks repeat; a spec set says which phase uses it. The [Agent Skills specification](https://agentskills.io/specification) defines SKILL.md, and Agent Specs adds no rules to it. Start from the [SKILL.md template](/reference/templates/#skillmd) and follow that specification for the file itself. This page covers the two places a spec set points to a skill.
+[Proposal] A skill packages a procedure that many tasks repeat; a spec set says which phase uses it. The [Agent Skills specification](https://agentskills.io/specification) defines SKILL.md. The Specification's [SKILL.md rules](/reference/specification/#skillmd) add a default folder and a few SHOULDs for the description and body, and defer to Agent Skills wherever the two differ. Start from the [SKILL.md template](/reference/templates/#skillmd). This page covers the two places a spec set points to a skill.
 
 ## Name skills in the phase table
 
@@ -29,4 +29,4 @@ description: How a spec set names the skills each phase needs, and when a skill 
 
 ## Everything else
 
-Writing the description, structuring the body and testing whether a skill triggers belong to Agent Skills: see [agentskills.io](https://agentskills.io/). Before you use a skill from outside the repository, review it as the [security rules](/reference/specification/#security) ask.
+For the file itself, follow the [SKILL.md rules](/reference/specification/#skillmd) and the Agent Skills specification; for authoring and testing skills in general, see [agentskills.io](https://agentskills.io/). Before you use a skill from outside the repository, review it as the [security rules](/reference/specification/#security) ask.
