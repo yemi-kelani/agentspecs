@@ -35,11 +35,18 @@ test.describe('1500 px', () => {
 		near(theme.right, 1438, 'theme button right edge');
 	});
 
+	// Every sidebar section is a labelled group (Start first), so the first label takes the 96 px slot
+	// measured for agentskills.io's first link, and the Overview pill sits one label below it.
 	test('sidebar: 256x36 pills at 46, text at 62, labelled groups 32 px apart', async ({ page }) => {
+		const label = page.locator('#starlight__sidebar .sidebar-group-label').first();
+		const l = await box(label);
+		near(l.y, 96, 'first group label y');
+		near(l.h, 24, 'group label height');
+		expect(await css(label, 'fontSize', 'fontWeight')).toEqual({ fontSize: '14px', fontWeight: '600' });
 		const current = page.locator('#starlight__sidebar a[aria-current="page"]');
 		const c = await box(current);
 		near(c.x, 46, 'pill x');
-		near(c.y, 96, 'first pill y');
+		near(c.y, l.bottom + 10, 'first pill y');
 		near(c.w, 256, 'pill width');
 		near(c.h, 36, 'pill height');
 		expect(await css(current, 'fontSize', 'borderTopLeftRadius', 'paddingLeft')).toEqual({
@@ -48,11 +55,7 @@ test.describe('1500 px', () => {
 			paddingLeft: '16px',
 		});
 		const firstSection = await box(page.locator('#starlight__sidebar .sidebar-section').first());
-		const label = page.locator('#starlight__sidebar .sidebar-group-label').first();
-		const l = await box(label);
-		near(l.y, firstSection.bottom + 32, 'group label y');
-		near(l.h, 24, 'group label height');
-		expect(await css(label, 'fontSize', 'fontWeight')).toEqual({ fontSize: '14px', fontWeight: '600' });
+		near((await box(page.locator('#starlight__sidebar .sidebar-group-label').nth(1))).y, firstSection.bottom + 32, 'second group label y');
 		const grouped = page.locator('#starlight__sidebar ul.grouped').first().locator('a');
 		const [g1, g2] = [await box(grouped.nth(0)), await box(grouped.nth(1))];
 		near(g1.y, l.bottom + 10, 'first grouped link y');
@@ -141,7 +144,7 @@ test('1500 px, scrolled: header, sidebar and TOC stay in place', async ({ page }
 	await page.evaluate(() => window.scrollTo(0, 3000));
 	await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(2000);
 	near((await box(page.locator('header.header'))).y, 0, 'header y');
-	near((await box(page.locator('#starlight__sidebar a').first())).y, 96, 'first sidebar link y');
+	near((await box(page.locator('#starlight__sidebar .sidebar-group-label').first())).y, 96, 'first sidebar label y');
 	near((await box(page.locator('starlight-toc h2'))).y, 112, 'TOC title y');
 });
 
