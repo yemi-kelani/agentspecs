@@ -1,0 +1,11 @@
+---
+// Override of Starlight's Head: also preload the Latin subset of Inter, so text is usually laid out
+// in Inter on first paint. Without it, the swap from the fallback font rewraps lines and shifts the
+// page (Lighthouse CLS 0.19 on /quickstart/, phase 8). The ?url import resolves to the same hashed
+// file that @fontsource-variable/inter's CSS references.
+import Default from '@astrojs/starlight/components/Head.astro';
+import interLatin from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
+---
+
+<Default />
+<link rel="preload" href={interLatin} as="font" type="font/woff2" crossorigin />

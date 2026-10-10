@@ -1,0 +1,39 @@
+---
+// Override of Starlight's PageTitle: title row with the Copy page menu, the description
+// under the title (as on agentskills.io), and the `numbered` frontmatter flag.
+import Default from '@astrojs/starlight/components/PageTitle.astro';
+import CopyPageMenu from './CopyPageMenu.astro';
+import { mdPathFor } from '../lib/paths.mjs';
+
+const { entry, id } = Astro.locals.starlightRoute;
+const { description, numbered } = entry.data as { description?: string; numbered?: boolean };
+const mdPath = mdPathFor(id || entry.id);
+---
+
+<div class="page-title-row">
+	<Default />
+	<CopyPageMenu mdPath={mdPath} />
+</div>
+{description && <p class="page-description">{description}</p>}
+{numbered && <span class="numbered-flag" hidden />}
+
+<style>
+	.page-title-row {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: flex-start;
+		justify-content: space-between;
+		column-gap: 1rem;
+		row-gap: 0.75rem;
+	}
+	.page-title-row > :global(h1) {
+		flex: 1 1 20rem;
+		min-width: 0;
+	}
+	.page-description {
+		margin-top: 0.75rem;
+		font-size: var(--sl-text-lg);
+		line-height: 1.55;
+		color: var(--sl-color-gray-2);
+	}
+</style>

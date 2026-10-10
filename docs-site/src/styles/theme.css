@@ -1,0 +1,215 @@
+/* Agent Specs theme: neutral grayscale chrome, flat header/sidebar, Inter + JetBrains Mono.
+   Layout zones and type scale follow the agentskills.io docs look; values are our own. */
+
+/* Dark (Starlight default) */
+:root {
+	--sl-font: 'Inter Variable';
+	--sl-font-mono: 'JetBrains Mono Variable';
+
+	--sl-color-white: #ffffff;
+	--sl-color-gray-1: #e2e2e2;
+	--sl-color-gray-2: #a8a8a8;
+	--sl-color-gray-3: #8c8c8c;
+	--sl-color-gray-4: #5e5e5e;
+	--sl-color-gray-5: #333333;
+	--sl-color-gray-6: #1d1d1f;
+	--sl-color-black: #0d0d0f;
+
+	--sl-color-accent-low: #262626;
+	--sl-color-accent: #a3a3a3;
+	--sl-color-accent-high: #f1f1f1;
+
+	--sl-color-bg-nav: var(--sl-color-black);
+	--sl-color-bg-sidebar: var(--sl-color-black);
+	--sl-color-bg-inline-code: #1d1d1f;
+	--sl-color-hairline: #262628;
+	--sl-color-hairline-light: #262628;
+	--sl-color-hairline-shade: #2e2e30;
+
+	--sl-line-height: 1.7;
+	--sl-text-h1: 1.875rem;
+	--sl-text-h2: 1.375rem;
+	--sl-text-h3: 1.1875rem;
+	--sl-text-h4: 1.0625rem;
+	--sl-text-h5: 1rem;
+}
+
+:root[data-theme='light'] {
+	--sl-color-white: #1a1a1a;
+	--sl-color-gray-1: #292929;
+	--sl-color-gray-2: #424242;
+	--sl-color-gray-3: #595959;
+	--sl-color-gray-4: #767676;
+	--sl-color-gray-5: #d1d1d1;
+	--sl-color-gray-6: #f1f1f1;
+	--sl-color-gray-7: #f6f6f6;
+	--sl-color-black: #ffffff;
+
+	--sl-color-accent-low: #e2e2e2;
+	--sl-color-accent: #1a1a1a;
+	--sl-color-accent-high: #0e0e0e;
+
+	--sl-color-bg-nav: var(--sl-color-black);
+	--sl-color-bg-sidebar: var(--sl-color-black);
+	--sl-color-bg-inline-code: #f3f3f3;
+	--sl-color-hairline: #ececec;
+	--sl-color-hairline-light: #ececec;
+	--sl-color-hairline-shade: #e2e2e2;
+}
+
+@media (min-width: 50em) {
+	:root {
+		--sl-text-h1: 2.25rem;
+		--sl-text-h2: 1.5rem;
+		--sl-text-h3: 1.25rem;
+		--sl-text-h4: 1.125rem;
+	}
+}
+
+/* Headings: tight tracking, semibold. */
+.sl-markdown-content :is(h1, h2, h3, h4, h5, h6),
+h1#_top {
+	letter-spacing: -0.02em;
+	font-weight: 600;
+}
+
+/* Content links: same colour as text, visible underline (grayscale needs the underline). */
+.sl-markdown-content a:not(.label-link, .card, .sl-link-card, .sl-anchor-link) {
+	color: var(--sl-color-white);
+	text-decoration-color: var(--sl-color-gray-4);
+	text-underline-offset: 0.2em;
+}
+.sl-markdown-content a:not(.label-link, .card, .sl-link-card, .sl-anchor-link):hover {
+	text-decoration-color: currentColor;
+}
+
+/* Inline code: soft chip. */
+.sl-markdown-content :not(pre) > code {
+	border: 1px solid var(--sl-color-hairline);
+	border-radius: 0.375rem;
+	padding: 0.1em 0.35em;
+	font-size: 0.875em;
+}
+
+/* Header: flat, hairline bottom border. */
+header.header {
+	border-bottom-color: var(--sl-color-hairline);
+}
+
+/* Sidebar: plain links, gray pill for the current page, small bold group labels. */
+#starlight__sidebar .sidebar-content a {
+	font-size: var(--sl-text-sm);
+	color: var(--sl-color-gray-2);
+	border-radius: 0.5rem;
+}
+#starlight__sidebar .sidebar-content a:hover {
+	color: var(--sl-color-white);
+}
+#starlight__sidebar .sidebar-content a[aria-current='page'],
+#starlight__sidebar .sidebar-content a[aria-current='page']:hover,
+#starlight__sidebar .sidebar-content a[aria-current='page']:focus {
+	background: var(--sl-color-gray-6);
+	color: var(--sl-color-white);
+	font-weight: 500;
+}
+#starlight__sidebar .sidebar-content .large {
+	font-size: var(--sl-text-sm);
+	font-weight: 600;
+	color: var(--sl-color-white);
+}
+#starlight__sidebar .sidebar-content a.large {
+	font-weight: 400;
+	color: var(--sl-color-gray-2);
+}
+#starlight__sidebar .sidebar-content a.large[aria-current='page'] {
+	font-weight: 500;
+	color: var(--sl-color-white);
+}
+
+/* Right TOC: muted links, current item in full colour. */
+starlight-toc a {
+	color: var(--sl-color-gray-3);
+}
+starlight-toc a:hover,
+starlight-toc a[aria-current='true'] {
+	color: var(--sl-color-white);
+}
+
+/* `numbered: true` frontmatter: section numbers on h2–h4 and in the TOC (Specification page).
+   PageTitle.astro renders .numbered-flag when the flag is set. Headings sit inside
+   .sl-heading-wrapper divs, so nested counters use counter-set (not counter-reset). */
+body:has(.numbered-flag) .sl-markdown-content {
+	counter-reset: h2 h3 h4;
+}
+body:has(.numbered-flag) .sl-markdown-content h2 {
+	counter-increment: h2;
+	counter-set: h3 0 h4 0;
+}
+body:has(.numbered-flag) .sl-markdown-content h3 {
+	counter-increment: h3;
+	counter-set: h4 0;
+}
+body:has(.numbered-flag) .sl-markdown-content h4 {
+	counter-increment: h4;
+}
+body:has(.numbered-flag) .sl-markdown-content h2::before {
+	content: counter(h2) '. ';
+}
+body:has(.numbered-flag) .sl-markdown-content h3::before {
+	content: counter(h2) '.' counter(h3) ' ';
+}
+body:has(.numbered-flag) .sl-markdown-content h4::before {
+	content: counter(h2) '.' counter(h3) '.' counter(h4) ' ';
+}
+/* TOC: the first top-level item is the page title (#_top); h2 entries follow it, h3 entries nest. */
+body:has(.numbered-flag) :is(starlight-toc, mobile-starlight-toc) ul:not(ul ul) {
+	counter-reset: h2;
+}
+body:has(.numbered-flag) :is(starlight-toc, mobile-starlight-toc) ul:not(ul ul) > li:not(:first-child) {
+	counter-increment: h2;
+}
+body:has(.numbered-flag) :is(starlight-toc, mobile-starlight-toc) ul:not(ul ul) > li:not(:first-child) > a > span::before {
+	content: counter(h2) '. ';
+}
+body:has(.numbered-flag) :is(starlight-toc, mobile-starlight-toc) ul ul {
+	counter-reset: h3;
+}
+body:has(.numbered-flag) :is(starlight-toc, mobile-starlight-toc) ul ul > li {
+	counter-increment: h3;
+}
+body:has(.numbered-flag) :is(starlight-toc, mobile-starlight-toc) ul ul > li > a > span::before {
+	content: counter(h2) '.' counter(h3) ' ';
+}
+
+/* Code shows exactly what to type. JetBrains Mono's default ligatures would join `-<` in
+   `phase-1-<slug>.md` (and `->`, `<=`, `!=`) into single arrow-like glyphs. */
+code,
+kbd,
+samp,
+pre {
+	font-variant-ligatures: none;
+}
+
+/* Utility used by components. */
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+/* Flat layout: no vertical rules between sidebar, content and TOC, none under the title. */
+.sidebar-pane {
+	border-inline-end-color: transparent;
+}
+.right-sidebar {
+	border-inline-start-color: transparent;
+}
+.content-panel + .content-panel {
+	border-top-color: transparent;
+}

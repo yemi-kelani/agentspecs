@@ -1,0 +1,9 @@
+{
+  "task": "<task-id>",
+  "spec": "agentspecs v0.1",
+  "updated": "<YYYY-MM-DDTHH:MMZ>",
+  "phases": [
+    { "id": 1, "file": "phases/phase-1-<slug>.md", "status": "pending", "verified": false, "handoff": null },
+    { "id": 2, "file": "phases/phase-2-<slug>.md", "status": "pending", "verified": false, "handoff": null }
+  ]
+}

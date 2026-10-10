@@ -1,0 +1,65 @@
+/* Evidence label badges rendered by src/plugins/remark-labels.mjs.
+   Colours are tested for WCAG AA contrast in tests/labels-contrast.test.mjs. Keep hex values. */
+
+/* Dark (Starlight default) */
+:root {
+	--label-established-fg: #86efac;
+	--label-established-bg: #0f2a1a;
+	--label-evidence-fg: #93c5fd;
+	--label-evidence-bg: #10203f;
+	--label-heuristic-fg: #fcd34d;
+	--label-heuristic-bg: #2e2208;
+	--label-proposal-fg: #d8b4fe;
+	--label-proposal-bg: #261538;
+}
+
+:root[data-theme='light'] {
+	--label-established-fg: #166534;
+	--label-established-bg: #dcfce7;
+	--label-evidence-fg: #1e40af;
+	--label-evidence-bg: #dbeafe;
+	--label-heuristic-fg: #92400e;
+	--label-heuristic-bg: #fef3c7;
+	--label-proposal-fg: #6b21a8;
+	--label-proposal-bg: #f3e8ff;
+}
+
+.sl-markdown-content a.label-link,
+a.label-link {
+	text-decoration: none;
+}
+
+.label {
+	display: inline-block;
+	padding: 0 0.4375em;
+	border: 1px solid color-mix(in srgb, currentColor 30%, transparent);
+	border-radius: 0.375rem;
+	font-size: 0.75em;
+	font-weight: 600;
+	line-height: 1.6;
+	letter-spacing: 0.01em;
+	vertical-align: 0.1em;
+	white-space: nowrap;
+}
+
+a.label-link:hover .label,
+a.label-link:focus-visible .label {
+	border-color: currentColor;
+}
+
+.label--established {
+	color: var(--label-established-fg);
+	background: var(--label-established-bg);
+}
+.label--evidence {
+	color: var(--label-evidence-fg);
+	background: var(--label-evidence-bg);
+}
+.label--heuristic {
+	color: var(--label-heuristic-fg);
+	background: var(--label-heuristic-bg);
+}
+.label--proposal {
+	color: var(--label-proposal-fg);
+	background: var(--label-proposal-bg);
+}

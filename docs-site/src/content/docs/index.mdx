@@ -1,0 +1,85 @@
+---
+title: Agent Specs overview
+description: Agent Specs is a convention for writing task specs that coding agents can follow phase by phase.
+sidebar:
+  label: Overview
+---
+
+import { CardGrid, LinkCard, Steps } from '@astrojs/starlight/components';
+
+**Status:** Specification v0.1 (draft). The format may still change; [the Specification](/specification/#changes-in-this-version) lists what changed in each version.
+
+## What agent specs are
+
+[Proposal] An agent spec turns one large task into a folder of small Markdown and JSON files. A stable plan states the goal and the rules, each phase gets its own brief, and each phase leaves a handoff that the next one reads. The folder sits in the repository next to the code it changes, so people and agents review it like any other file.
+
+```text
+AGENTS.md                    router: commands, rules, links
+work/<task-id>/
+├── plan.md                  stable index and phase table
+├── state.json               phase status (orchestrator)
+├── progress.md              log, surprises, decisions
+├── phases/
+│   ├── phase-1-<slug>.md    one brief per phase
+│   └── phase-2-<slug>.md
+├── sources/MANIFEST.md      outside inputs, read-only
+└── out/
+    ├── phase-1/HANDOFF.md   result and verify evidence
+    └── phase-2/HANDOFF.md
+.agents/skills/<name>/       optional: reusable skills
+```
+
+[Heuristic] Use the full folder only when a task is large. A change you can describe in one sentence needs a prompt, and a one-session change needs a single `plan.md`; see [Sizing](/concepts/sizing/).
+
+## Why use them
+
+- **Fresh, focused contexts.** [Established] The Claude Code docs warn that model performance degrades as the context window fills ([best practices](https://code.claude.com/docs/en/best-practices)). [Proposal] Each phase therefore starts a new session that loads only the plan, its own brief and the inputs that brief names.
+- **Explicit handoffs.** [Established] Anthropic found that a subagent brief needs an objective, an output format, guidance on tools and sources, and clear boundaries; that came from a research system, not a coding one ([multi-agent research system](https://www.anthropic.com/engineering/multi-agent-research-system)). [Proposal] A phase file has a section for each, and a short HANDOFF.md carries the result forward instead of a transcript.
+- **Verifiable phases.** [Established] The Claude Code docs advise giving an agent a check it can run, such as tests or a build, so it keeps going until the check passes ([best practices](https://code.claude.com/docs/en/best-practices)). [Proposal] Every phase ends with verify commands, and the orchestrator marks it done only after they pass.
+
+## How they load
+
+<Steps>
+
+1. **Index.** [Proposal] The orchestrator reads AGENTS.md and `plan.md`: the goal, the shared rules and a table of phases with their inputs, outputs and dependencies.
+
+2. **Phase.** [Proposal] For each phase that is ready, it starts an agent with a fresh context and the exact path to that phase's brief. The agent reads only what the brief lists and writes only to its own landing spot.
+
+3. **Handoff.** [Proposal] The agent ends by writing `out/phase-N/HANDOFF.md`: verify results, key facts, decisions and open issues. The orchestrator re-runs the checks and updates `state.json`, and later phases read the handoff, not the earlier session.
+
+</Steps>
+
+[Proposal] Plans pass exact file paths rather than leaving an agent to discover what to load. [Index and leaves](/concepts/index-and-leaves/) explains why.
+
+## Where they work
+
+[Proposal] Agent Specs needs no runtime, plugin or service. Any coding agent that can read and write files in a repository can follow a spec set, and a person can read the same files.
+
+[Proposal] It is designed to sit beside two related standards. [AGENTS.md](https://agents.md/) stays the short router at the repository root and sends multi-step tasks to `work/<task-id>/`. [Agent Skills](https://agentskills.io/) packages reusable procedures that a phase can name; this site links to the [Agent Skills specification](https://agentskills.io/specification) instead of redefining SKILL.md.
+
+Agent Specs is an independent convention. It is not affiliated with, or endorsed by, the AGENTS.md or Agent Skills projects or any agent vendor.
+
+## Get started
+
+<CardGrid>
+  <LinkCard
+    title="Quickstart"
+    href="/quickstart/"
+    description="Write a spec set for a small change and dispatch its first phase."
+  />
+  <LinkCard
+    title="Specification"
+    href="/specification/"
+    description="File formats, loading rules and the phase lifecycle for v0.1."
+  />
+  <LinkCard
+    title="Concepts"
+    href="/concepts/why-structure/"
+    description="Why the structure helps, what it costs and where evidence is thin."
+  />
+  <LinkCard
+    title="Templates"
+    href="/reference/templates/"
+    description="All eight files, ready to copy into a repository."
+  />
+</CardGrid>

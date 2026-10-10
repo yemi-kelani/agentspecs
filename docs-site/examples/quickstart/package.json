@@ -1,0 +1,14 @@
+{
+  "name": "slugify-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A tiny dependency-free slugify function, used by the Agent Specs Quickstart.",
+  "type": "module",
+  "exports": "./src/slugify.js",
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

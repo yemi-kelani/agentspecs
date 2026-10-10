@@ -1,0 +1,96 @@
+---
+// Custom 404 (Starlight's built-in route is off: `disable404Route` in astro.config.mjs).
+// A hero page, so the Copy page menu in PageTitle does not render (404 has no Markdown export).
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import { SITE_URL } from '../consts.mjs';
+
+// Starlight derives canonical and og:url from the route (/404/), which does not exist; the file is /404.html.
+const SELF_URL = new URL('/404.html', SITE_URL).href;
+---
+
+<StarlightPage
+	frontmatter={{
+		title: 'Page not found',
+		description: 'There is no page at this address on agentspecs.io.',
+		template: 'splash',
+		pagefind: false,
+		editUrl: false,
+		head: [
+			{ tag: 'meta', attrs: { name: 'robots', content: 'noindex' } },
+			{ tag: 'link', attrs: { rel: 'canonical', href: SELF_URL } },
+			{ tag: 'meta', attrs: { property: 'og:url', content: SELF_URL } },
+		],
+		hero: {
+			title: 'Page not found',
+			tagline: 'Nothing lives at this address. The page may have moved, or the link may have a typo.',
+			actions: [
+				{ text: 'Go to the overview', link: '/', variant: 'primary', icon: 'right-arrow' },
+				{ text: 'Open the Quickstart', link: '/quickstart/', variant: 'secondary' },
+			],
+		},
+	}}
+>
+	<div class="not-found-search not-content">
+		<button type="button" class="search-button" data-open-search>
+			<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+				><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg
+			>
+			Search the docs
+		</button>
+		<p>Search is also one shortcut away on every page: <kbd>Ctrl</kbd> <kbd>K</kbd> (<kbd>⌘</kbd> <kbd>K</kbd> on a Mac).</p>
+	</div>
+</StarlightPage>
+
+<script>
+	// Open Starlight's search dialog through the header's own search button. Stop this click here:
+	// the dialog closes on any window click outside it, and this one would arrive right after it opens.
+	document.querySelector('[data-open-search]')?.addEventListener('click', (event) => {
+		event.stopPropagation();
+		document.querySelector<HTMLButtonElement>('site-search button[data-open-modal]')?.click();
+	});
+</script>
+
+<style>
+	.not-found-search {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.75rem;
+		text-align: center;
+		color: var(--sl-color-gray-2);
+		font-size: var(--sl-text-sm);
+	}
+	/* Match the hero: centred on small screens, start-aligned from 50em up. */
+	@media (min-width: 50em) {
+		.not-found-search {
+			align-items: flex-start;
+			text-align: start;
+		}
+	}
+	.search-button {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5em;
+		padding: 0.4375rem 1.125rem;
+		border: 1px solid var(--sl-color-gray-5);
+		border-radius: 999rem;
+		background: transparent;
+		color: var(--sl-color-white);
+		font: inherit;
+		cursor: pointer;
+	}
+	.search-button:hover {
+		border-color: var(--sl-color-gray-3);
+	}
+	.search-button:focus-visible {
+		outline: 2px solid var(--sl-color-white);
+		outline-offset: 0.25rem;
+	}
+	kbd {
+		font-family: var(--__sl-font-mono);
+		font-size: 0.85em;
+		padding: 0.05em 0.35em;
+		border: 1px solid var(--sl-color-gray-5);
+		border-radius: 0.25rem;
+	}
+</style>

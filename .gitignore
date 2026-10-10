@@ -1,0 +1,12 @@
+# Inputs: untrusted research material and internal talk slides. Never commit or publish.
+research/
+# The owner's original build brief (names internal material); kept local.
+agentspecs-site-plan.md
+node_modules/
+dist/
+.astro/
+.superpowers/
+.DS_Store
+*.log
+lighthouse-*/
+.claude/scheduled_tasks.lock

@@ -1,0 +1,3653 @@
+{
+  "generated": "2026-10-09",
+  "labels": {
+    "Established": "Vendor documentation or multiple independent sources agree.",
+    "Evidence": "A specific cited study; always read with its caveat.",
+    "Heuristic": "A practitioner rule of thumb, not a finding.",
+    "Proposal": "This specification's own design choice."
+  },
+  "sources": [
+    {
+      "id": "a-agentskills-spec",
+      "title": "Specification",
+      "authors": "Agent Skills project",
+      "publisher": "agentskills.io",
+      "date": "2026-10",
+      "url": "https://agentskills.io/specification",
+      "type": "spec",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "Living page with no publication date; date is the retrieval month. Read via the site's Markdown export (specification.md). Anthropic's engineering post says the format was published as an open standard on 2025-12-18."
+    },
+    {
+      "id": "a-agentskills-home",
+      "title": "Agent Skills Overview",
+      "authors": "Agent Skills project",
+      "publisher": "agentskills.io",
+      "date": "2026-10",
+      "url": "https://agentskills.io/home",
+      "type": "spec",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "Undated living page; used only for provenance (originally developed by Anthropic, released as an open standard, open to contributions)."
+    },
+    {
+      "id": "a-claude-skill-best-practices",
+      "title": "Skill authoring best practices",
+      "authors": "Anthropic",
+      "publisher": "Claude Platform Docs",
+      "date": "2026-10",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices",
+      "type": "vendor-doc",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "Undated living doc; date is the retrieval month."
+    },
+    {
+      "id": "a-claude-skills-overview",
+      "title": "Agent Skills (overview)",
+      "authors": "Anthropic",
+      "publisher": "Claude Platform Docs",
+      "date": "2026-10",
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview",
+      "type": "vendor-doc",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "Gap-fill: its loading-levels table gives the same ~100-token and under-5k-token figures as the open spec, which makes the budget claim two-source. Undated living doc."
+    },
+    {
+      "id": "a-anthropic-eng-skills",
+      "title": "Equipping agents for the real world with Agent Skills",
+      "authors": "Barry Zhang, Keith Lazuka, Mahesh Murag",
+      "publisher": "Anthropic (Engineering at Anthropic)",
+      "date": "2025-10-16",
+      "url": "https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills",
+      "type": "blog",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "Has an update note dated 2025-12-18 saying Agent Skills was published as an open standard."
+    },
+    {
+      "id": "a-anthropic-context-eng",
+      "title": "Effective context engineering for AI agents",
+      "authors": "Prithvi Rajasekaran, Ethan Dixon, Carly Ryan, Jeremy Hadfield (Anthropic Applied AI team)",
+      "publisher": "Anthropic (Engineering at Anthropic)",
+      "date": "2025-09-29",
+      "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+      "type": "blog",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "Vendor guidance essay; it cites prior needle-in-a-haystack work for context rot but presents no new measurements."
+    },
+    {
+      "id": "a-cc-best-practices",
+      "title": "Best practices for Claude Code",
+      "authors": "Anthropic",
+      "publisher": "Claude Code Docs",
+      "date": "2026-10",
+      "url": "https://code.claude.com/docs/en/best-practices",
+      "type": "vendor-doc",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "Undated living doc; content as of retrieval. Read via the .md export."
+    },
+    {
+      "id": "a-cc-skills",
+      "title": "Extend Claude with skills",
+      "authors": "Anthropic",
+      "publisher": "Claude Code Docs",
+      "date": "2026-10",
+      "url": "https://code.claude.com/docs/en/skills",
+      "type": "vendor-doc",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "Undated living doc. Several details are version-gated (e.g. v2.1.196, v2.1.218), so numbers may change between releases."
+    },
+    {
+      "id": "a-cc-subagents",
+      "title": "Create custom subagents",
+      "authors": "Anthropic",
+      "publisher": "Claude Code Docs",
+      "date": "2026-10",
+      "url": "https://code.claude.com/docs/en/sub-agents",
+      "type": "vendor-doc",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "Undated living doc; content as of retrieval."
+    },
+    {
+      "id": "a-cc-memory",
+      "title": "How Claude remembers your project",
+      "authors": "Anthropic",
+      "publisher": "Claude Code Docs",
+      "date": "2026-10",
+      "url": "https://code.claude.com/docs/en/memory",
+      "type": "vendor-doc",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "Gap-fill for CLAUDE.md size target, load order and AGENTS.md handling (nested-file precedence topic). Undated living doc."
+    },
+    {
+      "id": "a-anthropic-multi-agent",
+      "title": "How we built our multi-agent research system",
+      "authors": "Jeremy Hadfield, Barry Zhang, Kenneth Lien, Florian Scholz, Jeremy Fox, Daniel Ford",
+      "publisher": "Anthropic (Engineering at Anthropic)",
+      "date": "2025-06-13",
+      "url": "https://www.anthropic.com/engineering/multi-agent-research-system",
+      "type": "blog",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "Primary replaces the Simon Willison and ZenML write-ups cited in the prior report."
+    },
+    {
+      "id": "a-anthropic-harness",
+      "title": "Effective harnesses for long-running agents",
+      "authors": "Justin Young",
+      "publisher": "Anthropic (Engineering at Anthropic)",
+      "date": "2025-11-26",
+      "url": "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
+      "type": "blog",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "Primary replaces the businessdatasolutions.github.io mirror cited in the prior report."
+    },
+    {
+      "id": "a-openai-execplans",
+      "title": "Using PLANS.md for multi-hour problem solving",
+      "authors": "Aaron Friel",
+      "publisher": "OpenAI Cookbook (developers.openai.com)",
+      "date": "2025-10-07",
+      "url": "https://developers.openai.com/cookbook/articles/codex_exec_plans",
+      "type": "vendor-doc",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "The page is now flagged as an archived recipe that may reference outdated models; its intro has been edited since publication (it names gpt-5.2-codex)."
+    },
+    {
+      "id": "a-oap-plans",
+      "title": "PLANS.md (openai/openai-agents-python)",
+      "authors": "OpenAI",
+      "publisher": "GitHub",
+      "date": "2026-01-12",
+      "url": "https://github.com/openai/openai-agents-python/blob/main/PLANS.md",
+      "type": "repo",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "Date is the file's last commit (GitHub API). Content read from the raw file on main."
+    },
+    {
+      "id": "a-oap-agents",
+      "title": "AGENTS.md (openai/openai-agents-python)",
+      "authors": "OpenAI",
+      "publisher": "GitHub",
+      "date": "2026-09-28",
+      "url": "https://github.com/openai/openai-agents-python/blob/main/AGENTS.md",
+      "type": "repo",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "Date is the file's last commit (GitHub API); the file changes often."
+    },
+    {
+      "id": "a-openai-harness",
+      "title": "Harness engineering: leveraging Codex in an agent-first world",
+      "authors": "Ryan Lopopolo",
+      "publisher": "OpenAI",
+      "date": "2026-02-11",
+      "url": "https://openai.com/index/harness-engineering/",
+      "type": "blog",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "Direct fetches of openai.com returned HTTP 403 (WebFetch twice, curl twice). Text, title, author and date were verified against the Internet Archive snapshot https://web.archive.org/web/20261006122733/https://openai.com/index/harness-engineering/ (captured 2026-10-06). url keeps the canonical primary."
+    },
+    {
+      "id": "a-agents-md",
+      "title": "AGENTS.md",
+      "authors": "AGENTS.md project (a Series of LF Projects, LLC)",
+      "publisher": "agents.md",
+      "date": "2026-10",
+      "url": "https://agents.md/",
+      "type": "spec",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "Undated living page; date is the retrieval month. The page says the format is stewarded by the Agentic AI Foundation under the Linux Foundation."
+    },
+    {
+      "id": "a-cursor-rules",
+      "title": "Rules",
+      "authors": "Cursor (Anysphere)",
+      "publisher": "Cursor Docs",
+      "date": "2026-10",
+      "url": "https://cursor.com/docs/rules",
+      "type": "vendor-doc",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "Undated living doc; read via the .md export."
+    },
+    {
+      "id": "b-gloaguen-2026",
+      "title": "Evaluating AGENTS.md: Are Repository-Level Context Files Helpful for Coding Agents?",
+      "authors": "Thibaud Gloaguen, Niels Mündler-Sasahara, Mark Niklas Müller, Veselin Raychev, Martin Vechev",
+      "publisher": "arXiv",
+      "date": "2026-02-12",
+      "url": "https://arxiv.org/abs/2602.11988",
+      "type": "paper",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "arXiv:2602.11988. v1 2026-02-12, latest v3 2026-09-29. Claims use v3 numbers (HTML full text). v1 reported different headline figures (about -3% for LLM-generated and +4% for developer-written files; benchmark then named AGENTbench, now CTXbench). Preprint, not peer reviewed. Author affiliation not checked."
+    },
+    {
+      "id": "b-lulla-2026",
+      "title": "On the Impact of AGENTS.md Files on the Efficiency of AI Coding Agents",
+      "authors": "Jai Lal Lulla, Seyedmoein Mohsenimofidi, Matthias Galster, Jie M. Zhang, Sebastian Baltes, Christoph Treude",
+      "publisher": "arXiv",
+      "date": "2026-01-28",
+      "url": "https://arxiv.org/abs/2601.20404",
+      "type": "paper",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "arXiv:2601.20404. v1 2026-01-28, v2 2026-03-30. Numbers checked in HTML full text (Wilcoxon signed-rank; runtime and output tokens significant at p<0.05)."
+    },
+    {
+      "id": "b-mcmillan-2026",
+      "title": "Instruction Adherence in Coding Agent Configuration Files: A Factorial Study of Four File-Structure Variables",
+      "authors": "Damon McMillan",
+      "publisher": "arXiv",
+      "date": "2026-05-11",
+      "url": "https://arxiv.org/abs/2605.10039",
+      "type": "paper",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "arXiv:2605.10039, v1 only. No HTML version; numbers checked against the arXiv PDF full text (results, discussion, limitations). Single author, preprint."
+    },
+    {
+      "id": "b-chroma-context-rot",
+      "title": "Context Rot: How Increasing Input Tokens Impacts LLM Performance",
+      "authors": "Kelly Hong, Anton Troynikov, Jeff Huber",
+      "publisher": "Chroma",
+      "date": "2025-07-14",
+      "url": "https://www.trychroma.com/research/context-rot",
+      "type": "paper",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "Vendor technical report, not peer reviewed. research.trychroma.com/context-rot redirects here. Replaces the secondary write-up cited in the seed report."
+    },
+    {
+      "id": "b-liu-lost-middle",
+      "title": "Lost in the Middle: How Language Models Use Long Contexts",
+      "authors": "Nelson F. Liu, Kevin Lin, John Hewitt, Ashwin Paranjape, Michele Bevilacqua, Fabio Petroni, Percy Liang",
+      "publisher": "Transactions of the Association for Computational Linguistics (TACL)",
+      "date": "2023-07-06",
+      "url": "https://arxiv.org/abs/2307.03172",
+      "type": "paper",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "arXiv:2307.03172 (v1 2023-07-06, v3 2023-11-20). Published in TACL vol. 12 (2024), pp. 157-173, DOI 10.1162/tacl_a_00638, confirmed on ACL Anthology (https://aclanthology.org/2024.tacl-1.9/); the MIT Press page returned 403. Cite as TACL 2024."
+    },
+    {
+      "id": "b-arike-goal-drift",
+      "title": "Technical Report: Evaluating Goal Drift in Language Model Agents",
+      "authors": "Rauno Arike, Elizabeth Donoway, Henning Bartsch, Marius Hobbhahn",
+      "publisher": "arXiv",
+      "date": "2025-05-05",
+      "url": "https://arxiv.org/abs/2505.02709",
+      "type": "paper",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "arXiv:2505.02709, v1 only. Details checked in HTML full text."
+    },
+    {
+      "id": "b-laban-multiturn",
+      "title": "LLMs Get Lost In Multi-Turn Conversation",
+      "authors": "Philippe Laban, Hiroaki Hayashi, Yingbo Zhou, Jennifer Neville",
+      "publisher": "arXiv",
+      "date": "2025-05-09",
+      "url": "https://arxiv.org/abs/2505.06120",
+      "type": "paper",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "arXiv:2505.06120, v1 only. Numbers checked in HTML full text (Sections 6.1, 6.2)."
+    },
+    {
+      "id": "b-gemini-25-report",
+      "title": "Gemini 2.5: Pushing the Frontier with Advanced Reasoning, Multimodality, Long Context, and Next Generation Agentic Capabilities",
+      "authors": "Gheorghe Comanici, Eric Bieber, Mike Schaekermann, et al. (Google Gemini 2.5 technical report)",
+      "publisher": "arXiv",
+      "date": "2025-07-07",
+      "url": "https://arxiv.org/abs/2507.06261",
+      "type": "paper",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "arXiv:2507.06261 (v1 2025-07-07, v6 2025-12-19). The term appears in Appendix 8.2 'Gemini Plays Pokémon Additional Details', subsection 'Hallucinations and Fixations on Delusions'. Full author list is very long; truncated here."
+    },
+    {
+      "id": "b-breunig-contexts-fail",
+      "title": "How Long Contexts Fail",
+      "authors": "Drew Breunig",
+      "publisher": "dbreunig.com",
+      "date": "2025-06-22",
+      "url": "https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html",
+      "type": "blog",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "Practitioner blog; the page text does not print a byline, author inferred from the personal site. It names the Gemini 2.5 technical report as its source for context poisoning. Used only for a Heuristic taxonomy."
+    },
+    {
+      "id": "b-schmotz-skills-injection",
+      "title": "Agent Skills Enable a New Class of Realistic and Trivially Simple Prompt Injections",
+      "authors": "David Schmotz, Sahar Abdelnabi, Maksym Andriushchenko",
+      "publisher": "arXiv",
+      "date": "2025-10-30",
+      "url": "https://arxiv.org/abs/2510.26328",
+      "type": "paper",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "arXiv:2510.26328, v1 only. Short paper of qualitative demonstrations on Claude Code and the Claude web interface; no success rates reported."
+    },
+    {
+      "id": "b-liu-skills-wild",
+      "title": "Agent Skills in the Wild: An Empirical Study of Security Vulnerabilities at Scale",
+      "authors": "Yi Liu, Weizhe Wang, Ruitao Feng, Yao Zhang, Guangquan Xu, Gelei Deng, Yuekang Li, Leo Zhang",
+      "publisher": "arXiv",
+      "date": "2026-01-15",
+      "url": "https://arxiv.org/abs/2601.10338",
+      "type": "paper",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "arXiv:2601.10338, v1 only. Abstract numbers confirmed; validation and limitation details from HTML full text. Marketplaces: skills.rest and skillsmp.com."
+    },
+    {
+      "id": "b-phantomskill",
+      "title": "PhantomSkill: Malicious Code Injection in Agent Skill Ecosystems",
+      "authors": "Yu-Ting Lin, Chia-Mu Yu",
+      "publisher": "arXiv",
+      "date": "2026-06-17",
+      "url": "https://arxiv.org/abs/2606.19191",
+      "type": "paper",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "arXiv:2606.19191, v1 only. Abstract has no numbers; figures taken from Table 1 of the HTML full text. The seed report cited this paper for skill loading semantics, which it does not cover (see dropped claim b-phantomskill-loading)."
+    },
+    {
+      "id": "b-pretext",
+      "title": "Pretext: Defeating Malicious Skill Detection Frameworks for AI Agents",
+      "authors": "Tobias Kaiser, Aritra Dhar",
+      "publisher": "arXiv",
+      "date": "2026-09-30",
+      "url": "https://arxiv.org/abs/2609.39607",
+      "type": "paper",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "arXiv:2609.39607, v1 2026-09-30, v2 2026-10-08. Very recent preprint; may change again."
+    },
+    {
+      "id": "b-greshake-indirect-pi",
+      "title": "Not what you've signed up for: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection",
+      "authors": "Kai Greshake, Sahar Abdelnabi, Shailesh Mishra, Christoph Endres, Thorsten Holz, Mario Fritz",
+      "publisher": "arXiv",
+      "date": "2023-02-23",
+      "url": "https://arxiv.org/abs/2302.12173",
+      "type": "paper",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "arXiv:2302.12173 (v1 2023-02-23, v2 2023-05-05). Secondary citations place it at ACM AISec '23 (pp. 79-90); the ACM page returned 403, so the venue is not verified. Cite the arXiv version."
+    },
+    {
+      "id": "b-ifscale",
+      "title": "How Many Instructions Can LLMs Follow at Once?",
+      "authors": "Daniel Jaroslawicz, Brendan Whiting, Parth Shah, Karime Maamari",
+      "publisher": "arXiv",
+      "date": "2025-07-15",
+      "url": "https://arxiv.org/abs/2507.11538",
+      "type": "paper",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "Gap-filling source (not in the seed list) for instruction-count sizing; complements the McMillan file-size null. arXiv:2507.11538, v1 only. Details from HTML full text."
+    },
+    {
+      "id": "c-vercel-agentsmd-evals",
+      "title": "AGENTS.md outperforms skills in our agent evals",
+      "authors": "Jude Gao",
+      "publisher": "Vercel",
+      "date": "2026-01-27",
+      "url": "https://vercel.com/blog/agents-md-outperforms-skills-in-our-agent-evals",
+      "type": "blog",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "Primary vendor post. Replaces the compass report's secondary links (ai-eval.org write-up, danielmiessler GitHub issue #540). The post does not disclose the number of eval cases, the model(s) or the agent harness used."
+    },
+    {
+      "id": "c-bockeler-sdd-tools",
+      "title": "Understanding Spec-Driven-Development: Kiro, spec-kit, and Tessl",
+      "authors": "Birgitta Böckeler",
+      "publisher": "martinfowler.com (Exploring Gen AI series)",
+      "date": "2025-10-15",
+      "url": "https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html",
+      "type": "blog",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "Primary article. Replaces the compass report's secondary summary (daniliants.com). Hands-on trials by one author with the tool versions available in Oct 2025; Kent Beck is NOT mentioned in this article (his critique is in c-fowler-fragments-2026-01-08)."
+    },
+    {
+      "id": "c-fowler-fragments-2026-01-08",
+      "title": "Fragments: January 8",
+      "authors": "Martin Fowler (quoting a LinkedIn post by Kent Beck)",
+      "publisher": "martinfowler.com",
+      "date": "2026-01-08",
+      "url": "https://martinfowler.com/fragments/2026-01-08.html",
+      "type": "blog",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "Beck's original is a LinkedIn post; this martinfowler.com fragment quotes it verbatim and adds Fowler's comment. Used as the primary on martinfowler.com as the brief requests."
+    },
+    {
+      "id": "c-kiro-specs",
+      "title": "Specs",
+      "authors": "Kiro",
+      "publisher": "Kiro (kiro.dev docs)",
+      "date": "2026-10-02",
+      "url": "https://kiro.dev/docs/specs/",
+      "type": "vendor-doc",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "Date is the page's 'Page updated' stamp. The sentence giving the output directory (.kiro/specs/<name>/) was confirmed in the page's Markdown rendition at https://kiro.dev/docs/specs.md; the HTML render did not expose it to the fetcher. The old CLI page (kiro.dev/docs/cli/v3/specs/) now redirects here."
+    },
+    {
+      "id": "c-kiro-feature-specs",
+      "title": "Feature Specs",
+      "authors": "Kiro",
+      "publisher": "Kiro (kiro.dev docs)",
+      "date": "2026-08-04",
+      "url": "https://kiro.dev/docs/specs/feature-specs/",
+      "type": "vendor-doc",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "Date is the page's last-updated stamp."
+    },
+    {
+      "id": "c-kiro-steering",
+      "title": "Steering",
+      "authors": "Kiro",
+      "publisher": "Kiro (kiro.dev docs)",
+      "date": "2026-10-06",
+      "url": "https://kiro.dev/docs/steering/",
+      "type": "vendor-doc",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "Date is the page's last-updated stamp."
+    },
+    {
+      "id": "c-kiro-spec-best-practices",
+      "title": "Best practices (Specs)",
+      "authors": "Kiro",
+      "publisher": "Kiro (kiro.dev docs)",
+      "date": "2026-09-25",
+      "url": "https://kiro.dev/docs/specs/best-practices/",
+      "type": "vendor-doc",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "Date is the page's 'Page updated' stamp."
+    },
+    {
+      "id": "c-speckit-repo",
+      "title": "github/spec-kit (README)",
+      "authors": "GitHub",
+      "publisher": "GitHub",
+      "date": "2026-10",
+      "url": "https://github.com/github/spec-kit",
+      "type": "repo",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "Living README; date is the access month (no release date shown on the page). MIT licence. CLI is 'specify'; current command names are hyphenated (/speckit-plan)."
+    },
+    {
+      "id": "c-speckit-quickstart",
+      "title": "Spec-Driven Development Quickstart",
+      "authors": "GitHub",
+      "publisher": "GitHub Spec Kit documentation",
+      "date": "2026-10",
+      "url": "https://github.github.io/spec-kit/quickstart.html",
+      "type": "vendor-doc",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "No date on the page; date is the access month (docs home shows last updated 2026-09-28)."
+    },
+    {
+      "id": "c-speckit-sdd-doc",
+      "title": "Specification-Driven Development (SDD)",
+      "authors": "GitHub",
+      "publisher": "GitHub (github/spec-kit, spec-driven.md)",
+      "date": "2026-10",
+      "url": "https://github.com/github/spec-kit/blob/main/spec-driven.md",
+      "type": "repo",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "Methodology document on main; date is the access month. Uses older dotted command names (/speckit.plan) than the current README."
+    },
+    {
+      "id": "c-speckit-plan-cmd",
+      "title": "templates/commands/plan.md",
+      "authors": "GitHub",
+      "publisher": "GitHub (github/spec-kit)",
+      "date": "2026-10",
+      "url": "https://github.com/github/spec-kit/blob/main/templates/commands/plan.md",
+      "type": "repo",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "Read via the raw.githubusercontent.com rendition of the same file; date is the access month. Read as data only."
+    },
+    {
+      "id": "c-speckit-spec-template",
+      "title": "templates/spec-template.md",
+      "authors": "GitHub",
+      "publisher": "GitHub (github/spec-kit)",
+      "date": "2026-10",
+      "url": "https://github.com/github/spec-kit/blob/main/templates/spec-template.md",
+      "type": "repo",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "Read via the raw.githubusercontent.com rendition; date is the access month."
+    },
+    {
+      "id": "c-speckit-tasks-template",
+      "title": "templates/tasks-template.md",
+      "authors": "GitHub",
+      "publisher": "GitHub (github/spec-kit)",
+      "date": "2026-10",
+      "url": "https://github.com/github/spec-kit/blob/main/templates/tasks-template.md",
+      "type": "repo",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "Read via the raw.githubusercontent.com rendition; date is the access month."
+    },
+    {
+      "id": "c-bmad-v4-story-tmpl",
+      "title": "bmad-core/templates/story-tmpl.yaml (v4.44.3)",
+      "authors": "BMad Code",
+      "publisher": "GitHub (bmad-code-org/BMAD-METHOD)",
+      "date": "2025-10",
+      "url": "https://github.com/bmad-code-org/BMAD-METHOD/blob/v4.44.3/bmad-core/templates/story-tmpl.yaml",
+      "type": "repo",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "Official repo at the v4.44.3 tag (release page shows 30 Oct without a year; 2025 inferred because v6 tags start Apr 2026). Read via raw.githubusercontent.com. Describes BMAD v4, not the current method."
+    },
+    {
+      "id": "c-bmad-v4-core-config",
+      "title": "bmad-core/core-config.yaml (v4.44.3)",
+      "authors": "BMad Code",
+      "publisher": "GitHub (bmad-code-org/BMAD-METHOD)",
+      "date": "2025-10",
+      "url": "https://github.com/bmad-code-org/BMAD-METHOD/blob/v4.44.3/bmad-core/core-config.yaml",
+      "type": "repo",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "Official repo at the v4.44.3 tag; read via raw.githubusercontent.com. Describes BMAD v4 defaults."
+    },
+    {
+      "id": "c-bmad-v4-user-guide",
+      "title": "docs/user-guide.md (v4.44.3)",
+      "authors": "BMad Code",
+      "publisher": "GitHub (bmad-code-org/BMAD-METHOD)",
+      "date": "2025-10",
+      "url": "https://github.com/bmad-code-org/BMAD-METHOD/blob/v4.44.3/docs/user-guide.md",
+      "type": "repo",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "Official v4 user guide at the v4.44.3 tag; read via raw.githubusercontent.com. Replaces the compass report's secondary links (codemyspec.com, keech.dev)."
+    },
+    {
+      "id": "c-bmad-docs-planning-path",
+      "title": "Choose a Planning Path",
+      "authors": "BMad Code, LLC",
+      "publisher": "BMad Method documentation (docs.bmad-method.org)",
+      "date": "2026",
+      "url": "https://docs.bmad-method.org/plan/choose-a-planning-path/",
+      "type": "vendor-doc",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "Current official docs (footer (c) 2026, no page date; date field is year only). Latest tag at access is v6.12.1 (2026-10-04) while main carries v7 work; the docs appear to track main."
+    },
+    {
+      "id": "c-bmad-docs-stories",
+      "title": "Break Work into Stories and Track It",
+      "authors": "BMad Code, LLC",
+      "publisher": "BMad Method documentation (docs.bmad-method.org)",
+      "date": "2026",
+      "url": "https://docs.bmad-method.org/plan/break-work-into-stories-and-track-it/",
+      "type": "vendor-doc",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "Current official docs; no page date."
+    },
+    {
+      "id": "c-bmad-docs-project-context",
+      "title": "The Theory of Project Context",
+      "authors": "BMad Code, LLC",
+      "publisher": "BMad Method documentation (docs.bmad-method.org)",
+      "date": "2026",
+      "url": "https://docs.bmad-method.org/existing-codebases/theory-of-project-context/",
+      "type": "vendor-doc",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "Current official docs; no page date. The output file name is not stated on the page."
+    },
+    {
+      "id": "c-cline-memory-bank",
+      "title": "Memory Bank",
+      "authors": "Cline",
+      "publisher": "Cline documentation (docs.cline.bot)",
+      "date": "2026-10",
+      "url": "https://docs.cline.bot/features/memory-bank",
+      "type": "vendor-doc",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "No page date; date is the access month. Same file list confirmed at https://docs.cline.bot/best-practices/memory-bank. Replaces the compass report's cline.bot blog link. The page embeds custom-instruction text; only facts were extracted."
+    },
+    {
+      "id": "c-humanlayer-ace",
+      "title": "Advanced Context Engineering for Coding Agents",
+      "authors": "Dex Horthy",
+      "publisher": "HumanLayer",
+      "date": "2025-08-29",
+      "url": "https://www.humanlayer.dev/blog/advanced-context-engineering",
+      "type": "blog",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "Origin of 'frequent intentional compaction'. The same essay text (40%-60% sentence, research/plan/implement) is also in github.com/humanlayer/advanced-context-engineering-for-coding-agents (ace-fca.md). The term 'dumb zone' does not appear here."
+    },
+    {
+      "id": "c-humanlayer-long-context",
+      "title": "Long-Context Isn't the Answer",
+      "authors": "Kyle (HumanLayer)",
+      "publisher": "HumanLayer",
+      "date": "2026-03-23",
+      "url": "https://www.humanlayer.dev/blog/long-context-isnt-the-answer",
+      "type": "blog",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "Only first-party HumanLayer text found that uses 'dumb zone' and states the ~40% warning threshold. The term is widely credited to Dex Horthy's 'No Vibes Allowed' talk, which could not be located (see c-horthy-no-vibes-talk)."
+    },
+    {
+      "id": "c-humanlayer-claude-md",
+      "title": "Writing a good CLAUDE.md",
+      "authors": "Kyle (HumanLayer)",
+      "publisher": "HumanLayer",
+      "date": "2025-11-25",
+      "url": "https://www.humanlayer.dev/blog/writing-a-good-claude-md",
+      "type": "blog",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "Gap-filling practitioner source for instruction-file sizing; its 150-200 instruction figure links to arXiv:2507.11538 (c-ifscale)."
+    },
+    {
+      "id": "c-willison-trifecta",
+      "title": "The lethal trifecta for AI agents: private data, untrusted content, and external communication",
+      "authors": "Simon Willison",
+      "publisher": "simonwillison.net",
+      "date": "2025-06-16",
+      "url": "https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/",
+      "type": "blog",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "notes": "Original author's post."
+    },
+    {
+      "id": "c-horthy-no-vibes-talk",
+      "title": "No Vibes Allowed (talk by Dex Horthy)",
+      "authors": "Dex Horthy",
+      "publisher": "unknown (conference talk)",
+      "date": "",
+      "url": "https://www.humanlayer.dev/blog",
+      "type": "blog",
+      "verified": "2026-10-09",
+      "status": "unreachable",
+      "notes": "Two searches found no primary recording, transcript or slides; only secondary write-ups (e.g. a pi-context-zone README) attribute the 'dumb zone' coinage and a '100,000+ sessions' analysis to it. Date and venue unverified. URL is HumanLayer's blog index, where no such post is listed. Claims relying on it are dropped."
+    }
+  ],
+  "claims": [
+    {
+      "id": "a-skill-required-fields",
+      "claim": "The Agent Skills specification requires only two frontmatter fields, name and description; license, compatibility, metadata and allowed-tools are optional.",
+      "label": "Established",
+      "sources": [
+        "a-agentskills-spec"
+      ],
+      "url": "https://agentskills.io/specification",
+      "quote": "",
+      "caveat": "This is the open spec. Individual clients can be looser (Claude Code treats every field as optional) or stricter (Anthropic's platform rejects unknown keys).",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "skills",
+        "formats"
+      ]
+    },
+    {
+      "id": "a-skill-name-rules",
+      "claim": "A skill name must be 1 to 64 characters of lowercase letters, digits and hyphens, cannot start or end with a hyphen or contain two hyphens in a row, and must match its parent directory name.",
+      "label": "Established",
+      "sources": [
+        "a-agentskills-spec",
+        "a-claude-skill-best-practices"
+      ],
+      "url": "https://agentskills.io/specification",
+      "quote": "",
+      "caveat": "Anthropic's platform also bans XML tags and the words 'anthropic' and 'claude' in names. The directory-match rule comes from the open spec; Anthropic's best-practices page does not state it.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "skills",
+        "formats"
+      ]
+    },
+    {
+      "id": "a-skill-description-limit",
+      "claim": "A skill description must be 1 to 1,024 characters and should say what the skill does and when an agent should use it, with keywords that help an agent match it to tasks.",
+      "label": "Established",
+      "sources": [
+        "a-agentskills-spec",
+        "a-claude-skill-best-practices"
+      ],
+      "url": "https://agentskills.io/specification",
+      "quote": "",
+      "caveat": "The 1,024 limit is the spec's. Claude Code's listing applies a separate 1,536-character cap to description plus when_to_use.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "skills",
+        "sizing"
+      ]
+    },
+    {
+      "id": "a-skill-optional-field-limits",
+      "claim": "The optional compatibility field is capped at 500 characters, and the spec marks allowed-tools as experimental, with support varying between agents.",
+      "label": "Established",
+      "sources": [
+        "a-agentskills-spec"
+      ],
+      "url": "https://agentskills.io/specification",
+      "quote": "",
+      "caveat": "The spec notes that most skills do not need compatibility. What allowed-tools does depends on the client; in Claude Code it pre-approves tools but restricts none.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "skills",
+        "formats"
+      ]
+    },
+    {
+      "id": "a-skill-disclosure-budgets",
+      "claim": "Skills load in three tiers: about 100 tokens of name and description per skill at startup, a full SKILL.md body (recommended under 5,000 tokens) when the skill activates, and bundled files only when they are needed.",
+      "label": "Established",
+      "sources": [
+        "a-agentskills-spec",
+        "a-claude-skills-overview"
+      ],
+      "url": "https://agentskills.io/specification",
+      "quote": "",
+      "caveat": "These are approximate design budgets, not measured limits. Real metadata cost grows with description length.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "progressive-disclosure",
+        "sizing",
+        "skills"
+      ]
+    },
+    {
+      "id": "a-skill-body-500",
+      "claim": "The Agent Skills spec, Anthropic's authoring guide and the Claude Code docs all advise keeping the SKILL.md body under 500 lines and moving detailed material into separate files.",
+      "label": "Established",
+      "sources": [
+        "a-claude-skill-best-practices",
+        "a-agentskills-spec",
+        "a-cc-skills"
+      ],
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices",
+      "quote": "Keep SKILL.md body under 500 lines for optimal performance",
+      "caveat": "This is a guideline. No source publishes a measurement showing that 500 lines is a threshold.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "sizing",
+        "skills",
+        "progressive-disclosure"
+      ]
+    },
+    {
+      "id": "a-skill-whole-body-loads",
+      "claim": "Once an agent decides to activate a skill, it loads the whole SKILL.md file, so longer content belongs in referenced files.",
+      "label": "Established",
+      "sources": [
+        "a-agentskills-spec"
+      ],
+      "url": "https://agentskills.io/specification",
+      "quote": "",
+      "caveat": "This describes expected client behavior. Individual agents may implement loading differently.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "progressive-disclosure",
+        "skills"
+      ]
+    },
+    {
+      "id": "a-skill-refs-one-level",
+      "claim": "Skill authors should link every reference file directly from SKILL.md (one level deep), because Claude may only preview files reached through nested references, for example with head -100, and miss content.",
+      "label": "Established",
+      "sources": [
+        "a-agentskills-spec",
+        "a-claude-skill-best-practices"
+      ],
+      "url": "https://agentskills.io/specification",
+      "quote": "Avoid deeply nested reference chains.",
+      "caveat": "Anthropic says partial reads may happen. It does not say they always happen, and it gives no frequency.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "progressive-disclosure",
+        "skills"
+      ]
+    },
+    {
+      "id": "a-skill-ref-toc",
+      "claim": "Anthropic recommends a table of contents at the top of any reference file longer than 100 lines, so that a partial read still shows everything the file covers.",
+      "label": "Established",
+      "sources": [
+        "a-claude-skill-best-practices"
+      ],
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices",
+      "quote": "",
+      "caveat": "Vendor guidance for Claude; the 100-line trigger is not justified with data.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "progressive-disclosure",
+        "sizing"
+      ]
+    },
+    {
+      "id": "a-skill-third-person",
+      "claim": "Anthropic advises writing skill descriptions in the third person, because the description goes into the system prompt and a shifting point of view can cause discovery problems.",
+      "label": "Established",
+      "sources": [
+        "a-claude-skill-best-practices"
+      ],
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices",
+      "quote": "",
+      "caveat": "Vendor guidance written for Claude. Its effect on other agents has not been tested.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "skills"
+      ]
+    },
+    {
+      "id": "a-skill-evals-first",
+      "claim": "Anthropic recommends building evaluations before writing much skill content: run representative tasks without the skill, write three scenarios that target the gaps, measure a no-skill baseline, then write minimal instructions and iterate.",
+      "label": "Established",
+      "sources": [
+        "a-claude-skill-best-practices",
+        "a-anthropic-eng-skills"
+      ],
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices",
+      "quote": "",
+      "caveat": "This is recommended practice, not a measured result. Anthropic notes there is no built-in way to run these evaluations.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "verification",
+        "skills"
+      ]
+    },
+    {
+      "id": "a-skill-degrees-freedom",
+      "claim": "Anthropic advises matching how specific instructions are to how fragile the task is: loose text guidance where many approaches work, and exact scripts with few or no parameters where operations are error-prone or must follow a fixed sequence.",
+      "label": "Established",
+      "sources": [
+        "a-claude-skill-best-practices"
+      ],
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices",
+      "quote": "",
+      "caveat": "This is a qualitative design rule with no evaluation data behind it.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "skills"
+      ]
+    },
+    {
+      "id": "a-skill-concise",
+      "claim": "Anthropic's authoring guide treats the context window as shared by everything the model needs, and advises adding only information the model does not already have.",
+      "label": "Established",
+      "sources": [
+        "a-claude-skill-best-practices"
+      ],
+      "url": "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices",
+      "quote": "",
+      "caveat": "What counts as already known depends on the model, so it should be checked against each model in use.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "context-limits",
+        "sizing"
+      ]
+    },
+    {
+      "id": "a-skill-progressive-disclosure-principle",
+      "claim": "Anthropic calls progressive disclosure the core design principle of Agent Skills: metadata is preloaded, SKILL.md is read when relevant, and bundled files are opened only as needed, so a skill can bundle an effectively unbounded amount of context.",
+      "label": "Established",
+      "sources": [
+        "a-anthropic-eng-skills",
+        "a-claude-skills-overview"
+      ],
+      "url": "https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills",
+      "quote": "Progressive disclosure is the core design principle that makes Agent Skills flexible and scalable.",
+      "caveat": "'Unbounded' assumes the agent has filesystem and code-execution tools and only reads what it needs.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "progressive-disclosure",
+        "skills"
+      ]
+    },
+    {
+      "id": "a-skill-scripts-deterministic",
+      "claim": "Scripts bundled with a skill can be run without loading their code into context, so only their output costs tokens and the result is repeatable.",
+      "label": "Established",
+      "sources": [
+        "a-anthropic-eng-skills",
+        "a-claude-skills-overview"
+      ],
+      "url": "https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills",
+      "quote": "",
+      "caveat": "This requires an agent that can execute code. The output still uses context.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "progressive-disclosure",
+        "skills",
+        "cost"
+      ]
+    },
+    {
+      "id": "a-skill-security-audit",
+      "claim": "Anthropic warns that malicious skills can introduce vulnerabilities or direct an agent to exfiltrate data, and recommends installing skills only from trusted sources and auditing any less-trusted skill, including its scripts and external network calls, before use.",
+      "label": "Established",
+      "sources": [
+        "a-anthropic-eng-skills"
+      ],
+      "url": "https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills",
+      "quote": "",
+      "caveat": "This is a vendor warning, not a measurement. For measured prevalence, see the skill-security studies listed under security.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "security",
+        "skills"
+      ]
+    },
+    {
+      "id": "a-skills-open-standard",
+      "claim": "Anthropic originally developed Agent Skills and then released it as an open standard (announced 18 December 2025), and the Claude Code docs say Claude Code skills follow that standard.",
+      "label": "Established",
+      "sources": [
+        "a-agentskills-home",
+        "a-anthropic-eng-skills",
+        "a-cc-skills"
+      ],
+      "url": "https://agentskills.io/home",
+      "quote": "",
+      "caveat": "This is provenance only. The standard is open to outside contributions, and clients add their own extensions.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "formats",
+        "skills"
+      ]
+    },
+    {
+      "id": "a-context-finite",
+      "claim": "Anthropic's applied AI team argues that context is a finite resource with diminishing returns, because a model's recall falls as the number of tokens in its context grows.",
+      "label": "Established",
+      "sources": [
+        "a-anthropic-context-eng",
+        "a-cc-best-practices"
+      ],
+      "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+      "quote": "Context, therefore, must be treated as a finite resource with diminishing marginal returns.",
+      "caveat": "This is a vendor position based on earlier needle-in-a-haystack studies; the post adds no new data. Anthropic also says degradation is a gradient, not a cliff.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "context-limits"
+      ]
+    },
+    {
+      "id": "a-context-smallest-set",
+      "claim": "Anthropic defines good context engineering as finding the smallest set of high-signal tokens that makes the desired outcome most likely, and notes that minimal does not have to mean short.",
+      "label": "Established",
+      "sources": [
+        "a-anthropic-context-eng"
+      ],
+      "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+      "quote": "",
+      "caveat": "This is a guiding principle, not a size rule. It gives no token or line numbers.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "context-limits",
+        "sizing"
+      ]
+    },
+    {
+      "id": "a-context-jit",
+      "claim": "Anthropic describes 'just in time' retrieval: the agent holds lightweight references such as file paths and loads data through tools at runtime. Claude Code mixes this with CLAUDE.md files that are loaded up front.",
+      "label": "Established",
+      "sources": [
+        "a-anthropic-context-eng"
+      ],
+      "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+      "quote": "",
+      "caveat": "Anthropic notes that exploring at runtime is slower than precomputed retrieval, and that agents without good guidance can waste context on dead ends.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "progressive-disclosure",
+        "context-limits"
+      ]
+    },
+    {
+      "id": "a-context-compaction",
+      "claim": "Anthropic defines compaction as summarizing a conversation that is nearing the context limit and restarting with the summary, and warns that compacting too aggressively can drop details whose importance only shows up later.",
+      "label": "Established",
+      "sources": [
+        "a-anthropic-context-eng"
+      ],
+      "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+      "quote": "",
+      "caveat": "The post describes the technique and offers no measurement of how much is lost.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "context-limits",
+        "living-state"
+      ]
+    },
+    {
+      "id": "a-context-notes",
+      "claim": "Anthropic describes structured note-taking as a low-overhead form of persistent memory: the agent writes notes such as a to-do list or NOTES.md outside the context window and reads them back later.",
+      "label": "Established",
+      "sources": [
+        "a-anthropic-context-eng"
+      ],
+      "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+      "quote": "",
+      "caveat": "The supporting example (Claude playing Pokemon) is anecdotal, not a coding benchmark.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "living-state",
+        "handoffs"
+      ]
+    },
+    {
+      "id": "a-context-subagent-summary",
+      "claim": "In Anthropic's sub-agent pattern, each subagent may spend tens of thousands of tokens exploring but hands the lead agent a condensed summary, often 1,000 to 2,000 tokens.",
+      "label": "Established",
+      "sources": [
+        "a-anthropic-context-eng"
+      ],
+      "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+      "quote": "",
+      "caveat": "The 1,000 to 2,000 range is a typical figure stated by the vendor, not a measured distribution.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "subagents",
+        "handoffs",
+        "sizing"
+      ]
+    },
+    {
+      "id": "a-context-choose-technique",
+      "claim": "Anthropic matches long-horizon techniques to the task: compaction for extended back-and-forth, note-taking for iterative work with clear milestones, and multi-agent setups for complex research where parallel exploration pays off.",
+      "label": "Established",
+      "sources": [
+        "a-anthropic-context-eng"
+      ],
+      "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+      "quote": "",
+      "caveat": "This is qualitative vendor guidance, not a comparative evaluation.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "context-limits",
+        "subagents",
+        "living-state"
+      ]
+    },
+    {
+      "id": "a-cc-context-degrades",
+      "claim": "The Claude Code docs state that model performance degrades as the context window fills, and call context the most important resource to manage.",
+      "label": "Established",
+      "sources": [
+        "a-cc-best-practices",
+        "a-anthropic-context-eng"
+      ],
+      "url": "https://code.claude.com/docs/en/best-practices",
+      "quote": "",
+      "caveat": "This is a vendor statement and gives no fill level at which degradation starts.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "context-limits"
+      ]
+    },
+    {
+      "id": "a-cc-claudemd-include-exclude",
+      "claim": "The Claude Code docs say CLAUDE.md should hold only what Claude cannot infer (commands it can't guess, non-default style rules, test instructions, project-specific gotchas) and should leave out what it can learn by reading code, standard conventions, detailed API docs and file-by-file descriptions.",
+      "label": "Established",
+      "sources": [
+        "a-cc-best-practices"
+      ],
+      "url": "https://code.claude.com/docs/en/best-practices",
+      "quote": "",
+      "caveat": "This is vendor guidance for CLAUDE.md. Its transfer to AGENTS.md is plausible but untested here.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "agents-md",
+        "sizing"
+      ]
+    },
+    {
+      "id": "a-cc-claudemd-bloat",
+      "claim": "The Claude Code docs warn that a bloated or over-specified CLAUDE.md makes Claude ignore instructions because important rules get lost, and suggest testing every line by asking whether removing it would cause mistakes.",
+      "label": "Established",
+      "sources": [
+        "a-cc-best-practices"
+      ],
+      "url": "https://code.claude.com/docs/en/best-practices",
+      "quote": "Would removing this cause Claude to make mistakes?",
+      "caveat": "This is vendor guidance with no published measurement; the best-practices page gives no size threshold.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "agents-md",
+        "sizing"
+      ]
+    },
+    {
+      "id": "a-cc-claudemd-200",
+      "claim": "The Claude Code memory docs set a target of under 200 lines per CLAUDE.md file, because longer files use more context and reduce adherence. They also note that @-imports organize a file but do not reduce its context cost.",
+      "label": "Established",
+      "sources": [
+        "a-cc-memory"
+      ],
+      "url": "https://code.claude.com/docs/en/memory",
+      "quote": "Longer files consume more context and reduce adherence.",
+      "caveat": "The 200-line target is vendor guidance specific to Claude Code and is not tied to a cited study.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "sizing",
+        "agents-md"
+      ]
+    },
+    {
+      "id": "a-cc-hooks-deterministic",
+      "claim": "Claude Code treats CLAUDE.md instructions as advisory context rather than enforced configuration, and recommends hooks, which run deterministically, for anything that must happen every time.",
+      "label": "Established",
+      "sources": [
+        "a-cc-best-practices",
+        "a-cc-memory"
+      ],
+      "url": "https://code.claude.com/docs/en/best-practices",
+      "quote": "",
+      "caveat": "Hooks are a Claude Code feature; the equivalent in other agents differs.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "verification"
+      ]
+    },
+    {
+      "id": "a-cc-verify",
+      "claim": "The Claude Code docs say to give the agent a check it can run, such as tests, a build, a linter or a screenshot comparison, so it can iterate until the check passes instead of stopping when the work merely looks done.",
+      "label": "Established",
+      "sources": [
+        "a-cc-best-practices"
+      ],
+      "url": "https://code.claude.com/docs/en/best-practices",
+      "quote": "",
+      "caveat": "This is vendor guidance. The page lists escalating gates (prompt, /goal, Stop hook, reviewer subagent) without measuring them.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "verification"
+      ]
+    },
+    {
+      "id": "a-cc-fresh-reviewer",
+      "claim": "The Claude Code docs recommend a reviewer subagent with a fresh context that sees only the diff and the criteria, so the agent that did the work is not the one grading it.",
+      "label": "Established",
+      "sources": [
+        "a-cc-best-practices"
+      ],
+      "url": "https://code.claude.com/docs/en/best-practices",
+      "quote": "",
+      "caveat": "Recommended practice with no measured effect reported.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "verification",
+        "subagents"
+      ]
+    },
+    {
+      "id": "a-size-gate-small-tasks",
+      "claim": "Vendors advise skipping a formal plan for small changes: Claude Code says to skip planning when the diff fits in one sentence, and openai-agents-python makes ExecPlans optional for trivial fixes such as typos.",
+      "label": "Established",
+      "sources": [
+        "a-cc-best-practices",
+        "a-oap-plans"
+      ],
+      "url": "https://code.claude.com/docs/en/best-practices",
+      "quote": "",
+      "caveat": "Both are rules of thumb from vendor docs. Neither defines task size beyond examples.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "sizing",
+        "plans"
+      ]
+    },
+    {
+      "id": "a-cc-skill-desc-1536",
+      "claim": "Claude Code truncates each skill's combined description and when_to_use text at 1,536 characters in its skill listing (a configurable cap), and advises putting the key use case first.",
+      "label": "Established",
+      "sources": [
+        "a-cc-skills"
+      ],
+      "url": "https://code.claude.com/docs/en/skills",
+      "quote": "",
+      "caveat": "This is a Claude Code implementation detail that may change by version. Other clients truncate differently or not at all.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "skills",
+        "sizing"
+      ]
+    },
+    {
+      "id": "a-cc-skill-listing-budget",
+      "claim": "Claude Code's skill listing has a character budget of 1% of the model's context window. When it overflows, the least-used skills lose their descriptions first, which removes the keywords Claude uses to match them to requests.",
+      "label": "Established",
+      "sources": [
+        "a-cc-skills"
+      ],
+      "url": "https://code.claude.com/docs/en/skills",
+      "quote": "",
+      "caveat": "Claude Code only, configurable, and version-dependent.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "skills",
+        "context-limits"
+      ]
+    },
+    {
+      "id": "a-cc-skill-persist",
+      "claim": "In Claude Code an invoked skill's content stays in the conversation on later turns, so each line is a recurring token cost. After compaction, the first 5,000 tokens of each recent skill are re-attached within a combined 25,000-token budget.",
+      "label": "Established",
+      "sources": [
+        "a-cc-skills"
+      ],
+      "url": "https://code.claude.com/docs/en/skills",
+      "quote": "every line is a recurring token cost",
+      "caveat": "This is Claude Code behavior. Older skills can be dropped after compaction when many have been invoked.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "skills",
+        "context-limits",
+        "cost"
+      ]
+    },
+    {
+      "id": "a-cc-skill-extensions",
+      "claim": "Claude Code adds its own frontmatter fields to the Agent Skills format, including when_to_use, disable-model-invocation, context: fork, agent and paths (glob-scoped activation), and treats every field as optional, while the open spec requires name and description.",
+      "label": "Established",
+      "sources": [
+        "a-cc-skills",
+        "a-agentskills-spec"
+      ],
+      "url": "https://code.claude.com/docs/en/skills",
+      "quote": "",
+      "caveat": "Claude.ai uploads and the Skills API accept only the six spec fields and reject any extra key with a hard error, so extensions reduce portability.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "skills",
+        "formats"
+      ]
+    },
+    {
+      "id": "a-cc-skill-context-fork",
+      "claim": "In Claude Code, context: fork runs a skill as the prompt of a new subagent that does not see the conversation history, so the skill must be self-contained and contain an explicit task.",
+      "label": "Established",
+      "sources": [
+        "a-cc-skills"
+      ],
+      "url": "https://code.claude.com/docs/en/skills",
+      "quote": "",
+      "caveat": "This corrects the prior report's 'forked subagent' wording: despite the name, the subagent does not inherit the conversation.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "skills",
+        "subagents",
+        "handoffs"
+      ]
+    },
+    {
+      "id": "a-cc-allowed-tools-not-restrict",
+      "claim": "In Claude Code, a skill's allowed-tools field pre-approves the listed tools for the invoking turn only; it does not restrict which tools are available.",
+      "label": "Established",
+      "sources": [
+        "a-cc-skills"
+      ],
+      "url": "https://code.claude.com/docs/en/skills",
+      "quote": "",
+      "caveat": "This is Claude Code behavior and the field is experimental in the spec. Do not treat allowed-tools as a sandbox.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "security",
+        "skills"
+      ]
+    },
+    {
+      "id": "a-cc-subagent-context",
+      "claim": "A Claude Code subagent works in a separate context window, has its own system prompt, tools and permissions, and hands back only a summary to the main conversation.",
+      "label": "Established",
+      "sources": [
+        "a-cc-subagents",
+        "a-cc-best-practices"
+      ],
+      "url": "https://code.claude.com/docs/en/sub-agents",
+      "quote": "Each subagent runs in its own context window",
+      "caveat": "Subagent requests still count toward the same usage limits as the main session.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "subagents",
+        "context-limits"
+      ]
+    },
+    {
+      "id": "a-cc-subagent-tools",
+      "claim": "A Claude Code subagent definition can restrict tools with a tools allowlist or a disallowedTools denylist; when both are set, the denylist is applied first.",
+      "label": "Established",
+      "sources": [
+        "a-cc-subagents"
+      ],
+      "url": "https://code.claude.com/docs/en/sub-agents",
+      "quote": "",
+      "caveat": "A denylist entry with a command pattern removes the whole tool. Blocking specific commands needs permission rules instead.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "subagents",
+        "security"
+      ]
+    },
+    {
+      "id": "a-cc-subagent-desc-15k",
+      "claim": "Claude Code shows a startup warning when the combined descriptions of custom subagents exceed 15,000 tokens, and advises keeping descriptions short and putting detail in each subagent's system prompt.",
+      "label": "Established",
+      "sources": [
+        "a-cc-subagents"
+      ],
+      "url": "https://code.claude.com/docs/en/sub-agents",
+      "quote": "",
+      "caveat": "This is a Claude Code warning threshold, not a performance finding.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "subagents",
+        "sizing"
+      ]
+    },
+    {
+      "id": "a-cc-claudemd-concat",
+      "claim": "Claude Code loads every CLAUDE.md from the filesystem root down to the working directory and concatenates them rather than letting the nearest file override the others; files in subdirectories load on demand.",
+      "label": "Established",
+      "sources": [
+        "a-cc-memory"
+      ],
+      "url": "https://code.claude.com/docs/en/memory",
+      "quote": "",
+      "caveat": "This differs from the AGENTS.md convention, where the nearest file wins on conflict, so nested-file behavior is not uniform across tools.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "agents-md",
+        "formats"
+      ]
+    },
+    {
+      "id": "a-cc-reads-agentsmd",
+      "claim": "By default, Claude Code reads AGENTS.md as project instructions only when there is no CLAUDE.md or CLAUDE.local.md in the working directory or above it.",
+      "label": "Established",
+      "sources": [
+        "a-cc-memory"
+      ],
+      "url": "https://code.claude.com/docs/en/memory",
+      "quote": "",
+      "caveat": "Needs Claude Code v2.1.277 or later; a setting can load both. Repos with both files should not assume AGENTS.md is read.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "agents-md",
+        "formats"
+      ]
+    },
+    {
+      "id": "a-multiagent-brief",
+      "claim": "Anthropic found that each subagent brief needs an objective, an output format, guidance on which tools and sources to use, and clear task boundaries. Vague briefs led subagents to duplicate work, leave gaps or misread the task.",
+      "label": "Established",
+      "sources": [
+        "a-anthropic-multi-agent"
+      ],
+      "url": "https://www.anthropic.com/engineering/multi-agent-research-system",
+      "quote": "",
+      "caveat": "This comes from a research-search system, not coding, and the post reports it qualitatively.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "subagents",
+        "handoffs"
+      ]
+    },
+    {
+      "id": "a-multiagent-90",
+      "claim": "On Anthropic's internal research eval, a multi-agent system with a Claude Opus 4 lead and Claude Sonnet 4 subagents outperformed single-agent Claude Opus 4 by 90.2%.",
+      "label": "Evidence",
+      "sources": [
+        "a-anthropic-multi-agent"
+      ],
+      "url": "https://www.anthropic.com/engineering/multi-agent-research-system",
+      "quote": "",
+      "caveat": "Internal, unpublished eval of breadth-first research queries, not coding. No sample size, variance or eval set is disclosed, and the models have since been superseded.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "subagents"
+      ]
+    },
+    {
+      "id": "a-multiagent-tokens",
+      "claim": "Anthropic reports that agents typically use about 4 times the tokens of chat interactions, and multi-agent systems about 15 times.",
+      "label": "Evidence",
+      "sources": [
+        "a-anthropic-multi-agent"
+      ],
+      "url": "https://www.anthropic.com/engineering/multi-agent-research-system",
+      "quote": "multi-agent systems use about 15× more tokens than chats",
+      "caveat": "These are approximate figures from Anthropic's own usage data on research workloads. The method is not published.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "cost",
+        "subagents"
+      ]
+    },
+    {
+      "id": "a-multiagent-variance",
+      "claim": "In Anthropic's BrowseComp analysis, token usage alone explained 80% of performance variance, and token usage, number of tool calls and model choice together explained 95%.",
+      "label": "Evidence",
+      "sources": [
+        "a-anthropic-multi-agent"
+      ],
+      "url": "https://www.anthropic.com/engineering/multi-agent-research-system",
+      "quote": "",
+      "caveat": "This is Anthropic's own analysis on one browsing benchmark; the regression details are not published.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "cost",
+        "context-limits"
+      ]
+    },
+    {
+      "id": "a-multiagent-fit",
+      "claim": "Anthropic says multi-agent systems pay off only on high-value, parallelizable tasks, and fit poorly where agents must share context or depend heavily on each other. It notes that most coding tasks are less parallelizable than research.",
+      "label": "Established",
+      "sources": [
+        "a-anthropic-multi-agent"
+      ],
+      "url": "https://www.anthropic.com/engineering/multi-agent-research-system",
+      "quote": "",
+      "caveat": "This is the vendor's own counter-indication and argues against using subagents by default.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "subagents",
+        "sizing",
+        "cost"
+      ]
+    },
+    {
+      "id": "a-multiagent-scale-effort",
+      "claim": "Anthropic's lead agent follows effort-scaling rules: one agent with 3 to 10 tool calls for simple fact-finding, 2 to 4 subagents with 10 to 15 calls each for comparisons, and more than 10 subagents for complex research.",
+      "label": "Heuristic",
+      "sources": [
+        "a-anthropic-multi-agent"
+      ],
+      "url": "https://www.anthropic.com/engineering/multi-agent-research-system",
+      "quote": "",
+      "caveat": "These are prompt rules tuned for one research system and were not validated as general thresholds.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "sizing",
+        "subagents"
+      ]
+    },
+    {
+      "id": "a-multiagent-artifacts",
+      "claim": "Anthropic recommends that subagents save their outputs to external storage and pass lightweight references back to the coordinator, which avoids information loss and the token cost of relaying everything through the lead agent.",
+      "label": "Established",
+      "sources": [
+        "a-anthropic-multi-agent"
+      ],
+      "url": "https://www.anthropic.com/engineering/multi-agent-research-system",
+      "quote": "",
+      "caveat": "This is described as a pattern that works well for structured outputs. No measurements are given.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "handoffs",
+        "subagents"
+      ]
+    },
+    {
+      "id": "a-multiagent-memory-plan",
+      "claim": "Anthropic's lead research agent saves its plan to external memory because context beyond 200,000 tokens is truncated, and its agents summarize finished work phases before moving on.",
+      "label": "Established",
+      "sources": [
+        "a-anthropic-multi-agent"
+      ],
+      "url": "https://www.anthropic.com/engineering/multi-agent-research-system",
+      "quote": "",
+      "caveat": "The 200,000-token limit applied to that system's models at the time.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "living-state",
+        "handoffs",
+        "context-limits"
+      ]
+    },
+    {
+      "id": "a-multiagent-small-evals",
+      "claim": "Anthropic advises starting evaluation right away with a small sample (it began with about 20 queries), because early changes tend to have large effects.",
+      "label": "Heuristic",
+      "sources": [
+        "a-anthropic-multi-agent"
+      ],
+      "url": "https://www.anthropic.com/engineering/multi-agent-research-system",
+      "quote": "",
+      "caveat": "This is practitioner advice. Small samples only detect large effects.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "verification"
+      ]
+    },
+    {
+      "id": "a-harness-initializer",
+      "claim": "Anthropic's long-running harness runs an initializer agent in the first session to set up an init.sh script, a claude-progress.txt log, an initial git commit and a feature list. Every later coding session then makes incremental progress and leaves structured updates.",
+      "label": "Established",
+      "sources": [
+        "a-anthropic-harness"
+      ],
+      "url": "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
+      "quote": "",
+      "caveat": "The 'agents' differ only in their initial user prompt. System prompt, tools and harness were identical.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "living-state",
+        "handoffs",
+        "plans"
+      ]
+    },
+    {
+      "id": "a-harness-feature-list",
+      "claim": "For a claude.ai-clone task, the initializer wrote a JSON list of more than 200 end-to-end features, all initially marked failing, and coding agents were told to change only each feature's passes field.",
+      "label": "Established",
+      "sources": [
+        "a-anthropic-harness"
+      ],
+      "url": "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
+      "quote": "",
+      "caveat": "One web-app demo. The feature count is specific to that task.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "living-state",
+        "verification"
+      ]
+    },
+    {
+      "id": "a-harness-json",
+      "claim": "Anthropic chose JSON for the feature list after finding the model less likely to wrongly change or overwrite JSON files than Markdown files.",
+      "label": "Heuristic",
+      "sources": [
+        "a-anthropic-harness"
+      ],
+      "url": "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
+      "quote": "the model is less likely to inappropriately change or overwrite JSON files",
+      "caveat": "This is an observation from internal experimentation; no measurement or comparison data is published.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "living-state",
+        "formats"
+      ]
+    },
+    {
+      "id": "a-harness-one-feature",
+      "claim": "In Anthropic's harness each coding session works on a single feature: it starts by reading the progress file, the git log and the feature list, runs a basic end-to-end check, and ends with a git commit and a progress update.",
+      "label": "Established",
+      "sources": [
+        "a-anthropic-harness"
+      ],
+      "url": "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
+      "quote": "",
+      "caveat": "This describes Anthropic's harness design for one demo (Opus 4.5, full-stack web app). The post reports no quantitative results.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "living-state",
+        "handoffs",
+        "verification"
+      ]
+    },
+    {
+      "id": "a-harness-failure-modes",
+      "claim": "Anthropic reports that, without this structure, agents tried to build the whole app at once, ran out of context mid-feature, or later declared the project done too early, and that compaction alone did not prevent this.",
+      "label": "Established",
+      "sources": [
+        "a-anthropic-harness"
+      ],
+      "url": "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
+      "quote": "",
+      "caveat": "Qualitative observations from one web-app task with Opus 4.5. No failure rates are given.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "context-limits",
+        "living-state"
+      ]
+    },
+    {
+      "id": "a-harness-testing",
+      "claim": "Anthropic observed agents marking features done without end-to-end testing, and found that explicitly prompting them to test as a user would, through browser automation, substantially improved results.",
+      "label": "Established",
+      "sources": [
+        "a-anthropic-harness"
+      ],
+      "url": "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
+      "quote": "",
+      "caveat": "Qualitative; the browser tooling had blind spots, such as native alert modals.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "verification"
+      ]
+    },
+    {
+      "id": "a-harness-open-question",
+      "claim": "Anthropic says it remains unclear whether one general-purpose coding agent or a multi-agent architecture works best across contexts, and that its harness was tuned for full-stack web app development.",
+      "label": "Established",
+      "sources": [
+        "a-anthropic-harness"
+      ],
+      "url": "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
+      "quote": "",
+      "caveat": "This is the vendor's stated open question. It limits how far the harness lessons can be generalized.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "subagents"
+      ]
+    },
+    {
+      "id": "a-execplan-living-sections",
+      "claim": "OpenAI's ExecPlan format requires four continuously updated sections, Progress, Surprises & Discoveries, Decision Log, and Outcomes & Retrospective, and states that they are not optional.",
+      "label": "Established",
+      "sources": [
+        "a-openai-execplans",
+        "a-oap-plans"
+      ],
+      "url": "https://developers.openai.com/cookbook/articles/codex_exec_plans",
+      "quote": "",
+      "caveat": "This is a prompt convention for Codex. OpenAI invites users to add or remove sections.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "plans",
+        "living-state"
+      ]
+    },
+    {
+      "id": "a-execplan-self-contained",
+      "claim": "An ExecPlan must be fully self-contained, so that a novice or a stateless agent with only the working tree and the plan can implement the change end to end, and work can restart from the plan alone.",
+      "label": "Established",
+      "sources": [
+        "a-openai-execplans",
+        "a-oap-plans"
+      ],
+      "url": "https://developers.openai.com/cookbook/articles/codex_exec_plans",
+      "quote": "",
+      "caveat": "Self-containment makes plans long. OpenAI's format puts everything in one file rather than splitting it.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "plans",
+        "handoffs"
+      ]
+    },
+    {
+      "id": "a-execplan-validation",
+      "claim": "ExecPlans make validation mandatory: a plan must give exact test commands with expected outputs, and phrase acceptance as behavior a person can observe rather than as internal code changes.",
+      "label": "Established",
+      "sources": [
+        "a-openai-execplans",
+        "a-oap-plans"
+      ],
+      "url": "https://developers.openai.com/cookbook/articles/codex_exec_plans",
+      "quote": "Validation is not optional.",
+      "caveat": "This is a requirement of the format, not evidence that it improves outcomes.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "verification",
+        "plans"
+      ]
+    },
+    {
+      "id": "a-execplan-7h",
+      "claim": "OpenAI states that a PLANS.md very similar to its published one enabled Codex to work for more than seven hours from a single prompt.",
+      "label": "Heuristic",
+      "sources": [
+        "a-openai-execplans"
+      ],
+      "url": "https://developers.openai.com/cookbook/articles/codex_exec_plans",
+      "quote": "",
+      "caveat": "This is a single vendor anecdote, not a controlled study. No task, success criteria or comparison is given, and the article is now marked archived.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "plans"
+      ]
+    },
+    {
+      "id": "a-execplan-agentsmd-pointer",
+      "claim": "OpenAI connects ExecPlans to Codex through a short AGENTS.md section that says when to use one and points to PLANS.md. It notes that 'ExecPlan' is an arbitrary term Codex was not trained on.",
+      "label": "Established",
+      "sources": [
+        "a-openai-execplans"
+      ],
+      "url": "https://developers.openai.com/cookbook/articles/codex_exec_plans",
+      "quote": "",
+      "caveat": "This shows a routing pattern; it does not test whether the pointer reliably triggers plan use.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "agents-md",
+        "plans",
+        "progressive-disclosure"
+      ]
+    },
+    {
+      "id": "a-execplan-prose",
+      "claim": "The ExecPlan format prefers plain prose and allows checklists only in the Progress section, where they are mandatory and carry timestamps.",
+      "label": "Established",
+      "sources": [
+        "a-openai-execplans",
+        "a-oap-plans"
+      ],
+      "url": "https://developers.openai.com/cookbook/articles/codex_exec_plans",
+      "quote": "",
+      "caveat": "This is a style convention of one vendor's format.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "plans",
+        "formats",
+        "living-state"
+      ]
+    },
+    {
+      "id": "a-execplan-when",
+      "claim": "The openai-agents-python repo requires an ExecPlan for multi-step or multi-file work, new features, refactors, or tasks expected to take more than about an hour, and makes one optional for trivial fixes.",
+      "label": "Established",
+      "sources": [
+        "a-oap-plans",
+        "a-oap-agents"
+      ],
+      "url": "https://github.com/openai/openai-agents-python/blob/main/PLANS.md",
+      "quote": "Optional for trivial fixes (typos, small docs)",
+      "caveat": "This is one repository's policy, and the one-hour cutoff is approximate.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "sizing",
+        "plans"
+      ]
+    },
+    {
+      "id": "a-harness-eng-agentsmd-map",
+      "claim": "OpenAI's Codex team dropped a single large AGENTS.md in favor of a short one of roughly 100 lines that works mainly as a map, pointing into a structured docs/ directory treated as the system of record.",
+      "label": "Established",
+      "sources": [
+        "a-openai-harness"
+      ],
+      "url": "https://openai.com/index/harness-engineering/",
+      "quote": "give Codex a map, not a 1,000-page instruction manual",
+      "caveat": "This describes one team's internal project. About 100 lines was their practice, not a tested limit.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "agents-md",
+        "progressive-disclosure",
+        "sizing"
+      ]
+    },
+    {
+      "id": "a-harness-eng-failure",
+      "claim": "OpenAI reports that one giant instruction file failed because it crowded out the task and the code, made every rule look equally important, went stale quickly, and could not be checked mechanically.",
+      "label": "Established",
+      "sources": [
+        "a-openai-harness"
+      ],
+      "url": "https://openai.com/index/harness-engineering/",
+      "quote": "",
+      "caveat": "This is a qualitative account from one project; no measurements are given.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "agents-md",
+        "context-limits"
+      ]
+    },
+    {
+      "id": "a-harness-eng-plans",
+      "claim": "OpenAI's team checks execution plans, with progress and decision logs, into the repository, and uses lightweight temporary plans for small changes and full execution plans for complex work.",
+      "label": "Established",
+      "sources": [
+        "a-openai-harness"
+      ],
+      "url": "https://openai.com/index/harness-engineering/",
+      "quote": "",
+      "caveat": "This describes one team's repository layout. The post defines no size cutoff between small and complex.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "plans",
+        "living-state",
+        "sizing"
+      ]
+    },
+    {
+      "id": "a-harness-eng-enforce",
+      "claim": "OpenAI enforces its knowledge-base structure with linters and CI jobs, and runs a recurring agent that finds stale documentation and opens fix-up pull requests.",
+      "label": "Established",
+      "sources": [
+        "a-openai-harness"
+      ],
+      "url": "https://openai.com/index/harness-engineering/",
+      "quote": "",
+      "caveat": "This describes the practice; no effectiveness data is given.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "verification"
+      ]
+    },
+    {
+      "id": "a-agentsmd-format",
+      "claim": "AGENTS.md is plain Markdown with no required fields or headings, meant as a predictable place for agent-focused context such as build, test and style instructions that would clutter a README.",
+      "label": "Established",
+      "sources": [
+        "a-agents-md"
+      ],
+      "url": "https://agents.md/",
+      "quote": "",
+      "caveat": "Because there is no schema, content and quality vary widely between repositories.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "agents-md",
+        "formats"
+      ]
+    },
+    {
+      "id": "a-agentsmd-nested",
+      "claim": "AGENTS.md supports nested files for subprojects: agents read the nearest file in the directory tree, the file closest to the edited file wins when instructions conflict, and explicit user prompts override everything.",
+      "label": "Established",
+      "sources": [
+        "a-agents-md",
+        "a-cursor-rules"
+      ],
+      "url": "https://agents.md/",
+      "quote": "the closest one takes precedence",
+      "caveat": "Tools differ: Cursor combines nested AGENTS.md files with parent files (more specific wins), and Claude Code concatenates CLAUDE.md files.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "agents-md"
+      ]
+    },
+    {
+      "id": "a-agentsmd-adoption",
+      "claim": "The agents.md site says the format is used by more than 60,000 open-source projects, and that the main OpenAI repository had 88 AGENTS.md files when the page was written.",
+      "label": "Established",
+      "sources": [
+        "a-agents-md"
+      ],
+      "url": "https://agents.md/",
+      "quote": "",
+      "caveat": "These are undated, self-reported counts from the format's own site.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "agents-md",
+        "formats"
+      ]
+    },
+    {
+      "id": "a-agentsmd-stewardship",
+      "claim": "AGENTS.md came out of a collaboration across coding-agent vendors and is now stewarded by the Agentic AI Foundation under the Linux Foundation.",
+      "label": "Established",
+      "sources": [
+        "a-agents-md"
+      ],
+      "url": "https://agents.md/",
+      "quote": "",
+      "caveat": "Governance facts as stated on the format's own site.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "formats",
+        "agents-md"
+      ]
+    },
+    {
+      "id": "a-cursor-rule-types",
+      "claim": "Cursor project rules are .mdc files in .cursor/rules with four application modes: Always Apply, Apply Intelligently (decided from the description), Apply to Specific Files (glob match) and Apply Manually (@-mention).",
+      "label": "Established",
+      "sources": [
+        "a-cursor-rules"
+      ],
+      "url": "https://cursor.com/docs/rules",
+      "quote": "",
+      "caveat": "This is Cursor-specific; plain .md files in .cursor/rules are ignored by the rules system.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "formats",
+        "progressive-disclosure"
+      ]
+    },
+    {
+      "id": "a-cursor-500",
+      "claim": "Cursor advises keeping rules under 500 lines, splitting large rules into smaller composable ones, and adding rules only after the agent repeats the same mistake.",
+      "label": "Established",
+      "sources": [
+        "a-cursor-rules"
+      ],
+      "url": "https://cursor.com/docs/rules",
+      "quote": "",
+      "caveat": "Vendor guidance with no data behind the 500-line figure.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "sizing"
+      ]
+    },
+    {
+      "id": "a-cursor-reference",
+      "claim": "Cursor advises referencing files rather than copying their contents into rules, so rules stay short and don't go stale. A referenced file is read with tools when needed, not inlined into the prompt.",
+      "label": "Established",
+      "sources": [
+        "a-cursor-rules"
+      ],
+      "url": "https://cursor.com/docs/rules",
+      "quote": "Reference files instead of copying their contents.",
+      "caveat": "Anything that must always be in context has to go in the rule body itself.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "progressive-disclosure",
+        "sizing"
+      ]
+    },
+    {
+      "id": "a-size-guidance-convergence",
+      "claim": "Vendor size guidance for instruction files consistently favors short files: under 500 lines for SKILL.md and for Cursor rules, under 200 lines per CLAUDE.md, and about 100 lines for OpenAI's AGENTS.md map.",
+      "label": "Established",
+      "sources": [
+        "a-agentskills-spec",
+        "a-claude-skill-best-practices",
+        "a-cursor-rules",
+        "a-cc-memory",
+        "a-openai-harness"
+      ],
+      "url": "https://agentskills.io/specification",
+      "quote": "",
+      "caveat": "Each figure is a vendor recommendation or one team's practice. None comes from a published experiment, and the figures apply to different file types.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "sizing"
+      ]
+    },
+    {
+      "id": "a-agentsmd-nested-complete",
+      "claim": "Nested AGENTS.md files must be complete for their subtree because agents ignore parent files.",
+      "label": "Heuristic",
+      "sources": [
+        "a-agents-md",
+        "a-cursor-rules"
+      ],
+      "url": "https://agents.md/",
+      "quote": "",
+      "caveat": "",
+      "verified": "2026-10-09",
+      "status": "dropped",
+      "drop_reason": "Not stated by agents.md, which only says the closest file wins on conflict. Cursor's docs say nested files are combined with parent files, so the claim is contradicted for at least one tool.",
+      "topics": [
+        "agents-md"
+      ]
+    },
+    {
+      "id": "a-agentsmd-100-rule",
+      "claim": "AGENTS.md should be at most 100 lines (about 1,000 to 1,500 tokens).",
+      "label": "Heuristic",
+      "sources": [
+        "a-openai-harness"
+      ],
+      "url": "https://openai.com/index/harness-engineering/",
+      "quote": "",
+      "caveat": "",
+      "verified": "2026-10-09",
+      "status": "dropped",
+      "drop_reason": "No vendor sets a general limit. OpenAI only describes its own file as roughly 100 lines, which is kept as a separate claim about one team's practice, and the token figure appears in no primary source.",
+      "topics": [
+        "sizing",
+        "agents-md"
+      ]
+    },
+    {
+      "id": "a-cc-skill-fork-inherits",
+      "claim": "Claude Code's context: fork runs a skill in a forked copy of the current conversation.",
+      "label": "Established",
+      "sources": [
+        "a-cc-skills"
+      ],
+      "url": "https://code.claude.com/docs/en/skills",
+      "quote": "",
+      "caveat": "",
+      "verified": "2026-10-09",
+      "status": "dropped",
+      "drop_reason": "Contradicted by the source: context: fork starts a new subagent without the conversation history. A corrected claim is kept instead.",
+      "topics": [
+        "skills",
+        "subagents"
+      ]
+    },
+    {
+      "id": "b-ctxfiles-success-flat",
+      "claim": "Across four coding-agent setups on SWE-bench Lite and on 138 tasks from repositories with developer-written context files, adding an AGENTS.md-style context file did not significantly change task success (LLM-generated files about -0.5 and -2 points, developer-written files about +2.4 points).",
+      "label": "Evidence",
+      "sources": [
+        "b-gloaguen-2026"
+      ],
+      "url": "https://arxiv.org/abs/2602.11988",
+      "quote": "does not generally improve task success rates",
+      "caveat": "Python repositories only; agents were Claude Code (Sonnet 4.5), Codex (GPT-5.2, GPT-5.1 mini) and Qwen Code (Qwen3-30B coder); figures are from v3, while v1 reported about -3% and +4%; none of these success changes was statistically significant; task plans and skills were not tested.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "agents-md",
+        "sizing"
+      ]
+    },
+    {
+      "id": "b-ctxfiles-cost",
+      "claim": "Gloaguen et al. found that context files raised inference cost (about 20-23% for LLM-generated files, up to 19% for developer-written ones) and added roughly 2.5 to 3.9 agent steps per task as agents ran more tests, searches and file reads.",
+      "label": "Evidence",
+      "sources": [
+        "b-gloaguen-2026"
+      ],
+      "url": "https://arxiv.org/abs/2602.11988",
+      "quote": "",
+      "caveat": "Same four agent setups and Python benchmarks; cost increases were statistically significant, but the extra exploration is not shown to be harmful, only not to raise success. Conflicts in direction with Lulla et al. (lower runtime and output tokens with AGENTS.md on Codex).",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "cost",
+        "agents-md"
+      ]
+    },
+    {
+      "id": "b-ctxfiles-overviews",
+      "claim": "Repository overviews, common in both human- and LLM-written context files, did not help agents reach the files they needed to change any sooner.",
+      "label": "Evidence",
+      "sources": [
+        "b-gloaguen-2026"
+      ],
+      "url": "https://arxiv.org/abs/2602.11988",
+      "quote": "",
+      "caveat": "Measured as steps before the agent first touches a file changed in the reference pull request; in an ablation with all other documentation removed, LLM-generated files did help (about +2.7%), so overviews may matter where no other docs exist.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "agents-md",
+        "sizing"
+      ]
+    },
+    {
+      "id": "b-ctxfiles-instructions-followed",
+      "claim": "Agents did act on concrete tool instructions in context files: a tool such as uv was used about 1.6 times per task when the file mentioned it, versus under 0.01 times when it did not.",
+      "label": "Evidence",
+      "sources": [
+        "b-gloaguen-2026"
+      ],
+      "url": "https://arxiv.org/abs/2602.11988",
+      "quote": "",
+      "caveat": "Shows that instructions are read and followed, not that following them improves outcomes; based on tool-usage counts in the same benchmarks.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "agents-md"
+      ]
+    },
+    {
+      "id": "b-ctxfiles-human-over-llm",
+      "claim": "Developer-written context files did significantly better than LLM-generated ones, and the authors advise skipping auto-generated files and limiting human-written ones to information the agent cannot get elsewhere, such as non-standard conventions.",
+      "label": "Evidence",
+      "sources": [
+        "b-gloaguen-2026"
+      ],
+      "url": "https://arxiv.org/abs/2602.11988",
+      "quote": "",
+      "caveat": "The advice is the authors' interpretation of their results; developer-written files still did not beat having no file by a significant margin.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "agents-md",
+        "sizing"
+      ]
+    },
+    {
+      "id": "b-ctxfiles-v1-numbers",
+      "claim": "LLM-generated context files reduce agent success by about 3% and developer-written ones raise it by about 4%.",
+      "label": "Evidence",
+      "sources": [
+        "b-gloaguen-2026"
+      ],
+      "url": "https://arxiv.org/abs/2602.11988",
+      "quote": "",
+      "caveat": "",
+      "verified": "2026-10-09",
+      "status": "dropped",
+      "drop_reason": "These are figures from the paper's first version, superseded in v3 (about -0.5/-2 and +2.4 points, all non-significant); the v3 result is kept as its own claim. Secondary write-ups still repeat the v1 numbers.",
+      "topics": [
+        "agents-md"
+      ]
+    },
+    {
+      "id": "b-agentsmd-efficiency",
+      "claim": "On 124 small pull-request tasks from 10 repositories, running OpenAI Codex with the repository's AGENTS.md was associated with a 28.64% lower median runtime (98.57 s to 70.34 s) and 16.58% fewer median output tokens (2,925 to 2,440) than running without it.",
+      "label": "Evidence",
+      "sources": [
+        "b-lulla-2026"
+      ],
+      "url": "https://arxiv.org/abs/2601.20404",
+      "quote": "",
+      "caveat": "One agent and model (Codex CLI with gpt-5.2-codex); pull requests capped at 100 changed lines and 5 files; only root AGENTS.md files, in repositories filtered for substantive content; input tokens did not differ significantly; correctness was not measured; mechanism not analysed.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "agents-md",
+        "cost"
+      ]
+    },
+    {
+      "id": "b-agentsmd-correctness",
+      "claim": "Adding AGENTS.md keeps task completion or correctness unchanged while improving efficiency.",
+      "label": "Evidence",
+      "sources": [
+        "b-lulla-2026"
+      ],
+      "url": "https://arxiv.org/abs/2601.20404",
+      "quote": "",
+      "caveat": "",
+      "verified": "2026-10-09",
+      "status": "dropped",
+      "drop_reason": "The paper did not measure correctness; it reports only a manual sanity check of 50 sampled outputs and states this is not a correctness evaluation.",
+      "topics": [
+        "agents-md"
+      ]
+    },
+    {
+      "id": "b-config-size-null",
+      "claim": "In a factorial study of 1,650 Claude Code sessions, a CLAUDE.md of 25, 100, 250 or 500 lines made no detectable difference to whether the agent applied a required annotation (60.0% to 67.7% of functions), and Bayes factors favoured no effect.",
+      "label": "Evidence",
+      "sources": [
+        "b-mcmillan-2026"
+      ],
+      "url": "https://arxiv.org/abs/2605.10039",
+      "quote": "",
+      "caveat": "The target was a trivial comment marker on TypeScript functions; single-turn --print mode; mainly Sonnet 4.6 on two codebases; files above 500 lines not tested; it does not show long files are free, since they still cost tokens in every session.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "sizing",
+        "agents-md"
+      ]
+    },
+    {
+      "id": "b-config-position-null",
+      "claim": "Moving the target instruction from line 2 to line 250 of a 250-line configuration file produced no detectable position effect and no lost-in-the-middle U-shape.",
+      "label": "Evidence",
+      "sources": [
+        "b-mcmillan-2026"
+      ],
+      "url": "https://arxiv.org/abs/2605.10039",
+      "quote": "",
+      "caveat": "A failure to reject without Bayes-factor support, not proof of no effect; the design rules out contrasts above about 6 percentage points; the file was roughly 2-3k tokens and the author notes the U-shape is usually seen at much longer contexts.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "context-limits",
+        "sizing"
+      ]
+    },
+    {
+      "id": "b-config-split-null",
+      "claim": "Splitting the configuration into CLAUDE.md plus AGENTS.md, or adding nested CLAUDE.md files, gave no detectable compliance gain over a single file (67.7%, 68.2% and 61.7%).",
+      "label": "Evidence",
+      "sources": [
+        "b-mcmillan-2026"
+      ],
+      "url": "https://arxiv.org/abs/2605.10039",
+      "quote": "",
+      "caveat": "A failure to reject without Bayes-factor support; the 6-point dip for nested files did not survive correction; splitting may still pay off through token savings and scoping, which this study did not measure.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "progressive-disclosure",
+        "agents-md",
+        "sizing"
+      ]
+    },
+    {
+      "id": "b-within-session-decay",
+      "claim": "Compliance fell as a session went on: each additional function the agent wrote was associated with about 5.6% lower odds of following the instruction (OR 0.944, 95% CI 0.937-0.951), and in runs with any miss the median first miss came at the fourth function.",
+      "label": "Evidence",
+      "sources": [
+        "b-mcmillan-2026"
+      ],
+      "url": "https://arxiv.org/abs/2605.10039",
+      "quote": "approximately 5.6% lower odds of compliance per generation step",
+      "caveat": "Identified during analysis, not pre-specified; the trend is non-monotonic and detectable on two of three multi-function tasks; sessions of up to 81 functions in single-turn mode; it does not test whether fresh sessions, subagents or re-injected rules fix it.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "context-limits",
+        "subagents",
+        "living-state"
+      ]
+    },
+    {
+      "id": "b-rules-not-guaranteed",
+      "claim": "Even under the best conditions, agents applied a trivial required annotation to only about two-thirds of functions, versus none without the configuration file, so a written rule changed behaviour but did not guarantee it.",
+      "label": "Evidence",
+      "sources": [
+        "b-mcmillan-2026"
+      ],
+      "url": "https://arxiv.org/abs/2605.10039",
+      "quote": "",
+      "caveat": "Absolute rates are specific to this marker, task set and codebase (about 11 points lower on a second codebase); the author recommends hooks, linters or CI checks as backstops, which the study did not test.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "verification",
+        "agents-md"
+      ]
+    },
+    {
+      "id": "b-task-over-structure",
+      "claim": "Which coding task the agent was doing mattered more to compliance (45.1% to 84.4% across five tasks) than any file-structure choice tested.",
+      "label": "Evidence",
+      "sources": [
+        "b-mcmillan-2026"
+      ],
+      "url": "https://arxiv.org/abs/2605.10039",
+      "quote": "",
+      "caveat": "Five feature tasks on one Next.js codebase; the largest gap rests on a single pair of tasks that differ in many ways, so no modify-versus-write conclusion follows.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "sizing"
+      ]
+    },
+    {
+      "id": "b-context-rot-length",
+      "claim": "A technical report testing 18 LLMs found that performance grew less reliable as input length increased, even on simple tasks such as retrieving a planted fact or repeating a word sequence.",
+      "label": "Evidence",
+      "sources": [
+        "b-chroma-context-rot"
+      ],
+      "url": "https://www.trychroma.com/research/context-rot",
+      "quote": "",
+      "caveat": "Vendor report from a retrieval company, not peer reviewed; synthetic tasks with difficulty held constant; mid-2025 models (e.g. GPT-4.1, Claude 4, Gemini 2.5, Qwen3); the authors do not explain the mechanism.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "context-limits"
+      ]
+    },
+    {
+      "id": "b-context-rot-coherence",
+      "claim": "In Chroma's context-rot report, models did worse when the surrounding filler text was logically coherent than when its sentences were shuffled.",
+      "label": "Evidence",
+      "sources": [
+        "b-chroma-context-rot"
+      ],
+      "url": "https://www.trychroma.com/research/context-rot",
+      "quote": "structural coherence consistently hurts model performance",
+      "caveat": "Needle-in-a-haystack setup; the authors call the result surprising and do not explain it; relevance to structured instruction files is untested.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "context-limits"
+      ]
+    },
+    {
+      "id": "b-context-rot-distractors",
+      "claim": "Adding a single topically related but non-answering passage lowered accuracy, and adding four lowered it further.",
+      "label": "Evidence",
+      "sources": [
+        "b-chroma-context-rot"
+      ],
+      "url": "https://www.trychroma.com/research/context-rot",
+      "quote": "",
+      "caveat": "Distractor effects were not uniform across distractors or model families; synthetic retrieval task.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "context-limits"
+      ]
+    },
+    {
+      "id": "b-context-rot-focused",
+      "claim": "On a conversational memory benchmark (LongMemEval), every model scored significantly higher with a focused prompt of about 300 tokens than with the full history of about 113k tokens.",
+      "label": "Evidence",
+      "sources": [
+        "b-chroma-context-rot"
+      ],
+      "url": "https://www.trychroma.com/research/context-rot",
+      "quote": "",
+      "caveat": "The focused prompts contained only the relevant parts, selected in advance; shows the value of removing irrelevant context, not a specific token budget.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "context-limits",
+        "progressive-disclosure"
+      ]
+    },
+    {
+      "id": "b-lost-middle-u",
+      "claim": "In multi-document question answering and key-value retrieval, language models were most accurate when the relevant information was at the start or end of the input and least accurate when it sat in the middle.",
+      "label": "Evidence",
+      "sources": [
+        "b-liu-lost-middle"
+      ],
+      "url": "https://arxiv.org/abs/2307.03172",
+      "quote": "significantly degrades when models must access relevant information in the middle of long contexts",
+      "caveat": "2023 models (GPT-3.5-Turbo, Claude 1.3, MPT-30B-Instruct, LongChat-13B and others) on retrieval tasks with 10-30 documents; newer models may differ; a 2026 study found no position effect inside a 250-line configuration file.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "context-limits"
+      ]
+    },
+    {
+      "id": "b-lost-middle-closed-book",
+      "claim": "With 20 documents and the answer placed mid-context, GPT-3.5-Turbo scored as low as 53.8%, below the 56.1% it scored with no documents at all.",
+      "label": "Evidence",
+      "sources": [
+        "b-liu-lost-middle"
+      ],
+      "url": "https://arxiv.org/abs/2307.03172",
+      "quote": "",
+      "caveat": "Worst-case positions only, on NaturalQuestions-Open; the 30-document comparison used the 16K variant of GPT-3.5-Turbo, not the same model.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "context-limits"
+      ]
+    },
+    {
+      "id": "b-goal-drift",
+      "claim": "In a simulated stock-trading environment with competing pressures, all four tested models drifted from their system-prompt goal to some degree, though a scaffolded Claude 3.5 Sonnet kept near-perfect adherence beyond 100,000 tokens.",
+      "label": "Evidence",
+      "sources": [
+        "b-arike-goal-drift"
+      ],
+      "url": "https://arxiv.org/abs/2505.02709",
+      "quote": "",
+      "caveat": "One simple simulated environment that the authors say is too simple to compare frontier models; 2024-era models (Claude 3.5 Sonnet and Haiku, GPT-4o and 4o mini); prompt-given binary goals under unusually explicit pressure; reasoning models not tested.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "context-limits",
+        "living-state"
+      ]
+    },
+    {
+      "id": "b-goal-drift-pattern",
+      "claim": "The goal-drift authors link drift to models increasingly copying patterns from their own earlier actions as context grows, but describe this evidence as only suggestive.",
+      "label": "Evidence",
+      "sources": [
+        "b-arike-goal-drift"
+      ],
+      "url": "https://arxiv.org/abs/2505.02709",
+      "quote": "",
+      "caveat": "Most of the underlying correlations were not statistically significant; single environment.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "context-limits"
+      ]
+    },
+    {
+      "id": "b-multiturn-drop",
+      "claim": "In over 200,000 simulated conversations across 15 LLMs and six tasks, revealing an instruction in pieces over several turns cut performance by 39% on average compared with giving it all at once, mostly through a 112% rise in unreliability rather than a 16% loss in aptitude.",
+      "label": "Evidence",
+      "sources": [
+        "b-laban-multiturn"
+      ],
+      "url": "https://arxiv.org/abs/2505.06120",
+      "quote": "they get lost and do not recover",
+      "caveat": "Simulated users and deliberately underspecified sharded instructions; chat tasks, not agentic coding runs; the paper's Figure 1 gives the drop as 35%; lowering temperature did not fix it.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "context-limits",
+        "handoffs"
+      ]
+    },
+    {
+      "id": "b-multiturn-concat",
+      "claim": "Putting all the same pieces into one single-turn prompt recovered about 95% of full-prompt performance, and the authors suggest consolidating requirements into a fresh conversation when one goes off track.",
+      "label": "Evidence",
+      "sources": [
+        "b-laban-multiturn"
+      ],
+      "url": "https://arxiv.org/abs/2505.06120",
+      "quote": "",
+      "caveat": "The measured result is the concatenated condition (95.1% of full); the fresh-conversation advice is the authors' suggestion, not separately tested; chat setting, not agents.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "handoffs",
+        "plans"
+      ]
+    },
+    {
+      "id": "b-context-poisoning-term",
+      "claim": "Google's Gemini 2.5 technical report uses the term context poisoning for a failure of its Pokémon-playing agent in which false beliefs about the game state spread into the agent's goals and summaries, leading it to chase impossible goals and taking a long time to undo.",
+      "label": "Evidence",
+      "sources": [
+        "b-gemini-25-report"
+      ],
+      "url": "https://arxiv.org/abs/2507.06261",
+      "quote": "misinformation about the game state",
+      "caveat": "Qualitative observation from one game-playing agent harness, reported in an appendix; the earliest agent-specific use we found, not proven to be the first use of the term.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "living-state",
+        "context-limits"
+      ]
+    },
+    {
+      "id": "b-context-failure-taxonomy",
+      "claim": "A practitioner taxonomy names four ways long contexts fail: poisoning (an error enters and keeps being referenced), distraction (the model leans on the context over its training), confusion (irrelevant content degrades answers) and clash (new information or tools contradict earlier context).",
+      "label": "Heuristic",
+      "sources": [
+        "b-breunig-contexts-fail"
+      ],
+      "url": "https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-how-to-fix-them.html",
+      "quote": "a hallucination or other error makes it into the context",
+      "caveat": "A blog post synthesising other reports; the categories are descriptive labels, not measured failure rates.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "context-limits"
+      ]
+    },
+    {
+      "id": "b-skills-injection-demo",
+      "claim": "Researchers showed that adding one instruction and a 'backup' script to a public skill made Claude Code send a user's file to an external server, and that a 'don't ask again' approval for a benign action carried over to the malicious script.",
+      "label": "Evidence",
+      "sources": [
+        "b-schmotz-skills-injection"
+      ],
+      "url": "https://arxiv.org/abs/2510.26328",
+      "quote": "",
+      "caveat": "Qualitative demonstrations with no success rates; assumes the user does not read the whole skill and has chosen 'don't ask again'; reflects agent versions from late 2025; the web interface needed a different, link-based leak because of network limits.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "security",
+        "skills"
+      ]
+    },
+    {
+      "id": "b-skills-injection-long-files",
+      "claim": "Malicious instructions can be hidden inside long SKILL.md files and evade notice.",
+      "label": "Evidence",
+      "sources": [
+        "b-schmotz-skills-injection"
+      ],
+      "url": "https://arxiv.org/abs/2510.26328",
+      "quote": "",
+      "caveat": "",
+      "verified": "2026-10-09",
+      "status": "dropped",
+      "drop_reason": "The abstract asserts it, but the experiments only demonstrate a short added instruction plus a referenced script; no test of hiding instructions in long files is reported. The demonstrated attack is kept as its own claim.",
+      "topics": [
+        "security",
+        "skills"
+      ]
+    },
+    {
+      "id": "b-skills-wild-prevalence",
+      "claim": "A scan of 31,132 skills from two public marketplaces flagged 26.1% with at least one vulnerability pattern, most often data exfiltration (13.3%) and privilege escalation (11.8%), with 5.2% showing high-severity patterns.",
+      "label": "Evidence",
+      "sources": [
+        "b-liu-skills-wild"
+      ],
+      "url": "https://arxiv.org/abs/2601.10338",
+      "quote": "",
+      "caveat": "Automated static plus LLM classification (86.7% precision, 82.5% recall on a 200-skill manual sample); flags mark potential, not confirmed, exploits; the authors give a 23-30% range; December 2025 snapshot of an early ecosystem.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "security",
+        "skills"
+      ]
+    },
+    {
+      "id": "b-skills-wild-scripts",
+      "claim": "Skills that bundled executable scripts had 2.12 times the odds of being flagged as vulnerable compared with instruction-only skills.",
+      "label": "Evidence",
+      "sources": [
+        "b-liu-skills-wild"
+      ],
+      "url": "https://arxiv.org/abs/2601.10338",
+      "quote": "",
+      "caveat": "An odds ratio (p<0.001) from the same automated scan of 31,132 skills; an association, not causation. Instruction-only skills can still carry natural-language attacks that evade scanners (see the Pretext study).",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "security",
+        "skills"
+      ]
+    },
+    {
+      "id": "b-phantomskill",
+      "claim": "Disguising a malicious payload as ordinary-looking vulnerable code in a skill's scripts reached 58.8% attack success with an 11.4% agent warning rate on GPT-5.5, versus 46.3% success and 25.4% warnings for an overtly malicious script and 0% success for a prompt injection in SKILL.md.",
+      "label": "Evidence",
+      "sources": [
+        "b-phantomskill"
+      ],
+      "url": "https://arxiv.org/abs/2606.19191",
+      "quote": "",
+      "caveat": "Single preprint (June 2026) in controlled environments; trial count for this table not stated; results vary widely by victim model; the payload leaves the SKILL.md text unchanged, so reviewing only SKILL.md would miss it.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "security",
+        "skills"
+      ]
+    },
+    {
+      "id": "b-phantomskill-loading",
+      "claim": "A SKILL.md body is loaded only when its description triggers.",
+      "label": "Established",
+      "sources": [
+        "b-phantomskill"
+      ],
+      "url": "https://arxiv.org/abs/2606.19191",
+      "quote": "",
+      "caveat": "",
+      "verified": "2026-10-09",
+      "status": "dropped",
+      "drop_reason": "Mis-citation in the prior research report: PhantomSkill is about malicious code in skill resources and does not document how skills load. Loading behaviour is sourced from vendor docs instead.",
+      "topics": [
+        "skills",
+        "progressive-disclosure"
+      ]
+    },
+    {
+      "id": "b-pretext-evasion",
+      "claim": "An adaptive attacker that rewrote malicious skills evaded an open-source skill scanner in up to 97% of runs against a frozen detector and up to 77% against one that adapted, mainly by moving the payload into natural-language instructions framed as the skill's purpose and splitting it across files.",
+      "label": "Evidence",
+      "sources": [
+        "b-pretext"
+      ],
+      "url": "https://arxiv.org/abs/2609.39607",
+      "quote": "",
+      "caveat": "One open-source scanner (NVIDIA SkillSpector) and three open-weight model stacks; success (evasion plus payload delivery plus task completion) judged by an LLM, not humans; transfer to commercial scanners untested; preprint revised 2026-10-08.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "security",
+        "skills"
+      ]
+    },
+    {
+      "id": "b-indirect-prompt-injection",
+      "claim": "Indirect prompt injection lets an attacker plant instructions in content an LLM application later retrieves, steering it remotely without direct access, as demonstrated against Bing Chat and code-completion tools.",
+      "label": "Evidence",
+      "sources": [
+        "b-greshake-indirect-pi"
+      ],
+      "url": "https://arxiv.org/abs/2302.12173",
+      "quote": "",
+      "caveat": "2023 demonstrations on systems of that time; establishes the threat class and a taxonomy (data theft, worming, information contamination), not current attack rates.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "security"
+      ]
+    },
+    {
+      "id": "b-instruction-density",
+      "claim": "When 20 models had to follow between 10 and 500 simple keyword-inclusion instructions at once, accuracy fell as the count rose, the best model (Gemini 2.5 Pro) reached 68.9% at 500, and models tended to miss later instructions more than earlier ones.",
+      "label": "Evidence",
+      "sources": [
+        "b-ifscale"
+      ],
+      "url": "https://arxiv.org/abs/2507.11538",
+      "quote": "",
+      "caveat": "Measures many simultaneous trivial instructions in one report-writing task, not file length or coding agents; English business vocabulary; 2025 models; complements, rather than contradicts, the McMillan size null, which varied filler around one target rule.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "sizing",
+        "context-limits"
+      ]
+    },
+    {
+      "id": "c-vercel-pass-rates",
+      "claim": "In Vercel's Next.js 16 agent evals, both the no-docs baseline and a skill left to the agent's discretion passed 53%, a skill plus an explicit instruction to use it passed 79%, and a compressed docs index embedded in AGENTS.md passed 100%.",
+      "label": "Evidence",
+      "sources": [
+        "c-vercel-agentsmd-evals"
+      ],
+      "url": "https://vercel.com/blog/agents-md-outperforms-skills-in-our-agent-evals",
+      "quote": "",
+      "caveat": "One vendor's internal eval on one framework, targeting Next.js 16 APIs absent from model training data; number of cases, models and harness are not disclosed; it measures API-knowledge retrieval, not procedural workflows; not peer reviewed.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "skills",
+        "agents-md",
+        "progressive-disclosure"
+      ]
+    },
+    {
+      "id": "c-vercel-skill-never-invoked",
+      "claim": "When the skill was available but not explicitly requested, the agent never invoked it in 56% of Vercel's eval cases.",
+      "label": "Evidence",
+      "sources": [
+        "c-vercel-agentsmd-evals"
+      ],
+      "url": "https://vercel.com/blog/agents-md-outperforms-skills-in-our-agent-evals",
+      "quote": "In 56% of eval cases, the skill was never invoked.",
+      "caveat": "Same single-vendor Next.js 16 eval; undisclosed models and harness; trigger reliability likely depends on the skill description and the harness, which the post does not vary systematically.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "skills",
+        "progressive-disclosure"
+      ]
+    },
+    {
+      "id": "c-vercel-index-compression",
+      "claim": "Vercel compressed its AGENTS.md docs index from about 40KB to 8KB (an 80% cut) with no loss in pass rate; the index points to version-matched doc files that the agent reads on demand from a local docs directory.",
+      "label": "Evidence",
+      "sources": [
+        "c-vercel-agentsmd-evals"
+      ],
+      "url": "https://vercel.com/blog/agents-md-outperforms-skills-in-our-agent-evals",
+      "quote": "",
+      "caveat": "The 8KB index is always in context, so it trades a fixed token cost for reliability; one framework's docs; no data on how the result scales with larger doc sets.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "agents-md",
+        "sizing",
+        "progressive-disclosure"
+      ]
+    },
+    {
+      "id": "c-vercel-wording-fragile",
+      "claim": "Small wording changes swung results: telling the agent it must invoke the skill made it anchor on the docs and miss project context, while telling it to explore the project first and then invoke the skill did better, which the author calls brittle.",
+      "label": "Evidence",
+      "sources": [
+        "c-vercel-agentsmd-evals"
+      ],
+      "url": "https://vercel.com/blog/agents-md-outperforms-skills-in-our-agent-evals",
+      "quote": "",
+      "caveat": "Illustrated with individual eval cases (e.g. a 'use cache' test that needed a config change), not a systematic wording study; the author frames the explanation as a working theory.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "skills",
+        "agents-md"
+      ]
+    },
+    {
+      "id": "c-vercel-skills-for-vertical",
+      "claim": "The Vercel author still recommends skills for vertical, action-specific workflows a user triggers explicitly (such as a framework upgrade or migration), with passive AGENTS.md context for broad framework knowledge.",
+      "label": "Heuristic",
+      "sources": [
+        "c-vercel-agentsmd-evals"
+      ],
+      "url": "https://vercel.com/blog/agents-md-outperforms-skills-in-our-agent-evals",
+      "quote": "",
+      "caveat": "Author's recommendation, not something the eval measured; the eval only covered knowledge of new framework APIs.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "skills",
+        "agents-md"
+      ]
+    },
+    {
+      "id": "c-bockeler-sdd-levels",
+      "claim": "Böckeler distinguishes three levels of spec-driven development: spec-first (a spec written up front for the task at hand), spec-anchored (the spec is kept after the task to evolve and maintain the feature) and spec-as-source (the spec is the main artefact and humans never edit the code).",
+      "label": "Heuristic",
+      "sources": [
+        "c-bockeler-sdd-tools"
+      ],
+      "url": "https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html",
+      "quote": "",
+      "caveat": "One author's taxonomy from late 2025, not a standard; tools may sit between levels and have changed since.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "formats",
+        "living-state"
+      ]
+    },
+    {
+      "id": "c-bockeler-spec-vs-memory-bank",
+      "claim": "Böckeler separates task-scoped specs, relevant only to work that creates or changes a given behaviour, from a memory bank of general context (rules files, product and codebase descriptions) relevant to every session in the codebase.",
+      "label": "Heuristic",
+      "sources": [
+        "c-bockeler-sdd-tools"
+      ],
+      "url": "https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html",
+      "quote": "",
+      "caveat": "Conceptual framing by one author; the tools she reviewed use different names for the memory-bank layer (Kiro steering, spec-kit constitution).",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "formats",
+        "agents-md",
+        "living-state"
+      ]
+    },
+    {
+      "id": "c-bockeler-kiro-small-bug",
+      "claim": "Böckeler found Kiro the most lightweight of the three tools, yet on a small bug its requirements document still produced 4 user stories with 16 acceptance criteria, which she likened to cracking a nut with a sledgehammer.",
+      "label": "Evidence",
+      "sources": [
+        "c-bockeler-sdd-tools"
+      ],
+      "url": "https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html",
+      "quote": "",
+      "caveat": "A single hands-on trial by one practitioner on the Oct 2025 version; Kiro has since added bugfix specs and Quick Spec, and its docs now say a chat fix suits trivial issues.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "sizing",
+        "formats"
+      ]
+    },
+    {
+      "id": "c-bockeler-speckit-review-burden",
+      "claim": "Using spec-kit on a feature she sized as a 3-5 point story, Böckeler found the generated Markdown files repetitive (with each other and with existing code) and tedious to review, and judged that plain AI-assisted coding would have taken no longer and felt more in control.",
+      "label": "Evidence",
+      "sources": [
+        "c-bockeler-sdd-tools"
+      ],
+      "url": "https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html",
+      "quote": "",
+      "caveat": "One practitioner, one feature, Oct 2025 tool version; she did not finish the full implementation, so this is a qualitative impression, not a measured time comparison.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "sizing",
+        "formats",
+        "cost"
+      ]
+    },
+    {
+      "id": "c-bockeler-instructions-not-followed",
+      "claim": "Despite detailed spec files, templates and checklists, Böckeler often saw the agent fail to follow all instructions, and at other times overreach by following them too eagerly.",
+      "label": "Evidence",
+      "sources": [
+        "c-bockeler-sdd-tools"
+      ],
+      "url": "https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html",
+      "quote": "I frequently saw the agent ultimately not follow all the instructions.",
+      "caveat": "Qualitative observation from one author's trials of Kiro and spec-kit; no counts, models or task set reported.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "verification"
+      ]
+    },
+    {
+      "id": "c-bockeler-tessl",
+      "claim": "Böckeler reports that Tessl, then in private beta, was the only one of the three tools explicitly aiming at spec-anchored development and exploring spec-as-source, mapping one spec to one code file and marking generated code as not to be edited, though repeated generation from the same spec was non-deterministic.",
+      "label": "Evidence",
+      "sources": [
+        "c-bockeler-sdd-tools"
+      ],
+      "url": "https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html",
+      "quote": "",
+      "caveat": "Based on a private-beta version in Oct 2025 as observed by one author; not checked against Tessl's own docs.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "formats"
+      ]
+    },
+    {
+      "id": "c-beck-sdd-learning",
+      "claim": "Kent Beck, quoted by Martin Fowler, objects that spec-driven development as usually described writes the whole spec before implementation and so assumes nothing will be learned while building; Fowler adds that the experimentation loop is essential to building a worthwhile spec.",
+      "label": "Heuristic",
+      "sources": [
+        "c-fowler-fragments-2026-01-08"
+      ],
+      "url": "https://martinfowler.com/fragments/2026-01-08.html",
+      "quote": "going to learn anything during implementation",
+      "caveat": "Expert opinion, not a study; aimed at up-front, write-it-all-first descriptions of SDD rather than at living plans that are updated during work.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "plans",
+        "living-state"
+      ]
+    },
+    {
+      "id": "c-kiro-three-files",
+      "claim": "Each Kiro spec produces three Markdown files under .kiro/specs/<name>/: requirements.md (user stories and acceptance criteria, or bugfix.md for bug specs), design.md (architecture, sequence diagrams, implementation considerations) and tasks.md (discrete, trackable implementation tasks).",
+      "label": "Established",
+      "sources": [
+        "c-kiro-specs",
+        "c-bockeler-sdd-tools"
+      ],
+      "url": "https://kiro.dev/docs/specs/",
+      "quote": "",
+      "caveat": "Vendor docs as of Oct 2026; the .kiro/specs/<name>/ path was confirmed in the docs' Markdown rendition (kiro.dev/docs/specs.md).",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "formats",
+        "plans"
+      ]
+    },
+    {
+      "id": "c-kiro-ears-workflows",
+      "claim": "Kiro feature specs express requirements in EARS notation (WHEN a condition occurs, THE SYSTEM SHALL do something) and can run requirements-first (requirements, design, tasks) or design-first (design, requirements, tasks).",
+      "label": "Established",
+      "sources": [
+        "c-kiro-feature-specs"
+      ],
+      "url": "https://kiro.dev/docs/specs/feature-specs/",
+      "quote": "",
+      "caveat": "Vendor docs; describes the tool's generated format, not evidence that EARS improves outcomes.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "formats",
+        "verification"
+      ]
+    },
+    {
+      "id": "c-kiro-bugfix-spec",
+      "claim": "Kiro bugfix specs replace requirements.md with bugfix.md, which records current behaviour, expected behaviour and behaviour that must stay unchanged.",
+      "label": "Established",
+      "sources": [
+        "c-kiro-specs"
+      ],
+      "url": "https://kiro.dev/docs/specs/",
+      "quote": "",
+      "caveat": "Vendor docs as of Oct 2026; this spec type post-dates Böckeler's Oct 2025 trial.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "formats",
+        "verification"
+      ]
+    },
+    {
+      "id": "c-kiro-task-waves",
+      "claim": "When asked to run all tasks, Kiro builds a dependency graph from tasks.md and executes independent tasks concurrently in waves, with the waves themselves running in sequence.",
+      "label": "Established",
+      "sources": [
+        "c-kiro-specs"
+      ],
+      "url": "https://kiro.dev/docs/specs/",
+      "quote": "",
+      "caveat": "Vendor docs describing tool behaviour; no data on reliability of the dependency inference.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "plans"
+      ]
+    },
+    {
+      "id": "c-kiro-steering",
+      "claim": "Kiro keeps cross-session project knowledge in steering files (.kiro/steering/ per workspace, ~/.kiro/steering/ globally), with default product.md, tech.md and structure.md, inclusion modes always, fileMatch, manual and auto, and AGENTS.md files that are always included.",
+      "label": "Established",
+      "sources": [
+        "c-kiro-steering",
+        "c-bockeler-sdd-tools"
+      ],
+      "url": "https://kiro.dev/docs/steering/",
+      "quote": "",
+      "caveat": "Vendor docs as of Oct 2026; workspace steering overrides global steering on conflict.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "agents-md",
+        "progressive-disclosure",
+        "formats"
+      ]
+    },
+    {
+      "id": "c-kiro-sizing-guidance",
+      "claim": "Kiro's own guidance says a quick chat fix is fine for straightforward issues such as typos, offers Quick Spec to generate all three files in one pass without approval gates, and says specs are designed to be version-controlled beside the code and refined as the project evolves.",
+      "label": "Established",
+      "sources": [
+        "c-kiro-spec-best-practices",
+        "c-kiro-specs"
+      ],
+      "url": "https://kiro.dev/docs/specs/best-practices/",
+      "quote": "",
+      "caveat": "Vendor guidance, not measured; it partly answers Böckeler's 2025 criticisms (overhead on small tasks, no spec-anchored use).",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "sizing",
+        "living-state"
+      ]
+    },
+    {
+      "id": "c-speckit-workflow",
+      "claim": "GitHub Spec Kit's core flow is constitution, specify, plan, tasks, implement, run as slash commands inside the coding agent, with optional clarify, checklist, analyze and converge steps.",
+      "label": "Established",
+      "sources": [
+        "c-speckit-repo",
+        "c-speckit-quickstart",
+        "c-bockeler-sdd-tools"
+      ],
+      "url": "https://github.github.io/spec-kit/quickstart.html",
+      "quote": "",
+      "caveat": "Command names changed from dotted (/speckit.plan) to hyphenated (/speckit-plan); converge is a 2026 addition not in Böckeler's review.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "formats",
+        "plans"
+      ]
+    },
+    {
+      "id": "c-speckit-files",
+      "claim": "Spec Kit keeps a project constitution in memory/constitution.md and, per feature under specs/, writes spec.md (with a requirements checklist), plan.md with supporting research.md, data-model.md, contracts/ and quickstart.md, and tasks.md.",
+      "label": "Established",
+      "sources": [
+        "c-speckit-sdd-doc",
+        "c-speckit-plan-cmd",
+        "c-speckit-quickstart",
+        "c-bockeler-sdd-tools"
+      ],
+      "url": "https://github.com/github/spec-kit/blob/main/spec-driven.md",
+      "quote": "",
+      "caveat": "contracts/ is skipped for purely internal projects; the installed constitution path is under the .specify/ folder in current versions (not confirmed on the pages read); exact per-feature folder naming varies by version.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "formats",
+        "sizing"
+      ]
+    },
+    {
+      "id": "c-speckit-spec-template",
+      "claim": "Spec Kit's spec template has mandatory sections for prioritised user stories with Given/When/Then acceptance scenarios, numbered functional requirements that may carry [NEEDS CLARIFICATION] markers, and measurable, technology-agnostic success criteria.",
+      "label": "Established",
+      "sources": [
+        "c-speckit-spec-template"
+      ],
+      "url": "https://github.com/github/spec-kit/blob/main/templates/spec-template.md",
+      "quote": "",
+      "caveat": "Template on main as of Oct 2026; generated specs follow it only as far as the agent complies.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "formats",
+        "verification"
+      ]
+    },
+    {
+      "id": "c-speckit-tasks-format",
+      "claim": "Spec Kit's tasks.md lists checkbox tasks with sequential IDs, an optional [P] marker for tasks that touch different files with no dependencies, and a user-story label, grouped into Setup, Foundational, one phase per user story with a checkpoint, and Polish; tests are included only if the spec asks for them.",
+      "label": "Established",
+      "sources": [
+        "c-speckit-tasks-template"
+      ],
+      "url": "https://github.com/github/spec-kit/blob/main/templates/tasks-template.md",
+      "quote": "",
+      "caveat": "Template on main as of Oct 2026.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "plans",
+        "verification"
+      ]
+    },
+    {
+      "id": "c-speckit-active-feature",
+      "claim": "Current Spec Kit records the active feature in .specify/feature.json rather than the git branch, does not require git, and makes numbered feature branches an opt-in extension.",
+      "label": "Established",
+      "sources": [
+        "c-speckit-quickstart"
+      ],
+      "url": "https://github.github.io/spec-kit/quickstart.html",
+      "quote": "",
+      "caveat": "Changed since Oct 2025, when Böckeler observed one branch per spec and read it as a spec living for a change request rather than a feature's lifetime.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "formats",
+        "living-state"
+      ]
+    },
+    {
+      "id": "c-bmad-v4-sharding",
+      "claim": "In BMAD v4 the default config marks the PRD and architecture as sharded into docs/prd and docs/architecture, keeps dev stories in docs/stories, and names a short list of architecture shards (coding standards, tech stack, source tree) that the dev agent always loads.",
+      "label": "Established",
+      "sources": [
+        "c-bmad-v4-core-config",
+        "c-bmad-v4-user-guide"
+      ],
+      "url": "https://github.com/bmad-code-org/BMAD-METHOD/blob/v4.44.3/bmad-core/core-config.yaml",
+      "quote": "",
+      "caveat": "Describes BMAD v4 (v4.44.3, late 2025); the current method (v6/v7 docs, 2026) no longer documents sharding.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "formats",
+        "progressive-disclosure",
+        "handoffs"
+      ]
+    },
+    {
+      "id": "c-bmad-v4-story-file",
+      "claim": "BMAD v4's story template has Status, Story, Acceptance Criteria, Tasks/Subtasks, Dev Notes (with Testing), Change Log, a Dev Agent Record (model used, debug log, completion notes, file list) and QA Results, and assigns each section an owning role (scrum master, dev agent or QA agent).",
+      "label": "Established",
+      "sources": [
+        "c-bmad-v4-story-tmpl"
+      ],
+      "url": "https://github.com/bmad-code-org/BMAD-METHOD/blob/v4.44.3/bmad-core/templates/story-tmpl.yaml",
+      "quote": "",
+      "caveat": "v4 template only; section ownership is a convention the agents are prompted to follow, not an enforced permission.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "formats",
+        "handoffs",
+        "living-state"
+      ]
+    },
+    {
+      "id": "c-bmad-v4-cycle",
+      "claim": "In the BMAD v4 cycle the PO agent shards the PRD and then the architecture, the scrum-master agent drafts the next story from the sharded epic and architecture, the dev agent implements tasks and tests in order, and a QA review is optional.",
+      "label": "Established",
+      "sources": [
+        "c-bmad-v4-user-guide"
+      ],
+      "url": "https://github.com/bmad-code-org/BMAD-METHOD/blob/v4.44.3/docs/user-guide.md",
+      "quote": "",
+      "caveat": "v4 user guide; the guide does not state that a story file holds all context the dev agent needs, only that stories are drafted from sharded artefacts.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "handoffs",
+        "subagents",
+        "plans"
+      ]
+    },
+    {
+      "id": "c-bmad-planning-paths",
+      "claim": "Current BMad docs size planning to the work through four paths: trivial, one-session, epic-sized (adds a spec and stories, built one story at a time) and project-sized (several epics or roughly 20+ sessions, adding shared product, UX and technical contracts).",
+      "label": "Established",
+      "sources": [
+        "c-bmad-docs-planning-path"
+      ],
+      "url": "https://docs.bmad-method.org/plan/choose-a-planning-path/",
+      "quote": "",
+      "caveat": "Vendor docs for the 2026 method (v6.12/v7 era), which differs substantially from v4.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "sizing",
+        "plans"
+      ]
+    },
+    {
+      "id": "c-bmad-tickets",
+      "claim": "Current BMad tracks epics and stories as entries with stable IDs in build order in tickets.toml files, gives each epic an envelope of requirements and done-when checks, and writes a per-story build plan beside the epic's tickets.toml that holds acceptance criteria and build status, with a separate story file optional.",
+      "label": "Established",
+      "sources": [
+        "c-bmad-docs-stories"
+      ],
+      "url": "https://docs.bmad-method.org/plan/break-work-into-stories-and-track-it/",
+      "quote": "",
+      "caveat": "Vendor docs, 2026; only the user or orchestrator marks a story done, and code review appends to the plan without changing ticket status.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "plans",
+        "living-state",
+        "verification"
+      ]
+    },
+    {
+      "id": "c-bmad-project-context",
+      "claim": "BMad's project-context skill produces one small rules file of unobvious, project-specific facts that is loaded every session and so must stay tiny, puts must-follow instructions in AGENTS.md, and leaves out repo maps, overviews, linter-enforceable style and history.",
+      "label": "Established",
+      "sources": [
+        "c-bmad-docs-project-context"
+      ],
+      "url": "https://docs.bmad-method.org/existing-codebases/theory-of-project-context/",
+      "quote": "",
+      "caveat": "Vendor guidance, not measured; the page does not name the output file.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "agents-md",
+        "sizing",
+        "context-limits"
+      ]
+    },
+    {
+      "id": "c-cline-core-files",
+      "claim": "Cline's Memory Bank is a documentation methodology, set up through custom instructions rather than a built-in feature, of six core Markdown files in memory-bank/: projectbrief.md (core requirements and goals), productContext.md (why the project exists, problems, UX goals), systemPatterns.md (architecture and patterns), techContext.md (stack, setup, constraints), activeContext.md (current focus, recent changes, next steps) and progress.md (what works, what is left, known issues).",
+      "label": "Established",
+      "sources": [
+        "c-cline-memory-bank"
+      ],
+      "url": "https://docs.cline.bot/features/memory-bank",
+      "quote": "",
+      "caveat": "Vendor docs; extra files or folders may be added for features, integrations, APIs, testing or deployment. It is cross-session project memory, not a per-task contract.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "formats",
+        "living-state"
+      ]
+    },
+    {
+      "id": "c-cline-read-all",
+      "claim": "The Memory Bank files form a hierarchy built on projectbrief.md, and Cline's custom instructions tell it to read every memory-bank file at the start of every task, with activeContext.md changing most often.",
+      "label": "Established",
+      "sources": [
+        "c-cline-memory-bank"
+      ],
+      "url": "https://docs.cline.bot/features/memory-bank",
+      "quote": "",
+      "caveat": "Reading every file each task means the whole bank costs context every time; the official pages read gave no size limit for the files.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "context-limits",
+        "living-state",
+        "sizing"
+      ]
+    },
+    {
+      "id": "c-humanlayer-fic",
+      "claim": "HumanLayer's 'frequent intentional compaction' runs research, plan and implement as separate steps, distils searches, code-flow notes and logs into structured artefacts (a research doc, a plan, and status written back into the plan after each verified phase), and aims to keep context use around 40-60%.",
+      "label": "Heuristic",
+      "sources": [
+        "c-humanlayer-ace"
+      ],
+      "url": "https://www.humanlayer.dev/blog/advanced-context-engineering",
+      "quote": "keeping utilization in the 40%-60% range",
+      "caveat": "Practitioner method from one team's experience in Aug 2025; the 40-60% band depends on problem complexity and is not measured in a controlled study.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "context-limits",
+        "living-state",
+        "plans"
+      ]
+    },
+    {
+      "id": "c-humanlayer-error-leverage",
+      "claim": "Horthy argues that a bad line of research can lead to thousands of bad lines of code and a bad plan line to hundreds, so human review pays most on research and plans, and ranks incorrect context as worse than missing context, which is worse than noise.",
+      "label": "Heuristic",
+      "sources": [
+        "c-humanlayer-ace"
+      ],
+      "url": "https://www.humanlayer.dev/blog/advanced-context-engineering",
+      "quote": "",
+      "caveat": "Illustrative argument, not measured; the multipliers are rhetorical orders of magnitude.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "verification",
+        "plans",
+        "context-limits"
+      ]
+    },
+    {
+      "id": "c-humanlayer-dumb-zone",
+      "claim": "HumanLayer used to warn at about 40% of Claude Sonnet's usable 168k-token window to keep agents out of the 'dumb zone', and in March 2026 moved the warning for long-context models to a fixed 100k tokens after seeing instruction adherence degrade well inside that range.",
+      "label": "Heuristic",
+      "sources": [
+        "c-humanlayer-long-context"
+      ],
+      "url": "https://www.humanlayer.dev/blog/long-context-isnt-the-answer",
+      "quote": "digging us deeper into the dumb zone",
+      "caveat": "Operational threshold from one team's experience, not a benchmark; the threshold itself shifted from a percentage to an absolute token count, so treat ~40% as a rough guide, not a law.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "context-limits",
+        "sizing"
+      ]
+    },
+    {
+      "id": "c-humanlayer-claude-md-size",
+      "claim": "HumanLayer advises keeping the root CLAUDE.md short (consensus under 300 lines; theirs is under 60), moving task-specific instructions into separate self-describing files that it points to, and never using the model as a linter.",
+      "label": "Heuristic",
+      "sources": [
+        "c-humanlayer-claude-md"
+      ],
+      "url": "https://www.humanlayer.dev/blog/writing-a-good-claude-md",
+      "quote": "",
+      "caveat": "Practitioner advice; the 300-line figure is described as general consensus, not measured.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "agents-md",
+        "sizing",
+        "progressive-disclosure"
+      ]
+    },
+    {
+      "id": "c-humanlayer-instruction-budget",
+      "claim": "HumanLayer states that frontier thinking models follow roughly 150-200 instructions with reasonable consistency and that Claude Code's own system prompt already uses about 50, leaving a limited budget for instruction files.",
+      "label": "Heuristic",
+      "sources": [
+        "c-humanlayer-claude-md"
+      ],
+      "url": "https://www.humanlayer.dev/blog/writing-a-good-claude-md",
+      "quote": "",
+      "caveat": "The 150-200 figure is the author's reading of arXiv:2507.11538 (not stated in its abstract) and the ~50 is the author's own count; the post itself concedes the topic has not been rigorously studied.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "context-limits",
+        "sizing",
+        "agents-md"
+      ]
+    },
+    {
+      "id": "c-ifscale-density",
+      "claim": "IFScale tested 20 models on business-report writing with up to 500 keyword-inclusion instructions; the best frontier models reached 68% accuracy at 500 instructions, and models showed a bias toward earlier instructions.",
+      "label": "Evidence",
+      "sources": [
+        "b-ifscale"
+      ],
+      "url": "https://arxiv.org/abs/2507.11538",
+      "quote": "",
+      "caveat": "Synthetic keyword-inclusion task, not coding-agent work; verified at abstract level; a preprint, not peer reviewed.",
+      "verified": "2026-10-09",
+      "status": "dropped",
+      "drop_reason": "Duplicate of another verified claim from the same IFScale paper; the more precise figure (68.9% for the best model at 500 instructions) is kept.",
+      "topics": [
+        "context-limits",
+        "sizing"
+      ]
+    },
+    {
+      "id": "c-willison-trifecta",
+      "claim": "Willison's 'lethal trifecta' is an agent that combines access to private data, exposure to untrusted content and the ability to communicate externally, which lets injected instructions exfiltrate data; he sees avoiding that combination as the only safe approach.",
+      "label": "Heuristic",
+      "sources": [
+        "c-willison-trifecta"
+      ],
+      "url": "https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/",
+      "quote": "avoid that lethal trifecta combination entirely",
+      "caveat": "Threat-model framing by a practitioner, not an empirical study; it describes when exfiltration becomes possible, not how often attacks succeed.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "security"
+      ]
+    },
+    {
+      "id": "c-willison-guardrails",
+      "claim": "Willison argues that prompt injection cannot yet be prevented reliably, that guardrail products claiming to stop about 95% of attacks fall short because 95% is a failing grade in security, and that MCP makes the risky combination easy by encouraging users to mix tools from different sources.",
+      "label": "Heuristic",
+      "sources": [
+        "c-willison-trifecta"
+      ],
+      "url": "https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/",
+      "quote": "",
+      "caveat": "Expert opinion as of June 2025; defences may have improved since, but no source here shows reliable prevention.",
+      "verified": "2026-10-09",
+      "status": "verified",
+      "drop_reason": "",
+      "topics": [
+        "security"
+      ]
+    },
+    {
+      "id": "c-dumb-zone-100k-sessions",
+      "claim": "Dex Horthy coined the 'dumb zone' after analysing more than 100,000 developer sessions, placing the inflection point at about 40% context utilisation.",
+      "label": "Heuristic",
+      "sources": [
+        "c-horthy-no-vibes-talk"
+      ],
+      "url": "https://www.humanlayer.dev/blog",
+      "quote": "",
+      "caveat": "",
+      "verified": "2026-10-09",
+      "status": "dropped",
+      "drop_reason": "Only secondary write-ups make this attribution; no primary talk, transcript or HumanLayer post with the session count was found. HumanLayer's own ~40% warning is kept as a separate heuristic.",
+      "topics": [
+        "context-limits"
+      ]
+    },
+    {
+      "id": "c-humanlayer-crispy",
+      "claim": "HumanLayer expanded research-plan-implement into a seven-stage workflow that runs research in a context unaware of the implementation goal.",
+      "label": "Heuristic",
+      "sources": [],
+      "url": "",
+      "quote": "",
+      "caveat": "",
+      "verified": "2026-10-09",
+      "status": "dropped",
+      "drop_reason": "Only a secondary summary in the ZenML LLMOps database makes this claim; no first-party HumanLayer source was found in searches or the HumanLayer blog index.",
+      "topics": [
+        "plans",
+        "subagents"
+      ]
+    },
+    {
+      "id": "c-bmad-sharding-current",
+      "claim": "BMAD shards the PRD and architecture into self-contained story files with acceptance criteria and a dev-agent record.",
+      "label": "Established",
+      "sources": [
+        "c-bmad-docs-planning-path"
+      ],
+      "url": "https://docs.bmad-method.org/plan/choose-a-planning-path/",
+      "quote": "",
+      "caveat": "",
+      "verified": "2026-10-09",
+      "status": "dropped",
+      "drop_reason": "True of BMAD v4 only, and kept as v4 claims. The current 2026 docs describe tickets.toml, epic envelopes and optional story files, with no sharding.",
+      "topics": [
+        "formats"
+      ]
+    },
+    {
+      "id": "c-bmad-story-all-context",
+      "claim": "BMAD story files contain all implementation context, so the dev agent never needs to re-read the PRD or architecture.",
+      "label": "Established",
+      "sources": [
+        "c-bmad-v4-user-guide"
+      ],
+      "url": "https://github.com/bmad-code-org/BMAD-METHOD/blob/v4.44.3/docs/user-guide.md",
+      "quote": "",
+      "caveat": "",
+      "verified": "2026-10-09",
+      "status": "dropped",
+      "drop_reason": "Stated only by third-party mirrors and community skills; the official v4 user guide and story template do not say it, and v4 also always loads architecture shards.",
+      "topics": [
+        "handoffs"
+      ]
+    },
+    {
+      "id": "c-speckit-eight-files",
+      "claim": "Spec-kit creates eight files per spec.",
+      "label": "Evidence",
+      "sources": [
+        "c-bockeler-sdd-tools"
+      ],
+      "url": "https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html",
+      "quote": "",
+      "caveat": "",
+      "verified": "2026-10-09",
+      "status": "dropped",
+      "drop_reason": "Böckeler writes '8 files' but names seven; the exact count is not reliable and varies by version. The file roles are kept as a separate claim.",
+      "topics": [
+        "sizing"
+      ]
+    },
+    {
+      "id": "c-cline-keep-concise",
+      "claim": "Cline's docs advise keeping Memory Bank files concise because each adds to context when read at session start.",
+      "label": "Established",
+      "sources": [
+        "c-cline-memory-bank"
+      ],
+      "url": "https://docs.cline.bot/features/memory-bank",
+      "quote": "",
+      "caveat": "",
+      "verified": "2026-10-09",
+      "status": "dropped",
+      "drop_reason": "Appeared only in a search-engine summary; neither official Memory Bank page fetched contains this advice.",
+      "topics": [
+        "sizing"
+      ]
+    },
+    {
+      "id": "c-beck-in-bockeler",
+      "claim": "Kent Beck's critique of spec-driven development appears in Böckeler's martinfowler.com article.",
+      "label": "Heuristic",
+      "sources": [
+        "c-bockeler-sdd-tools"
+      ],
+      "url": "https://martinfowler.com/articles/exploring-gen-ai/sdd-3-tools.html",
+      "quote": "",
+      "caveat": "",
+      "verified": "2026-10-09",
+      "status": "dropped",
+      "drop_reason": "Mismatch: Böckeler's article does not mention Beck; his critique is in Fowler's 'Fragments: January 8', which is cited instead.",
+      "topics": [
+        "plans"
+      ]
+    }
+  ]
+}

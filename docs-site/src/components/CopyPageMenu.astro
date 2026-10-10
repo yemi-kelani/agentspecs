@@ -1,0 +1,306 @@
+---
+// Split button: "Copy page" copies this page's Markdown (/<slug>.md); the caret opens a menu
+// (menu button pattern) with View as Markdown, Open in Claude, Open in ChatGPT.
+interface Props {
+	mdPath: string;
+}
+const { mdPath } = Astro.props;
+const mdUrl = new URL(mdPath, Astro.site ?? Astro.url).href;
+const prompt = `Read ${mdUrl} so I can ask questions about it.`;
+const claudeUrl = `https://claude.ai/new?q=${encodeURIComponent(prompt)}`;
+const chatgptUrl = `https://chatgpt.com/?q=${encodeURIComponent(prompt)}`;
+---
+
+<copy-page class="copy-page not-content" data-md-path={mdPath}>
+	<div class="copy-page__group">
+		<button type="button" class="copy-page__copy" data-copy data-state="idle">
+			<svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="2"></rect><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"></path></svg>
+			<span class="copy-page__labels">
+				<span class="is-idle">Copy page</span>
+				<span class="is-copied" aria-hidden="true">Copied</span>
+				<span class="is-error" aria-hidden="true">Copy failed</span>
+			</span>
+		</button>
+		<button
+			type="button"
+			class="copy-page__toggle"
+			aria-haspopup="menu"
+			aria-expanded="false"
+			aria-controls="copy-page-menu"
+			aria-label="More page actions"
+		>
+			<svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+		</button>
+	</div>
+	<span class="sr-only" role="status" data-status></span>
+	<div class="copy-page__menu" id="copy-page-menu" role="menu" aria-label="Page actions" hidden>
+		<button type="button" role="menuitem" tabindex="-1" data-copy>
+			<svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="2"></rect><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"></path></svg>
+			<span><span class="copy-page__item-title">Copy page</span><span class="copy-page__item-hint">Markdown source to the clipboard</span></span>
+		</button>
+		<a role="menuitem" tabindex="-1" href={mdPath} target="_blank" rel="noopener">
+			<svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="19" height="14" rx="2"></rect><path d="M6 15V9l2.5 3L11 9v6M15.5 9v6m-2-2 2 2 2-2"></path></svg>
+			<span><span class="copy-page__item-title">View as Markdown</span><span class="copy-page__item-hint">Open the plain-text source</span></span>
+		</a>
+		<a role="menuitem" tabindex="-1" href={claudeUrl} target="_blank" rel="noopener noreferrer">
+			<svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12Z"></path></svg>
+			<span><span class="copy-page__item-title">Open in Claude</span><span class="copy-page__item-hint">Start a chat that reads this page</span></span>
+		</a>
+		<a role="menuitem" tabindex="-1" href={chatgptUrl} target="_blank" rel="noopener noreferrer">
+			<svg aria-hidden="true" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12Z"></path></svg>
+			<span><span class="copy-page__item-title">Open in ChatGPT</span><span class="copy-page__item-hint">Start a chat that reads this page</span></span>
+		</a>
+	</div>
+</copy-page>
+
+<script>
+	class CopyPage extends HTMLElement {
+		#toggle!: HTMLButtonElement;
+		#menu!: HTMLElement;
+		#items: HTMLElement[] = [];
+		#status!: HTMLElement;
+		#main!: HTMLButtonElement;
+		#timer: ReturnType<typeof setTimeout> | undefined;
+		#cache: string | undefined;
+
+		connectedCallback() {
+			this.#toggle = this.querySelector('[aria-haspopup="menu"]')!;
+			this.#menu = this.querySelector('[role="menu"]')!;
+			this.#items = [...this.#menu.querySelectorAll<HTMLElement>('[role="menuitem"]')];
+			this.#status = this.querySelector('[data-status]')!;
+			this.#main = this.querySelector('.copy-page__copy')!;
+
+			for (const el of this.querySelectorAll('[data-copy]')) el.addEventListener('click', () => this.#copy());
+			this.#toggle.addEventListener('click', () => (this.#isOpen() ? this.#close(true) : this.#open(0)));
+			this.#toggle.addEventListener('keydown', (e) => {
+				if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+					e.preventDefault();
+					this.#open(e.key === 'ArrowDown' ? 0 : this.#items.length - 1);
+				}
+			});
+			this.#menu.addEventListener('keydown', (e) => this.#onMenuKey(e));
+			this.#menu.addEventListener('focusout', (e) => {
+				if (this.#isOpen() && !this.contains(e.relatedTarget as Node | null)) this.#close(false);
+			});
+			for (const item of this.#items) {
+				item.addEventListener('click', () => this.#close(item.tagName === 'BUTTON'));
+			}
+			document.addEventListener('pointerdown', (e) => {
+				if (this.#isOpen() && !this.contains(e.target as Node)) this.#close(false);
+			});
+		}
+
+		#isOpen() {
+			return !this.#menu.hidden;
+		}
+
+		#open(index: number) {
+			this.#menu.hidden = false;
+			this.#toggle.setAttribute('aria-expanded', 'true');
+			this.#focusItem(index);
+		}
+
+		#close(returnFocus: boolean) {
+			this.#menu.hidden = true;
+			this.#toggle.setAttribute('aria-expanded', 'false');
+			if (returnFocus) this.#toggle.focus();
+		}
+
+		#focusItem(index: number) {
+			const n = this.#items.length;
+			this.#items[((index % n) + n) % n].focus();
+		}
+
+		#onMenuKey(e: KeyboardEvent) {
+			const current = this.#items.indexOf(document.activeElement as HTMLElement);
+			switch (e.key) {
+				case 'ArrowDown':
+					e.preventDefault();
+					this.#focusItem(current + 1);
+					break;
+				case 'ArrowUp':
+					e.preventDefault();
+					this.#focusItem(current - 1);
+					break;
+				case 'Home':
+					e.preventDefault();
+					this.#focusItem(0);
+					break;
+				case 'End':
+					e.preventDefault();
+					this.#focusItem(this.#items.length - 1);
+					break;
+				case 'Escape':
+					e.preventDefault();
+					this.#close(true);
+					break;
+				case 'Tab':
+					this.#close(false);
+					break;
+				case ' ':
+					if ((e.target as HTMLElement).tagName === 'A') {
+						e.preventDefault();
+						(e.target as HTMLElement).click();
+					}
+					break;
+			}
+		}
+
+		async #fetchMarkdown() {
+			if (this.#cache !== undefined) return this.#cache;
+			const res = await fetch(this.dataset.mdPath!);
+			if (!res.ok) throw new Error(`HTTP ${res.status}`);
+			this.#cache = await res.text();
+			return this.#cache;
+		}
+
+		async #copy() {
+			try {
+				if (typeof ClipboardItem !== 'undefined' && navigator.clipboard?.write) {
+					// Pass a promise so Safari keeps the user gesture while the fetch runs.
+					const blob = this.#fetchMarkdown().then((t) => new Blob([t], { type: 'text/plain' }));
+					await navigator.clipboard.write([new ClipboardItem({ 'text/plain': blob })]);
+				} else {
+					await navigator.clipboard.writeText(await this.#fetchMarkdown());
+				}
+				this.#setState('copied', 'Page copied as Markdown.');
+			} catch {
+				this.#setState('error', 'Copy failed. Use View as Markdown instead.');
+			}
+		}
+
+		#setState(state: 'idle' | 'copied' | 'error', message = '') {
+			this.#main.dataset.state = state;
+			this.#status.textContent = message;
+			clearTimeout(this.#timer);
+			if (state !== 'idle') this.#timer = setTimeout(() => this.#setState('idle'), 2000);
+		}
+	}
+	customElements.define('copy-page', CopyPage);
+</script>
+
+<style>
+	.copy-page {
+		position: relative;
+		display: block;
+		flex: none;
+		/* Centre the 2.25rem group on the first line of the h1 (margin-top 1rem). */
+		margin-top: calc(1rem + (var(--sl-text-h1) * var(--sl-line-height-headings) - 2.25rem) / 2);
+	}
+	.copy-page__group {
+		display: inline-flex;
+		height: 2.25rem;
+		border: 1px solid var(--sl-color-hairline-shade);
+		border-radius: 0.5rem;
+		background: var(--sl-color-bg);
+		overflow: hidden;
+	}
+	/* Zero-specificity reset so the rules below win. */
+	:where(.copy-page button) {
+		all: unset;
+		box-sizing: border-box;
+		cursor: pointer;
+	}
+	.copy-page__copy,
+	.copy-page__toggle {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		color: var(--sl-color-gray-2);
+		font-size: var(--sl-text-sm);
+		font-weight: 500;
+	}
+	.copy-page__copy {
+		padding-inline: 0.75rem;
+	}
+	.copy-page__toggle {
+		padding-inline: 0.625rem;
+		border-inline-start: 1px solid var(--sl-color-hairline-shade);
+	}
+	.copy-page__copy:hover,
+	.copy-page__toggle:hover,
+	.copy-page__toggle[aria-expanded='true'] {
+		background: var(--sl-color-gray-6);
+		color: var(--sl-color-white);
+	}
+	.copy-page__copy:focus-visible,
+	.copy-page__toggle:focus-visible,
+	.copy-page__menu [role='menuitem']:focus-visible {
+		outline: 2px solid var(--sl-color-text-accent);
+		outline-offset: -2px;
+	}
+	.copy-page__toggle svg {
+		transition: transform 0.15s ease;
+	}
+	.copy-page__toggle[aria-expanded='true'] svg {
+		transform: rotate(180deg);
+	}
+	/* All three labels share one grid cell, so the button never changes width. */
+	.copy-page__labels {
+		display: inline-grid;
+	}
+	.copy-page__labels > span {
+		grid-area: 1 / 1;
+		visibility: hidden;
+	}
+	[data-state='idle'] .is-idle,
+	[data-state='copied'] .is-copied,
+	[data-state='error'] .is-error {
+		visibility: visible;
+	}
+	.copy-page__menu {
+		position: absolute;
+		z-index: var(--sl-z-index-menu, 20);
+		inset-inline-end: 0;
+		top: calc(100% + 0.375rem);
+		width: min(18rem, calc(100vw - 2rem));
+		padding: 0.375rem;
+		border: 1px solid var(--sl-color-hairline-shade);
+		border-radius: 0.75rem;
+		background: var(--sl-color-bg);
+		box-shadow: var(--sl-shadow-md);
+	}
+	.copy-page__menu[hidden] {
+		display: none;
+	}
+	.copy-page__menu [role='menuitem'] {
+		display: flex;
+		align-items: flex-start;
+		gap: 0.75rem;
+		width: 100%;
+		padding: 0.5rem;
+		border-radius: 0.5rem;
+		color: var(--sl-color-white);
+		text-decoration: none;
+	}
+	.copy-page__menu [role='menuitem'] > svg {
+		flex: none;
+		margin-top: 0.125rem;
+		color: var(--sl-color-gray-3);
+	}
+	.copy-page__menu [role='menuitem']:hover,
+	.copy-page__menu [role='menuitem']:focus-visible {
+		background: var(--sl-color-gray-6);
+	}
+	.copy-page__item-title {
+		display: block;
+		font-size: var(--sl-text-sm);
+		font-weight: 500;
+		line-height: 1.3;
+	}
+	.copy-page__item-hint {
+		display: block;
+		font-size: var(--sl-text-xs);
+		line-height: 1.3;
+		color: var(--sl-color-gray-3);
+	}
+	@media (max-width: 49.999rem) {
+		.copy-page {
+			margin-top: 0;
+		}
+		.copy-page__menu {
+			inset-inline-end: auto;
+			inset-inline-start: 0;
+		}
+	}
+</style>

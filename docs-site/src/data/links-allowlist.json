@@ -1,0 +1,17 @@
+{
+  "$comment": "Non-citation external links allowed in content. Exact matches in urls; startsWith matches in prefixes. Citations go in evidence.json instead.",
+  "urls": [
+    "https://agentskills.io",
+    "https://agentskills.io/",
+    "https://agentskills.io/specification",
+    "https://github.com/yemi-kelani/agentspecs",
+    "https://www.rfc-editor.org/rfc/rfc2119"
+  ],
+  "reasons": {
+    "https://www.rfc-editor.org/rfc/rfc2119": "The Specification uses MUST/SHOULD/MAY as defined in RFC 2119; link it where the keywords are introduced (phase 6, for phase 3's open issue)."
+  },
+  "prefixes": [
+    "https://agentskills.io/",
+    "https://github.com/yemi-kelani/agentspecs/"
+  ]
+}
