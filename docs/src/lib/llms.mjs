@@ -5,14 +5,14 @@ import { pageToMarkdown } from './markdown.ts';
 import { mdPathFor } from './paths.mjs';
 import { sidebarPages } from '../sidebar.mjs';
 
-/** Top-level pages an agent can skip when context is short (the llms.txt "Optional" section). */
+/** Pages an agent can skip when context is short: the llms.txt "Optional" section, whatever their sidebar group. */
 export const OPTIONAL_PAGES = new Set(['comparison', 'evidence', 'faq', 'contribute']);
 const DOCS = 'Docs';
 const OPTIONAL = 'Optional';
 
 /**
- * Docs entries in sidebar order, each tagged with its llms.txt section: the sidebar group label,
- * "Docs" for top-level pages, or "Optional". Entries the sidebar does not list go last, as Optional.
+ * Docs entries in sidebar order, each tagged with its llms.txt section: "Optional" for OPTIONAL_PAGES,
+ * else the sidebar group label, or "Docs" for top-level pages. Entries the sidebar does not list go last, as Optional.
  * @param {Array<{ id: string }>} entries docs collection entries (404 excluded by the caller)
  */
 export function orderPages(entries) {
@@ -22,7 +22,7 @@ export function orderPages(entries) {
     const entry = byId.get(slug);
     if (!entry) continue;
     byId.delete(slug);
-    pages.push({ entry, section: group ?? (OPTIONAL_PAGES.has(slug) ? OPTIONAL : DOCS) });
+    pages.push({ entry, section: OPTIONAL_PAGES.has(slug) ? OPTIONAL : (group ?? DOCS) });
   }
   const rest = [...byId.values()].sort((a, b) => a.id.localeCompare(b.id));
   return [...pages, ...rest.map((entry) => ({ entry, section: OPTIONAL }))];

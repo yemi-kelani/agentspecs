@@ -1,18 +1,19 @@
 // Sidebar order, shared by astro.config.mjs (Starlight navigation) and the llms.txt /
 // llms-full.txt routes (page order). Every docs page is listed here exactly once.
 export const SIDEBAR = [
-	{ slug: 'index', label: 'Overview' },
-	'reference/specification',
-	'quickstart',
+	{
+		label: 'Start',
+		items: [{ slug: 'index', label: 'Overview' }, 'quickstart'],
+	},
 	{
 		label: 'Concepts',
 		items: [
 			'concepts/why-structure',
+			'concepts/sizing',
 			'concepts/index-and-leaves',
 			'concepts/handoff-contracts',
 			'concepts/living-state',
 			'concepts/verification-and-review',
-			'concepts/sizing',
 			'concepts/untrusted-sources',
 		],
 	},
@@ -31,12 +32,12 @@ export const SIDEBAR = [
 	},
 	{
 		label: 'Reference',
-		items: ['reference/templates', 'reference/checklist'],
+		items: ['reference/specification', 'reference/templates', 'reference/checklist'],
 	},
-	'comparison',
-	'evidence',
-	'faq',
-	'contribute',
+	{
+		label: 'Background',
+		items: ['comparison', 'evidence', 'faq', 'contribute'],
+	},
 ];
 
 /**
