@@ -1,17 +1,17 @@
 #!/usr/bin/env node
 // specs-ref command line. For demonstration; see README.md.
 import { existsSync, readFileSync } from 'node:fs';
-import { join, relative } from 'node:path';
-import { validateAgentsMd, validateSpecSet } from './conformance.mjs';
+import { join, relative, resolve } from 'node:path';
+import { validatePacket } from './conformance.mjs';
 import { resolveTargets } from './targets.mjs';
 
 const VERSION = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8')).version;
 const USAGE = `Usage:
-  specs-ref validate <path>...   Check against the Agent Specs Specification. A path is a spec set
-                                 (a folder with plan.md) or a repository root (its AGENTS.md and
-                                 every work/<task-id>/ under it).
-  specs-ref commands <spec-set>  Print the verify commands from plan.md and the phase files as JSON.
-                                 Nothing is run.
+  specs-ref validate <path>...   Check against the Agent Specs packet format. A path is a packet
+                                 (a folder with plan.md) or a repository root (every
+                                 packets/<task-id>/ under it).
+  specs-ref commands <packet>    Print the check commands from acceptance/README.md and the slice
+                                 briefs as JSON. Nothing is run.
   specs-ref --help | --version
 
 Exit codes: 0 conforms, 1 problems found, 2 usage error.`;
@@ -29,15 +29,15 @@ function validate(paths) {
   let problems = 0;
   for (const path of paths) {
     const targets = resolveTargets(path);
-    if (!targets) return usage(`${path}: no plan.md, AGENTS.md or work/ folder to check`);
-    if (!targets.length) console.log(`- ${show(path)}: no spec sets under work/`);
-    for (const t of targets) {
-      const errors = t.kind === 'agents' ? validateAgentsMd(readFileSync(t.path, 'utf8'), show(t.path)) : validateSpecSet(t.path).errors;
+    if (!targets) return usage(`${path}: no plan.md or packets/ folder to check`);
+    if (!targets.length) console.log(`- ${show(path)}: no packets under packets/`);
+    for (const dir of targets) {
+      const { errors } = validatePacket(dir);
       if (!errors.length) {
-        console.log(`✔ ${show(t.path)} conforms`);
+        console.log(`✔ ${show(dir)} conforms`);
         continue;
       }
-      console.log(`✖ ${show(t.path)}: ${errors.length} problem${errors.length === 1 ? '' : 's'}`);
+      console.log(`✖ ${show(dir)}: ${errors.length} problem${errors.length === 1 ? '' : 's'}`);
       for (const e of errors) console.log(`  - ${e}`);
       problems += errors.length;
     }
@@ -46,12 +46,9 @@ function validate(paths) {
 }
 
 function commands([dir, ...extra]) {
-  if (!dir || extra.length) return usage('commands needs exactly one spec set');
-  const targets = resolveTargets(dir);
-  if (!targets || targets.length !== 1 || targets[0].kind !== 'spec-set' || !existsSync(join(targets[0].path, 'plan.md'))) {
-    return usage(`${dir}: not a spec set (no plan.md)`);
-  }
-  console.log(JSON.stringify(validateSpecSet(targets[0].path).verify, null, 2));
+  if (!dir || extra.length) return usage('commands needs exactly one packet');
+  if (!existsSync(join(resolve(dir), 'plan.md'))) return usage(`${dir}: not a packet (no plan.md)`);
+  console.log(JSON.stringify(validatePacket(resolve(dir)).commands, null, 2));
   return 0;
 }
 

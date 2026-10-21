@@ -1,10 +1,9 @@
 {
-  "task": "<task-id>",
-  "spec": "agentspecs v0.1",
+  "packet": "<task-id>",
+  "format": "agentspecs packet v0.2",
   "updated": "<YYYY-MM-DDTHH:MMZ>",
-  "phases": [
-    { "id": 1, "file": "phases/phase-1-<slug>.md", "status": "pending", "verified": false, "handoff": null },
-    { "id": 2, "file": "phases/phase-2-<slug>.md", "status": "pending", "verified": false, "handoff": null },
-    { "id": 3, "file": "phases/phase-3-review.md", "status": "pending", "verified": false, "handoff": null }
+  "slices": [
+    { "id": "01", "brief": "slices/01-<name>.md", "status": "pending", "passes": false, "failures": 0, "handoff": null },
+    { "id": "02", "brief": "slices/02-<name>.md", "status": "pending", "passes": false, "failures": 0, "handoff": null }
   ]
 }

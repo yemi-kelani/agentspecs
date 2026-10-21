@@ -3,18 +3,19 @@
 //
 // Page convention (src/content/docs/quickstart.md), top-level fenced blocks in page order:
 //   ```bash                  commands; run with `bash -euo pipefail` in the project root
-//   ```<lang> title="<path>" full file contents; written to <path> (relative to the project root)
+//   ```<lang> title="<path>" full file contents; written to <path>, relative to the project root. A path
+//                            may climb one level (../<dir>/...) to stand for a folder beside the project,
+//                            such as the verifier's hold-out folder.
 //   ```bash manual           shown to the reader only; the runner copies examples/quickstart instead
 //   ```text agent            the prompt for your agent; the runner applies examples/quickstart-solution/ here
 // Other blocks are ignored. Each command block runs in its own shell with AGENTSPECS=file://<public dir>.
 //
-// Assertions: every file in public/templates/ is fetched by a `curl … "$AGENTSPECS/templates/<file>"
-// -o <path>` command and arrives unchanged; exactly one agent step; each fetched file, after the page
-// fills it in, still has its template's `##` sections in order; AGENTS.md conforms to the
-// Specification; each work/<task-id>/ spec set conforms (specs-ref, the reference validator: sections, state
-// schema, plan/state/phases agreement, valid DONE handoffs with Verify lines, timestamped progress),
-// plan.md is ≤80 lines, every phase ends "done", and every Global acceptance and Verify command exits 0.
-// Trust: page commands run like test code (full env) inside a temp copy of the example.
+// Assertions: every file in public/templates/ (subfolders included) is fetched by a
+// `curl … "$AGENTSPECS/templates/<file>" -o <path>` command and arrives unchanged; exactly one agent step;
+// each fetched file, after the page fills it in, still has its template's `##` sections in order; each
+// packets/<task-id>/ packet conforms (specs-ref, the reference validator: plan, slices, acceptance,
+// state and handoffs), every slice ends "done" with passes true, and every check command it names exits 0.
+// Trust: page commands run like test code (full env) inside a temp folder that holds the project.
 //
 // Options (tests use them): --page --example --solution --templates --serve <dir> --keep
 import { spawnSync } from 'node:child_process';
@@ -23,12 +24,10 @@ import { tmpdir } from 'node:os';
 import { dirname, isAbsolute, join, relative, resolve, sep } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { fencedBlocks, splitFrontmatter } from '../../src/lib/md-utils.mjs';
-import { validateAgentsMd, validateSpecSet } from '../../../specs-ref/src/index.mjs';
+import { validatePacket } from '../../../specs-ref/src/index.mjs';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
-const PLAN_MAX_LINES = 80;
 const FETCH = /curl\s[^\n]*?"\$\{?AGENTSPECS\}?\/templates\/([^"]+)"[^\n]*?\s-o\s+("[^"]+"|\S+)/g;
-const STATUS = /^Status: (DONE|PARTIAL|BLOCKED)\s*$/m;
 const h2s = (md) => [...md.matchAll(/^## (.+?)\s*$/gm)].map((m) => m[1]);
 
 class Failure extends Error {}
@@ -63,9 +62,11 @@ function classify(block) {
   return { kind: 'other' };
 }
 
+/** A page path resolved from the project root. It may reach the folder beside the project, no further. */
 function inside(project, rel, where) {
   const abs = resolve(project, rel);
-  if (isAbsolute(rel) || !(abs + sep).startsWith(project + sep)) fail(`${where}: path ${rel} leaves the project`);
+  const base = dirname(project);
+  if (isAbsolute(rel) || !(abs + sep).startsWith(base + sep)) fail(`${where}: path ${rel} leaves the project's folder`);
   return abs;
 }
 
@@ -80,27 +81,26 @@ function listFiles(dir, base = dir) {
   });
 }
 
-function checkSpecSet(project, dir, env, log) {
+function checkPacket(project, dir, env, log) {
   const name = relative(project, dir);
-  const plan = readFileSync(join(dir, 'plan.md'), 'utf8');
-  const planLines = plan.replace(/\n+$/, '').split('\n').length;
-  if (planLines > PLAN_MAX_LINES) fail(`${name}/plan.md has ${planLines} lines; the limit is ${PLAN_MAX_LINES}`);
-  const { errors, verify } = validateSpecSet(dir);
-  if (errors.length) fail(`${name} does not conform to the Specification:\n  - ${errors.join('\n  - ')}`);
+  const { errors, commands } = validatePacket(dir);
+  if (errors.length) fail(`${name} does not conform to the packet format:\n  - ${errors.join('\n  - ')}`);
   const state = JSON.parse(readFileSync(join(dir, 'state.json'), 'utf8'));
-  for (const p of state.phases) if (p.status !== 'done') fail(`${name}: phase ${p.id} status is "${p.status}", expected "done"`);
-  for (const { cmd, from } of verify) {
-    const r = sh(cmd, project, env);
-    if (r.status !== 0) fail(`verify command failed: ${cmd} (from ${from}, exit ${r.status})\n${r.stdout}${r.stderr}`);
-    log(`verify ok: ${cmd}  (${from})`);
+  for (const s of state.slices) {
+    if (s.status !== 'done' || s.passes !== true) fail(`${name}: slice ${s.id} is "${s.status}" with passes ${s.passes}, expected done and true`);
   }
-  log(`${name}: plan.md ${planLines} lines, ${state.phases.length} phase(s) done, ${verify.length} verify command(s) passed`);
+  for (const { cmd, from } of commands) {
+    const r = sh(cmd, project, env);
+    if (r.status !== 0) fail(`check command failed: ${cmd} (from ${from}, exit ${r.status})\n${r.stdout}${r.stderr}`);
+    log(`check ok: ${cmd}  (${from})`);
+  }
+  log(`${name}: ${state.slices.length} slice(s) done, ${commands.length} check command(s) passed`);
 }
 
 export function runQuickstart(opts, log = console.log) {
   const page = splitFrontmatter(readFileSync(opts.page, 'utf8'));
   const blocks = fencedBlocks(page.body).map((b) => ({ ...b, line: b.startLine + page.bodyStartLine - 1 }));
-  const canonical = readdirSync(opts.templates).filter((f) => statSync(join(opts.templates, f)).isFile());
+  const canonical = existsSync(opts.templates) ? listFiles(opts.templates).map((f) => f.split(sep).join('/')) : [];
   if (canonical.length === 0) fail(`no templates in ${opts.templates}`);
 
   const tmp = mkdtempSync(join(tmpdir(), 'agentspecs-quickstart-'));
@@ -161,17 +161,12 @@ export function runQuickstart(opts, log = console.log) {
     }
     log(`templates: ${fetchedTo.size} filled file(s) keep their template sections`);
 
-    const agents = join(project, 'AGENTS.md');
-    if (!existsSync(agents)) fail('AGENTS.md is missing at the project root');
-    const agentErrors = validateAgentsMd(readFileSync(agents, 'utf8'), 'AGENTS.md');
-    if (agentErrors.length) fail(agentErrors.join('\n'));
-
-    const workDir = join(project, 'work');
-    const sets = existsSync(workDir)
-      ? readdirSync(workDir).map((d) => join(workDir, d)).filter((d) => existsSync(join(d, 'state.json')))
+    const packetsDir = join(project, 'packets');
+    const packets = existsSync(packetsDir)
+      ? readdirSync(packetsDir).map((d) => join(packetsDir, d)).filter((d) => existsSync(join(d, 'state.json')))
       : [];
-    if (sets.length === 0) fail('no spec set found (expected work/<task-id>/state.json)');
-    for (const dir of sets) checkSpecSet(project, dir, env, log);
+    if (packets.length === 0) fail('no packet found (expected packets/<task-id>/state.json)');
+    for (const dir of packets) checkPacket(project, dir, env, log);
   } finally {
     if (opts.keep) log(`kept ${tmp}`);
     else rmSync(tmp, { recursive: true, force: true });

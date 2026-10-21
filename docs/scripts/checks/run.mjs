@@ -19,10 +19,10 @@ import copy from './copy.mjs';
 import quotes from './quotes.mjs';
 import stubs from './stubs.mjs';
 import length from './length.mjs';
-import specsets from './specsets.mjs';
+import packets from './packets.mjs';
 import generated from './generated.mjs';
 
-export const CHECKS = [frontmatter, labels, citations, links, templates, banned, copy, quotes, length, stubs, generated, specsets];
+export const CHECKS = [frontmatter, labels, citations, links, templates, banned, copy, quotes, length, stubs, generated, packets];
 
 const DEFAULT_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 

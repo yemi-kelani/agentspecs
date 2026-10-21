@@ -11,7 +11,7 @@ const RUN = fileURLToPath(new URL('../../scripts/checks/run.mjs', import.meta.ur
 test('registers all twelve checks in a fixed order', () => {
   assert.deepEqual(
     CHECKS.map((c) => c.name),
-    ['frontmatter', 'labels', 'citations', 'links', 'templates', 'banned', 'copy', 'quotes', 'length', 'stubs', 'generated', 'specsets'],
+    ['frontmatter', 'labels', 'citations', 'links', 'templates', 'banned', 'copy', 'quotes', 'length', 'stubs', 'generated', 'packets'],
   );
 });
 
