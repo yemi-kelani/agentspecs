@@ -56,3 +56,25 @@ test('fails clearly when evidence.json is missing', async () => {
   const r = await check('citations', root);
   assert.match(messages(r), /evidence\.json/);
 });
+
+test('ledger row links must name a verified row', async () => {
+  const rows = JSON.stringify({
+    sources: [],
+    claims: [
+      { id: 'c1', row: 'R1', status: 'verified' },
+      { id: 'c2', row: 'R2', status: 'dropped', drop_reason: 'duplicate of R1' },
+      { id: 'c3', status: 'verified' },
+    ],
+  });
+  const root = makeSite({
+    'src/data/evidence.json': rows,
+    'src/content/docs/a.md': page(
+      '[Evidence] ok ([R1](/evidence/ledger/#r1)).\n\n[Evidence] dropped ([R2](/evidence/ledger/#r2)).\n\n[Evidence] unknown ([R9](/evidence/ledger/#r9)).\n\n`/evidence/ledger/#r9` in code is ignored.',
+    ),
+  });
+  const r = await check('citations', root);
+  const text = messages(r);
+  assert.match(text, /a\.md:8 ledger row R2 is dropped, not verified \(duplicate of R1\)/);
+  assert.match(text, /a\.md:10 ledger row R9 is not in src\/data\/evidence\.json/);
+  assert.equal(r.errors.length, 2, text);
+});

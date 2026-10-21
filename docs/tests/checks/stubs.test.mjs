@@ -5,7 +5,7 @@ import { makeSite, page, check, messages } from './helpers.mjs';
 const files = {
   'src/content/docs/a.md': page('<!-- stub: phase 3 -->'),
   'src/content/docs/index.mdx': page('{/* <!-- stub: phase 7 --> */}'),
-  'src/content/docs/done.md': page('[Proposal] Real content mentions `<!-- stub: phase N -->` in code only.'),
+  'src/content/docs/done.md': page('[Judgment] Real content mentions `<!-- stub: phase N -->` in code only.'),
 };
 
 test('fails pages that still carry a stub marker', async () => {

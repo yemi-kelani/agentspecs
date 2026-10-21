@@ -19,8 +19,8 @@ test('passes when every template is embedded byte-for-byte (longer fence around 
   const root = makeSite({
     'public/templates/plan.md': PLAN,
     'public/templates/state.json': STATE,
-    'src/content/docs/reference/templates.md': page('[Proposal] x\n\n````md title="plan.md"\n' + PLAN + '````\n\n~~~json\n' + STATE + '~~~'),
-    'src/content/docs/quickstart.md': page('[Proposal] Copy `plan.md` and `state.json`.'),
+    'src/content/docs/reference/templates.md': page('[Judgment] x\n\n````md title="plan.md"\n' + PLAN + '````\n\n~~~json\n' + STATE + '~~~'),
+    'src/content/docs/quickstart.md': page('[Judgment] Copy `plan.md` and `state.json`.'),
   });
   const r = await check('templates', root);
   assert.deepEqual(r.errors, [], messages(r));
@@ -43,7 +43,7 @@ test('fails when quickstart does not name every template file', async () => {
   const root = makeSite({
     'public/templates/plan.md': PLAN,
     'public/templates/SKILL.md': '---\nname: x\n---\n',
-    'src/content/docs/quickstart.md': page('[Proposal] Copy plan.md only.'),
+    'src/content/docs/quickstart.md': page('[Judgment] Copy plan.md only.'),
   });
   const r = await check('templates', root);
   assert.match(messages(r), /quickstart\.md.*SKILL\.md/);
@@ -52,8 +52,8 @@ test('fails when quickstart does not name every template file', async () => {
 
 test('passes with a warning when public/templates is absent or empty', async () => {
   const root = makeSite({
-    'src/content/docs/reference/templates.md': page('[Proposal] No templates yet.'),
-    'src/content/docs/quickstart.md': page('[Proposal] Nothing to name.'),
+    'src/content/docs/reference/templates.md': page('[Judgment] No templates yet.'),
+    'src/content/docs/quickstart.md': page('[Judgment] Nothing to name.'),
   });
   const r = await check('templates', root);
   assert.deepEqual(r.errors, []);

@@ -42,7 +42,7 @@ test('ignores other casing, longer words, split multi-word terms and binary file
 });
 
 test('fails when the term list is missing, and names the setting', async () => {
-  const root = makeSite({ 'src/content/docs/a.md': page('[Proposal] Fine.') });
+  const root = makeSite({ 'src/content/docs/a.md': page('[Judgment] Fine.') });
   const r = await check('banned', root, { env: { AGENTSPECS_BANNED_TERMS: join(dirname(TERMS), 'nope.txt') } });
   assert.equal(r.errors.length, 1, messages(r));
   assert.match(messages(r), /AGENTSPECS_BANNED_TERMS/);
@@ -67,7 +67,7 @@ test('"off" skips the scan with a warning instead of an error', async () => {
 });
 
 test('in a git repository, scans every publishable file in the repo and skips ignored ones', async () => {
-  const root = makeSite({ 'src/content/docs/a.md': page('[Proposal] Fine.') });
+  const root = makeSite({ 'src/content/docs/a.md': page('[Judgment] Fine.') });
   const repo = dirname(root);
   const write = (rel, text) => {
     mkdirSync(dirname(join(repo, rel)), { recursive: true });

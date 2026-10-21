@@ -17,8 +17,8 @@ test('registers all twelve checks in a fixed order', () => {
 
 test('path arguments limit content checks to those paths', async () => {
   const root = makeSite({
-    'src/content/docs/good/a.md': page('[Proposal] Fine.'),
-    'src/content/docs/bad/b.md': page('No label and [established] near-miss.'),
+    'src/content/docs/good/a.md': page('[Judgment] Fine.'),
+    'src/content/docs/bad/b.md': page('No label and [evidence] near-miss.'),
   });
   const scoped = await runChecks({ root, paths: [join(root, 'src/content/docs/good')], allowStubs: true });
   assert.deepEqual(scoped.flatMap((r) => r.errors), []);
@@ -28,7 +28,7 @@ test('path arguments limit content checks to those paths', async () => {
 
 test('CLI exits 1 on errors, 0 when clean, and honours --allow-stubs and paths', () => {
   const root = makeSite({
-    'src/content/docs/good/a.md': page('[Proposal] Fine.'),
+    'src/content/docs/good/a.md': page('[Judgment] Fine.'),
     'src/content/docs/stub.md': page('<!-- stub: phase 3 -->'),
   });
   const fail = spawnSync(process.execPath, [RUN, '--root', root], { encoding: 'utf8' });

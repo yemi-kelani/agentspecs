@@ -1,10 +1,13 @@
 // citations: every external URL in content (outside code) is a verified source in
-// src/data/evidence.json or is listed in src/data/links-allowlist.json.
+// src/data/evidence.json or is listed in src/data/links-allowlist.json, and every ledger row link
+// (/evidence/ledger/#r<N>) names a claim in evidence.json whose `row` is R<N> and whose status is
+// verified. Dropped and unknown rows fail.
 // Matching is exact string equality after lowercasing the scheme (no trailing-slash or fragment
 // normalisation); protocol-relative (//host) and bare www. links never match a source, so they fail;
 // allowlist `prefixes` match by startsWith.
 import { result } from './lib.mjs';
 import { lineOf } from '../../src/lib/md-utils.mjs';
+import { ROW_LINK_RE, rowAnchor } from '../../src/lib/labels.mjs';
 
 export const EVIDENCE = 'src/data/evidence.json';
 export const ALLOWLIST = 'src/data/links-allowlist.json';
@@ -47,6 +50,8 @@ export default {
     const urls = new Set(al.value.urls ?? []);
     const prefixes = al.value.prefixes ?? [];
     const allowed = (u) => status.get(u) === 'verified' || urls.has(u) || prefixes.some((p) => u.startsWith(p));
+    const claims = Array.isArray(ev.value.claims) ? ev.value.claims : [];
+    const rows = new Map(claims.filter((c) => c.row).map((c) => [rowAnchor(c.row), c]));
 
     for (const p of ctx.pages) {
       for (const { url, index } of extractUrls(p.codeMasked)) {
@@ -56,6 +61,17 @@ export default {
           file: p.file,
           line: lineOf(p.codeMasked, index),
           message: `${url} is not a verified source in ${EVIDENCE} or listed in ${ALLOWLIST}${why}`,
+        });
+      }
+      for (const m of p.codeMasked.matchAll(new RegExp(ROW_LINK_RE.source, 'g'))) {
+        const row = rows.get(`r${m[1]}`);
+        if (row?.status === 'verified') continue;
+        r.errors.push({
+          file: p.file,
+          line: lineOf(p.codeMasked, m.index),
+          message: row
+            ? `ledger row R${m[1]} is ${row.status}, not verified${row.drop_reason ? ` (${row.drop_reason})` : ''}`
+            : `ledger row R${m[1]} is not in ${EVIDENCE}`,
         });
       }
     }
