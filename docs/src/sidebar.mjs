@@ -6,37 +6,31 @@ export const SIDEBAR = [
 		items: [{ slug: 'index', label: 'Overview' }, 'quickstart'],
 	},
 	{
-		label: 'Concepts',
-		items: [
-			'concepts/why-structure',
-			'concepts/sizing',
-			'concepts/index-and-leaves',
-			'concepts/handoff-contracts',
-			'concepts/living-state',
-			'concepts/verification-and-review',
-			'concepts/untrusted-sources',
-		],
+		label: 'The approach',
+		items: ['approach/how-it-works', 'approach/packet-anatomy'],
 	},
 	{
-		label: 'Guides',
+		label: 'Practices',
 		items: [
-			'guides/write-plan',
-			'guides/write-phase-file',
-			'guides/verify-and-accept',
-			'guides/run-phases-with-subagents',
+			'practices/standing-context',
+			'practices/planning',
+			'practices/breaking-work-down',
+			'practices/verification',
+			'practices/delegation',
+			'practices/trust-and-security',
 		],
-	},
-	{
-		label: 'Works with',
-		items: ['works-with/agents-md', 'works-with/agent-skills'],
 	},
 	{
 		label: 'Reference',
-		items: ['reference/specification', 'reference/templates', 'reference/checklist'],
+		items: ['reference/templates', 'reference/checklist', 'reference/glossary'],
 	},
 	{
-		label: 'Background',
-		items: ['comparison', 'evidence', 'faq', 'contribute'],
+		label: 'Evidence',
+		items: ['evidence/ledger', 'evidence/method', 'evidence/open-questions'],
+	},
+	{
+		label: 'About',
+		items: ['faq', 'credits', 'contribute'],
 	},
 ];
 

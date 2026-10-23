@@ -14,11 +14,16 @@ test('fails pages over the 120-line budget', async () => {
 test('passes pages within budget and exempt pages', async () => {
   const root = makeSite({
     'src/content/docs/short.md': page(lines(50)),
-    'src/content/docs/reference/specification.md': page(lines(300)),
     'src/content/docs/reference/templates.md': page(lines(300)),
-    'src/content/docs/evidence.md': page(lines(300)),
+    'src/content/docs/evidence/ledger.md': page(lines(300)),
     'src/content/docs/quickstart.md': page(lines(300)),
   });
   const r = await check('length', root);
   assert.deepEqual(r.errors, [], messages(r));
+});
+
+test('retired v0.1 pages are no longer exempt', async () => {
+  const root = makeSite({ 'src/content/docs/evidence.md': page(lines(130)) });
+  const r = await check('length', root);
+  assert.equal(r.errors.length, 1, messages(r));
 });

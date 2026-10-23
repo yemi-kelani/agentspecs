@@ -3,7 +3,7 @@
 import { result } from './lib.mjs';
 
 const MAX_LINES = 120;
-const EXEMPT = new Set(['reference/specification', 'reference/templates', 'evidence', 'evidence/ledger', 'quickstart']);
+const EXEMPT = new Set(['reference/templates', 'evidence/ledger', 'quickstart']);
 
 export default {
   name: 'length',

@@ -17,12 +17,29 @@ const OG_IMAGE = new URL('/og.png', SITE_URL).href;
 export default defineConfig({
 	site: SITE_URL,
 	trailingSlash: 'ignore',
-	// Old page URLs from before the 2026-10-10 navigation restructure (see DECISIONS.md).
+	// Old page URLs: before the 2026-10-10 navigation restructure, then before the v0.2 packet
+	// rebuild (see DECISIONS.md). Every retired slug lands on the page that now covers it.
 	redirects: {
-		'/specification': '/reference/specification/',
-		'/reference/size-budgets': '/reference/templates/#budgets',
-		'/guides/agents-md-router': '/works-with/agents-md/',
-		'/guides/skill-md-triggers': '/works-with/agent-skills/',
+		'/specification': '/approach/packet-anatomy/',
+		'/reference/size-budgets': '/practices/breaking-work-down/',
+		'/guides/agents-md-router': '/practices/standing-context/',
+		'/guides/skill-md-triggers': '/practices/standing-context/',
+		'/reference/specification': '/approach/packet-anatomy/',
+		'/concepts/why-structure': '/approach/how-it-works/',
+		'/concepts/sizing': '/practices/breaking-work-down/',
+		'/concepts/index-and-leaves': '/practices/standing-context/',
+		'/concepts/handoff-contracts': '/practices/breaking-work-down/',
+		'/concepts/living-state': '/practices/breaking-work-down/',
+		'/concepts/verification-and-review': '/practices/verification/',
+		'/concepts/untrusted-sources': '/practices/trust-and-security/',
+		'/guides/write-plan': '/practices/planning/',
+		'/guides/write-phase-file': '/practices/breaking-work-down/',
+		'/guides/verify-and-accept': '/practices/verification/',
+		'/guides/run-phases-with-subagents': '/practices/delegation/',
+		'/works-with/agents-md': '/practices/standing-context/',
+		'/works-with/agent-skills': '/practices/standing-context/',
+		'/comparison': '/faq/',
+		'/evidence': '/evidence/ledger/',
 	},
 	markdown: {
 		processor: unified({ remarkPlugins: [remarkLabels], rehypePlugins: [rehypeTaskListLabels] }),
@@ -37,7 +54,7 @@ export default defineConfig({
 				{ tag: 'meta', attrs: { property: 'og:image:height', content: '630' } },
 				{
 					tag: 'meta',
-					attrs: { property: 'og:image:alt', content: 'agentspecs: task specs that coding agents can follow phase by phase.' },
+					attrs: { property: 'og:image:alt', content: 'Agent Specs: a spec packet for coding agents, one verified slice at a time.' },
 				},
 				{ tag: 'meta', attrs: { name: 'twitter:image', content: OG_IMAGE } },
 				{ tag: 'link', attrs: { rel: 'alternate', type: 'text/plain', title: 'llms.txt', href: '/llms.txt' } },

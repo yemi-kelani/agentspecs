@@ -15,8 +15,8 @@ import { openPage, THEMES, WIDTHS } from './helpers.mjs';
 
 const PAGES = [
 	{ name: 'overview', path: '/', h1: 'Agent Specs overview' },
-	{ name: 'specification', path: '/reference/specification/', h1: 'Specification' },
-	{ name: 'sizing', path: '/concepts/sizing/', h1: 'Sizing: when to use what' },
+	{ name: 'packet-anatomy', path: '/approach/packet-anatomy/', h1: 'Packet anatomy' },
+	{ name: 'breaking-work-down', path: '/practices/breaking-work-down/', h1: 'Breaking work down and keeping state' },
 	{ name: 'not-found', path: '/404.html', h1: 'Page not found' },
 ];
 
@@ -26,7 +26,7 @@ const COMPONENTS = [
 	{ name: 'task-list', path: '/reference/checklist/', locator: '.sl-markdown-content .contains-task-list' },
 	{ name: 'steps', path: '/', locator: '.sl-markdown-content .sl-steps' },
 	{ name: 'link-cards', path: '/', locator: '.sl-markdown-content .card-grid' },
-	{ name: 'table', path: '/concepts/sizing/', locator: '.sl-markdown-content table' },
+	{ name: 'table', path: '/evidence/ledger/', locator: '.sl-markdown-content table' },
 ];
 
 const EDGE_WIDTHS = [WIDTHS[0], WIDTHS.at(-1)];
@@ -55,10 +55,10 @@ for (const theme of THEMES) {
 	}
 
 	test(`menu-open 375 ${theme}`, async ({ page }) => {
-		await openPage(page, '/concepts/sizing/', { width: 375, theme });
+		await openPage(page, '/practices/breaking-work-down/', { width: 375, theme });
 		await page.locator('button[popovertarget="starlight__sidebar"]').click();
 		await expect(page.locator('#starlight__sidebar')).toBeVisible();
-		await expect(page.locator('#starlight__sidebar a[aria-current="page"]')).toHaveText('Sizing: when to use what');
+		await expect(page.locator('#starlight__sidebar a[aria-current="page"]')).toHaveText('Breaking work down and keeping state');
 		await expect(page).toHaveScreenshot(`menu-open_375_${theme}.png`);
 	});
 
