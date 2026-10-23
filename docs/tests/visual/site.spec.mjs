@@ -26,7 +26,7 @@ const COMPONENTS = [
 	{ name: 'task-list', path: '/reference/checklist/', locator: '.sl-markdown-content .contains-task-list' },
 	{ name: 'steps', path: '/', locator: '.sl-markdown-content .sl-steps' },
 	{ name: 'link-cards', path: '/', locator: '.sl-markdown-content .card-grid' },
-	{ name: 'table', path: '/evidence/ledger/', locator: '.sl-markdown-content table' },
+	{ name: 'table', path: '/reference/glossary/', locator: '.sl-markdown-content table' },
 ];
 
 const EDGE_WIDTHS = [WIDTHS[0], WIDTHS.at(-1)];

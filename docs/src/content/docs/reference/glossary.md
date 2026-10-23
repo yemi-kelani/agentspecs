@@ -22,3 +22,15 @@ description: The terms this site uses for the spec packet, its files and its rol
 - **Handoff.** `handoffs/NN.md`: the verified record of one slice, with what changed, dead ends, superseded facts and raw check results.
 - **Superseded fact.** A line in plan.md or a handoff that is no longer true. The orchestrator retires it rather than appending a correction.
 - **Ledger row.** One verified claim in [the Ledger](/evidence/ledger/), cited as R1, R1a and so on.
+
+## Who writes what
+
+[Judgment] The packet's split of write access between roles:
+
+| File | Person | Orchestrator | Implementer | Verifier |
+|------|--------|--------------|-------------|----------|
+| plan.md | writes, confirms assumptions | retires superseded facts | reads | reads |
+| acceptance/ | writes or reviews | reads | runs; no edits | runs, keeps hold-outs |
+| slices/NN-name.md | reviews | injects | reads | reads |
+| state.json | — | updates status | read only | sets passes |
+| handoffs/NN.md | reads | reads | Changed, Dead ends, Superseded facts | Check results, Verification |
