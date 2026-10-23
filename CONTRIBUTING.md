@@ -43,8 +43,9 @@ The banned-term check reads a list that only maintainers hold. If you don't have
 
 The page rules follow. The Contribute page and [docs/AGENTS.md](docs/AGENTS.md) give the details.
 
-- Start every non-trivial claim with one label: `[Evidence]`, `[Proposal]` or `[Judgment]`.
-- `[Evidence]` and `[Proposal]` link a ledger row; any recommendation links a row or is labelled `[Judgment]`.
+- Start a claim that reports evidence with `[Evidence]` and link its ledger row; it is the only label readers see.
+- In the source, start what the packet does with `[Proposal]` (it also links a row) and a design choice with `[Judgment]`. The site hides both, but the check reads them: any recommendation links a row or carries one of them.
+- Do not put strength grades (strong, moderate, weak, anecdotal) on pages; they stay in `evidence.json`.
 - Paraphrase; content pages hold no quotes of 15 words or more.
 - Write original text, and use made-up examples, never real company or project names.
 

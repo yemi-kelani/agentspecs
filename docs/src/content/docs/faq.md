@@ -5,7 +5,7 @@ description: Short answers to common questions about the Agent Specs packet.
 
 ## Is it better than other spec formats, or than no spec?
 
-Untested. [Judgment] Nobody has compared this packet, or any packaged format, head to head on medium or hard multi-session work. [Open questions](/evidence/open-questions/#replication-protocol-for-the-head-to-head) gives a protocol for that comparison. Some parts rest on strong rows and others on anecdotes; each practice page grades them.
+Untested. [Judgment] Nobody has compared this packet, or any packaged format, head to head on medium or hard multi-session work. [Open questions](/evidence/open-questions/#replication-protocol-for-the-head-to-head) gives a protocol for that comparison. Some parts rest on peer-reviewed studies and others on practitioner reports; each row says which.
 
 ## Is Agent Specs an official standard?
 

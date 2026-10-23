@@ -1,32 +1,15 @@
 ---
 title: Method
-description: How rows are selected, checked and graded, and what the three claim labels mean.
+description: How the rows in the ledger are selected and checked, and what the Evidence label means.
 ---
 
-[Judgment] This page explains how the [Ledger](/evidence/ledger/) is built and what the labels on every page mean.
+[Judgment] This page explains how the [Ledger](/evidence/ledger/) is built and what the one label on this site means.
 
 ## Labels
 
-Every non-trivial claim on this site starts with one label. A label covers the text up to the next label or the end of its paragraph, list item or table cell.
+[Evidence] marks a claim that reports what one or more ledger rows found, such as [R1](/evidence/ledger/#r1). It always links the rows, and each row carries its caveat, so read the claim together with the row.
 
-- **`[Evidence]`** What one or more ledger rows report, read with their strength and caveat. It must link at least one row, such as [R1](/evidence/ledger/#r1).
-- **`[Proposal]`** What the packet does, when it follows directly from the linked rows. It must link at least one row.
-- **`[Judgment]`** A design choice the evidence does not settle: file names, slice size, reminder frequency, the reviewer checklist, the handoff schema and any sizing guidance. It needs no row.
-
-[Judgment] A site check enforces this: any sentence that recommends something must link a ledger row or sit under a `[Judgment]` label.
-
-## Strength
-
-- **strong:** a peer-reviewed controlled study with adequate sample size and ground-truth scoring, or an independent replication. A tool's own documentation counts as strong, but only for how that tool behaves.
-- **moderate:** a controlled study with a disclosed method and sample size, including preprints and workshop papers.
-- **weak:** partial disclosure, a small sample or one model, an LLM judge, a post-hoc analysis, or a row checked only at abstract level.
-- **anecdotal:** a practitioner report, vendor advice or a design description without an evaluation, or a qualitative demonstration.
-
-## Kinds
-
-- **finding:** something measured.
-- **practice:** advice, or a design someone reports using.
-- **documentation:** how a tool or format behaves, from its own documentation.
+[Judgment] Text without the label is either a description of what the packet does, written from the rows it links, or a design choice the evidence does not settle. A site check keeps this honest: any sentence that recommends something must link a ledger row or be recorded in the page source as a design choice.
 
 ## Selection
 
@@ -38,7 +21,7 @@ Every non-trivial claim on this site starts with one label. A label covers the t
 
 - the date of the check;
 - a quote of fewer than 15 words copied from the source, or a locator such as a section, table or figure;
-- a caveat that says what the row does not show.
+- a caveat that says what the row does not show, including sample size, setting and whether the work is peer reviewed.
 
 [Judgment] Figures read from charts are marked in the source notes. Where a paper's text and its own figure disagree, the row says so and cites the figure. A row the source did not support is dropped with its reason, never deleted, and no page may cite a dropped row.
 

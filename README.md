@@ -13,7 +13,7 @@ packets/<task-id>/
 └── handoffs/NN.md     what changed, raw check results, dead ends, superseded facts
 ```
 
-Every claim on the site links a graded row in the evidence ledger or is labelled a judgment call. The packet as a whole has not been tested head to head; the site's Open questions page describes that experiment. Read it at [agentspecs.io](https://agentspecs.io), and start with the [Quickstart](https://agentspecs.io/quickstart/).
+Every claim on the site that reports evidence links a row in the evidence ledger, where each row carries its source, a short quote or locator, and a caveat. The packet as a whole has not been tested head to head; the site's Open questions page describes that experiment. Read it at [agentspecs.io](https://agentspecs.io), and start with the [Quickstart](https://agentspecs.io/quickstart/).
 
 ## Repository
 

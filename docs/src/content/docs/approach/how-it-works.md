@@ -45,4 +45,4 @@ description: One task through the packet, from a clarified goal to verified slic
 
 [Proposal] Each slice brief gives runnable commands and a test map, not an instruction to "do TDD". A TDD prompt alone increased regressions in one study, while a map of the tests each change affects reduced them ([R17](/evidence/ledger/#r17)).
 
-[Judgment] [Packet anatomy](/approach/packet-anatomy/) gives the exact sections and rules for each file; the [practice pages](/practices/standing-context/) grade the evidence behind each step.
+[Judgment] [Packet anatomy](/approach/packet-anatomy/) gives the exact sections and rules for each file; the [practice pages](/practices/standing-context/) set out the evidence behind each step.

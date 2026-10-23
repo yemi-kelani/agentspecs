@@ -103,13 +103,14 @@ test('row order is numeric, then by suffix', () => {
   assert.deepEqual(ids, ['R1', 'R1a', 'R1b', 'R2', 'R10']);
 });
 
-test('each row renders an anchor, strength, kind, claim, linked sources, verified date, quote or locator, caveat and id', () => {
+test('each row renders an anchor, claim, linked sources, verified date, quote or locator, caveat and id', () => {
   const out = renderGenerated(EVIDENCE);
   assert.match(
     out,
-    /^- <span id="r2"><\/span>\*\*R2\*\* · moderate · finding · Accuracy fell as input grew\. Sources: \[A study \\\| with a pipe\]\(https:\/\/example\.org\/study\) \(example\.org\); \[Vendor docs\]\(https:\/\/example\.com\/docs\) \(example\.com\)\. Verified 2026-10-09\. Quote: “performance grows less reliable” \(Section 3\)\. Caveat: Synthetic tasks\. `b-rot`$/m,
+    /^- <span id="r2"><\/span>\*\*R2\*\* · Accuracy fell as input grew\. Sources: \[A study \\\| with a pipe\]\(https:\/\/example\.org\/study\) \(example\.org\); \[Vendor docs\]\(https:\/\/example\.com\/docs\) \(example\.com\)\. Verified 2026-10-09\. Quote: “performance grows less reliable” \(Section 3\)\. Caveat: Synthetic tasks\. `b-rot`$/m,
   );
-  assert.match(out, /\*\*R2a\*\* · weak · finding · .* Locator: Table 2\. Caveat: Same study\. `b-rot-2`$/m);
+  assert.match(out, /\*\*R2a\*\* · A second finding .* Locator: Table 2\. Caveat: Same study\. `b-rot-2`$/m);
+  assert.doesNotMatch(out, /· (strong|moderate|weak|anecdotal|finding|practice|documentation) ·/, 'strength and kind are not rendered');
 });
 
 test('rows are grouped by section in a fixed order and sorted by row within it', () => {

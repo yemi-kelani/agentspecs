@@ -1,4 +1,6 @@
-// labels: only the exact tokens [Evidence] [Proposal] [Judgment]. Near-misses, misspellings within
+// labels: only the exact tokens [Evidence] [Proposal] [Judgment]. Only [Evidence] is shown to readers;
+// [Proposal] and [Judgment] are source-only markers that the renderer and exports strip, but this check
+// still reads them, so a recommendation needs a row link or a marker. Near-misses, misspellings within
 // edit distance 2 and the retired v0.1 tokens ([Established], [Heuristic]) fail, and every non-stub
 // page except contribute has at least one token. Code (fenced and inline) is ignored. Also flags
 // tokens Markdown would turn into links.

@@ -7,10 +7,19 @@ test('md page: title, description quote, body with frontmatter removed', () => {
   const out = pageToMarkdown({
     title: 'Specification',
     description: 'The format.',
-    body: '---\ntitle: Specification\n---\n\n## Scope\n\n[Proposal] One file.\n',
+    body: '---\ntitle: Specification\n---\n\n## Scope\n\n[Evidence] One file ([R1](/evidence/ledger/#r1)).\n',
     format: 'md',
   });
-  assert.equal(out, '# Specification\n\n> The format.\n\n## Scope\n\n[Proposal] One file.\n');
+  assert.equal(out, '# Specification\n\n> The format.\n\n## Scope\n\n[Evidence] One file ([R1](/evidence/ledger/#r1)).\n');
+});
+
+test('drops the source-only markers [Proposal] and [Judgment], keeping them in code', () => {
+  const out = pageToMarkdown({
+    title: 'T',
+    body: '[Judgment] Keep it short.\n\n- [Proposal] One file.\n\nWrite `[Judgment]` in source.\n\n```md\n[Proposal] in code\n```\n',
+    format: 'md',
+  });
+  assert.equal(out, '# T\n\nKeep it short.\n\n- One file.\n\nWrite `[Judgment]` in source.\n\n```md\n[Proposal] in code\n```\n');
 });
 
 test('md page without description omits the quote line', () => {

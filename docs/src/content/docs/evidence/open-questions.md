@@ -15,7 +15,7 @@ description: What no study has tested about the packet, and a protocol for the h
 - [Judgment] **Structured acceptance wording.** Whether EARS or Given-When-Then criteria beat free-form checks.
 - [Judgment] **Plan granularity.** How results change with slice size, against the coarse plan in [R9](/evidence/ledger/#r9).
 - [Judgment] **Reminder frequency.** How often to re-inject the plan; [R9a](/evidence/ledger/#r9a) tested one interval and one model collapsed under it.
-- [Judgment] **Separate verifier on possible tasks.** The strong verification rows come from impossible-task stress tests ([R18](/evidence/ledger/#r18)).
+- [Judgment] **Separate verifier on possible tasks.** The verification rows from controlled studies come from impossible-task stress tests ([R18](/evidence/ledger/#r18)).
 - [Judgment] **Generalising the nulls.** Whether the context-file and file-size nulls ([R1](/evidence/ledger/#r1), [R3](/evidence/ledger/#r3)) hold for other languages, longer files and task specs.
 - [Judgment] **Human review cost.** How long writing acceptance checks first and reviewing the plan take, against the time they save.
 - [Judgment] **Handoff value.** Whether a handoff is worth its token cost, and how often handoffs and plans go stale in real use.

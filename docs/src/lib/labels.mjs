@@ -1,10 +1,18 @@
-// Claim label tokens. Single source for the remark plugin, the labels check and the Method page.
+// Claim label tokens. Single source for the remark plugin, the Markdown export and the labels check.
 // Evidence and Proposal claims link a ledger row (/evidence/ledger/#r<N>); Judgment claims need none.
+// Only Evidence is shown to readers. Proposal and Judgment are source-only markers: the labels check
+// reads them, and the renderer and the Markdown export strip them (see HIDDEN_LABEL_RE).
 export const LABELS = [
-  { kind: 'evidence', name: 'Evidence', definition: 'What a ledger row reports, with its strength.' },
-  { kind: 'proposal', name: 'Proposal', definition: 'What the packet does, following from the linked rows.' },
-  { kind: 'judgment', name: 'Judgment', definition: 'A design choice the evidence does not settle.' },
+  { kind: 'evidence', name: 'Evidence', definition: 'What the linked ledger rows report.', visible: true },
+  { kind: 'proposal', name: 'Proposal', definition: 'What the packet does, following from the linked rows.', visible: false },
+  { kind: 'judgment', name: 'Judgment', definition: 'A design choice the evidence does not settle.', visible: false },
 ];
+
+/** Labels shown as badges on the site. */
+export const VISIBLE_LABELS = LABELS.filter((l) => l.visible);
+
+/** A hidden marker plus the spaces after it, e.g. "[Judgment] ". Global: use with replace or matchAll. */
+export const HIDDEN_LABEL_RE = new RegExp(`\\[(${LABELS.filter((l) => !l.visible).map((l) => l.name).join('|')})\\][ \\t]*`, 'g');
 
 export const LABEL_HREF = '/evidence/method/#labels';
 

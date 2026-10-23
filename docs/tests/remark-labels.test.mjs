@@ -22,20 +22,18 @@ async function md(source) {
 const badge = (kind, name, def) =>
   `<a class="label-link" href="/evidence/method/#labels" title="${name}: ${def}"><span class="label label--${kind}">${name}</span></a>`;
 
-test('renders a label at the start of a paragraph as a linked badge', async () => {
+test('renders [Evidence] at the start of a paragraph as a linked badge', async () => {
   const html = await md('[Evidence] Agents read files.');
-  assert.equal(
-    html,
-    `<p>${badge('evidence', 'Evidence', 'What a ledger row reports, with its strength.')} Agents read files.</p>`,
-  );
+  assert.equal(html, `<p>${badge('evidence', 'Evidence', 'What the linked ledger rows report.')} Agents read files.</p>`);
 });
 
-test('renders all three kinds with their own class', async () => {
+test('drops the source-only markers [Proposal] and [Judgment] with the space after them', async () => {
   const html = await md('[Evidence] a. [Proposal] b. [Judgment] c.');
-  for (const kind of ['evidence', 'proposal', 'judgment']) {
-    assert.match(html, new RegExp(`class="label label--${kind}"`));
-  }
-  assert.doesNotMatch(html, /\[(Evidence|Proposal|Judgment)\]/);
+  assert.match(html, /class="label label--evidence"/);
+  assert.doesNotMatch(html, /label--(proposal|judgment)/);
+  assert.doesNotMatch(html, /Proposal|Judgment/);
+  assert.match(html, /<\/a> a\. b\. c\.<\/p>/);
+  assert.equal(await md('[Judgment] Keep it short.'), '<p>Keep it short.</p>');
 });
 
 test('leaves retired v0.1 tokens as plain text', async () => {
@@ -43,10 +41,11 @@ test('leaves retired v0.1 tokens as plain text', async () => {
   assert.doesNotMatch(html, /class="label/);
 });
 
-test('renders labels in list items and table cells', async () => {
-  const html = await md('- [Judgment] Keep it short.\n\n| Claim | Note |\n| --- | --- |\n| [Proposal] One file. | x |\n');
-  assert.match(html, /<li><a class="label-link"[^>]*><span class="label label--judgment">Judgment<\/span><\/a> Keep it short\.<\/li>/);
-  assert.match(html, /<td><a class="label-link"[^>]*><span class="label label--proposal">Proposal<\/span><\/a> One file\.<\/td>/);
+test('renders [Evidence] and drops hidden markers in list items and table cells', async () => {
+  const html = await md('- [Judgment] Keep it short.\n- [Evidence] A study.\n\n| Claim | Note |\n| --- | --- |\n| [Proposal] One file. | x |\n');
+  assert.match(html, /<li>Keep it short\.<\/li>/);
+  assert.match(html, /<li><a class="label-link"[^>]*><span class="label label--evidence">Evidence<\/span><\/a> A study\.<\/li>/);
+  assert.match(html, /<td>One file\.<\/td>/);
 });
 
 test('renders labels inside emphasis', async () => {
@@ -74,7 +73,8 @@ test('does not nest a link inside link text', async () => {
 });
 
 test('works in MDX', async () => {
-  const out = String(await compile('[Judgment] Rule of thumb.', { remarkPlugins: [remarkLabels] }));
-  assert.match(out, /"label label--judgment"/);
+  const out = String(await compile('[Evidence] A study. [Judgment] Rule of thumb.', { remarkPlugins: [remarkLabels] }));
+  assert.match(out, /"label label--evidence"/);
   assert.match(out, /"\/evidence\/method\/#labels"/);
+  assert.doesNotMatch(out, /Judgment/);
 });

@@ -17,6 +17,7 @@ Repository-wide rules are in [../AGENTS.md](../AGENTS.md); this file adds what o
 
 ## Rules that differ from defaults
 - Label tokens, exact and case-sensitive: `[Evidence]` `[Proposal]` `[Judgment]`. Put one at the start of each non-trivial claim. Keep a space after it: `[Evidence](url)` becomes a link and fails. `[Established]` and `[Heuristic]` are retired and fail.
+- Only `[Evidence]` is shown to readers (as a badge). `[Proposal]` and `[Judgment]` are source-only markers: the labels check reads them, and the renderer and the Markdown/llms exports strip them. Never write a strength word (strong, moderate, weak, anecdotal) or a kind (finding, practice, documentation) on a page; those live in evidence.json only.
 - `[Evidence]` and `[Proposal]` must link a ledger row, `/evidence/ledger/#r<N>` (suffix rows such as `#r1a` work). Any sentence that recommends something (a modal such as should, must, never, or an imperative opener outside the Quickstart) must link a row or sit under `[Judgment]`. The row must exist in evidence.json with status verified.
 - Every non-stub page except contribute.md needs at least one label.
 - Citations: an external link in content must equal a `sources[].url` with `"status": "verified"` in `src/data/evidence.json`, or be listed in `src/data/links-allowlist.json`. Exact string match.
@@ -28,7 +29,7 @@ Repository-wide rules are in [../AGENTS.md](../AGENTS.md); this file adds what o
 - Frontmatter: `title` ≤60 chars; `description` exactly one sentence ending with a period. Optional `sidebar`, `numbered: true`.
 - Internal links: absolute paths with trailing slash, e.g. `/practices/planning/`. A retired slug needs a redirect in astro.config.mjs.
 - Prefer `.md`. Use `.mdx` only for components (Card, CardGrid, LinkCard, Tabs, Steps, FileTree). Callouts: `:::note`, `:::tip`, `:::caution`, `:::danger`.
-- Add a page by listing it in `src/sidebar.mjs`; every practice page keeps the sections Question, What the evidence shows, What the packet does, Borrowed from, Judgment calls, Untested.
+- Add a page by listing it in `src/sidebar.mjs`; every practice page keeps the sections Question, What the evidence shows, What the packet does, Borrowed from, Design choices, Untested.
 - The look follows the agentskills.io docs (measured values in `src/styles/theme.css`, geometry in `tests/visual/geometry.spec.mjs`). A change to the chrome or content styles must turn a picture in `tests/visual/__screenshots__/` red; re-cut with `npx playwright test tests/visual/site.spec.mjs --update-snapshots` only after looking at the new images, and copy them to `tests/visual/screens/<pass>/` (pre-change images in `tests/visual/screens/<pass>/before/`, names `<subject>[_<state>]_<width>_<theme>.png`).
 
 ## Where things live

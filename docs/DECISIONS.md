@@ -97,3 +97,8 @@
 - Why: the owner's evidence review, re-verified against primary sources on 2026-10-22, supports parts of the v0.1 design and not others. Rules no row supported were cut or relabelled `[Judgment]`. Anthropic's harness has the coding agent set `passes` itself, so the verifier-only rule is credited as this project's change.
 - Cost: old template URLs (`/templates/phase.md` and the rest) now 404; the old `/<slug>.md` exports are not redirected, as before.
 
+## 2026-10-22 — Only the Evidence label is public
+- Choice: readers see one label, `[Evidence]`. `[Proposal]` and `[Judgment]` stay in page sources as markers; `remark-labels` and the Markdown export (and so llms.txt and llms-full.txt) strip them with the space after them, and labels.css has no colours for them. Strength (strong, moderate, weak, anecdotal) and kind (finding, practice, documentation) stay in evidence.json and are validated by gen-evidence, but the Ledger, Method and practice pages no longer show them; each row's caveat carries the limits instead.
+- Why: owner request; the three badges and the strength tags read as noise. Keeping the markers in the source keeps the labels check able to require a ledger row, or a recorded design choice, for every recommendation.
+- Follow-up (2026-10-23): the practice-page heading "Judgment calls" became "Design choices", and the Contribute page no longer names the hidden markers; docs/AGENTS.md and CONTRIBUTING.md document them for contributors. The built site, its Markdown exports and llms.txt contain neither marker.
+
