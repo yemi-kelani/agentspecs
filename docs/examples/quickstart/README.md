@@ -17,4 +17,4 @@ Needs Node 22 or later. There is nothing to install.
 
 ## Why it exists
 
-This is the starting point for the [Agent Specs Quickstart](https://agentspecs.io/quickstart/). It holds no spec files yet: you add `AGENTS.md` and a `work/` spec set while following the Quickstart.
+This is the starting point for the [Agent Specs Quickstart](https://agentspecs.io/quickstart/). It holds no packet yet: you add `packets/add-max-length/` (plan, acceptance check, slice brief, state and handoff) while following the Quickstart, and keep a hold-out check beside the project in `../max-length-holdout/`.
