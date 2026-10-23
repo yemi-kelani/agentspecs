@@ -4,23 +4,27 @@ The full guide is the [Contribute](https://agentspecs.io/contribute/) page. This
 
 ## Feedback
 
-- **Problems:** open an [issue](https://github.com/yemi-kelani/agentspecs/issues). Examples include a broken link, a wrong citation, a template that disagrees with the Specification, or a rule that reads two ways.
-- **Questions and ideas:** start a thread in [Discussions](https://github.com/yemi-kelani/agentspecs/discussions). Reports from real use help most: what the task was, which agent ran it, and where the phase files helped or got in the way.
+- **Problems:** open an [issue](https://github.com/yemi-kelani/agentspecs/issues). Examples include a broken link, a wrong citation or ledger row, a template that disagrees with Packet anatomy, or a rule that reads two ways.
+- **Questions and ideas:** start a thread in [Discussions](https://github.com/yemi-kelani/agentspecs/discussions). Reports from real use help most: what the task was, which agent ran it, and where the slices, checks or handoffs helped or got in the way.
 
 ## Changing the format
 
-A change to a MUST, SHOULD or MAY rule, or to a file format, goes through three steps:
+A change to a rule or a file format goes through three steps:
 
 1. An issue that describes one problem.
-2. A discussion that compares the options and links the evidence.
+2. A discussion that compares the options and links the ledger rows that bear on it.
 3. One pull request that updates all of these together:
-   - the Specification (`docs/src/content/docs/reference/specification.md`)
+   - Packet anatomy (`docs/src/content/docs/approach/packet-anatomy.md`), the authority for the format
    - every affected template in `docs/public/templates/`
    - the Templates page and the Quickstart
    - the changelog under Changes in this version
    - `specs-ref/`, when a script can check the rule
 
 Fixes that leave the format alone can go straight to a pull request. Typos, broken links and clearer wording are examples.
+
+## Changing the evidence
+
+Add or correct a row in `docs/src/data/evidence.json`: the claim, its kind and strength, the primary source (never a secondary write-up), a quote of fewer than 15 words or a locator, a caveat and the date you checked it. Then run `node scripts/gen-evidence.mjs` from `docs/` to regenerate the Ledger page. A row the source does not support is dropped with its reason, not deleted.
 
 ## Writing for the site
 
@@ -39,11 +43,11 @@ The banned-term check reads a list that only maintainers hold. If you don't have
 
 The page rules follow. The Contribute page and [docs/AGENTS.md](docs/AGENTS.md) give the details.
 
-- Start every non-trivial claim with one label: `[Established]`, `[Evidence]`, `[Heuristic]` or `[Proposal]`.
-- Cite only sources marked verified in `docs/src/data/evidence.json`.
+- Start every non-trivial claim with one label: `[Evidence]`, `[Proposal]` or `[Judgment]`.
+- `[Evidence]` and `[Proposal]` link a ledger row; any recommendation links a row or is labelled `[Judgment]`.
 - Paraphrase; content pages hold no quotes of 15 words or more.
 - Write original text, and use made-up examples, never real company or project names.
 
 ## License
 
-The specification, templates and site are licensed under the [Apache License 2.0](LICENSE). By contributing, you agree that your contributions are licensed under the same terms.
+The format, templates and site are licensed under the [Apache License 2.0](LICENSE). By contributing, you agree that your contributions are licensed under the same terms.

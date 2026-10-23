@@ -1,28 +1,26 @@
 # Roadmap
 
-Agent Specs is at v0.1 (draft). This file lists what v0.1 leaves out on purpose and the questions no source has tested yet. It is a repository file, not a site page.
+Agent Specs is at v0.2 (draft). This file lists what v0.2 leaves out on purpose and the questions no study has tested yet. It is a repository file, not a site page; keep the untested list in step with the site's [Open questions](https://agentspecs.io/evidence/open-questions/) page.
 
-## Out of scope for v0.1
+## Out of scope for v0.2
 
-- **Published validator.** `specs-ref/` is a reference validator for the structural rules, run from a clone. A published package, and checks that run verify commands or compare source hashes, are not in v0.1; those checks stay manual (Reference > Checklist).
-- **GitHub Action.** Runs `specs-ref` on pull requests that touch `work/`, so a broken spec set fails review instead of a later phase.
-- **Registry.** A shared index of reusable phase files, skills and example spec sets, with versions. Needs the validator first.
-- **Translations.** The site is English only. Starlight supports localized pages; translation waits until the format stops changing.
+- **Published validator.** `specs-ref/` checks packet structure from a clone. A published package, and a mode that runs the check commands, would come later.
+- **GitHub Action.** Runs `specs-ref` on pull requests that touch `packets/`, so a broken packet fails review instead of a later slice.
+- **Orchestrator.** A script that injects plan.md and the slice brief, starts sessions, re-injects on a schedule and keeps state.json. v0.2 leaves orchestration to the reader.
+- **Example packets.** Worked packets with several slices, a dispute and a replan, beyond the one-slice Quickstart.
 
-## Open questions (untested)
+## Untested
 
-This section holds every item on the Evidence page's "Untested parts of Agent Specs" list (https://agentspecs.io/evidence/), plus open design questions the v0.1 Specification leaves undecided. Change both together.
+These are the open questions on the Open questions page. Each would need its own study.
 
-- **Does splitting a task spec change compliance?** No study tests a plan split into phase files and handoffs. The closest result, a factorial study of agent configuration files, found no compliance gain from splitting one file into several.
-- **Do the size budgets matter for compliance?** The plan.md, phase file and HANDOFF.md budgets rest on cost and focus. The same study found no detectable effect of file length between 25 and 500 lines.
-- **When should a task escalate to the full tree?** The roughly 150-line plan.md trigger is the owner's rule of thumb with no source, and the roughly 40% context trigger is a practitioner warning that has since moved.
-- **Does the HANDOFF.md template help the next phase?** Its fields follow qualitative advice on briefing subagents; no study tests whether a fixed report beats a free-form one.
-- **Do the one-hop rule, landing spots and the sizing gate work as a whole?** Each is a design choice; none has been tested on its own or together.
-- **One agent or several?** Anthropic says it is still unclear whether one general-purpose coding agent or a multi-agent setup works best across contexts, and multi-agent runs cost far more tokens. No study compares phased spec sets with a single long session.
-- **Do the injection mitigations work?** Read-only sources with a hashed MANIFEST.md, distilled handoffs and output scanning are design choices with no supporting study, and published attacks show that skill scanners can be evaded.
-- **How do nested AGENTS.md files combine?** Tools disagree (nearest file wins versus concatenation), and v0.1 does not define it.
-- **Does every agent read AGENTS.md at the start?** No cross-tool source confirms it. Some tools read it only when their own instruction file is absent.
-- **Does a fresh-context reviewer catch more than self-review?** The review phase rests on vendor advice and on studies of self-correction in reasoning and planning tasks. We found no study that compares a fresh-context reviewer with the same agent checking its own work on coding tasks, or a reviewer on a different model with one on the same model.
-- **Do separate runtime values keep parallel phases apart?** One tool assigns each workspace its own ports and another gives each agent its own container, but we found no study that tests whether distinct ports, temp folders and databases per phase, or orchestrator-owned shared files, prevent collisions.
-- **How much does a term-list leak check miss?** A whole-word term list misses spelling variants, changed casing and run-together words. Its miss rate is unmeasured.
-- **Is JSON safer than Markdown for status?** The choice of state.json follows one vendor's observation that models changed JSON less often by mistake. It has not been measured.
+- **The head-to-head.** A packaged spec format, this one or another, against one plan file and against no structure, on medium or hard multi-session work. The Open questions page gives a replication protocol.
+- **Multi-file packet against one living plan,** and sharded briefs against one document.
+- **Memory-bank files for coding.** Cross-task memory did not help a coding agent in the one study found (ledger R25).
+- **JSON against Markdown for state.** Only an unmeasured vendor observation supports JSON (R12c).
+- **Structured acceptance wording** (EARS, Given-When-Then) against free-form checks.
+- **Plan granularity and reminder frequency.** One study tested one reminder interval, and one model collapsed under it (R9a).
+- **A separate verifier on ordinary tasks.** The strong verification rows come from impossible-task stress tests (R18).
+- **Whether the context-file and file-size nulls generalise** (R1, R3) to other languages, longer files and task specs.
+- **Human review cost** of acceptance-first checks and plan review.
+- **Handoff value against token cost,** and how often plans and handoffs go stale in real use.
+- **Spec maintenance over time.**
