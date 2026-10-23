@@ -1,46 +1,43 @@
 #!/usr/bin/env node
-// Evidence page generator.
-//   node scripts/gen-evidence.mjs            rewrite the generated region of evidence.md
+// Ledger page generator.
+//   node scripts/gen-evidence.mjs            rewrite the generated region of evidence/ledger.md
 //   node scripts/gen-evidence.mjs --check    exit 1 if that region is stale (file untouched)
 //   --root <dir>                             site root (default: docs/)
 //
 // Only the text between the two markers below is rewritten; everything else on the page is
 // hand-written. The region is rendered from src/data/evidence.json:
-//   - verified claims, grouped by their first topic (label token, claim, linked sources, caveat, id),
-//     sorted by label, then source, then id
-//   - a table of verified sources (title, authors, date, verified date, link)
-//   - quotes: at most one per source, under 15 words, attributed, from verified claims only
-//   - dropped claims with the reason and id, never labelled or linked
+//   - conflicts between rows (id, title, the rows involved, summary)
+//   - verified rows grouped by section, each with an anchor (#r18), strength, kind, claim,
+//     linked sources, verified date, quote or locator, and caveat; ordered by row number
+//   - a table of verified sources (title, authors, venue, date, verified date, link)
+//   - dropped rows and claims with the reason, never linked
+// Quotes must be under 15 words; a longer one is left out with a warning.
 // Output is deterministic: every list is sorted by a fixed key, never by input order.
 // Exit codes: 0 ok, 1 stale (--check) or missing markers, 2 unreadable data.
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { rowAnchor } from '../src/lib/labels.mjs';
 
 export const START = '<!-- evidence:generated:start -->';
 export const END = '<!-- evidence:generated:end -->';
-export const PAGE = 'src/content/docs/evidence.md';
+export const PAGE = 'src/content/docs/evidence/ledger.md';
 export const DATA = 'src/data/evidence.json';
 export const MAX_QUOTE_WORDS = 15; // quotes must be shorter than this
 
-const LABEL_ORDER = ['Established', 'Evidence', 'Heuristic', 'Proposal'];
-
-/** Topic id -> heading, in page order. Unknown topics follow, sorted by id. */
-export const TOPICS = [
-  ['context-limits', 'Context limits'],
-  ['sizing', 'Sizing and file length'],
-  ['agents-md', 'AGENTS.md and instruction files'],
-  ['progressive-disclosure', 'Progressive disclosure'],
-  ['skills', 'Agent Skills'],
-  ['plans', 'Plans'],
-  ['living-state', 'Living state'],
-  ['handoffs', 'Handoffs'],
-  ['subagents', 'Subagents'],
+/** Section id -> heading, in page order. Unknown sections follow, sorted by id. */
+export const SECTIONS = [
+  ['context', 'Context and attention'],
+  ['standing-context', 'Standing context'],
+  ['planning', 'Planning'],
+  ['decomposition', 'Breaking work down and keeping state'],
   ['verification', 'Verification'],
-  ['security', 'Security'],
-  ['cost', 'Cost'],
-  ['formats', 'Formats'],
+  ['delegation', 'Delegation'],
+  ['security', 'Trust and security'],
+  ['tools', 'How tools and formats work'],
 ];
+export const STRENGTHS = ['strong', 'moderate', 'weak', 'anecdotal'];
+export const KINDS = ['finding', 'practice', 'documentation'];
 
 const DEFAULT_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -75,25 +72,20 @@ function host(url) {
   }
 }
 
-/** "A, B, C (team)" -> "A et al."; one or two names stay as written. Commas inside parentheses do not split. */
-export function shortAuthors(authors) {
-  const parts = [];
-  let depth = 0;
-  let cur = '';
-  for (const ch of String(authors ?? '')) {
-    if (ch === '(') depth++;
-    if (ch === ')') depth = Math.max(0, depth - 1);
-    if (ch === ',' && depth === 0) {
-      parts.push(cur.trim());
-      cur = '';
-    } else cur += ch;
-  }
-  parts.push(cur.trim());
-  return parts.length >= 3 ? `${parts[0]} et al.` : String(authors ?? '').trim();
+/** Row order: R2 < R10, R1 < R1a < R1b. */
+export function rowKey(row) {
+  const m = /^R(\d+)([a-z]?)$/.exec(String(row ?? ''));
+  return m ? [Number(m[1]), m[2]] : [Infinity, String(row)];
 }
+export const byRow = (a, b) => {
+  const [na, sa] = rowKey(a.row);
+  const [nb, sb] = rowKey(b.row);
+  return na - nb || cmp(sa, sb) || byId(a, b);
+};
 
 const wordCount = (s) => String(s).split(/\s+/).filter((w) => ALNUM.test(w)).length;
 const link = (source) => `[${md(source.title)}](${source.url})`;
+export const rowLink = (row) => `[${row}](#${rowAnchor(row)})`;
 
 // ---------- rendering ----------
 
@@ -103,7 +95,7 @@ const link = (source) => `[${md(source.title)}](${source.url})`;
  */
 export function renderGenerated(evidence, { warn = () => {} } = {}) {
   const sources = [...(evidence.sources ?? [])].sort(byId);
-  const claims = [...(evidence.claims ?? [])].sort(byId);
+  const claims = [...(evidence.claims ?? [])].sort(byRow);
   const sourceById = new Map(sources.map((s) => [s.id, s]));
   const isVerified = (s) => s && s.status === 'verified';
 
@@ -115,92 +107,79 @@ export function renderGenerated(evidence, { warn = () => {} } = {}) {
     return [...primary, ...listed].filter((s) => !seen.has(s.url) && seen.add(s.url));
   };
 
-  const verified = [];
+  const rows = [];
   for (const c of claims.filter((x) => x.status === 'verified')) {
-    if (!LABEL_ORDER.includes(c.label)) warn(`${c.id}: unknown label "${c.label}"; claim left out`);
-    else if (claimSources(c).length === 0) warn(`${c.id}: no verified source; claim left out`);
-    else verified.push(c);
+    if (!/^R\d+[a-z]?$/.test(String(c.row ?? ''))) warn(`${c.id}: no row id; left out`);
+    else if (!STRENGTHS.includes(c.strength)) warn(`${c.id}: unknown strength "${c.strength}"; left out`);
+    else if (!KINDS.includes(c.kind)) warn(`${c.id}: unknown kind "${c.kind}"; left out`);
+    else if (claimSources(c).length === 0) warn(`${c.id}: no verified source; left out`);
+    else rows.push(c);
   }
-
-  const known = new Map(TOPICS);
-  const topicOf = (c) => (c.topics && c.topics[0]) || 'other';
-  const extra = [...new Set(verified.map(topicOf).filter((t) => !known.has(t)))].sort(cmp);
-  const order = [...TOPICS.map(([id]) => id), ...extra];
-  const heading = (t) => known.get(t) ?? t;
-
-  const out = [];
-  const push = (...lines) => out.push(...lines);
-
-  // Quotes: from verified claims only, attributed to the source whose URL the claim cites.
-  const quotes = [];
-  const quoted = new Set();
-  for (const c of verified) {
-    const q = String(c.quote ?? '').trim();
-    if (!q) continue;
-    const src = sources.find((s) => s.url === c.url && isVerified(s));
-    if (!src) continue;
-    if (wordCount(q) >= MAX_QUOTE_WORDS) {
-      warn(`${c.id}: quote has ${wordCount(q)} words (limit is under ${MAX_QUOTE_WORDS}); left out`);
-      continue;
-    }
-    if (quoted.has(src.id)) {
-      warn(`${c.id}: ${src.id} already has a quote; left out`);
-      continue;
-    }
-    quoted.add(src.id);
-    quotes.push({ q, src });
-  }
-  quotes.sort((a, b) => byId(a.src, b.src));
+  const shown = new Set(rows.map((c) => c.row));
+  const known = new Map(SECTIONS);
+  const sectionOf = (c) => c.section || 'other';
+  const extra = [...new Set(rows.map(sectionOf).filter((t) => !known.has(t)))].sort(cmp);
+  const order = [...SECTIONS.map(([id]) => id), ...extra];
 
   const verifiedSources = sources.filter(isVerified);
   const otherSources = sources.filter((s) => !isVerified(s));
   const dropped = claims.filter((c) => c.status === 'dropped');
+  const conflicts = [...(evidence.conflicts ?? [])].sort(byId);
+  const tally = (key, values) => values.map((v) => `${rows.filter((c) => c[key] === v).length} ${v}`).join(', ');
 
+  const out = [];
+  const push = (...lines) => out.push(...lines);
   push(
     '<!-- Generated by scripts/gen-evidence.mjs from src/data/evidence.json. Do not edit by hand: change the data, then run `node scripts/gen-evidence.mjs`. -->',
     '',
-    '## Claims by topic',
+    `${rows.length} verified rows (${tally('strength', STRENGTHS)}; ${tally('kind', KINDS)}), ${verifiedSources.length} verified sources, ${conflicts.length} conflicts and ${dropped.length} dropped rows, generated from \`src/data/evidence.json\` (data dated ${md(evidence.generated ?? 'unknown')}).`,
     '',
-    `${verified.length} verified claims, ${verifiedSources.length} verified sources, ${quotes.length} quotes and ${dropped.length} dropped claims, generated from \`src/data/evidence.json\` (data dated ${md(evidence.generated ?? 'unknown')}). Each claim appears once, under its main topic, with its label, sources, caveat and id in the evidence file.`,
+    '## Conflicts',
+    '',
+    'Rows that point different ways. Each conflict names its rows and says what the disagreement does and does not cover.',
   );
+  if (conflicts.length === 0) push('', 'None recorded.');
+  for (const cf of conflicts) {
+    const missing = (cf.rows ?? []).filter((r) => !shown.has(r));
+    if (missing.length) warn(`${cf.id}: rows ${missing.join(', ')} are not shown`);
+    push('', `### ${md(cf.id)}: ${md(cf.title)}`, '', `Rows: ${(cf.rows ?? []).map(rowLink).join(', ')}.`, '', md(sentence(cf.summary)));
+  }
 
   for (const t of order) {
-    const group = verified
-      .filter((c) => topicOf(c) === t)
-      .sort(
-        (a, b) =>
-          LABEL_ORDER.indexOf(a.label) - LABEL_ORDER.indexOf(b.label) ||
-          byId(claimSources(a)[0], claimSources(b)[0]) ||
-          byId(a, b),
-      );
+    const group = rows.filter((c) => sectionOf(c) === t);
     if (group.length === 0) continue;
-    push('', `### ${heading(t)}`, '');
+    push('', `## ${md(known.get(t) ?? t)}`, '');
     for (const c of group) {
       const srcs = claimSources(c);
       const cites = srcs.map((s) => `${link(s)} (${host(s.url)})`).join('; ');
+      const q = String(c.quote ?? '').trim();
+      let where = '';
+      if (q && wordCount(q) >= MAX_QUOTE_WORDS) warn(`${c.id}: quote has ${wordCount(q)} words (limit is under ${MAX_QUOTE_WORDS}); left out`);
+      else if (q) where = ` Quote: “${md(q)}”${c.locator ? ` (${md(c.locator)})` : ''}.`;
+      if (!where && c.locator) where = ` Locator: ${md(c.locator)}.`;
       const caveat = String(c.caveat ?? '').trim() ? ` Caveat: ${md(sentence(c.caveat))}` : '';
-      push(`- [${c.label}] ${md(sentence(c.claim))} ${srcs.length > 1 ? 'Sources' : 'Source'}: ${cites}.${caveat} \`${c.id}\``);
+      push(
+        `- <span id="${rowAnchor(c.row)}"></span>**${c.row}** · ${c.strength} · ${c.kind} · ${md(sentence(c.claim))} ` +
+          `${srcs.length > 1 ? 'Sources' : 'Source'}: ${cites}. Verified ${md(c.verified)}.${where}${caveat} \`${c.id}\``,
+      );
     }
   }
 
-  push('', '## Sources', '', '| Source | Authors | Date | Verified | Link |', '| --- | --- | --- | --- | --- |');
+  push('', '## Sources', '', '| Source | Authors | Venue | Date | Verified | Link |', '| --- | --- | --- | --- | --- | --- |');
   for (const s of verifiedSources) {
-    push(`| ${md(s.title)} | ${md(s.authors)} | ${md(s.date || 'n.d.')} | ${md(s.verified)} | [${md(host(s.url))}](${s.url}) |`);
+    push(`| ${md(s.title)} | ${md(s.authors)} | ${md(s.venue || s.type || '')} | ${md(s.date || 'n.d.')} | ${md(s.verified)} | [${md(host(s.url))}](${s.url}) |`);
   }
   if (otherSources.length) {
     push('', 'Sources that could not be verified are never cited:', '');
     for (const s of otherSources) push(`- ${md(s.title)} (${md(s.authors)}): ${md(s.status || 'not verified')}.`);
   }
 
-  push('', '## Quotes', '', `Short quotes, at most one per source and each under ${MAX_QUOTE_WORDS} words. Other pages paraphrase.`, '');
-  if (quotes.length === 0) push('None yet.');
-  for (const { q, src } of quotes) push(`- “${md(q)}” — ${md(shortAuthors(src.authors))}, ${link(src)}`);
-
-  push('', '## Dropped claims', '', 'Claims the research could not support as stated. No page on this site relies on them.', '');
+  push('', '## Dropped', '', 'Rows and claims the sources did not support as stated. No page relies on them.', '');
   if (dropped.length === 0) push('None.');
   for (const c of dropped) {
     const why = String(c.drop_reason ?? '').trim() ? ` Why dropped: ${md(sentence(c.drop_reason))}` : '';
-    push(`- ${md(sentence(c.claim))}${why} \`${c.id}\``);
+    const row = c.row ? `<span id="${rowAnchor(c.row)}"></span>**${c.row}** · ` : '';
+    push(`- ${row}${md(sentence(c.claim))}${why} \`${c.id}\``);
   }
 
   return out.join('\n') + '\n';

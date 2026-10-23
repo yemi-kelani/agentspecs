@@ -70,7 +70,7 @@ export default {
           file: p.file,
           line: lineOf(p.codeMasked, m.index),
           message: row
-            ? `ledger row R${m[1]} is ${row.status}, not verified${row.drop_reason ? ` (${row.drop_reason})` : ''}`
+            ? `ledger row ${row.row} is ${row.status}, not verified${row.drop_reason ? ` (${row.drop_reason})` : ''}`
             : `ledger row R${m[1]} is not in ${EVIDENCE}`,
         });
       }

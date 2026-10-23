@@ -24,8 +24,8 @@ export const RETIRED_LABELS = { Established: 'Evidence', Heuristic: 'Judgment' }
 export const LEDGER_PATH = '/evidence/ledger/';
 export const rowAnchor = (row) => String(row).toLowerCase();
 
-/** Matches a link to a ledger row in Markdown or HTML: /evidence/ledger/#r18. Captures the row number. */
-export const ROW_LINK_RE = /\/evidence\/ledger\/#r(\d+)\b/g;
+/** Matches a link to a ledger row in Markdown or HTML: /evidence/ledger/#r18 or #r1a. Captures the row id after "r". */
+export const ROW_LINK_RE = /\/evidence\/ledger\/#r(\d+[a-z]?)\b/g;
 
 export function labelByName(name) {
   return LABELS.find((l) => l.name === name);
