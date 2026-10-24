@@ -42,7 +42,7 @@ export function entryMarkdown(entry) {
  * llms.txt: H1, one-line summary, a pointer to llms-full.txt, then one H2 section per sidebar group
  * listing `- [Title](<site>/<slug>.md): description`. "Optional" is always the last section.
  */
-export function llmsTxt(entries, { title, site, version }) {
+export function llmsTxt(entries, { title, site }) {
   const pages = orderPages(entries);
   const home = pages.find((p) => p.entry.id === 'index')?.entry;
   const sections = new Map();
@@ -54,7 +54,7 @@ export function llmsTxt(entries, { title, site, version }) {
   const url = (path) => new URL(path, site).href;
 
   const lines = [`# ${title}`, ''];
-  if (home?.data.description) lines.push(`> ${home.data.description} Format ${version}.`, '');
+  if (home?.data.description) lines.push(`> ${home.data.description}`, '');
   lines.push(
     `Each link is the Markdown version of a page on ${url('/')}. All pages in one file: ${url('/llms-full.txt')}`,
   );

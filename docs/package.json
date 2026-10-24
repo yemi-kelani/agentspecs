@@ -1,5 +1,5 @@
 {
-  "name": "agentspecs-docs",
+  "name": "agentpractices-docs",
   "type": "module",
   "version": "0.0.1",
   "private": true,
@@ -10,7 +10,6 @@
     "preview": "astro preview",
     "astro": "astro",
     "check": "node scripts/checks/run.mjs",
-    "check:quickstart": "node scripts/quickstart/run.mjs",
     "test": "node --test \"tests/**/*.test.mjs\" \"scripts/**/*.test.mjs\"",
     "test:visual": "playwright test"
   },
