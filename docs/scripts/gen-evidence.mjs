@@ -27,13 +27,16 @@ export const DATA = 'src/data/evidence.json';
 export const MAX_QUOTE_WORDS = 15; // quotes must be shorter than this
 
 /** Section id -> heading, in page order. Unknown sections follow, sorted by id. */
+// Ids are stable row data; headings follow the Practices pages, in sidebar order.
 export const SECTIONS = [
-  ['context', 'Context and attention'],
-  ['standing-context', 'Standing context'],
+  ['context', 'Context limits'],
+  ['standing-context', 'Instruction files'],
+  ['team', 'Team context'],
+  ['navigation', 'Large codebases'],
   ['planning', 'Planning'],
-  ['decomposition', 'Breaking work down and keeping state'],
+  ['decomposition', 'Long-running work'],
+  ['delegation', 'Subagents and parallel work'],
   ['verification', 'Verification'],
-  ['delegation', 'Delegation'],
   ['security', 'Trust and security'],
   ['tools', 'How tools and formats work'],
 ];

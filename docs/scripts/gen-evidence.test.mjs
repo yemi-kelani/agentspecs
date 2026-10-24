@@ -115,7 +115,7 @@ test('each row renders an anchor, claim, linked sources, verified date, quote or
 
 test('rows are grouped by section in a fixed order and sorted by row within it', () => {
   const out = renderGenerated(EVIDENCE);
-  const ctx = out.indexOf('## Context and attention');
+  const ctx = out.indexOf('## Context limits');
   const tools = out.indexOf('## How tools and formats work');
   assert.ok(ctx > -1 && tools > ctx, 'sections appear in the fixed order');
   const t = out.slice(tools, out.indexOf('## Sources'));
@@ -124,7 +124,7 @@ test('rows are grouped by section in a fixed order and sorted by row within it',
 
 test('conflicts list their rows as links and their summary', () => {
   const out = renderGenerated(EVIDENCE);
-  const part = out.slice(out.indexOf('## Conflicts'), out.indexOf('## Context and attention'));
+  const part = out.slice(out.indexOf('## Conflicts'), out.indexOf('## Context limits'));
   assert.match(part, /### C1: Short or long\?/);
   assert.match(part, /Rows: \[R2\]\(#r2\), \[R10\]\(#r10\)\./);
   assert.match(part, /R2 and R10 point different ways\./);
