@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-23",
+  "generated": "2026-10-24",
   "sources": [
     {
       "id": "a-agentskills-spec",
@@ -1777,6 +1777,174 @@
       "verified": "2026-10-23",
       "status": "verified",
       "notes": "Read full PDF text (v1). Preprint from the system's own authors."
+    },
+    {
+      "id": "n-mathews-tgen",
+      "title": "Test-Driven Development for Code Generation",
+      "authors": "Noble Saji Mathews, Meiyappan Nagappan",
+      "publisher": "arXiv",
+      "date": "2024-02",
+      "url": "https://arxiv.org/abs/2402.13521",
+      "type": "paper",
+      "verified": "2026-10-24",
+      "status": "verified",
+      "notes": "Read full arXiv HTML (v2). Paper header names the 39th IEEE/ACM ASE conference (Oct 2024); camera-ready status not independently checked."
+    },
+    {
+      "id": "n-fakhoury-ticoder",
+      "title": "LLM-based Test-driven Interactive Code Generation: User Study and Empirical Evaluation",
+      "authors": "Sarah Fakhoury, Aaditya Naik, Georgios Sakkas, Saikat Chakraborty, Shuvendu K. Lahiri",
+      "publisher": "arXiv",
+      "date": "2024-04",
+      "url": "https://arxiv.org/abs/2404.10100",
+      "type": "paper",
+      "verified": "2026-10-24",
+      "status": "verified",
+      "notes": "Read full arXiv HTML (v2). The page names no venue; IEEE TSE 2024 comes from the task brief, not from the fetched text. Text says four LLMs but Table IV lists seven; abstract (45.97%) and body (45.73%) averages differ, so no average gain is used here."
+    },
+    {
+      "id": "n-cui-webapp1k",
+      "title": "Tests as Prompt: A Test-Driven-Development Benchmark for LLM Code Generation",
+      "authors": "Yi Cui",
+      "publisher": "arXiv",
+      "date": "2025-05",
+      "url": "https://arxiv.org/abs/2505.09027",
+      "type": "paper",
+      "verified": "2026-10-24",
+      "status": "verified",
+      "notes": "Read full arXiv HTML (v1). Single-author preprint; no peer-review venue stated."
+    },
+    {
+      "id": "n-mundler-swtbench",
+      "title": "SWT-Bench: Testing and Validating Real-World Bug-Fixes with Code Agents",
+      "authors": "Niels Mundler, Mark Niklas Muller, Jingxuan He, Martin Vechev",
+      "publisher": "arXiv",
+      "date": "2024-06",
+      "url": "https://arxiv.org/abs/2406.12952",
+      "type": "paper",
+      "verified": "2026-10-24",
+      "status": "verified",
+      "notes": "Read full arXiv HTML (v3, Feb 2025). The page does not name a venue; NeurIPS 2024 comes from the task brief and was not confirmed in the text."
+    },
+    {
+      "id": "n-ahmed-tddbench",
+      "title": "TDD-Bench Verified: Can LLMs Generate Tests for Issues Before They Get Resolved?",
+      "authors": "Toufique Ahmed, Martin Hirzel, Rangeet Pan, Avraham Shinnar, Saurabh Sinha",
+      "publisher": "arXiv",
+      "date": "2024-12",
+      "url": "https://arxiv.org/abs/2412.02883",
+      "type": "paper",
+      "verified": "2026-10-24",
+      "status": "verified",
+      "notes": "Read full arXiv HTML (v1). No venue stated on the page."
+    },
+    {
+      "id": "n-ahmed-otter",
+      "title": "Otter: Generating Tests from Issues to Validate SWE Patches",
+      "authors": "Toufique Ahmed, Jatin Ganhotra, Rangeet Pan, Avraham Shinnar, Saurabh Sinha, Martin Hirzel",
+      "publisher": "arXiv",
+      "date": "2025-02",
+      "url": "https://arxiv.org/abs/2502.05368",
+      "type": "paper",
+      "verified": "2026-10-24",
+      "status": "verified",
+      "notes": "Read full arXiv HTML (v2, May 2025). No venue stated on the page."
+    },
+    {
+      "id": "n-chen-codet",
+      "title": "CodeT: Code Generation with Generated Tests",
+      "authors": "Bei Chen, Fengji Zhang, Anh Nguyen, Daoguang Zan, Zeqi Lin, Jian-Guang Lou, Weizhu Chen",
+      "publisher": "arXiv",
+      "date": "2022-07",
+      "url": "https://arxiv.org/abs/2207.10397",
+      "type": "paper",
+      "verified": "2026-10-24",
+      "status": "verified",
+      "notes": "Read full arXiv HTML (v2). The page does not name a venue; ICLR 2023 comes from the task brief."
+    },
+    {
+      "id": "n-ridnik-alphacodium",
+      "title": "Code Generation with AlphaCodium: From Prompt Engineering to Flow Engineering",
+      "authors": "Tal Ridnik, Dedy Kredo, Itamar Friedman",
+      "publisher": "arXiv",
+      "date": "2024-01",
+      "url": "https://arxiv.org/abs/2401.08500",
+      "type": "paper",
+      "verified": "2026-10-24",
+      "status": "verified",
+      "notes": "Read full arXiv HTML (v1). Preprint, no peer review stated; the paper has no ablation section."
+    },
+    {
+      "id": "n-konstantinou-oracles",
+      "title": "Can we find bugs using LLM-generated oracles?",
+      "authors": "Michael Konstantinou, Renzo Degiovanni, Mike Papadakis",
+      "publisher": "arXiv",
+      "date": "2024-10",
+      "url": "https://arxiv.org/abs/2410.21136",
+      "type": "paper",
+      "verified": "2026-10-24",
+      "status": "verified",
+      "notes": "Read full arXiv HTML (v2). Earlier title: Do LLMs generate test oracles that capture the actual or the expected program behaviour? Header lists a journal (JACM); acceptance not confirmed."
+    },
+    {
+      "id": "n-zhao-misguidance",
+      "title": "Evaluating and Mitigating the Misguidance Effect of Buggy Code in LLM-Generated Unit Tests",
+      "authors": "Junda Zhao, Shurui Zhou, Eldan Cohen",
+      "publisher": "ISSTA 2026 (PACMSE)",
+      "date": "2026-07",
+      "url": "https://arxiv.org/abs/2607.22883",
+      "type": "paper",
+      "verified": "2026-10-24",
+      "status": "verified",
+      "notes": "Read full arXiv HTML (v1). Header gives DOI 10.1145/3832204, PACMSE vol 3 ISSTA."
+    },
+    {
+      "id": "n-mathews-designchoices",
+      "title": "Design choices made by LLM-based test generators prevent them from finding bugs",
+      "authors": "Noble Saji Mathews, Meiyappan Nagappan",
+      "publisher": "arXiv",
+      "date": "2024-12",
+      "url": "https://arxiv.org/abs/2412.14137",
+      "type": "paper",
+      "verified": "2026-10-24",
+      "status": "verified",
+      "notes": "Read full arXiv HTML (v1). Short preprint, no venue stated."
+    },
+    {
+      "id": "n-chen-agent-tests",
+      "title": "Rethinking the Value of Agent-Generated Tests for LLM-Based Software Engineering Agents",
+      "authors": "Zhi Chen, Zhensu Sun, Yuling Shi, Chao Peng, Xiaodong Gu, David Lo, Lingxiao Jiang",
+      "publisher": "arXiv",
+      "date": "2026-02",
+      "url": "https://arxiv.org/abs/2602.07900",
+      "type": "paper",
+      "verified": "2026-10-24",
+      "status": "verified",
+      "notes": "Read full arXiv HTML (v2, Apr 2026). Header lists a conference slot (Oct 2026); acceptance not confirmed."
+    },
+    {
+      "id": "n-ceka-apr-traceability",
+      "title": "Understanding Automated Program Repair Agents through the Lens of Traceability: An Empirical Study",
+      "authors": "Ira Ceka, Hailie Mitchell, Saurabh Pujar, Luca Buratti, Shyam Ramji, Junfeng Yang, Gail Kaiser, Baishakhi Ray",
+      "publisher": "ISSTA 2026 (PACMSE)",
+      "date": "2025-06",
+      "url": "https://arxiv.org/abs/2506.08311",
+      "type": "paper",
+      "verified": "2026-10-24",
+      "status": "verified",
+      "notes": "Read full arXiv HTML (v3, Aug 2026). Header gives DOI 10.1145/3832285, PACMSE vol 3 ISSTA."
+    },
+    {
+      "id": "n-claude-prompting-best-practices",
+      "title": "Prompting best practices (Claude)",
+      "authors": "Anthropic",
+      "publisher": "platform.claude.com",
+      "date": "2026-10",
+      "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+      "type": "vendor-doc",
+      "verified": "2026-10-24",
+      "status": "verified",
+      "notes": "Read the live page text on 2026-10-24 (older claude-4-best-practices URL redirects here)."
     }
   ],
   "conflicts": [
@@ -1884,6 +2052,38 @@
       ],
       "title": "Does loading a short index first and fetching detail on demand help agents?",
       "summary": "Vercel's eval (undisclosed sample size, vendor-run) found a compressed docs index always loaded in AGENTS.md passed 100 percent against 53 percent for a skill left to the agent, with the skill never invoked in 56 percent of cases. A controlled long-document study found a flat skill pack added nothing for a strong agent on a single book but raised English open QA from 0.26 to 0.46 across a 20-book library. A preregistered wiki study found a capable agent never loaded the large index in its pilot, yet the retrofitted version cost 30 to 34 percent less per answer, a saving the author attributes to more targeted access rather than shown to be caused by it. The tasks differ (framework docs, books, a wiki), none tests a plan file pointing to step files, and only the wiki study is preregistered."
+    },
+    {
+      "id": "CV1",
+      "rows": [
+        "R15",
+        "R15a",
+        "R231"
+      ],
+      "title": "Do tests help an agent resolve repository issues?",
+      "summary": "R15 and R15a show a test-driven agent workflow resolving most SWE-bench tasks when given the benchmark's human-written tests and doing worse when it wrote its own; R231 finds that prompts that made agents write more or fewer exploratory tests on SWE-bench Verified did not significantly change resolution (four models, 500 tasks, all p > 0.05). They do not test the same thing: R15 uses the tests as a gate the fix must pass, R231 changes only how often an agent writes its own scratch tests, with no gate. Neither compares test-first with test-after or with no tests, and a non-significant result on 500 tasks is not proof of no effect."
+    },
+    {
+      "id": "CV2",
+      "rows": [
+        "R223a",
+        "R225a",
+        "R226",
+        "R229",
+        "R230"
+      ],
+      "title": "Can model-written tests tell correct code from incorrect code?",
+      "summary": "R223a, R225a and R226 find that model-written tests can filter or rank candidate solutions: filtering reaches 47.8% precision (R223a) and 65-92% (R225a) and CodeT ranking raises pass@1 on function-level problems (R226). R229 and R230 find that tests written from buggy code sometimes assert its behaviour: R229 measured 3.84% of tests passing the buggy code but failing the fix versus 0.46% from fixed code, and R230 found 59.6% and 68.1% of the tests kept by two tools did so on a set of student programs. These cover different test sources: tests written from an issue or problem statement versus tests written from the code under test. The filters also discard most correct fixes (about 80% at 20% recall in R223a, 59-70% in R225a), so none shows model-written tests are a reliable oracle."
+    },
+    {
+      "id": "CV3",
+      "rows": [
+        "R17",
+        "R220",
+        "R221"
+      ],
+      "title": "Does asking an agent to follow TDD help?",
+      "summary": "R17 found that a TDD prompt without a map of affected tests raised regressions (one open-weight model, 100 instances, one run), while R220 and R221 found function-level gains when tests were supplied in the prompt (R220 on thousands of MBPP, HumanEval and CodeChef problems; R221 on MBPP with simulated feedback). R17 is repository-level and about prompting a TDD procedure; R220 and R221 are function-level and only supply tests. No row compares TDD prompting with its absence on repository tasks while controlling test quality."
     }
   ],
   "claims": [
@@ -7593,6 +7793,438 @@
       "locator": "Abstract; Figure 1 caption; Section 3.3",
       "caveat": "Authors' own system, preprint; manager, fresh context and auditor are bundled, so it does not isolate fresh sessions from one long session; WeaveBench is not purely coding. With a stronger model on WeaveBench Games, the harness lowered scores on several tasks the baseline already solved.",
       "verified": "2026-10-23",
+      "status": "verified",
+      "drop_reason": ""
+    },
+    {
+      "id": "n-mathews-tests-raise-solve",
+      "row": "R220",
+      "kind": "finding",
+      "strength": "moderate",
+      "section": "verification",
+      "claim": "With GPT-4 Turbo, rerunning the problems that failed from the problem statement alone with the benchmark's public tests added brought the cumulative share solved from 69.67% to 82.45% on MBPP (399 tasks), from 78.66% to 87.81% on HumanEval (164) and from 23.00% to 26.09% on 1,100 CodeChef problems, checked against all tests including those not shown to the model.",
+      "sources": [
+        "n-mathews-tgen"
+      ],
+      "url": "https://arxiv.org/abs/2402.13521",
+      "quote": "the more exhaustive the test suites are, the better the results tend to be",
+      "locator": "Section 4.4, Table 1",
+      "caveat": "Tests were the datasets' own human-written public tests, not tests the model wrote. Function-level (MBPP, HumanEval) plus whole-program CodeChef problems, not repository work. One main model (GPT-4 Turbo v1106, 2024), temperature 0, one seed. Problems were retried with tests only after failing without them, so there is no independent no-tests arm; a failure-feedback loop is a further stage reported separately. The paper header names the 39th IEEE/ACM ASE conference (Oct 2024).",
+      "verified": "2026-10-24",
+      "status": "verified",
+      "drop_reason": ""
+    },
+    {
+      "id": "n-ticoder-tests-in-prompt",
+      "row": "R221",
+      "kind": "finding",
+      "strength": "weak",
+      "section": "verification",
+      "claim": "With GPT-4-32k on MBPP, pass@1 was 67.13% with no tests in the prompt, 78.26% with one test and 80.88% with all validation tests; one simulated round of user-approved test feedback (TiCoder-PassFail) reached 81.56%.",
+      "sources": [
+        "n-fakhoury-ticoder"
+      ],
+      "url": "https://arxiv.org/abs/2404.10100",
+      "quote": "adding tests in the prompt does help improve model performance",
+      "locator": "Section VIII-C, Tables IV and V",
+      "caveat": "Function-level benchmark, one model for this comparison. Test feedback is simulated with the dataset's reference tests as an idealized user, which the authors call an upper bound. Tests were dataset tests, not model-written. Venue not confirmed on the page.",
+      "verified": "2026-10-24",
+      "status": "verified",
+      "drop_reason": ""
+    },
+    {
+      "id": "n-ticoder-user-study",
+      "row": "R221a",
+      "kind": "finding",
+      "strength": "weak",
+      "section": "verification",
+      "claim": "In a 15-participant study where users judged AI code suggestions, mean task correctness was 0.40 with no test help, 0.84 with a pass/fail test-labelling assistant (p = 0.001) and 0.64 with a variant where users also supplied outputs (not significant); mean cognitive load was 45.46 versus 28.00 and 29.52.",
+      "sources": [
+        "n-fakhoury-ticoder"
+      ],
+      "url": "https://arxiv.org/abs/2404.10100",
+      "quote": "",
+      "locator": "Section VI-A, Table III",
+      "caveat": "15 participants, three short function-level tasks, 15-minute limit each. The task was picking the correct suggestion from five, not writing code with an agent. The time difference was not significant.",
+      "verified": "2026-10-24",
+      "status": "verified",
+      "drop_reason": ""
+    },
+    {
+      "id": "n-webapp1k-tests-as-prompt",
+      "row": "R222",
+      "kind": "finding",
+      "strength": "weak",
+      "section": "verification",
+      "claim": "On 1,000 web-app tasks where the tests are the only prompt, pass@1 ranged from 0.952 (o1-preview) and 0.881 (Claude 3.5 Sonnet) down to 0.068 (Llama 3 8B) across 19 models.",
+      "sources": [
+        "n-cui-webapp1k"
+      ],
+      "url": "https://arxiv.org/abs/2505.09027",
+      "quote": "tests are both prompt and verification",
+      "locator": "Section 3.1, Table 6",
+      "caveat": "Single-author preprint. It has no prose-prompt arm, so it does not show that tests-first helps, only that models can code from tests; its only comparison (a 'TLD' experiment, Table 8) edits the tests to fit the model's output and is not a prose-prompt control. Tasks are small React-style web features with the same tests used to prompt and to score, so passing the visible tests is the whole criterion. Reasoning models were run once, others up to ten times.",
+      "verified": "2026-10-24",
+      "status": "verified",
+      "drop_reason": ""
+    },
+    {
+      "id": "n-swtbench-agents-write-tests",
+      "row": "R223",
+      "kind": "finding",
+      "strength": "moderate",
+      "section": "verification",
+      "claim": "On SWT-Bench-Lite (276 issues), the best single-run issue-reproduction test writer, SWE-Agent told to run its own tests (SWE-Agent+), produced a fail-to-pass test for 19.2% of issues (18.5% successful), and general code agents matched dedicated test-generation methods.",
+      "sources": [
+        "n-mundler-swtbench"
+      ],
+      "url": "https://arxiv.org/abs/2406.12952",
+      "quote": "general-purpose Code Agents already perform as well as domain-specific test generation methods",
+      "locator": "Section 5.2, Table 2",
+      "caveat": "GPT-4-class models (2024). Writing a valid reproduction test is hard: roughly four in five issues got none. Peer review (NeurIPS 2024 per brief) not shown on the page.",
+      "verified": "2026-10-24",
+      "status": "verified",
+      "drop_reason": ""
+    },
+    {
+      "id": "n-swtbench-filter",
+      "row": "R223a",
+      "kind": "finding",
+      "strength": "moderate",
+      "section": "verification",
+      "claim": "Keeping only the SWE-Agent patches on which all agent-generated tests passed raised the precision of its fixes to 47.8% at about 20% recall, which the authors describe as more than doubling it.",
+      "sources": [
+        "n-mundler-swtbench"
+      ],
+      "url": "https://arxiv.org/abs/2406.12952",
+      "quote": "this more than doubles the precision of SWE-Agent",
+      "locator": "Section 5.3, Filtering Code Fixes with Generated Tests",
+      "caveat": "Precision gain comes with about 80% of correct fixes discarded (20% recall). SWE-Bench-Lite and 2024 models. The paper gives no measured unfiltered precision for SWE-Agent; it says only that state-of-the-art methods resolve around 20% of SWE-Bench-Lite, and that filtering 'more than doubles' precision to 47.8%.",
+      "verified": "2026-10-24",
+      "status": "verified",
+      "drop_reason": ""
+    },
+    {
+      "id": "n-swtbench-skill-gap",
+      "row": "R223b",
+      "kind": "finding",
+      "strength": "weak",
+      "section": "verification",
+      "claim": "Which SWT-Bench issues an agent solved (wrote a valid test) and which SWE-Bench issues it solved (fixed) overlapped little: SWE-Agent solved 44 and 50 with an overlap of 7, with no statistical evidence of correlation.",
+      "sources": [
+        "n-mundler-swtbench"
+      ],
+      "url": "https://arxiv.org/abs/2406.12952",
+      "quote": "no statistical evidence of correlation",
+      "locator": "Section 5.3, Table 6",
+      "caveat": "Small counts; the test of independence assumes uniform hardness, which the authors note. Shows writing the test and writing the fix were not the same issues, not that tests are useless.",
+      "verified": "2026-10-24",
+      "status": "verified",
+      "drop_reason": ""
+    },
+    {
+      "id": "n-tddbench-autotdd",
+      "row": "R224",
+      "kind": "finding",
+      "strength": "moderate",
+      "section": "verification",
+      "claim": "On 449 real issues from 12 Python repositories, GPT-4o given the issue and pre-fix code produced a fail-to-pass test for 84 issues zero-shot (tddScore 17.2) and 106 with the Auto-TDD pipeline (tddScore 22.6); Llama-3.1 got worse with Auto-TDD (51 to 37).",
+      "sources": [
+        "n-ahmed-tddbench"
+      ],
+      "url": "https://arxiv.org/abs/2412.02883",
+      "quote": "",
+      "locator": "Section V-A, Table III",
+      "caveat": "Measures only whether a test fails before and passes after the real fix; it does not measure whether the tests help an agent fix the issue. One test file per issue, 12 repositories, three models (2024). Not peer reviewed as far as the page shows.",
+      "verified": "2026-10-24",
+      "status": "verified",
+      "drop_reason": ""
+    },
+    {
+      "id": "n-tddbench-test-after",
+      "row": "R224a",
+      "kind": "finding",
+      "strength": "moderate",
+      "section": "verification",
+      "claim": "Showing the model the actual fix diff (write-code-first, test-later) barely changed results: Auto-TDD with GPT-4o produced 109 fail-to-pass tests versus 106 without the diff, and tddScore 23.6 versus 22.6.",
+      "sources": [
+        "n-ahmed-tddbench"
+      ],
+      "url": "https://arxiv.org/abs/2412.02883",
+      "quote": "",
+      "locator": "Section V-C",
+      "caveat": "Compares what the test writer sees, not a full test-first versus test-after development workflow. Same benchmark limits as the row above. The authors call the difference not surprising.",
+      "verified": "2026-10-24",
+      "status": "verified",
+      "drop_reason": ""
+    },
+    {
+      "id": "n-otter-reproduction-tests",
+      "row": "R225",
+      "kind": "finding",
+      "strength": "moderate",
+      "section": "verification",
+      "claim": "On TDD-Bench-Verified (449 issues), GPT-4o wrote fail-to-pass tests for 84 issues zero-shot (18.7%), 141 with Otter (31.4%) and 166 with the five-test Otter++ ensemble (37.0%).",
+      "sources": [
+        "n-ahmed-otter"
+      ],
+      "url": "https://arxiv.org/abs/2502.05368",
+      "quote": "",
+      "locator": "Section 6.2, Table 1",
+      "caveat": "Preprint; one test file per issue; 12 Python repositories. Ensemble of five heterogeneous prompts costs more. Test quality judged by fail-before/pass-after on the real fix.",
+      "verified": "2026-10-24",
+      "status": "verified",
+      "drop_reason": ""
+    },
+    {
+      "id": "n-otter-filter",
+      "row": "R225a",
+      "kind": "finding",
+      "strength": "moderate",
+      "section": "verification",
+      "claim": "Discarding a patch when all five Otter++ tests fail on it raised precision for the top 22 SWE-bench Verified leaderboard systems to 65-92% at 30-41% recall, except for one system whose precision rose by 22% to 167%; for the system ranked third, precision rose from 60.8% to 91.9% at 33% recall.",
+      "sources": [
+        "n-ahmed-otter"
+      ],
+      "url": "https://arxiv.org/abs/2502.05368",
+      "quote": "filtering by the generated tests boosts precision from 60.8% to 91.9%",
+      "locator": "Section 1 and Section 6.7, Figure 6",
+      "caveat": "Trades recall for precision: most correct patches are also dropped. Leaderboard systems and models are 2024-25 vintage. Preprint.",
+      "verified": "2026-10-24",
+      "status": "verified",
+      "drop_reason": ""
+    },
+    {
+      "id": "n-otter-select",
+      "row": "R225b",
+      "kind": "finding",
+      "strength": "weak",
+      "section": "verification",
+      "claim": "Using the generated tests with CodeT-style ranking to pick among candidates from the top three leaderboard systems gave about a 2% improvement.",
+      "sources": [
+        "n-ahmed-otter"
+      ],
+      "url": "https://arxiv.org/abs/2502.05368",
+      "quote": "",
+      "locator": "Section 6.7",
+      "caveat": "A single sentence in the paper, without a table; the authors note these systems already used rankers and stronger models.",
+      "verified": "2026-10-24",
+      "status": "verified",
+      "drop_reason": ""
+    },
+    {
+      "id": "n-codet-select",
+      "row": "R226",
+      "kind": "finding",
+      "strength": "weak",
+      "section": "verification",
+      "claim": "Ranking sampled solutions by agreement with model-generated tests (CodeT) raised code-davinci-002 pass@1 from 47.0% to 65.8% on HumanEval and from 58.1% to 67.7% on MBPP, and from 27.2% to 34.6% on APPS introductory problems.",
+      "sources": [
+        "n-chen-codet"
+      ],
+      "url": "https://arxiv.org/abs/2207.10397",
+      "quote": "absolute improvement of 18.8%",
+      "locator": "Section 1 and Tables 1-2",
+      "caveat": "Function-level and competitive-programming problems with 2022 Codex-family models; gains were small on harder problems (CodeContests 0.7% to 2.1%). Tests are model-written from the problem statement and can be wrong. Peer review (ICLR 2023 per brief) not shown on the page.",
+      "verified": "2026-10-24",
+      "status": "verified",
+      "drop_reason": ""
+    },
+    {
+      "id": "n-alphacodium-flow",
+      "row": "R227",
+      "kind": "finding",
+      "strength": "weak",
+      "section": "verification",
+      "claim": "A multi-stage flow that iterates on public tests and then on AI-generated tests raised GPT-4 pass@5 on CodeContests from 19% to 44% on validation and from 12% to 29% on test, against a single direct prompt.",
+      "sources": [
+        "n-ridnik-alphacodium"
+      ],
+      "url": "https://arxiv.org/abs/2401.08500",
+      "quote": "Iterating on public tests stabilizes and improves the solution",
+      "locator": "Figure 1 caption, Section 5.1, Table 1",
+      "caveat": "The flow bundles many changes (reflection, YAML output, ranking, test iteration) and the paper has no ablation isolating generated tests, so the gain cannot be credited to tests. Competitive-programming problems, 2023-24 models, preprint.",
+      "verified": "2026-10-24",
+      "status": "verified",
+      "drop_reason": ""
+    },
+    {
+      "id": "n-oracle-actual-behaviour",
+      "row": "R228",
+      "kind": "finding",
+      "strength": "moderate",
+      "section": "verification",
+      "claim": "When asked whether an assertion was correct, four LLMs were less accurate on correct assertions if the code under test was buggy than if it was correct, for example DeepSeek V3 55.17% vs 39.02% and GPT-4o-mini 60.33% vs 46.58% (full prompt).",
+      "sources": [
+        "n-konstantinou-oracles"
+      ],
+      "url": "https://arxiv.org/abs/2410.21136",
+      "quote": "predictions are derived towards the actual implementation",
+      "locator": "Section 4.1, Table 1",
+      "caveat": "Java, 24 repositories; buggy code made by mutation, so faults may differ from real ones. The task is classifying supplied assertions, not writing tests. Models are 2024-25. Peer review not confirmed.",
+      "verified": "2026-10-24",
+      "status": "verified",
+      "drop_reason": ""
+    },
+    {
+      "id": "n-misguided-tests",
+      "row": "R229",
+      "kind": "finding",
+      "strength": "moderate",
+      "section": "verification",
+      "claim": "Across 13 LLMs on Defects4J methods, prompting with buggy code produced on average 3.84% tests that passed the buggy code but failed the fixed one, versus 0.46% when given the fixed code, and effective bug-finding tests fell from 8.51% to 2.98%.",
+      "sources": [
+        "n-zhao-misguidance"
+      ],
+      "url": "https://arxiv.org/abs/2607.22883",
+      "quote": "suppresses the generation of useful, bug-finding ones",
+      "locator": "Section 3.1, Table 4",
+      "caveat": "Java method-level unit tests, real bugs, tests written from the code under test (not from an issue). Defects4J may be in training data. Peer reviewed at ISSTA 2026.",
+      "verified": "2026-10-24",
+      "status": "verified",
+      "drop_reason": ""
+    },
+    {
+      "id": "n-testgen-validates-bugs",
+      "row": "R230",
+      "kind": "finding",
+      "strength": "weak",
+      "section": "verification",
+      "claim": "In a benchmark of buggy student Python programs, 171 of 287 tests (59.6%) kept in CodiumAI CoverAgent's final suites and 62 of 91 (68.1%) in CoverUp's passed the buggy code but failed the reference solution, against 12 of 287 (4.2%) for unfiltered Copilot output.",
+      "sources": [
+        "n-mathews-designchoices"
+      ],
+      "url": "https://arxiv.org/abs/2412.14137",
+      "quote": "tests that pass on buggy code but fail on correct implementations",
+      "locator": "Section IV, Table I",
+      "caveat": "Student single-function programs from one course, three tools, one model setup; authors note it may not represent production bugs. Shows that a keep-only-passing-tests rule can lock in a bug, not that test-first fails. Preprint. Denominators as I recomputed them from Table I counts.",
+      "verified": "2026-10-24",
+      "status": "verified",
+      "drop_reason": ""
+    },
+    {
+      "id": "n-agent-tests-weak-lever",
+      "row": "R231",
+      "kind": "finding",
+      "strength": "moderate",
+      "section": "verification",
+      "claim": "Across four models on SWE-bench Verified, prompts that flipped test writing for 37-75% of tasks produced no statistically significant change in resolution (exact McNemar, all p > 0.05), with 83.2% of tasks keeping the same outcome.",
+      "sources": [
+        "n-chen-agent-tests"
+      ],
+      "url": "https://arxiv.org/abs/2602.07900",
+      "quote": "appears to be a weak lever for shifting task outcomes in this setting",
+      "locator": "Section 5.1, Table 7",
+      "caveat": "Agents wrote tests on their own as exploration; this is not test-first or TDD. Light mini-SWE-agent scaffold, 2025-26 models, prompt-only intervention. Suppressing tests cut cost with modest success drops. Preprint.",
+      "verified": "2026-10-24",
+      "status": "verified",
+      "drop_reason": ""
+    },
+    {
+      "id": "n-agent-tests-prints",
+      "row": "R231a",
+      "kind": "finding",
+      "strength": "weak",
+      "section": "verification",
+      "claim": "In agent-written tests on SWE-bench Verified from five models, value-revealing print statements outnumbered assertions for every model, and GPT-5.2 wrote new tests in 0.6% of tasks yet resolved 71.8% against 74.4% for Claude Opus 4.5.",
+      "sources": [
+        "n-chen-agent-tests"
+      ],
+      "url": "https://arxiv.org/abs/2602.07900",
+      "quote": "",
+      "locator": "Section 4.1 (Table 4, Figure 2) and Section 5 introduction",
+      "caveat": "Observational comparison across models, not controlled; models differ in many ways other than test writing. Preprint.",
+      "verified": "2026-10-24",
+      "status": "verified",
+      "drop_reason": ""
+    },
+    {
+      "id": "n-agent-reproducers",
+      "row": "R232",
+      "kind": "finding",
+      "strength": "moderate",
+      "section": "verification",
+      "claim": "On SWE-bench Verified (500 tasks), reproduction tests written by Agentless and SWE-Agent triggered the bug in 41-57% of tasks with a generated patch, and patches that passed the agent's own reproducer but failed the task were 4-5% of Agentless tasks and 18-30% of SWE-Agent tasks.",
+      "sources": [
+        "n-ceka-apr-traceability"
+      ],
+      "url": "https://arxiv.org/abs/2506.08311",
+      "quote": "Trigger rates are 41–57%",
+      "locator": "Section 6.1.3, Figure 5(b)",
+      "caveat": "Two agents (Agentless, SWE-Agent), each with GPT-4o and Claude 3.5 Sonnet (2024-era). Trigger and overfit rates are computed automatically from execution logs and marker strings over tasks with a generated patch, not by hand. Reproducers are written during repair, not before it. The paper header gives the ISSTA 2026 proceedings (PACMSE vol 3).",
+      "verified": "2026-10-24",
+      "status": "verified",
+      "drop_reason": ""
+    },
+    {
+      "id": "n-cc-failing-test-prompt",
+      "row": "R234",
+      "kind": "documentation",
+      "strength": "weak",
+      "section": "verification",
+      "claim": "The Claude Code best-practices page shows a bug-fix prompt that asks for a failing test first: users report that login fails after session timeout, check the auth flow, write a failing test that reproduces the issue, then fix it.",
+      "sources": [
+        "a-cc-best-practices"
+      ],
+      "url": "https://code.claude.com/docs/en/best-practices",
+      "quote": "write a failing test that reproduces the issue, then fix it",
+      "locator": "Provide specific context in your prompts (example prompt table)",
+      "caveat": "Documents a prompt example, not a measured effect. The page does not say tests must be committed first or must not be changed.",
+      "verified": "2026-10-24",
+      "status": "verified",
+      "drop_reason": ""
+    },
+    {
+      "id": "n-cc-writer-tests",
+      "row": "R235",
+      "kind": "documentation",
+      "strength": "weak",
+      "section": "verification",
+      "claim": "The Claude Code best-practices page suggests splitting test writing from implementation across sessions: one Claude writes tests, then another writes code to pass them.",
+      "sources": [
+        "a-cc-best-practices"
+      ],
+      "url": "https://code.claude.com/docs/en/best-practices",
+      "quote": "have one Claude write tests, then another write code to pass them",
+      "locator": "Run multiple Claude sessions, Writer/Reviewer pattern",
+      "caveat": "Documents a suggested workflow in one sentence; no evidence is cited for it on the page.",
+      "verified": "2026-10-24",
+      "status": "verified",
+      "drop_reason": ""
+    },
+    {
+      "id": "n-claude-tests-structured",
+      "row": "R236",
+      "kind": "documentation",
+      "strength": "weak",
+      "section": "verification",
+      "claim": "Anthropic's prompting guide for Claude suggests that in the first context window the model writes tests in a structured file such as tests.json before starting work, and that the prompt reminds it that removing or editing tests is unacceptable.",
+      "sources": [
+        "n-claude-prompting-best-practices"
+      ],
+      "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+      "quote": "It is unacceptable to remove or edit tests",
+      "locator": "Agentic systems, Long-horizon reasoning and state tracking, Workflows across multiple context windows",
+      "caveat": "Documents a recommended prompt, not a measured effect. It does not say tests are confirmed to fail before implementing.",
+      "verified": "2026-10-24",
+      "status": "verified",
+      "drop_reason": ""
+    },
+    {
+      "id": "n-claude-hardcode-tests",
+      "row": "R237",
+      "kind": "documentation",
+      "strength": "weak",
+      "section": "verification",
+      "claim": "Anthropic's prompting guide says Claude can sometimes focus too heavily on making tests pass at the expense of more general solutions, and gives a prompt asking for a general-purpose solution rather than workarounds.",
+      "sources": [
+        "n-claude-prompting-best-practices"
+      ],
+      "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices",
+      "quote": "focus too heavily on making tests pass at the expense of more general solutions",
+      "locator": "Agentic systems, Avoid focusing on passing tests and hardcoding",
+      "caveat": "Vendor statement with no rate or study cited; the mitigation prompt is not shown to work.",
+      "verified": "2026-10-24",
       "status": "verified",
       "drop_reason": ""
     }
