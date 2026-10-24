@@ -1,6 +1,6 @@
 // Pictures of the site chrome and content styles (the agentskills.io docs look).
-// Subjects: header, sidebar, title row with Copy page, body text, code block (plain and titled),
-//   task list, table, Steps, link cards, right-hand TOC, the 404 splash page, and these states:
+// Subjects: header, sidebar, title row with Copy page, body text, code block, table, link cards,
+//   right-hand TOC, the 404 splash page, and these states:
 //   mobile menu, Copy page menu, theme menu and search dialog open.
 // Matrix: pages at 375 / 700 / 1100 / 1500 px x dark / light; components and states at the
 //   narrowest and widest width.
@@ -14,19 +14,16 @@ import { test, expect } from '@playwright/test';
 import { openPage, THEMES, WIDTHS } from './helpers.mjs';
 
 const PAGES = [
-	{ name: 'overview', path: '/', h1: 'Agent Specs overview' },
-	{ name: 'packet-anatomy', path: '/approach/packet-anatomy/', h1: 'Packet anatomy' },
-	{ name: 'breaking-work-down', path: '/practices/breaking-work-down/', h1: 'Breaking work down and keeping state' },
+	{ name: 'overview', path: '/', h1: 'Agent Practices' },
+	{ name: 'instruction-files', path: '/practices/instruction-files/', h1: 'Instruction files' },
+	{ name: 'long-running-work', path: '/practices/long-running-work/', h1: 'Long-running work' },
 	{ name: 'not-found', path: '/404.html', h1: 'Page not found' },
 ];
 
 const COMPONENTS = [
-	{ name: 'code-block', path: '/', locator: '.sl-markdown-content .expressive-code' },
-	{ name: 'code-block-titled', path: '/quickstart/', locator: '.sl-markdown-content .expressive-code:has(.has-title)' },
-	{ name: 'task-list', path: '/reference/checklist/', locator: '.sl-markdown-content .contains-task-list' },
-	{ name: 'steps', path: '/', locator: '.sl-markdown-content .sl-steps' },
+	{ name: 'code-block', path: '/contribute/', locator: '.sl-markdown-content .expressive-code' },
 	{ name: 'link-cards', path: '/', locator: '.sl-markdown-content .card-grid' },
-	{ name: 'table', path: '/reference/glossary/', locator: '.sl-markdown-content table' },
+	{ name: 'table', path: '/practices/large-codebases/', locator: '.sl-markdown-content table' },
 ];
 
 const EDGE_WIDTHS = [WIDTHS[0], WIDTHS.at(-1)];
@@ -55,10 +52,10 @@ for (const theme of THEMES) {
 	}
 
 	test(`menu-open 375 ${theme}`, async ({ page }) => {
-		await openPage(page, '/practices/breaking-work-down/', { width: 375, theme });
+		await openPage(page, '/practices/long-running-work/', { width: 375, theme });
 		await page.locator('button[popovertarget="starlight__sidebar"]').click();
 		await expect(page.locator('#starlight__sidebar')).toBeVisible();
-		await expect(page.locator('#starlight__sidebar a[aria-current="page"]')).toHaveText('Breaking work down and keeping state');
+		await expect(page.locator('#starlight__sidebar a[aria-current="page"]')).toHaveText('Long-running work');
 		await expect(page).toHaveScreenshot(`menu-open_375_${theme}.png`);
 	});
 

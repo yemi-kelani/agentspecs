@@ -91,12 +91,13 @@ test.describe('1500 px', () => {
 		near(h.y, before.bottom + 36, 'h2 after a paragraph');
 		near(h.h, 32, 'h2 line box');
 		expect(await css(wrapper.locator('h2'), 'fontSize', 'fontWeight')).toEqual({ fontSize: '24px', fontWeight: '600' });
-		const p = page.locator('.sl-markdown-content .level-h2 + p').first();
-		near((await box(p)).y, h.bottom + 18, 'paragraph after h2');
+		near((await box(wrapper.locator('xpath=following-sibling::*[1]'))).y, h.bottom + 18, 'block after h2');
+		const p = page.locator('.sl-markdown-content > p').first();
 		expect(await css(p, 'fontSize', 'lineHeight')).toEqual({ fontSize: '16px', lineHeight: '28px' });
 	});
 
 	test('code: 14 px chips with 2/8 padding; blocks with a 1 px border, 16 px radius, 14/24 text', async ({ page }) => {
+		await openPage(page, '/contribute/', { width: 1500, theme: 'dark' });
 		const code = page.locator('.sl-markdown-content p code').first();
 		expect(await css(code, 'fontSize', 'fontWeight', 'paddingTop', 'paddingLeft', 'borderTopLeftRadius')).toEqual({
 			fontSize: '14px',
