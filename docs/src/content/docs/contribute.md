@@ -1,40 +1,46 @@
 ---
 title: Contribute
-description: How to send feedback, propose a change to the specification and write for this site.
+description: How to report evidence we missed, correct a claim and write for this site.
 ---
 
 ## Give feedback
 
-- **Problems.** Open an [issue](https://github.com/yemi-kelani/agentspecs/issues) for a broken link, a wrong citation, a template that disagrees with the Specification, or a rule that reads two ways.
-- **Questions and ideas.** Start a thread in [Discussions](https://github.com/yemi-kelani/agentspecs/discussions) for usage questions, early ideas, or a report of how a packet worked on a real task.
+- **Problems.** Open an [issue](https://github.com/yemi-kelani/agentspecs/issues) for a broken link, a claim its ledger row does not support, a missed null result, or a sentence that says more than its source.
+- **Evidence we missed.** Open an issue with the primary source (the paper, the official documentation or the team's own post) and the finding it reports. A result that contradicts a page is the most useful kind.
+- **Questions and ideas.** Start a thread in [Discussions](https://github.com/yemi-kelani/agentspecs/discussions).
 
-Reports from real use help most: what the task was, which agent ran it, and where the slices, checks or handoffs helped or got in the way. A run of the [head-to-head protocol](/evidence/open-questions/#replication-protocol-for-the-head-to-head) helps most of all.
+## How the site changes
 
-## Propose a change to the format
+The evidence comes first and the pages follow it, so most changes start in the ledger.
 
-A format change moves through three steps, so the reasoning is on record before anything merges.
+1. **Add or correct a row.** A ledger row is a claim in `docs/src/data/evidence.json` with its primary source, a quote of fewer than 15 words or a locator, a caveat and the date you checked it. Read the full text, not only the abstract. Mark the source `verified`, then run `node scripts/gen-evidence.mjs` from `docs/` to regenerate the [Ledger](/evidence/ledger/). A row the source does not support is dropped with its reason, not deleted.
+2. **Change the page the row bears on.** If the row contradicts what a page says, the page changes. Null results and conflicts go next to the finding they qualify.
+3. **Add a page only when rows answer its question.** A question with no rows behind it belongs on [Open questions](/evidence/open-questions/). A new page, a removed page or a change to these rules is recorded in `docs/DECISIONS.md`.
 
-1. **Issue.** Describe one problem: what breaks or is missing today, with an example packet or handoff if you have one.
-2. **Discussion.** If the fix changes a rule or a file format, take it to a discussion. Compare the options there and link the ledger rows that bear on it. Every rule costs each packet that follows it, so add one only for a need someone has shown.
-3. **Pull request.** One pull request updates, together:
-   - the [Packet anatomy](/approach/packet-anatomy/) text, which is the authority for the format;
-   - every affected template in `docs/public/templates/`, plus [Templates](/reference/templates/) and the [Quickstart](/quickstart/), which must embed (Templates) or fetch unchanged (Quickstart) every template;
-   - the changelog section, [Changes in this version](/approach/packet-anatomy/#changes-in-this-version);
-   - the reference validator, [specs-ref](https://github.com/yemi-kelani/agentspecs/tree/main/specs-ref), when a script can check the rule.
-
-Fixes that do not change the format, such as typos, broken links or clearer wording, can go straight to a pull request.
+Typos, broken links and clearer wording can go straight to a pull request.
 
 ## Write for this site
 
-From `docs/`, `npm run dev` previews the site, `npm run check` runs the content checks and `npm run check:quickstart` runs the Quickstart end to end. Run all three before you open a pull request. The banned-term check reads a list that only maintainers hold; without it, run `AGENTSPECS_BANNED_TERMS=off npm run check` and a maintainer runs the full check before merging.
+Run these from `docs/` before you open a pull request:
 
-- **Label claims.** Start a claim that reports evidence with `[Evidence]` and link its ledger row, such as `/evidence/ledger/#r18`; it is the only label on the site. Any sentence that recommends something also links a row or is recorded as a design choice in the page source; [docs/AGENTS.md](https://github.com/yemi-kelani/agentspecs/blob/main/docs/AGENTS.md) describes how. [Method](/evidence/method/#labels) explains the label.
-- **Cite rows, then sources.** A ledger row is a claim in `src/data/evidence.json` with its row id, quote or locator and caveat (kind and strength are recorded there too, for maintainers). Add a row there first, with the primary source marked `verified` and the date you checked it, then run `node scripts/gen-evidence.mjs`. An outside link must match a verified source; other outside links belong in `src/data/links-allowlist.json`.
-- **Paraphrase.** Content pages hold no quotes of 15 words or more. Short quotes, under 15 words, live in the evidence data and appear only on the Ledger.
+```bash
+npm install     # once
+npm run dev     # preview at http://localhost:4321
+npm test        # tests for the checks and plugins
+npm run check   # content checks
+```
+
+The banned-term check reads a list that only maintainers hold; without it, run `AGENTSPECS_BANNED_TERMS=off npm run check` and a maintainer runs the full check before merging.
+
+- **Label claims.** Start a claim that reports evidence with `[Evidence]` and link its ledger row, such as `/evidence/ledger/#r18`. It is the only label. [Method](/evidence/method/#labels) explains it.
+- **Link a row for every recommendation.** A sentence that recommends something links a verified row. The check fails it otherwise, and there is no escape label.
+- **Word claims to fit their rows.** Describe the study (its size, setting and who ran it) rather than grading it. Kind and strength grades stay in the data file.
+- **Cite primary sources.** An outside link must match a verified source in the data file; other outside links belong in `src/data/links-allowlist.json`.
+- **Paraphrase.** Content pages hold no quotes of 15 words or more. Short quotes live in the evidence data and appear only on the Ledger.
 - **Write original text.** Do not copy from other documentation, including the Agent Skills docs. The check flags any run of 10 words shared with them.
 - **Keep pages small.** At most 120 lines of Markdown. Use neutral, made-up examples, never names from a real company or internal project.
-- **Follow the page format.** Each page has a `title` of 60 characters or fewer and a `description` of exactly one sentence. Internal links are absolute with a trailing slash, such as `/practices/planning/`.
+- **Follow the page format.** Each page has a `title` of 60 characters or fewer and a `description` of exactly one sentence. Internal links are absolute with a trailing slash, such as `/practices/planning/`. [docs/AGENTS.md](https://github.com/yemi-kelani/agentspecs/blob/main/docs/AGENTS.md) has the rest.
 
 ## License
 
-The specification, templates and this site are licensed under the [Apache License 2.0](https://github.com/yemi-kelani/agentspecs/blob/main/LICENSE). Contributions are accepted under the same license.
+This site and its content are licensed under the [Apache License 2.0](https://github.com/yemi-kelani/agentspecs/blob/main/LICENSE). Contributions are accepted under the same license.

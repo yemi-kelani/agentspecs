@@ -1,48 +1,36 @@
 ---
 title: FAQ
-description: Short answers to common questions about the Agent Specs packet.
+description: Short answers to common questions about Agent Practices and the evidence behind it.
 ---
 
-## Is it better than other spec formats, or than no spec?
+## Is this a framework or a standard?
 
-Untested. [Judgment] Nobody has compared this packet, or any packaged format, head to head on medium or hard multi-session work. [Open questions](/evidence/open-questions/#replication-protocol-for-the-head-to-head) gives a protocol for that comparison. Some parts rest on peer-reviewed studies and others on practitioner reports; each row says which.
+No. Agent Practices reports what published studies, product documentation and teams' own accounts show about giving coding agents context, and links every claim to its source. There is no format to adopt. It is not affiliated with any agent vendor or with the AGENTS.md or Agent Skills projects.
 
-## Is Agent Specs an official standard?
+## What happened to Agent Specs and the spec packet?
 
-No. [Judgment] Format v0.2 is a draft, published in [the Agent Specs repository](https://github.com/yemi-kelani/agentspecs) for anyone to use or criticise. It is not affiliated with any agent vendor or with the AGENTS.md or Agent Skills projects.
+The site used to propose a spec format. It now starts from the evidence instead. The format was retired in October 2026, and its parts that rows support appear as practices: state and progress files on [Long-running work](/practices/long-running-work/), and checks written first and run by someone other than the implementer on [Verification](/practices/verification/). Old addresses redirect.
 
-## Do I need a packet for every change?
+## How strong is the evidence?
 
-No. [Judgment] A change you can describe in one sentence needs a prompt. The packet is for work that spans several sessions or needs checks written up front. Vendors give the same advice for small changes ([R70](/evidence/ledger/#r70)).
+It varies by question, and each row's caveat says what it does not show. Much of the ledger is vendor documentation and practitioners' accounts of what they do. Controlled studies of coding agents exist for some questions, such as checking the work and finding code in a repository, and are few or absent for others. [Method](/evidence/method/) explains how rows are chosen and checked, and [Open questions](/evidence/open-questions/) lists what nobody has tested.
 
-## Does a context file make agents more successful?
+## Does an instruction file make agents more successful?
 
-[Evidence] Not in general, in the one controlled study: an AGENTS.md-style file did not significantly change task success and raised cost by about 20% ([R1](/evidence/ledger/#r1), [R1a](/evidence/ledger/#r1a)). An efficiency study found lower runtime ([R2](/evidence/ledger/#r2)); see conflict [C1](/evidence/ledger/#c1-do-context-files-raise-or-lower-cost).
+[Evidence] Not in general, in the controlled tests so far: an AGENTS.md-style file did not significantly change task success and raised cost by about 20% ([R1](/evidence/ledger/#r1), [R1a](/evidence/ledger/#r1a)). An efficiency study found lower runtime ([R2](/evidence/ledger/#r2)); see conflict [C1](/evidence/ledger/#c1-do-context-files-raise-or-lower-cost). [Instruction files](/practices/instruction-files/) has the detail.
 
 ## Does file length matter?
 
-[Evidence] One study found no detectable effect from 25 to 500 lines on following one trivial rule ([R3](/evidence/ledger/#r3)); others found accuracy falling as inputs or instruction counts grew ([R4](/evidence/ledger/#r4), [R5](/evidence/ledger/#r5)). See conflict [C2](/evidence/ledger/#c2-do-file-size-and-position-matter). [Judgment] The packet sets no line budget.
-
-## Why can't the implementer mark its own slice as passing?
-
-[Proposal] Because agents cheat on tests they can edit ([R18](/evidence/ledger/#r18)) and correct themselves poorly without outside feedback ([R95](/evidence/ledger/#r95)). A separate verifier sets passes.
+[Evidence] One study found no detectable effect from 25 to 500 lines on following one simple rule ([R3](/evidence/ledger/#r3)); others found accuracy falling as inputs or instruction counts grew ([R4](/evidence/ledger/#r4), [R5](/evidence/ledger/#r5)). See conflict [C2](/evidence/ledger/#c2-do-file-size-and-position-matter).
 
 ## Do I need subagents?
 
-No. [Proposal] Slices can run one after another in fresh sessions of one agent. Multi-agent setups use many more tokens and fit poorly where work is coupled ([R14a](/evidence/ledger/#r14a), [R14c](/evidence/ledger/#r14c)).
+[Evidence] Not by default. One vendor's multi-agent system used about 15 times the tokens of a chat, and fits poorly where agents must share context ([R14a](/evidence/ledger/#r14a), [R14c](/evidence/ledger/#r14c)). [Subagents and parallel work](/practices/subagents/) covers when they help.
 
-## Why JSON for state?
+## Can an agent understand a codebase of millions of lines?
 
-[Judgment] So a script can read it. The vendor report that models overwrite JSON less often than Markdown is an unmeasured observation ([R12c](/evidence/ledger/#r12c)).
+[Evidence] Success falls as repositories grow, and finding the right code is where much of the effort goes ([R169](/evidence/ledger/#r169), [R171](/evidence/ledger/#r171)). [Large codebases](/practices/large-codebases/) covers what has been tested to help.
 
-## Which agents support it?
-
-[Judgment] Any agent that can read and write files in your repository. A person can act as orchestrator or verifier.
-
-## Is there a validator?
-
-[Judgment] A reference one, [specs-ref](https://github.com/yemi-kelani/agentspecs/tree/main/specs-ref), checks a packet's structure against [Packet anatomy](/approach/packet-anatomy/). It does not run the checks; the verifier does.
-
-## How do I propose a change?
+## How do I add evidence or correct a claim?
 
 See [Contribute](/contribute/).

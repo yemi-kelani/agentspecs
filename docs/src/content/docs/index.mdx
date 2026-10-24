@@ -1,66 +1,38 @@
 ---
-title: Agent Specs overview
-description: Agent Specs is a spec packet for coding agents on medium-to-hard work, built from published research and leading practice.
+title: Agent Practices
+description: What the evidence says about giving coding agents context, with every claim linked to its source.
 sidebar:
   label: Overview
 ---
 
-import { CardGrid, LinkCard, Steps } from '@astrojs/starlight/components';
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
 
-**Status:** format v0.2 (draft). [Packet anatomy](/approach/packet-anatomy/#changes-in-this-version) lists what changed.
+Agent Practices gathers published research and documented practice on giving coding agents context: what they read in every session, what they load for one task, and what they carry from one session to the next. It describes the shape of good practice that this evidence shows, and links each claim to a row in the [Ledger](/evidence/ledger/) with its source and caveat. Where the evidence stops, the page says so. For skills in depth, see [agentskills.io](https://agentskills.io).
 
-## What a spec packet is
+## The shape, in brief
 
-[Judgment] A spec packet is a folder of plain files that carries one medium-to-hard coding task from a clarified goal to verified slices. It sits in the repository beside the code it changes, so people and agents review it like any other file.
+- **Context is a budget.** [Evidence] Models use long inputs less reliably as they grow, and a related but unhelpful passage lowers accuracy ([R5](/evidence/ledger/#r5), [R5b](/evidence/ledger/#r5b)). When the files needed to fix an issue were padded with unrelated files from the same repository, one model solved 29% of issues at 32K tokens and 3% at 256K ([R200](/evidence/ledger/#r200)). [Context limits](/practices/context-limits/)
+- **Instruction files earn little by default.** [Evidence] In controlled tests, an AGENTS.md-style file did not raise task success in general and added about a fifth to the cost, yet agents did follow concrete tool instructions, and files written by people beat generated ones ([R1](/evidence/ledger/#r1), [R1a](/evidence/ledger/#r1a), [R1c](/evidence/ledger/#r1c), [R1d](/evidence/ledger/#r1d)). [Instruction files](/practices/instruction-files/)
+- **A written rule is not a guarantee.** [Evidence] A rule in a configuration file raised compliance from none to about two thirds, not to all, and tool vendors point to hooks for anything that has to happen every time ([R3d](/evidence/ledger/#r3d), [R85](/evidence/ledger/#r85)).
+- **Shared files drift.** [Evidence] Half of the AGENTS.md files in one study never changed after they were created, and a checker flagged stale code references in about a quarter of the repositories it sampled ([R185a](/evidence/ledger/#r185a), [R190](/evidence/ledger/#r190)). [Team context](/practices/team-context/)
+- **In large repositories, finding the code is the hard part.** [Evidence] Success falls as repositories grow, locating code takes the largest share of an agent's turns, and structure-aware tools helped a smaller model more than a stronger one ([R169](/evidence/ledger/#r169), [R171](/evidence/ledger/#r171), [R163](/evidence/ledger/#r163), [R163a](/evidence/ledger/#r163a)). [Large codebases](/practices/large-codebases/)
+- **A plan helps if it is a good one.** [Evidence] A standard navigate, reproduce, patch and validate plan beat no plan for every model tested; a plan missing a step did worse than no plan for several models, and adding extra phases lowered success for all four ([R9](/evidence/ledger/#r9), [R9b](/evidence/ledger/#r9b), [R9c](/evidence/ledger/#r9c)). Success falls as tasks get longer ([R206a](/evidence/ledger/#r206a)). [Planning](/practices/planning/)
+- **Long work survives in files, not in the conversation.** [Evidence] Masking old tool output cut cost by up to about half with solve rates roughly flat, and a predecessor's notes or trace cut a successor agent's work, while memory carried across unrelated tasks never beat the baseline ([R22](/evidence/ledger/#r22), [R210](/evidence/ledger/#r210), [R25](/evidence/ledger/#r25)). [Long-running work](/practices/long-running-work/)
+- **Subagents cost many times the tokens.** [Evidence] One vendor's multi-agent system used about 15 times the tokens of a chat, and the vendor says such systems fit poorly where agents must share context ([R14a](/evidence/ledger/#r14a), [R14c](/evidence/ledger/#r14c)). [Subagents and parallel work](/practices/subagents/)
+- **Checks the agent can edit get gamed.** [Evidence] One frontier model cheated on 76% of tasks in a set whose tests contradicted the spec, models struggled to correct themselves without outside feedback, and one workflow did worse with tests it wrote itself than with tests people wrote ([R18](/evidence/ledger/#r18), [R95](/evidence/ledger/#r95), [R15](/evidence/ledger/#r15), [R15a](/evidence/ledger/#r15a)). [Verification](/practices/verification/)
+- **Anything the agent reads can steer it.** [Evidence] Instructions planted in retrieved content can redirect an application, and rules planted in an agent's memory fired again in later sessions ([R122](/evidence/ledger/#r122), [R28](/evidence/ledger/#r28)). [Trust and security](/practices/trust-and-security/)
 
-```text
-packets/<task-id>/
-├── plan.md            always loaded: goal, assumptions, grounding, slices, decisions
-├── acceptance/        checks written before code; the implementer never edits them
-├── slices/NN-name.md  one brief per slice: one behavior, one check
-├── state.json         slice status; only the verifier sets passes
-└── handoffs/NN.md     what changed, raw check output, dead ends
-```
+## How far the evidence goes
 
-[Judgment] A slice is one verifiable behavior, not a workflow stage. Count and size follow verification boundaries, not a fixed number of phases.
+Much of the Ledger is product documentation and teams' own accounts of what they do. Controlled studies of coding agents exist for some questions, such as checking the work and finding code in a repository, and are few, small or vendor-run for others. Each row's caveat says what it does not show, and conflicting rows are recorded side by side. Some patterns that sound sensible have no test behind them at all, such as a plan that works as a table of contents for per-step files, or a fresh session for each step; [Open questions](/evidence/open-questions/) lists them.
 
-## What the evidence says, and what it does not
+Agent Practices is an independent project. It is not affiliated with, or endorsed by, the AGENTS.md or Agent Skills projects or any agent vendor.
 
-[Evidence] Each part of the packet traces to cited rows in the [Ledger](/evidence/ledger/), and those rows differ in how much they show. A peer-reviewed study found that giving agents a standard plan beat no plan for every model tested ([R9](/evidence/ledger/#r9)). A benchmark of impossible tasks found frontier models cheating on tests they could edit ([R18](/evidence/ledger/#r18)). Other parts rest on single preprints, vendor posts or practitioner reports; each row says which, in its caveat.
-
-[Judgment] **The packet as a whole has not been tested head to head** against a single plan file, another spec format or no structure at all. [Open questions](/evidence/open-questions/) describes that experiment and how to run it.
-
-## How it runs
-
-<Steps>
-
-1. **Clarify and ground.** [Proposal] A person confirms the assumptions, and the plan records real paths, APIs and commands from the repository, because many agent runs fail at clarification and planning ([R10](/evidence/ledger/#r10)).
-
-2. **Acceptance first.** [Proposal] Checks are written or reviewed by a person before code exists, and a hold-out subset stays with the verifier ([R15](/evidence/ledger/#r15), [R18](/evidence/ledger/#r18)).
-
-3. **Review the plan.** [Judgment] Someone other than the plan's author confirms that every slice maps to a check and no check contradicts the goal.
-
-4. **One slice per session.** [Proposal] The orchestrator injects plan.md and one slice brief into a fresh session and re-injects them periodically ([R9a](/evidence/ledger/#r9a), [R3c](/evidence/ledger/#r3c)).
-
-5. **Separate verification.** [Proposal] A different session runs the checks and hold-outs and is the only one that sets `passes` ([R18](/evidence/ledger/#r18), [R95](/evidence/ledger/#r95)).
-
-6. **Hand off.** [Proposal] The handoff keeps raw check output and dead ends and retires facts that stopped being true ([R22a](/evidence/ledger/#r22a), [R24](/evidence/ledger/#r24)).
-
-</Steps>
-
-[Judgment] [How it works](/approach/how-it-works/) tells the whole loop, including the dispute and replan rules.
-
-## Where it fits
-
-[Judgment] The packet needs no runtime or plugin. Any coding agent that can read and write files can follow one, and a person can act as orchestrator or verifier. Repository-wide rules stay in a short [AGENTS.md](https://agents.md/); reusable procedures can stay in [Agent Skills](https://agentskills.io/specification).
-
-Agent Specs is an independent project. It is not affiliated with, or endorsed by, the AGENTS.md or Agent Skills projects or any agent vendor. Ideas borrowed from other formats are credited where they are used and on [Credits](/credits/).
-
-## Get started
+## Where to start
 
 <CardGrid>
-  <LinkCard title="Quickstart" href="/quickstart/" description="Apply the packet to one small, real change and verify it end to end." />
-  <LinkCard title="How it works" href="/approach/how-it-works/" description="Plan, slices, verification, handoff and state, in one narrative." />
-  <LinkCard title="Packet anatomy" href="/approach/packet-anatomy/" description="Every file, its sections and the rules a validator can check." />
-  <LinkCard title="Ledger" href="/evidence/ledger/" description="Every row this site cites, with sources and caveats." />
+  <LinkCard title="Context limits" href="/practices/context-limits/" description="Why more context is not always better, and what degrades first." />
+  <LinkCard title="Instruction files" href="/practices/instruction-files/" description="What an AGENTS.md or CLAUDE.md is for, and what it measurably does." />
+  <LinkCard title="Large codebases" href="/practices/large-codebases/" description="How agents find the right code, and what has been tested to help." />
+  <LinkCard title="Ledger" href="/evidence/ledger/" description="Every row this site cites, with its source, quote and caveat." />
 </CardGrid>

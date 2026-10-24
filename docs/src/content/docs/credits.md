@@ -1,15 +1,22 @@
 ---
 title: Credits
-description: The formats and practices this packet borrows from, and what each one contributed.
+description: The research, documentation and design this site draws on.
 ---
 
-[Judgment] The packet is a synthesis. The ideas below come from other formats and teams; each practice page credits them where they are used. Listing a format here says what we took from it, not that one is better than another.
+## Research and documentation
 
-- [Judgment] **ExecPlans** (OpenAI): a self-contained plan with living Decisions, Surprises and Progress sections ([R29](/evidence/ledger/#r29), [R67](/evidence/ledger/#r67)). The packet keeps Decisions and Surprises in plan.md.
-- [Judgment] **Long-running agent harness** (Anthropic): a feature list whose only editable field is a pass flag, worked one feature per session, with a progress file and git history ([R12](/evidence/ledger/#r12), [R12b](/evidence/ledger/#r12b)). In that harness the coding agent sets the flag itself; the packet's verifier-only rule is our change.
-- [Judgment] **Kiro specs** and **GitHub Spec Kit**: tracing requirements through to tasks ([R152](/evidence/ledger/#r152), [R76](/evidence/ledger/#r76)). The packet traces each slice to an acceptance check.
-- [Judgment] **Multi-agent research system** (Anthropic): what a subagent brief needs ([R14d](/evidence/ledger/#r14d)).
-- [Judgment] **AGENTS.md** ([R45](/evidence/ledger/#r45)) and **Agent Skills** ([R141](/evidence/ledger/#r141)): the standing-context and skill formats the packet sits beside without redefining.
-- [Judgment] **Simon Willison**: the lethal-trifecta framing used on [Trust and security](/practices/trust-and-security/) ([R129](/evidence/ledger/#r129)).
+Every page rests on other people's work: the studies, product documentation and engineering posts in the [Ledger](/evidence/ledger/). The Ledger's [Sources](/evidence/ledger/#sources) list names the authors and publisher of each one. Listing a source says what a page took from it, not that one tool or team is better than another.
 
-[Judgment] The research behind each row is credited in the [Ledger](/evidence/ledger/#sources).
+## Ideas and framings
+
+- **Simon Willison**: the lethal-trifecta framing used on [Trust and security](/practices/trust-and-security/) ([R129](/evidence/ledger/#r129)).
+- **OpenAI's ExecPlans** and **Anthropic's long-running agent harness**: written descriptions of plans and progress files that carry work across sessions, cited on [Long-running work](/practices/long-running-work/) ([R29](/evidence/ledger/#r29), [R12](/evidence/ledger/#r12)).
+- **AGENTS.md** ([R45](/evidence/ledger/#r45)) and **Agent Skills** ([R141](/evidence/ledger/#r141)): the open formats the instruction-file pages describe. Skills in depth are covered at [agentskills.io](https://agentskills.io).
+
+## Design
+
+The layout follows the [agentskills.io](https://agentskills.io) documentation site. The site is built with Astro and Starlight.
+
+## History
+
+This site began as Agent Specs, a proposed spec format for coding agents. In October 2026 it was rebuilt so that the evidence comes first and the pages follow it; the format was retired, and the parts the rows support now appear as practices.

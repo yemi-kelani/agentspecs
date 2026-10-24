@@ -3,26 +3,21 @@
 export const SIDEBAR = [
 	{
 		label: 'Start',
-		items: [{ slug: 'index', label: 'Overview' }, 'quickstart'],
-	},
-	{
-		label: 'The approach',
-		items: ['approach/how-it-works', 'approach/packet-anatomy'],
+		items: [{ slug: 'index', label: 'Overview' }, 'faq'],
 	},
 	{
 		label: 'Practices',
 		items: [
-			'practices/standing-context',
+			'practices/context-limits',
+			'practices/instruction-files',
+			'practices/team-context',
+			'practices/large-codebases',
 			'practices/planning',
-			'practices/breaking-work-down',
+			'practices/long-running-work',
+			'practices/subagents',
 			'practices/verification',
-			'practices/delegation',
 			'practices/trust-and-security',
 		],
-	},
-	{
-		label: 'Reference',
-		items: ['reference/templates', 'reference/checklist', 'reference/glossary'],
 	},
 	{
 		label: 'Evidence',
@@ -30,7 +25,7 @@ export const SIDEBAR = [
 	},
 	{
 		label: 'About',
-		items: ['faq', 'credits', 'contribute'],
+		items: ['credits', 'contribute'],
 	},
 ];
 
