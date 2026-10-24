@@ -1,6 +1,6 @@
-# Agent Specs site
+# Agent Practices site
 
-Source for [agentspecs.io](https://agentspecs.io), the documentation site for Agent Specs v0.2 (draft): a spec packet for coding agents on medium-to-hard work, built from published research and leading practice. It is a static site built with Astro and Starlight.
+Source for [agentpractices.io](https://agentpractices.io): what the evidence says about giving coding agents context, with every claim linked to a row in the evidence ledger. It is a static site built with Astro and Starlight.
 
 Working on this folder? Read [AGENTS.md](AGENTS.md) first. It lists the rules that differ from defaults, where each kind of file lives, and the boundaries for agents.
 
@@ -15,17 +15,14 @@ Run from `docs/` (Node 22.18 or later). From the repository root, `npm run dev`,
 | `npm run build` | Static build to `dist/`, including the search index. |
 | `npm run preview -- --port <port>` | Serve `dist/`; stop it by killing its pid (`npx astro preview stop` can stop another agent's preview). |
 | `npm test` | Tests for the checks, the label plugin and the Markdown export. |
-| `npm run check` | Content checks: frontmatter, labels and ledger-row links, citations, links, templates, banned terms, copy overlap, quotes, page length, stubs, the generated ledger and packets. |
-| `npm run check:quickstart` | Runs the Quickstart end to end on `examples/quickstart`. |
+| `npm run check` | Content checks: frontmatter, labels and ledger-row links, citations, links, banned terms, copy overlap, quotes, page length, stubs and the generated ledger. |
 | `node scripts/gen-evidence.mjs` | Regenerates the Ledger page from `src/data/evidence.json` (`--check` reports a stale page). |
 
 ## What is where
 
 - `src/content/docs/`: the pages.
 - `src/data/evidence.json`: the ledger: sources, graded rows (R1, R1a, …) and conflicts behind every citation and label.
-- `public/templates/`: the five packet templates, the single source that Reference > Templates and the Quickstart copy byte for byte.
 - `scripts/checks/`: one file per content check.
-- `examples/`: the project the Quickstart runs on, and the files its agent step applies.
 
 ## Output for agents
 
@@ -37,6 +34,6 @@ Every page is also served as Markdown at `/<slug>.md` (the home page at `/index.
 
 ## More
 
-- [ROADMAP.md](../ROADMAP.md): what v0.2 leaves out and the open questions.
-- [Contribute](https://agentspecs.io/contribute/): feedback, format changes and the writing rules.
+- [ROADMAP.md](../ROADMAP.md): the gaps in the evidence and what the site needs next.
+- [Contribute](https://agentpractices.io/contribute/): feedback, adding evidence and the writing rules.
 - License: [Apache License 2.0](../LICENSE).
