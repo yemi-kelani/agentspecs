@@ -19,7 +19,7 @@ Each row also carries a kind (a measured finding, documentation of how a product
 
 ## Selection
 
-Rows R1 to R30 come from a research review of how coding agents use plans, context, tests and memory. Rows R31 to R157 were verified for earlier versions of this site and kept because a page or the ledger still uses them. Rows from R160 on come from a full-text review, in October 2026, of studies on large-codebase navigation, team instruction files, task length, compaction, session handoff and progressive disclosure.
+Rows R1 to R30 come from a research review of how coding agents use plans, context, tests and memory. Rows R31 to R157 were verified for earlier versions of this site and kept because a page or the ledger still uses them. Rows from R160 on come from a full-text review, in October 2026, of studies on large-codebase navigation, team instruction files, task length, compaction, session handoff, progressive disclosure and test-driven development. Each of those rows was then re-checked by an independent pass against the source.
 
 Only primary sources count: the paper, the official documentation, or the team's own post. Secondary write-ups, newsletters and aggregator sites are never cited.
 

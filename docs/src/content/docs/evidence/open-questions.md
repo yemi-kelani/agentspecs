@@ -30,6 +30,7 @@ Each question below is one the practice pages cannot answer, because no verified
 ## Planning and checking
 
 - **Spec tooling against no spec.** No controlled test compares them ([R11a](/evidence/ledger/#r11a)).
+- **Test-first against test-after.** Tests in the prompt helped on small functions ([R220](/evidence/ledger/#r220)), but no study compares writing tests first, after or not at all for agents on repository work ([R231](/evidence/ledger/#r231)).
 - **A separate checker on ordinary tasks.** The controlled results on agents gaming tests come from tasks built to be impossible ([R18](/evidence/ledger/#r18)).
 - **Several agents against one on coding.** Whether one agent or many does better is stated as unresolved ([R12e](/evidence/ledger/#r12e)).
 

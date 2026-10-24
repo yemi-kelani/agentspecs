@@ -27,6 +27,10 @@ It varies by question, and each row's caveat says what it does not show. Much of
 
 [Evidence] Not by default. One vendor's multi-agent system used about 15 times the tokens of a chat, and fits poorly where agents must share context ([R14a](/evidence/ledger/#r14a), [R14c](/evidence/ledger/#r14c)). [Subagents and parallel work](/practices/subagents/) covers when they help.
 
+## Should I have the agent do test-driven development?
+
+[Evidence] Tests in the prompt helped on small functions ([R220](/evidence/ledger/#r220)), and the Claude Code docs show a failing test written before the fix ([R234](/evidence/ledger/#r234)). But models wrote a correct failing test for only a fifth to a third of real issues, and tests written from existing code tended to pass its bugs ([R225](/evidence/ledger/#r225), [R229](/evidence/ledger/#r229)). [Verification](/practices/verification/) covers what to check.
+
 ## Can an agent understand a codebase of millions of lines?
 
 [Evidence] Success falls as repositories grow, and finding the right code is where much of the effort goes ([R169](/evidence/ledger/#r169), [R171](/evidence/ledger/#r171)). [Large codebases](/practices/large-codebases/) covers what has been tested to help.
