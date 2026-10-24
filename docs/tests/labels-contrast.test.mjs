@@ -1,13 +1,13 @@
-// Label badge colours: every visible label has WCAG AA (4.5:1) text contrast in light and dark.
-// Source-only markers ([Proposal], [Judgment]) never render, so they have no colours.
+// Label badge colours: the label has WCAG AA (4.5:1) text contrast in light and dark.
+// Retired labels ([Proposal], [Judgment]) have no colours left in the stylesheet.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { LABELS, VISIBLE_LABELS } from '../src/lib/labels.mjs';
+import { LABELS } from '../src/lib/labels.mjs';
 
 const css = readFileSync(new URL('../src/styles/labels.css', import.meta.url), 'utf8');
-const KINDS = VISIBLE_LABELS.map((l) => l.kind);
-const HIDDEN = LABELS.filter((l) => !l.visible).map((l) => l.kind);
+const KINDS = LABELS.map((l) => l.kind);
+const RETIRED = ['proposal', 'judgment'];
 
 function block(selectorRe) {
   const m = selectorRe.exec(css);
@@ -47,8 +47,8 @@ for (const [theme, t] of Object.entries(themes)) {
   });
 }
 
-test('each visible kind has a class rule, and hidden markers have none', () => {
+test('the label has a class rule, and retired labels have none', () => {
   assert.deepEqual(KINDS, ['evidence']);
   for (const k of KINDS) assert.match(css, new RegExp(`\\.label--${k}\\s*\\{`));
-  for (const k of HIDDEN) assert.doesNotMatch(css, new RegExp(`label-?-${k}`));
+  for (const k of RETIRED) assert.doesNotMatch(css, new RegExp(`label-?-${k}`));
 });

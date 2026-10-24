@@ -27,25 +27,17 @@ test('renders [Evidence] at the start of a paragraph as a linked badge', async (
   assert.equal(html, `<p>${badge('evidence', 'Evidence', 'What the linked ledger rows report.')} Agents read files.</p>`);
 });
 
-test('drops the source-only markers [Proposal] and [Judgment] with the space after them', async () => {
-  const html = await md('[Evidence] a. [Proposal] b. [Judgment] c.');
-  assert.match(html, /class="label label--evidence"/);
-  assert.doesNotMatch(html, /label--(proposal|judgment)/);
-  assert.doesNotMatch(html, /Proposal|Judgment/);
-  assert.match(html, /<\/a> a\. b\. c\.<\/p>/);
-  assert.equal(await md('[Judgment] Keep it short.'), '<p>Keep it short.</p>');
-});
-
-test('leaves retired v0.1 tokens as plain text', async () => {
-  const html = await md('[Established] a. [Heuristic] b.');
+test('leaves retired tokens as plain text', async () => {
+  const html = await md('[Established] a. [Heuristic] b. [Proposal] c. [Judgment] d.');
   assert.doesNotMatch(html, /class="label/);
+  assert.match(html, /\[Proposal\] c\. \[Judgment\] d\./);
 });
 
-test('renders [Evidence] and drops hidden markers in list items and table cells', async () => {
-  const html = await md('- [Judgment] Keep it short.\n- [Evidence] A study.\n\n| Claim | Note |\n| --- | --- |\n| [Proposal] One file. | x |\n');
+test('renders [Evidence] in list items and table cells', async () => {
+  const html = await md('- Keep it short.\n- [Evidence] A study.\n\n| Claim | Note |\n| --- | --- |\n| [Evidence] One file. | x |\n');
   assert.match(html, /<li>Keep it short\.<\/li>/);
   assert.match(html, /<li><a class="label-link"[^>]*><span class="label label--evidence">Evidence<\/span><\/a> A study\.<\/li>/);
-  assert.match(html, /<td>One file\.<\/td>/);
+  assert.match(html, /<td><a class="label-link"[^>]*><span class="label label--evidence">Evidence<\/span><\/a> One file\.<\/td>/);
 });
 
 test('renders labels inside emphasis', async () => {
@@ -73,8 +65,7 @@ test('does not nest a link inside link text', async () => {
 });
 
 test('works in MDX', async () => {
-  const out = String(await compile('[Evidence] A study. [Judgment] Rule of thumb.', { remarkPlugins: [remarkLabels] }));
+  const out = String(await compile('[Evidence] A study.', { remarkPlugins: [remarkLabels] }));
   assert.match(out, /"label label--evidence"/);
   assert.match(out, /"\/evidence\/method\/#labels"/);
-  assert.doesNotMatch(out, /Judgment/);
 });

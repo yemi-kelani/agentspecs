@@ -1,31 +1,25 @@
-// labels: only the exact tokens [Evidence] [Proposal] [Judgment]. Only [Evidence] is shown to readers;
-// [Proposal] and [Judgment] are source-only markers that the renderer and exports strip, but this check
-// still reads them, so a recommendation needs a row link or a marker. Near-misses, misspellings within
-// edit distance 2 and the retired v0.1 tokens ([Established], [Heuristic]) fail, and every non-stub
-// page except contribute has at least one token. Code (fenced and inline) is ignored. Also flags
-// tokens Markdown would turn into links.
+// labels: [Evidence] is the only label. Near-misses, misspellings within edit distance 2 and the
+// retired tokens ([Established], [Heuristic], [Proposal], [Judgment]) fail. Code (fenced and inline)
+// is ignored. Also flags tokens Markdown would turn into links.
 //
-// Scope: a label covers the text from its token to the next token, or to the end of its paragraph,
+// Scope: the label covers the text from its token to the next token, or to the end of its paragraph,
 // list item or table cell. Two rules read scopes:
-//   - An [Evidence] or [Proposal] scope links at least one ledger row (/evidence/ledger/#r<N>).
-//   - A recommendation sentence links a ledger row or sits in a [Judgment] scope. A sentence is a
-//     recommendation when it holds a modal cue (should, must, avoid, never, recommend, ...) or, outside
-//     the Quickstart, opens with an imperative verb. Headings, JSX lines and callout markers are skipped.
+//   - An [Evidence] scope links at least one ledger row (/evidence/ledger/#r<N>).
+//   - A recommendation sentence links a ledger row; there is no other way to pass. A sentence is a
+//     recommendation when it holds a modal cue (should, must, avoid, never, recommend, ...) or opens
+//     with an imperative verb. Headings, JSX lines and callout markers are skipped.
 // Whether a linked row exists and is verified is the citations check's job.
-import { basename } from 'node:path';
 import { result } from './lib.mjs';
-import { LABEL_LIKE_RE, LABEL_TOKEN_RE, LABELS, NEEDS_ROW, RETIRED_LABELS, ROW_LINK_RE } from '../../src/lib/labels.mjs';
+import { LABEL_LIKE_RE, LABEL_TOKEN_RE, LABELS, RETIRED_LABELS, ROW_LINK_RE } from '../../src/lib/labels.mjs';
 import { lineOf } from '../../src/lib/md-utils.mjs';
 
 const EXACT = new Set(LABELS.map((l) => `[${l.name}]`));
-const NAMES = LABELS.map((l) => l.name.toLowerCase());
+// Misspellings of retired names are caught too, so [Judgemnt] does not slip through as plain text.
+const NAMES = [...LABELS.map((l) => l.name), ...Object.keys(RETIRED_LABELS)].map((n) => n.toLowerCase());
 const BRACKETED_WORD = /\[([A-Za-z]{4,14})\]/g;
 const RETIRED_RE = new RegExp(`\\[(${Object.keys(RETIRED_LABELS).join('|')})\\]`, 'g');
-const EXEMPT = new Set(['contribute']);
-// Pages whose prose is site policy or generated evidence, not packet guidance.
+// Pages whose prose is site policy or generated evidence, not practice guidance.
 const NO_RECOMMENDATION_RULE = new Set(['contribute', 'evidence/ledger', 'evidence/method']);
-// Pages whose numbered steps are procedure, so imperative openings are not read as recommendations.
-const NO_IMPERATIVE_RULE = new Set(['quickstart']);
 
 export const MODAL_RE =
   /\b(should(?:n't)?|must(?:n't)?|needs? to|ha(?:ve|s) to|ought to|recommend(?:s|ed|ation)?|advises?|prefer(?:s|red)?|avoid(?:s|ed)?|never|always|do not|don't|make sure|be sure|better to|best to)\b/i;
@@ -157,19 +151,18 @@ export default {
       const err = (index, message) => r.errors.push({ file: p.file, line: lineOf(text, index), message });
 
       for (const m of text.matchAll(RETIRED_RE)) {
-        err(m.index, `retired label "${m[0]}"; use [${RETIRED_LABELS[m[1]]}] (see /evidence/method/#labels)`);
+        err(m.index, `retired label "${m[0]}"; ${RETIRED_LABELS[m[1]]} (see /evidence/method/#labels)`);
       }
       const retiredAt = new Set([...text.matchAll(RETIRED_RE)].map((m) => m.index));
       for (const m of text.matchAll(new RegExp(LABEL_LIKE_RE.source, 'gi'))) {
-        if (!EXACT.has(m[0])) err(m.index, `near-miss label "${m[0]}"; use one of ${[...EXACT].join(' ')}`);
+        if (!EXACT.has(m[0]) && !retiredAt.has(m.index)) err(m.index, `near-miss label "${m[0]}"; use ${[...EXACT].join(' ')}`);
       }
       const likeAt = new Set([...text.matchAll(new RegExp(LABEL_LIKE_RE.source, 'gi'))].map((m) => m.index));
       for (const m of text.matchAll(BRACKETED_WORD)) {
         if (EXACT.has(m[0]) || likeAt.has(m.index) || retiredAt.has(m.index)) continue;
         const w = m[1].toLowerCase();
-        if (NAMES.some((n) => distance(w, n) <= 2)) err(m.index, `misspelt label "${m[0]}"; use one of ${[...EXACT].join(' ')}`);
+        if (NAMES.some((n) => distance(w, n) <= 2)) err(m.index, `misspelt label "${m[0]}"; use ${[...EXACT].join(' ')}`);
       }
-      let count = 0;
       for (const m of text.matchAll(new RegExp(LABEL_TOKEN_RE.source, 'g'))) {
         const lineStart = text.lastIndexOf('\n', m.index) + 1;
         const after = text[m.index + m[0].length];
@@ -177,32 +170,22 @@ export default {
           err(m.index, `"${m[0]}:" at line start is a link definition; it hides the label token`);
         } else if (after === '(' || after === '[') {
           err(m.index, `"${m[0]}${after}" becomes a link; put a space after the label`);
-        } else {
-          count++;
         }
-      }
-      const name = basename(p.rel).replace(/\.(md|mdx)$/, '');
-      if (!p.stub && count === 0 && !(EXEMPT.has(name) && p.rel === `${name}.${p.format}`)) {
-        r.errors.push({ file: p.file, line: 1, message: 'no label token; non-stub pages need at least one' });
       }
       if (p.stub) continue;
 
       const recommendations = !NO_RECOMMENDATION_RULE.has(p.slug);
-      const imperatives = !NO_IMPERATIVE_RULE.has(p.slug);
       for (const block of proseBlocks(text)) {
         for (const s of scopes(block)) {
-          if (s.label === 'Judgment') continue;
-          if (s.label && NEEDS_ROW.has(s.label)) {
-            if (!hasRowLink(s.text)) {
-              err(s.start, `[${s.label}] claim links no ledger row; add a link such as [R1](/evidence/ledger/#r1), or label it [Judgment]`);
-            }
+          if (s.label) {
+            if (!hasRowLink(s.text)) err(s.start, `[${s.label}] claim links no ledger row; add a link such as [R1](/evidence/ledger/#r1)`);
             continue;
           }
           if (!recommendations) continue;
           for (const sentence of sentences(s)) {
-            const cue = recommendationCue(sentence.text, { imperatives });
+            const cue = recommendationCue(sentence.text);
             if (cue && !hasRowLink(sentence.text)) {
-              err(sentence.start, `recommendation (${cue}) links no ledger row and has no [Judgment] label`);
+              err(sentence.start, `recommendation (${cue}) links no ledger row; link one, or move the point to Open questions`);
             }
           }
         }

@@ -1,8 +1,6 @@
-// remark plugin: render the visible label token as a badge and drop the source-only markers.
+// remark plugin: render the label token as a badge.
 // `[Evidence]` -> <a class="label-link" href="/evidence/method/#labels" title="Evidence: ...">
 //                   <span class="label label--evidence">Evidence</span></a>
-// `[Proposal]` and `[Judgment]` (and the space after them) are removed; the labels check reads them
-// in the source, readers never see them.
 // Only text nodes are touched, so inline code and code blocks keep the raw token.
 // Inside link text the badge is a bare <span> (no nested link).
 import { LABEL_HREF, LABEL_TOKEN_RE, labelByName } from '../lib/labels.mjs';
@@ -47,8 +45,7 @@ function splitText(value, insideLink) {
     if (match.index > last) parts.push({ type: 'text', value: value.slice(last, match.index) });
     const label = labelByName(match[1]);
     last = match.index + match[0].length;
-    if (label.visible) parts.push(badge(label, insideLink));
-    else while (value[last] === ' ' || value[last] === '\t') last++; // drop the marker and its spaces
+    parts.push(badge(label, insideLink));
   }
   if (!found) return null;
   if (last < value.length) parts.push({ type: 'text', value: value.slice(last) });

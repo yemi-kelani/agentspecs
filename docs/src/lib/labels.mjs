@@ -1,32 +1,23 @@
-// Claim label tokens. Single source for the remark plugin, the Markdown export and the labels check.
-// Evidence and Proposal claims link a ledger row (/evidence/ledger/#r<N>); Judgment claims need none.
-// Only Evidence is shown to readers. Proposal and Judgment are source-only markers: the labels check
-// reads them, and the renderer and the Markdown export strip them (see HIDDEN_LABEL_RE).
-export const LABELS = [
-  { kind: 'evidence', name: 'Evidence', definition: 'What the linked ledger rows report.', visible: true },
-  { kind: 'proposal', name: 'Proposal', definition: 'What the packet does, following from the linked rows.', visible: false },
-  { kind: 'judgment', name: 'Judgment', definition: 'A design choice the evidence does not settle.', visible: false },
-];
-
-/** Labels shown as badges on the site. */
-export const VISIBLE_LABELS = LABELS.filter((l) => l.visible);
-
-/** A hidden marker plus the spaces after it, e.g. "[Judgment] ". Global: use with replace or matchAll. */
-export const HIDDEN_LABEL_RE = new RegExp(`\\[(${LABELS.filter((l) => !l.visible).map((l) => l.name).join('|')})\\][ \\t]*`, 'g');
+// Claim label token. Single source for the remark plugin, the Markdown export and the labels check.
+// [Evidence] is the only label: it starts a claim that reports what ledger rows found, and its claim
+// links at least one row (/evidence/ledger/#r<N>). A recommendation needs no label, but it links a row too.
+export const LABELS = [{ kind: 'evidence', name: 'Evidence', definition: 'What the linked ledger rows report.' }];
 
 export const LABEL_HREF = '/evidence/method/#labels';
 
-/** Labels whose scope must link at least one verified ledger row. */
-export const NEEDS_ROW = new Set(['Evidence', 'Proposal']);
+/** Matches the exact label token `[Evidence]`. Global: reset lastIndex or use matchAll. */
+export const LABEL_TOKEN_RE = /\[(Evidence)\]/g;
 
-/** Matches an exact label token, e.g. `[Evidence]`. Global: reset lastIndex or use matchAll. */
-export const LABEL_TOKEN_RE = /\[(Evidence|Proposal|Judgment)\]/g;
-
-/** Matches bracketed spans that look like a label, exact or not. Used to flag near-misses. */
+/** Matches bracketed spans that look like a label, current or retired, exact or not. Used to flag near-misses. */
 export const LABEL_LIKE_RE = /\[\s*(evidence\w*|proposal\w*|judge?ment\w*)\s*\]/gi;
 
-/** Retired tokens from v0.1. Each fails the labels check with a pointer to its replacement. */
-export const RETIRED_LABELS = { Established: 'Evidence', Heuristic: 'Judgment' };
+/** Retired tokens, each with what to do instead. Each fails the labels check. */
+export const RETIRED_LABELS = {
+  Established: 'use [Evidence] and link a ledger row',
+  Heuristic: 'link a ledger row, or move the point to Open questions',
+  Proposal: 'link a ledger row; the claim needs no label',
+  Judgment: 'link a ledger row, or move the point to Open questions',
+};
 
 /** Path of the ledger page and the anchor form of a row id ("R18" -> "r18"). */
 export const LEDGER_PATH = '/evidence/ledger/';

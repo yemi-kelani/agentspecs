@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { makeSite, check, messages } from './helpers.mjs';
 
-const fm = (lines) => `---\n${lines.join('\n')}\n---\n\nBody [Judgment] x.\n`;
+const fm = (lines) => `---\n${lines.join('\n')}\n---\n\nBody x.\n`;
 
 test('passes a page with a short title and a one-sentence description', async () => {
   const root = makeSite({

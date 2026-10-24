@@ -1,10 +1,8 @@
 // Markdown export shared by `/<slug>.md` (src/pages/[...slug].md.ts) and, later, llms-full.txt.
 // Output: "# <title>", blank line, "> <description>", blank line, body (frontmatter removed).
-// The visible label [Evidence] stays as raw text; the source-only markers [Proposal] and [Judgment]
-// are dropped, as on the HTML page. Code (fenced and inline) is never altered.
+// The label [Evidence] stays as raw text. Code (fenced and inline) is never altered.
 // Keep this file to erasable TypeScript syntax so `node --test` can import it directly.
 import { splitFences, splitFrontmatter } from './md-utils.mjs';
-import { HIDDEN_LABEL_RE } from './labels.mjs';
 
 export interface PageMarkdownInput {
   title: string;
@@ -34,7 +32,6 @@ function proseToMarkdown(body: string, isMdx: boolean): string {
   let text = masked;
   if (isMdx) text = convertMdx(text);
   text = text.replace(/<!--[\s\S]*?-->/g, '');
-  text = text.replace(new RegExp(HIDDEN_LABEL_RE.source, 'g'), '');
   text = convertAsides(text);
   text = text.replace(/^[ \t]+$/gm, '').replace(/\n{3,}/g, '\n\n').trim();
   return text ? restore(text) + '\n' : '';

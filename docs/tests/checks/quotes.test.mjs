@@ -6,7 +6,7 @@ const words = (n) => Array.from({ length: n }, (_, i) => `w${i}`).join(' ');
 
 test('flags straight and curly double-quoted spans of 15+ words', async () => {
   const root = makeSite({
-    'src/content/docs/a.md': page(`[Judgment] They said "${words(15)}" once.\n\nAlso “${words(8)}\n${words(8)}” across lines.`),
+    'src/content/docs/a.md': page(`They said "${words(15)}" once.\n\nAlso “${words(8)}\n${words(8)}” across lines.`),
   });
   const r = await check('quotes', root);
   const text = messages(r);
@@ -19,7 +19,7 @@ test('passes short quotes, code, and a long quoted frontmatter description', asy
   const root = makeSite({
     'src/content/docs/a.md':
       `---\ntitle: A\ndescription: "${words(20)}."\n---\n\n` +
-      `[Judgment] Short "${words(14)}" quote.\n\n\`"${words(20)}"\`\n\n\`\`\`json\n{"k": "${words(20)}"}\n\`\`\`\n\n"a" then ${words(20)} then "b".\n`,
+      `Short "${words(14)}" quote.\n\n\`"${words(20)}"\`\n\n\`\`\`json\n{"k": "${words(20)}"}\n\`\`\`\n\n"a" then ${words(20)} then "b".\n`,
   });
   const r = await check('quotes', root);
   assert.deepEqual(r.errors, [], messages(r));

@@ -30,7 +30,7 @@ const CONFLICTS = [{ id: 'C1', rows: ['R2', 'R10'], title: 'Short or long?', sum
 
 const EVIDENCE = { generated: '2026-10-09', sources: SOURCES, conflicts: CONFLICTS, claims: CLAIMS };
 
-const HEAD = '---\ntitle: Ledger\ndescription: One sentence.\n---\n\n[Judgment] Hand-written part.\n\n';
+const HEAD = '---\ntitle: Ledger\ndescription: One sentence.\n---\n\nHand-written part.\n\n';
 const TAIL = '\nHand-written footer.\n';
 const stalePage = () => `${HEAD}${START}\nold generated text\n${END}\n${TAIL}`;
 
@@ -78,7 +78,7 @@ test('a hand edit inside the region makes --check fail again', () => {
 });
 
 test('missing or misordered markers fail in both modes', () => {
-  for (const text of [page('[Judgment] No markers.'), `${HEAD}${END}\n${START}\n`]) {
+  for (const text of [page('No markers.'), `${HEAD}${END}\n${START}\n`]) {
     const root = site(text);
     for (const args of [[], ['--check']]) {
       const r = gen(root, ...args);
@@ -192,7 +192,7 @@ test('generated check: fails a stale ledger, passes a fresh one', async () => {
 });
 
 test('generated check: fails a finished ledger without markers', async () => {
-  const r = await check('generated', site(page('[Judgment] No markers.', { title: 'Ledger' })));
+  const r = await check('generated', site(page('No markers.', { title: 'Ledger' })));
   assert.equal(r.errors.length, 1, messages(r));
   assert.match(messages(r), /evidence:generated/);
 });
@@ -202,7 +202,7 @@ test('generated check: passes when the ledger is absent, a stub, or out of scope
   assert.deepEqual((await check('generated', site(page('<!-- stub: phase 6 -->')))).errors, []);
   const root = site();
   const other = join(root, 'src/content/docs/other.md');
-  writeFileSync(other, page('[Judgment] Other.'));
+  writeFileSync(other, page('Other.'));
   assert.deepEqual((await check('generated', root, { paths: [other] })).errors, []);
 });
 

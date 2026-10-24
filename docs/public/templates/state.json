@@ -1,9 +1,0 @@
-{
-  "packet": "<task-id>",
-  "format": "agentspecs packet v0.2",
-  "updated": "<YYYY-MM-DDTHH:MMZ>",
-  "slices": [
-    { "id": "01", "brief": "slices/01-<name>.md", "status": "pending", "passes": false, "failures": 0, "handoff": null },
-    { "id": "02", "brief": "slices/02-<name>.md", "status": "pending", "passes": false, "failures": 0, "handoff": null }
-  ]
-}
