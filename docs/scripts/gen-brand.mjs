@@ -1,4 +1,4 @@
-// Brand generator for agentspecs.io (phase 7). Run from docs/:
+// Brand generator for agentpractices.io. Run from docs/:
 //   node scripts/gen-brand.mjs   (run from docs/)
 // Writes public/favicon.svg, public/og.png and
 // a 16 px preview PNG in the OS temp folder (path printed). Uses only installed packages: sharp (rasterizing)
@@ -12,7 +12,7 @@ import { fileURLToPath } from 'node:url';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(HERE, '..'); // docs/
-const PREVIEW = join(tmpdir(), 'agentspecs-favicon-16.png'); // visual check only; not committed
+const PREVIEW = join(tmpdir(), 'agentpractices-favicon-16.png'); // visual check only; not committed
 const req = createRequire(join(ROOT, 'package.json'));
 const sharp = req('sharp');
 const { create } = await import(req.resolve('fontkitten'));
@@ -104,11 +104,11 @@ function og() {
   const markSize = 104;
   const markTop = 112;
   const baseline = markTop + (30 / 32) * markSize;
-  const word = textPath('agentspecs', { wght: 600, size: 92, x: left + markSize + 30, y: baseline, tracking: -0.015 });
-  const pitch1 = textPath('Task specs that coding agents', { wght: 500, size: 56, x: left, y: 360, tracking: -0.01 });
-  const pitch2 = textPath('can follow phase by phase.', { wght: 500, size: 56, x: left, y: 432, tracking: -0.01 });
-  const url = textPath('agentspecs.io', { wght: 500, size: 30, x: left, y: 540 });
-  const status = textPath('Specification v0.1 (draft)', { wght: 400, size: 30, x: 0, y: 540 });
+  const word = textPath('agentpractices', { wght: 600, size: 92, x: left + markSize + 30, y: baseline, tracking: -0.015 });
+  const pitch1 = textPath('What the evidence says about', { wght: 500, size: 56, x: left, y: 360, tracking: -0.01 });
+  const pitch2 = textPath('giving coding agents context.', { wght: 500, size: 56, x: left, y: 432, tracking: -0.01 });
+  const url = textPath('agentpractices.io', { wght: 500, size: 30, x: left, y: 540 });
+  const status = textPath('Every claim linked to its source', { wght: 400, size: 30, x: 0, y: 540 });
   const statusX = W - left - status.width;
   return (
     `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">` +

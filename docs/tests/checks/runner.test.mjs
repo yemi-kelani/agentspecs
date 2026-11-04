@@ -8,17 +8,17 @@ import { runChecks, CHECKS } from '../../scripts/checks/run.mjs';
 
 const RUN = fileURLToPath(new URL('../../scripts/checks/run.mjs', import.meta.url));
 
-test('registers all twelve checks in a fixed order', () => {
+test('registers all ten checks in a fixed order', () => {
   assert.deepEqual(
     CHECKS.map((c) => c.name),
-    ['frontmatter', 'labels', 'citations', 'links', 'templates', 'banned', 'copy', 'quotes', 'length', 'stubs', 'generated', 'specsets'],
+    ['frontmatter', 'labels', 'citations', 'links', 'banned', 'copy', 'quotes', 'length', 'stubs', 'generated'],
   );
 });
 
 test('path arguments limit content checks to those paths', async () => {
   const root = makeSite({
-    'src/content/docs/good/a.md': page('[Proposal] Fine.'),
-    'src/content/docs/bad/b.md': page('No label and [established] near-miss.'),
+    'src/content/docs/good/a.md': page('Fine.'),
+    'src/content/docs/bad/b.md': page('Agents should keep plans short. A [evidence] near-miss.'),
   });
   const scoped = await runChecks({ root, paths: [join(root, 'src/content/docs/good')], allowStubs: true });
   assert.deepEqual(scoped.flatMap((r) => r.errors), []);
@@ -28,7 +28,7 @@ test('path arguments limit content checks to those paths', async () => {
 
 test('CLI exits 1 on errors, 0 when clean, and honours --allow-stubs and paths', () => {
   const root = makeSite({
-    'src/content/docs/good/a.md': page('[Proposal] Fine.'),
+    'src/content/docs/good/a.md': page('Fine.'),
     'src/content/docs/stub.md': page('<!-- stub: phase 3 -->'),
   });
   const fail = spawnSync(process.execPath, [RUN, '--root', root], { encoding: 'utf8' });

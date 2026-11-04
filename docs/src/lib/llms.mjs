@@ -6,7 +6,7 @@ import { mdPathFor } from './paths.mjs';
 import { sidebarPages } from '../sidebar.mjs';
 
 /** Pages an agent can skip when context is short: the llms.txt "Optional" section, whatever their sidebar group. */
-export const OPTIONAL_PAGES = new Set(['comparison', 'evidence', 'faq', 'contribute']);
+export const OPTIONAL_PAGES = new Set(['evidence/ledger', 'evidence/method', 'faq', 'credits', 'contribute']);
 const DOCS = 'Docs';
 const OPTIONAL = 'Optional';
 
@@ -42,7 +42,7 @@ export function entryMarkdown(entry) {
  * llms.txt: H1, one-line summary, a pointer to llms-full.txt, then one H2 section per sidebar group
  * listing `- [Title](<site>/<slug>.md): description`. "Optional" is always the last section.
  */
-export function llmsTxt(entries, { title, site, version }) {
+export function llmsTxt(entries, { title, site }) {
   const pages = orderPages(entries);
   const home = pages.find((p) => p.entry.id === 'index')?.entry;
   const sections = new Map();
@@ -54,7 +54,7 @@ export function llmsTxt(entries, { title, site, version }) {
   const url = (path) => new URL(path, site).href;
 
   const lines = [`# ${title}`, ''];
-  if (home?.data.description) lines.push(`> ${home.data.description} Specification ${version}.`, '');
+  if (home?.data.description) lines.push(`> ${home.data.description}`, '');
   lines.push(
     `Each link is the Markdown version of a page on ${url('/')}. All pages in one file: ${url('/llms-full.txt')}`,
   );

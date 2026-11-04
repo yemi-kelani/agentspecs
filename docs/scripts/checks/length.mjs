@@ -1,9 +1,9 @@
 // length: plan.md caps each page at 120 Markdown lines (frontmatter excluded).
-// Exempt: Specification, Templates and Evidence (per plan.md) and Quickstart (shows whole files).
+// Exempt: Templates and Quickstart (they show whole files), and the generated Ledger.
 import { result } from './lib.mjs';
 
 const MAX_LINES = 120;
-const EXEMPT = new Set(['reference/specification', 'reference/templates', 'evidence', 'quickstart']);
+const EXEMPT = new Set(['evidence/ledger']);
 
 export default {
   name: 'length',

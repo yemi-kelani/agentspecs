@@ -7,10 +7,19 @@ test('md page: title, description quote, body with frontmatter removed', () => {
   const out = pageToMarkdown({
     title: 'Specification',
     description: 'The format.',
-    body: '---\ntitle: Specification\n---\n\n## Scope\n\n[Proposal] One file.\n',
+    body: '---\ntitle: Specification\n---\n\n## Scope\n\n[Evidence] One file ([R1](/evidence/ledger/#r1)).\n',
     format: 'md',
   });
-  assert.equal(out, '# Specification\n\n> The format.\n\n## Scope\n\n[Proposal] One file.\n');
+  assert.equal(out, '# Specification\n\n> The format.\n\n## Scope\n\n[Evidence] One file ([R1](/evidence/ledger/#r1)).\n');
+});
+
+test('keeps [Evidence] as raw text in prose and code', () => {
+  const out = pageToMarkdown({
+    title: 'T',
+    body: '- [Evidence] One file.\n\nWrite `[Evidence]` in source.\n\n```md\n[Evidence] in code\n```\n',
+    format: 'md',
+  });
+  assert.equal(out, '# T\n\n- [Evidence] One file.\n\nWrite `[Evidence]` in source.\n\n```md\n[Evidence] in code\n```\n');
 });
 
 test('md page without description omits the quote line', () => {

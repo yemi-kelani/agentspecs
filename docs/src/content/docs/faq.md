@@ -1,56 +1,40 @@
 ---
 title: FAQ
-description: Short answers to common questions about Agent Specs.
+description: Short answers to common questions about Agent Practices and the evidence behind it.
 ---
 
-## Is Agent Specs an official standard?
+## Is this a framework or a standard?
 
-No. [Proposal] Agent Specs v0.1 (draft) is a proposal, published in [the Agent Specs repository](https://github.com/yemi-kelani/agentspecs) for anyone to use or criticise. It is not affiliated with Anthropic, the Agent Skills project or any agent vendor.
+No. Agent Practices reports what published studies, product documentation and teams' own accounts show about giving coding agents context, and links every claim to its source. There is no format to adopt. It is not affiliated with any agent vendor or with the AGENTS.md or Agent Skills projects.
 
-## How does it relate to Agent Skills and AGENTS.md?
+## What happened to Agent Specs and the spec packet?
 
-[Proposal] It builds on both and redefines neither. AGENTS.md stays the router that most tools load at the start of a session (tools differ; see [the Evidence page](/evidence/)), and skills follow the [Agent Skills specification](https://agentskills.io/specification). Agent Specs covers the task itself: a plan.md index, phase files and handoffs in `work/<task-id>/`, arranged from established practice that the [Comparison](/comparison/) page and the [Evidence page](/evidence/) cite. See the Works with pages for [AGENTS.md](/works-with/agents-md/) and [Agent Skills](/works-with/agent-skills/).
+The site used to propose a spec format. It now starts from the evidence instead. The format was retired in October 2026, and its parts that rows support appear as practices: state and progress files on [Long-running work](/practices/long-running-work/), and checks written first and run by someone other than the implementer on [Verification](/practices/verification/). Old addresses redirect.
 
-## Does it make agents more successful?
+## How strong is the evidence?
 
-Nobody knows yet. [Proposal] No study has tested Agent Specs, or any index-and-leaf plan, head to head. [Evidence] The nearest study found that adding a context file did not significantly change task success and raised cost by about 20%, on Python repositories with four agent setups and no task plans ([Gloaguen et al., 2026](https://arxiv.org/abs/2602.11988)). See [what the research does not show](/evidence/#what-it-does-not-show).
+It varies by question, and each row's caveat says what it does not show. Much of the ledger is vendor documentation and practitioners' accounts of what they do. Controlled studies of coding agents exist for some questions, such as checking the work and finding code in a repository, and are few or absent for others. [Method](/evidence/method/) explains how rows are chosen and checked, and [Open questions](/evidence/open-questions/) lists what nobody has tested.
+
+## Does an instruction file make agents more successful?
+
+[Evidence] Not in general, in the controlled tests so far: an AGENTS.md-style file did not significantly change task success and raised cost by about 20% ([R1](/evidence/ledger/#r1), [R1a](/evidence/ledger/#r1a)). An efficiency study found lower runtime ([R2](/evidence/ledger/#r2)); see conflict [C1](/evidence/ledger/#c1-do-context-files-raise-or-lower-cost). [Instruction files](/practices/instruction-files/) has the detail.
 
 ## Does file length matter?
 
-[Evidence] One study found no detectable effect of CLAUDE.md files of 25 to 500 lines on whether an agent followed a rule, though the rule was trivial and longer files were not tested ([McMillan, 2026](https://arxiv.org/abs/2605.10039)). [Evidence] Other studies saw accuracy fall as inputs or the number of instructions grew, on synthetic tasks rather than coding agents ([Chroma, 2025](https://www.trychroma.com/research/context-rot); [Jaroslawicz et al., 2025](https://arxiv.org/abs/2507.11538)). [Proposal] So the [size budgets](/reference/templates/#budgets) rest on token cost and focus, not on a proven threshold.
+[Evidence] One study found no detectable effect from 25 to 500 lines on following one simple rule ([R3](/evidence/ledger/#r3)); others found accuracy falling as inputs or instruction counts grew ([R4](/evidence/ledger/#r4), [R5](/evidence/ledger/#r5)). See conflict [C2](/evidence/ledger/#c2-do-file-size-and-position-matter).
 
 ## Do I need subagents?
 
-No. [Proposal] Phases can run one after another in fresh sessions of a single agent; subagents only make the isolation automatic. [Established] Anthropic itself says multi-agent setups fit poorly where agents must share context or depend on each other, and that most coding is less parallel than research ([Anthropic, 2025](https://www.anthropic.com/engineering/multi-agent-research-system)). See [Run phases with subagents](/guides/run-phases-with-subagents/).
+[Evidence] Not by default. One vendor's multi-agent system used about 15 times the tokens of a chat, and fits poorly where agents must share context ([R14a](/evidence/ledger/#r14a), [R14c](/evidence/ledger/#r14c)). [Subagents and parallel work](/practices/subagents/) covers when they help.
 
-## Does every task need a review phase?
+## Should I have the agent do test-driven development?
 
-Only tasks whose plan has more than one phase. [Proposal] There, the last phase is a review by an agent that did none of the work; see [Verify and accept](/guides/verify-and-accept/#the-review-phase). [Evidence] Studies of reasoning tasks found that models correct themselves poorly without outside feedback ([Huang et al., 2023](https://arxiv.org/abs/2310.01798)), but we found no study that tests whether a fresh-context reviewer catches more than self-review on coding work. The review costs one more agent run.
+[Evidence] Tests in the prompt helped on small functions ([R220](/evidence/ledger/#r220)), and the Claude Code docs show a failing test written before the fix ([R234](/evidence/ledger/#r234)). But models wrote a correct failing test for only a fifth to a third of real issues, and tests written from existing code tended to pass its bugs ([R225](/evidence/ledger/#r225), [R229](/evidence/ledger/#r229)). [Verification](/practices/verification/) covers what to check.
 
-## Which agents support it?
+## Can an agent understand a codebase of millions of lines?
 
-[Proposal] Any agent that can read and write files in your repository; nothing needs special support, and a person can act as the orchestrator. [Established] Loading still differs by tool: Claude Code, for example, reads AGENTS.md by default only when no CLAUDE.md exists ([Claude Code docs](https://code.claude.com/docs/en/memory)).
+[Evidence] Success falls as repositories grow, and finding the right code is where much of the effort goes ([R169](/evidence/ledger/#r169), [R171](/evidence/ledger/#r171)). [Large codebases](/practices/large-codebases/) covers what has been tested to help.
 
-## Is it overkill for small tasks?
+## How do I add evidence or correct a claim?
 
-For the full spec set, yes. [Established] Vendors advise skipping a formal plan for small changes, such as a diff you can describe in one sentence ([Claude Code docs](https://code.claude.com/docs/en/best-practices)). [Proposal] The [sizing gate](/concepts/sizing/) agrees: a prompt plus AGENTS.md for trivial work, one plan.md for medium work, and the full spec set only for large tasks.
-
-## Why JSON for state?
-
-[Heuristic] Anthropic chose JSON for a long-running agent's feature list because, in its experience, models were less likely to wrongly overwrite JSON than Markdown; it published no data ([Anthropic, 2025](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents)). [Proposal] state.json can also be parsed by a script, so checking status needs no prose. See [Living state](/concepts/living-state/).
-
-## Are spec sets safe with untrusted documents?
-
-Not fully. [Evidence] Instructions planted in content an agent later reads can steer it, as shown against real applications in 2023, before today's coding agents ([Greshake et al., 2023](https://arxiv.org/abs/2302.12173)). [Proposal] Agent Specs keeps sources read-only and treats them as data, which limits the damage but does not remove the risk. See [Untrusted sources](/concepts/untrusted-sources/).
-
-## How is it different from Kiro, Spec Kit or ExecPlans?
-
-[Proposal] Those formats come with their own tools or a single plan file; Agent Specs is a tool-neutral set of plain files, sized to the task. Each of them is the better choice in some situations, and the [comparison](/comparison/) says which.
-
-## Is there a validator?
-
-A reference one. [Proposal] [specs-ref](https://github.com/yemi-kelani/agentspecs/tree/main/specs-ref), in the Agent Specs repository, checks a spec set, or a repository's AGENTS.md and every spec set under `work/`, against the Specification's structural rules. It is a demonstration rather than a production tool, and it does not run verify commands; use the [checklist](/reference/checklist/) and each phase's Verify for the rest. A GitHub Action is on the roadmap.
-
-## How do I propose a change?
-
-See [Contribute](/contribute/). Changes to the spec and to this site go through [the Agent Specs repository](https://github.com/yemi-kelani/agentspecs).
+See [Contribute](/contribute/).

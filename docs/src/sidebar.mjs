@@ -3,40 +3,29 @@
 export const SIDEBAR = [
 	{
 		label: 'Start',
-		items: [{ slug: 'index', label: 'Overview' }, 'quickstart'],
+		items: [{ slug: 'index', label: 'Overview' }, 'faq'],
 	},
 	{
-		label: 'Concepts',
+		label: 'Practices',
 		items: [
-			'concepts/why-structure',
-			'concepts/sizing',
-			'concepts/index-and-leaves',
-			'concepts/handoff-contracts',
-			'concepts/living-state',
-			'concepts/verification-and-review',
-			'concepts/untrusted-sources',
+			'practices/context-limits',
+			'practices/instruction-files',
+			'practices/team-context',
+			'practices/large-codebases',
+			'practices/planning',
+			'practices/long-running-work',
+			'practices/subagents',
+			'practices/verification',
+			'practices/trust-and-security',
 		],
 	},
 	{
-		label: 'Guides',
-		items: [
-			'guides/write-plan',
-			'guides/write-phase-file',
-			'guides/verify-and-accept',
-			'guides/run-phases-with-subagents',
-		],
+		label: 'Evidence',
+		items: ['evidence/ledger', 'evidence/method', 'evidence/open-questions'],
 	},
 	{
-		label: 'Works with',
-		items: ['works-with/agents-md', 'works-with/agent-skills'],
-	},
-	{
-		label: 'Reference',
-		items: ['reference/specification', 'reference/templates', 'reference/checklist'],
-	},
-	{
-		label: 'Background',
-		items: ['comparison', 'evidence', 'faq', 'contribute'],
+		label: 'About',
+		items: ['credits', 'contribute'],
 	},
 ];
 

@@ -1,10 +1,13 @@
-// Label badge colours: four distinct kinds, WCAG AA (4.5:1) text contrast in light and dark.
+// Label badge colours: the label has WCAG AA (4.5:1) text contrast in light and dark.
+// Retired labels ([Proposal], [Judgment]) have no colours left in the stylesheet.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { LABELS } from '../src/lib/labels.mjs';
 
 const css = readFileSync(new URL('../src/styles/labels.css', import.meta.url), 'utf8');
-const KINDS = ['established', 'evidence', 'heuristic', 'proposal'];
+const KINDS = LABELS.map((l) => l.kind);
+const RETIRED = ['proposal', 'judgment'];
 
 function block(selectorRe) {
   const m = selectorRe.exec(css);
@@ -38,12 +41,14 @@ for (const [theme, t] of Object.entries(themes)) {
       assert.ok(ratio >= 4.5, `${theme} ${k}: ${ratio.toFixed(2)}:1`);
     }
   });
-  test(`${theme}: the four labels use distinct colours`, () => {
-    assert.equal(new Set(KINDS.map((k) => t[`${k}-fg`])).size, 4);
-    assert.equal(new Set(KINDS.map((k) => t[`${k}-bg`])).size, 4);
+  test(`${theme}: the labels use distinct colours`, () => {
+    assert.equal(new Set(KINDS.map((k) => t[`${k}-fg`])).size, KINDS.length);
+    assert.equal(new Set(KINDS.map((k) => t[`${k}-bg`])).size, KINDS.length);
   });
 }
 
-test('each kind has a class rule', () => {
+test('the label has a class rule, and retired labels have none', () => {
+  assert.deepEqual(KINDS, ['evidence']);
   for (const k of KINDS) assert.match(css, new RegExp(`\\.label--${k}\\s*\\{`));
+  for (const k of RETIRED) assert.doesNotMatch(css, new RegExp(`label-?-${k}`));
 });

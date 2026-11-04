@@ -1,6 +1,6 @@
 // Markdown export shared by `/<slug>.md` (src/pages/[...slug].md.ts) and, later, llms-full.txt.
 // Output: "# <title>", blank line, "> <description>", blank line, body (frontmatter removed).
-// Label tokens such as [Proposal] stay as raw text. Code (fenced and inline) is never altered.
+// The label [Evidence] stays as raw text. Code (fenced and inline) is never altered.
 // Keep this file to erasable TypeScript syntax so `node --test` can import it directly.
 import { splitFences, splitFrontmatter } from './md-utils.mjs';
 

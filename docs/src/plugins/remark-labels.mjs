@@ -1,6 +1,6 @@
-// remark plugin: render the exact evidence-label tokens as badges.
-// `[Established]` -> <a class="label-link" href="/evidence/#labels" title="Established: ...">
-//                      <span class="label label--established">Established</span></a>
+// remark plugin: render the label token as a badge.
+// `[Evidence]` -> <a class="label-link" href="/evidence/method/#labels" title="Evidence: ...">
+//                   <span class="label label--evidence">Evidence</span></a>
 // Only text nodes are touched, so inline code and code blocks keep the raw token.
 // Inside link text the badge is a bare <span> (no nested link).
 import { LABEL_HREF, LABEL_TOKEN_RE, labelByName } from '../lib/labels.mjs';
@@ -39,12 +39,15 @@ function splitText(value, insideLink) {
   let match;
   let last = 0;
   const parts = [];
+  let found = false;
   while ((match = re.exec(value)) !== null) {
+    found = true;
     if (match.index > last) parts.push({ type: 'text', value: value.slice(last, match.index) });
-    parts.push(badge(labelByName(match[1]), insideLink));
+    const label = labelByName(match[1]);
     last = match.index + match[0].length;
+    parts.push(badge(label, insideLink));
   }
-  if (parts.length === 0) return null;
+  if (!found) return null;
   if (last < value.length) parts.push({ type: 'text', value: value.slice(last) });
   return parts;
 }

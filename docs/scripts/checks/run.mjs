@@ -13,16 +13,14 @@ import frontmatter from './frontmatter.mjs';
 import labels from './labels.mjs';
 import citations from './citations.mjs';
 import links from './links.mjs';
-import templates from './templates.mjs';
 import banned from './banned.mjs';
 import copy from './copy.mjs';
 import quotes from './quotes.mjs';
 import stubs from './stubs.mjs';
 import length from './length.mjs';
-import specsets from './specsets.mjs';
 import generated from './generated.mjs';
 
-export const CHECKS = [frontmatter, labels, citations, links, templates, banned, copy, quotes, length, stubs, generated, specsets];
+export const CHECKS = [frontmatter, labels, citations, links, banned, copy, quotes, length, stubs, generated];
 
 const DEFAULT_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..');
 
